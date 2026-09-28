@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WASM vs JavaScript</title>
+  <meta name="description" content="Demostración de WebAssembly nativo escrito a mano comparado con JavaScript." />
+  <link rel="stylesheet" href="ejemplo.css" />
+</head>
+<body>
+
+  <header>
+    <h1>WASM vs JavaScript</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Selecciona una operacion</h2>
+
+      <menu>
+        <button>Factorial (n!)</button>
+        <button>Coseno Taylor</button>
+        <button>Numero primo</button>
+      </menu>
+
+      <form>
+        <p>
+          <label>n (1 a 20)
+            <br />
+            <input type="number" value="15" min="1" max="20" />
+          </label>
+        </p>
+        <p hidden>
+          <label>x (en radianes)
+            <br />
+            <input type="number" value="1.0472" step="0.01" />
+          </label>
+        </p>
+        <p hidden>
+          <label>Numero a comprobar
+            <br />
+            <input type="number" value="982451653" min="2" />
+          </label>
+        </p>
+        <button type="button">Ejecutar</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">WebAssembly</th>
+            <th scope="col">JavaScript</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <output></output>
+    </section>
+
+    <section>
+      <h2>Codigo fuente WAT</h2>
+      <pre></pre>
+    </section>
+  </main>
+
+  <script src="ejemplo.js"></script>
+</body>
+</html>

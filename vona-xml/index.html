@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VONA — Avisos Volcánicos para la Aviación</title>
+  <meta name="description"
+    content="Visualizador en Globo 3D de avisos volcánicos VONA para la aviación civil conforme al estándar OACI.">
+
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.1.0/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/index.css">
+
+  <script src="https://unpkg.com/maplibre-gl@5.1.0/dist/maplibre-gl.js" defer></script>
+  <script src="assets/js/vona_ts_engine.js" defer></script>
+  <script src="assets/js/vona_wasm_engine.js" defer></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</head>
+
+<body>
+  <a href="#contenido">Saltar al contenido principal</a>
+
+  <header>
+    <div>
+      <div>
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="m2 22 8-16 4 8 2-4 6 12Z" />
+          <path d="M10 6h4" />
+          <path d="M12 2v2" />
+        </svg>
+        <div>
+          <h1>VONA — Avisos Volcánicos para Aviación</h1>
+          <p>OACI Doc 9766 / WMO IWXXM</p>
+        </div>
+      </div>
+
+      <nav aria-label="Carga de archivo VONA">
+        <label data-boton-subir="true">
+          <input type="file" accept=".xml,text/xml,application/xml" data-entrada-archivo="true"
+            data-oculto-visual="true">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
+          </svg>
+          <span>Cargar XML</span>
+        </label>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section aria-label="Avisos de muestra" data-seccion="muestras">
+      <h2 data-oculto-visual="true">Avisos de muestra</h2>
+      <span>Avisos de ejemplo:</span>
+      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/popocatepetl-vona.xml"
+        aria-pressed="true">
+        Popocatépetl
+      </button>
+      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/etna-vona.xml"
+        aria-pressed="false">
+        Etna
+      </button>
+      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/eyjafjallajokull-vona.xml"
+        aria-pressed="false">
+        Eyjafjallajökull
+      </button>
+      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/kilauea-vona.xml"
+        aria-pressed="false">
+        Kilauea
+      </button>
+      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/multi-volcanoes-vona.xml"
+        aria-pressed="false">
+        Múltiples (Colección)
+      </button>
+    </section>
+
+    <section aria-label="Parámetros de la alerta" data-seccion="resumen">
+      <h2 data-oculto-visual="true">Parámetros de la alerta</h2>
+      <article data-tarjeta-metrica="true">
+        <header>
+          <h3>Volcán</h3>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+        </header>
+        <strong data-metrica="volcan-nombre">Popocatépetl</strong>
+        <p data-metrica="volcan-ubicacion">19.023°, -98.622°</p>
+      </article>
+
+      <article data-tarjeta-metrica="true">
+        <header>
+          <h3>Alerta Aérea</h3>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 2 22 22 22 12 2" />
+          </svg>
+        </header>
+        <div>
+          <span data-codigo-color="ORANGE" data-metrica="alerta-actual">ORANGE</span>
+        </div>
+        <p data-metrica="alerta-previa">Previo: YELLOW</p>
+      </article>
+
+      <article data-tarjeta-metrica="true">
+        <header>
+          <h3>Cumbre</h3>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+          </svg>
+        </header>
+        <strong data-metrica="elevacion-cumbre">5,426 m</strong>
+        <p data-metrica="elevacion-ft">(17,802 ft)</p>
+      </article>
+
+      <article data-tarjeta-metrica="true">
+        <header>
+          <h3>Humo / Ceniza</h3>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+          </svg>
+        </header>
+        <strong data-metrica="pluma-altitud">6,700 m (FL220)</strong>
+        <p data-metrica="pluma-viento">ENE a 35 km/h</p>
+      </article>
+
+      <article data-tarjeta-metrica="true">
+        <header>
+          <h3>Área de Dispersión</h3>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="m4.93 4.93 4.24 4.24" />
+            <path d="m14.83 9.17 4.24-4.24" />
+            <path d="m14.83 14.83 4.24 4.24" />
+            <path d="m9.17 14.83-4.24 4.24" />
+            <circle cx="12" cy="12" r="4" />
+          </svg>
+        </header>
+        <strong data-metrica="pluma-area">— km²</strong>
+      </article>
+    </section>
+
+    <section aria-label="Visualizador en Globo 3D" data-seccion="mapa">
+      <header>
+        <h2>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+            <path d="M2 12h20" />
+          </svg>
+          <span>Globo 3D &bull; Ubicación y Pluma de Dispersión</span>
+        </h2>
+
+        <select data-selector-volcan="true" data-oculto-visual="true" aria-label="Seleccionar volcán"></select>
+
+        <div data-controles-mapa="true">
+          <button type="button" data-control="globo" aria-pressed="true">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+              <path d="M2 12h20" />
+            </svg>
+            <span>Globo 3D</span>
+          </button>
+          <button type="button" data-control="pluma" aria-pressed="true">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
+            </svg>
+            <span>Pluma</span>
+          </button>
+          <button type="button" data-control="zonas" aria-pressed="true">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="5" />
+            </svg>
+            <span>Zonas</span>
+          </button>
+          <button type="button" data-control="centrar">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="2" x2="12" y2="6" />
+              <line x1="12" y1="18" x2="12" y2="22" />
+              <line x1="2" y1="12" x2="6" y2="12" />
+              <line x1="18" y1="12" x2="22" y2="12" />
+            </svg>
+            <span>Centrar</span>
+          </button>
+        </div>
+      </header>
+
+      <div data-mapa="contenedor">
+        <div data-leyenda-mapa="true">
+          <h3>Códigos OACI</h3>
+          <ul>
+            <li>
+              <span data-simbolo-leyenda="true" style="background-color: var(--color-alerta-rojo-texto);"></span>
+              <span><strong>ROJO</strong> (Erupción / ceniza sostenida)</span>
+            </li>
+            <li>
+              <span data-simbolo-leyenda="true" style="background-color: var(--color-alerta-naranja-texto);"></span>
+              <span><strong>NARANJA</strong> (Erupción menor / inestabilidad alta)</span>
+            </li>
+            <li>
+              <span data-simbolo-leyenda="true" style="background-color: var(--color-alerta-amarillo-texto);"></span>
+              <span><strong>AMARILLO</strong> (Inestabilidad sobre nivel base)</span>
+            </li>
+            <li>
+              <span data-simbolo-leyenda="true" style="background-color: var(--color-alerta-verde-texto);"></span>
+              <span><strong>VERDE</strong> (Actividad normal)</span>
+            </li>
+            <li>
+              <span data-simbolo-leyenda="true"
+                style="background-color: var(--color-humo-pluma); border: 0.0625rem dashed var(--color-humo-nucleo);"></span>
+              <span><strong>Pluma:</strong> Dispersión eólica de ceniza</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Resumen de actividad">
+      <h2 data-oculto-visual="true">Resumen de actividad</h2>
+      <blockquote data-resumen-actividad="true">
+        « Cargando resumen de la actividad volcánica del informe VONA... »
+      </blockquote>
+    </section>
+
+    <section aria-label="Detalles técnicos del aviso" data-seccion="detalles">
+      <h2 data-oculto-visual="true">Detalles técnicos del aviso</h2>
+      <div data-contenedor-tabla="true">
+        <table data-tabla-vona="true">
+          <caption>Parámetros transmitidos en el aviso aeronáutico VONA</caption>
+          <thead>
+            <tr>
+              <th scope="col">Parámetro OACI</th>
+              <th scope="col">Valor Reportado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">Cargando datos...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <p>Visualizador VONA &bull; OACI Doc 9766 &bull; <time datetime="2026-09-25">2026</time></p>
+      <p><small>Usa la rueda del ratón sobre el mapa para alejar y ver el globo terráqueo completo.</small></p>
+    </div>
+  </footer>
+</body>
+
+</html>

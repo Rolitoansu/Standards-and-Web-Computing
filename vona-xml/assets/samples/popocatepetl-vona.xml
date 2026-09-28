@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vona status="ISSUED" version="1.0">
+  <noticeNumber>2026/04</noticeNumber>
+  <issueTime>2026-09-25T14:30:00Z</issueTime>
+  <volcano>
+    <name>Popocatépetl</name>
+    <number>341090</number>
+    <location>
+      <latitude>19.023</latitude>
+      <longitude>-98.622</longitude>
+    </location>
+    <area>Puebla - Estado de México, Central Mexico</area>
+    <summitElevation uom="m">5426</summitElevation>
+  </volcano>
+  <observatory>CENAPRED - Centro Nacional de Prevención de Desastres</observatory>
+  <aviationColorCode>
+    <current>ORANGE</current>
+    <previous>YELLOW</previous>
+  </aviationColorCode>
+  <volcanicActivitySummary>Explosión moderada con emisión continua de vapor de agua, gases volcánicos y ceniza fina. Fragmentos incandescentes observados hasta 800 metros del cráter sobre las laderas este y sureste.</volcanicActivitySummary>
+  <volcanicCloud>
+    <cloudHeight>
+      <aboveSeaLevel uom="m">6700</aboveSeaLevel>
+      <aboveSummit uom="m">1274</aboveSummit>
+      <flightLevel>FL220</flightLevel>
+    </cloudHeight>
+    <movementDirection>ENE</movementDirection>
+    <movementSpeed uom="km/h">35</movementSpeed>
+    <dispersionDistance uom="km">45</dispersionDistance>
+    <cloudCharacteristics>Pluma densa de ceniza gris claro y gases derivando en dirección este-noreste sobre los valles de Puebla y Tlaxcala.</cloudCharacteristics>
+  </volcanicCloud>
+  <remarks>Detección mediante red sísmica telemétrica, cámaras visuales Tlamacas y monitoreo satelital GOES-16. Se mantiene el radio de seguridad de 12 km.</remarks>
+  <contacts>cvo@cenapred.unam.mx | Tel: +52 55 5424 6100</contacts>
+  <nextNotice>Se emitirá un nuevo boletín si cambian las condiciones o en un plazo máximo de 24 horas.</nextNotice>
+</vona>

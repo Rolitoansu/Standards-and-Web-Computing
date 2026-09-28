@@ -1,0 +1,174 @@
+====================================================================
+LEEME.TXT — Aplicación WebAssembly Nativo
+Asignatura: ECW — Estándares y Computación Web
+Máster en Ingeniería Web
+====================================================================
+
+--------------------------------------------------------------------
+1. DESCRIPCIÓN DE LA APLICACIÓN
+--------------------------------------------------------------------
+
+La aplicación "WASM vs JavaScript" es una calculadora interactiva
+que demuestra la potencia de WebAssembly ejecutando tres operaciones
+matemáticas clásicas tanto en WebAssembly como en JavaScript puro,
+midiendo y comparando los tiempos de ejecución de ambas.
+
+Las tres operaciones implementadas son:
+
+  · Factorial (n!)
+      Calcula el factorial de un número n mediante un bucle
+      que multiplica acumulativamente desde n hasta 1.
+      Ejemplo: 15! = 1.307.674.368.000
+
+  · Potencia (base^exp)
+      Calcula base elevado a exp mediante multiplicación
+      repetida en un bucle sencillo.
+      Ejemplo: 2^20 = 1.048.576
+
+  · Comprobación de primos (¿Es primo?)
+      Determina si un número n es primo probando divisores
+      impares desde 3 hasta √n. Incluye casos especiales
+      para n < 2, n = 2 y números pares.
+      Ejemplo: 982.451.653 → SÍ es primo
+
+Para que la diferencia de tiempo sea apreciable, cada operación
+se repite 50.000 veces consecutivas y se mide el tiempo total
+con performance.now() (precisión de microsegundos).
+
+
+--------------------------------------------------------------------
+2. ARCHIVOS DEL PROYECTO
+--------------------------------------------------------------------
+
+  ejemplo.wat   → Código fuente WebAssembly en formato texto (WAT),
+                  escrito íntegramente a mano sin generadores.
+
+  ejemplo.wasm  → Binario WebAssembly compilado desde ejemplo.wat
+                  usando el paquete npm "wabt" (build.js).
+
+  ejemplo.js    → Lógica JavaScript:
+                    · Carga ejemplo.wasm con WebAssembly.instantiate()
+                    · Implementa las mismas 3 operaciones en JS puro
+                    · Mide tiempos con performance.now()
+                    · Controla la interfaz y muestra el speedup
+
+  ejemplo.html  → Estructura HTML semántica de la aplicación:
+                    · Panel de selección de operación (tabs)
+                    · Campos de entrada de parámetros
+                    · Cuadros de resultado WASM vs JS
+                    · Visor del código fuente WAT
+
+  ejemplo.css   → Hoja de estilos completa:
+                    · Diseño dark mode con paleta GitHub-inspired
+                    · Tipografía Inter + JetBrains Mono
+                    · Diseño responsive (grid, flexbox)
+                    · Resaltado de sintaxis WAT
+
+  build.js      → Script Node.js para compilar WAT → WASM
+  leeme.txt     → Este archivo
+
+
+--------------------------------------------------------------------
+3. CARACTERÍSTICAS DEL CÓDIGO WAT
+--------------------------------------------------------------------
+
+El archivo ejemplo.wat contiene tres funciones escritas en
+WebAssembly Text Format (la representación textual legible de
+WASM). Características destacadas:
+
+  · Tipos de datos nativos: i32 (entero 32 bits) e i64 (64 bits)
+  · Bucles estructurados: instrucciones "loop" y "block"
+  · Saltos condicionales: "br_if" para controlar los bucles
+  · Condicionales: "if / then / else" y "return" anticipado
+  · Operaciones aritméticas: i32.mul, i32.add, i32.rem_u,
+    i64.mul, i64.sub, i32.gt_u, i32.eqz, i32.eq, i32.lt_u
+  · Variables locales: "local" con "local.get" / "local.set"
+  · Exportaciones: las funciones se exportan con (export "nombre")
+    para ser accesibles desde JavaScript
+
+Ejemplo de estructura de una función en WAT:
+
+  (func $factorial (export "factorial") (param $n i64) (result i64)
+    (local $resultado i64)
+    (local.set $resultado (i64.const 1))
+    (block $salir
+      (loop $bucle
+        (br_if $salir (i64.le_u (local.get $n) (i64.const 1)))
+        (local.set $resultado
+          (i64.mul (local.get $resultado) (local.get $n)))
+        (local.set $n (i64.sub (local.get $n) (i64.const 1)))
+        (br $bucle)
+      )
+    )
+    (local.get $resultado)
+  )
+
+
+--------------------------------------------------------------------
+4. VENTAJAS DE WEBASSEMBLY FRENTE A JAVASCRIPT
+--------------------------------------------------------------------
+
+  4.1 Rendimiento
+      WebAssembly se compila a código máquina nativo por el motor
+      del navegador antes de ejecutarse. JavaScript, en cambio,
+      es interpretado y compilado JIT (Just-In-Time) en tiempo
+      de ejecución, lo que introduce latencia adicional.
+
+      En operaciones con bucles intensivos (como el cálculo de
+      primos sobre números grandes), WASM puede ser entre 2× y
+      10× más rápido que JS equivalente.
+
+  4.2 Tipos estáticos y predecibles
+      WASM usa tipos fijos (i32, i64, f32, f64). JavaScript
+      usa tipado dinámico, lo que obliga al motor a realizar
+      comprobaciones de tipo en tiempo de ejecución que ralentizan
+      la ejecución.
+
+  4.3 Tamaño compacto
+      El formato binario .wasm es muy compacto (ejemplo.wasm
+      ocupa menos de 1 KB). Se descarga y analiza más rápido
+      que el código JS equivalente.
+
+  4.4 Portabilidad y seguridad
+      WASM corre en una sandbox aislada dentro del navegador,
+      sin acceso directo al sistema operativo. Es portable:
+      el mismo .wasm funciona en cualquier navegador moderno
+      (Chrome, Firefox, Safari, Edge) sin cambios.
+
+  4.5 Interoperabilidad
+      WASM no reemplaza a JavaScript; los complementa. JS
+      puede llamar a funciones WASM y viceversa. En esta app,
+      JS carga el módulo y WASM realiza los cálculos pesados.
+
+
+--------------------------------------------------------------------
+5. CÓMO EJECUTAR LA APLICACIÓN
+--------------------------------------------------------------------
+
+  La aplicación requiere un servidor HTTP local porque los
+  navegadores bloquean la carga de archivos .wasm desde file://.
+
+  Opción A — Python (no requiere instalación en macOS/Linux):
+    python3 -m http.server 8080
+    Abrir: http://localhost:8080/ejemplo.html
+
+  Opción B — Node.js con npx:
+    npx serve .
+    Abrir la URL que muestre en pantalla
+
+  Para recompilar el .wasm desde el .wat (requiere Node.js):
+    npm install wabt
+    node build.js
+
+
+--------------------------------------------------------------------
+6. COMPATIBILIDAD
+--------------------------------------------------------------------
+
+  Navegadores compatibles con WebAssembly (desde 2017):
+    · Google Chrome 57+
+    · Mozilla Firefox 52+
+    · Safari 11+
+    · Microsoft Edge 16+
+
+====================================================================

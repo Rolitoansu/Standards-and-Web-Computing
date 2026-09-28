@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vona status="ISSUED" version="1.0">
+  <noticeNumber>2026/09</noticeNumber>
+  <issueTime>2026-09-25T08:00:00Z</issueTime>
+  <volcano>
+    <name>Kilauea</name>
+    <number>332010</number>
+    <location>
+      <latitude>19.421</latitude>
+      <longitude>-155.287</longitude>
+    </location>
+    <area>Hawaii, United States</area>
+    <summitElevation uom="m">1222</summitElevation>
+  </volcano>
+  <observatory>USGS - Hawaiian Volcano Observatory (HVO)</observatory>
+  <aviationColorCode>
+    <current>ORANGE</current>
+    <previous>YELLOW</previous>
+  </aviationColorCode>
+  <volcanicActivitySummary>Vigorous lava fountaining within Halemaʻumaʻu crater with continuous effusion. Plume composed primarily of water vapor, sulfur dioxide (SO2), and intermittent Pele's hair and volcanic ash.</volcanicActivitySummary>
+  <volcanicCloud>
+    <cloudHeight>
+      <aboveSeaLevel uom="m">3000</aboveSeaLevel>
+      <aboveSummit uom="m">1778</aboveSummit>
+      <flightLevel>FL100</flightLevel>
+    </cloudHeight>
+    <movementDirection>SW</movementDirection>
+    <movementSpeed uom="km/h">25</movementSpeed>
+    <dispersionDistance uom="km">35</dispersionDistance>
+    <cloudCharacteristics>Volcanic smog (vog) plume drifting southwest under prevailing northeast trade wind conditions.</cloudCharacteristics>
+  </volcanicCloud>
+  <remarks>Sulfur dioxide gas emission rates elevated at approximately 8,000 tonnes per day. Airborne particulate hazards localized downwind.</remarks>
+  <contacts>askHVO@usgs.gov | Tel: +1 808 967 8811</contacts>
+  <nextNotice>Daily summary or immediately if hazard envelope expands.</nextNotice>
+</vona>

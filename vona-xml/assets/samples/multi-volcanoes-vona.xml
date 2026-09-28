@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vonas count="3" generated="2026-09-25T16:00:00Z">
+  <vona status="ISSUED">
+    <noticeNumber>2026/04</noticeNumber>
+    <issueTime>2026-09-25T14:30:00Z</issueTime>
+    <volcano>
+      <name>Popocatépetl</name>
+      <number>341090</number>
+      <location>
+        <latitude>19.023</latitude>
+        <longitude>-98.622</longitude>
+      </location>
+      <area>Puebla, Mexico</area>
+      <summitElevation uom="m">5426</summitElevation>
+    </volcano>
+    <observatory>CENAPRED</observatory>
+    <aviationColorCode>
+      <current>ORANGE</current>
+      <previous>YELLOW</previous>
+    </aviationColorCode>
+    <volcanicActivitySummary>Explosión con columna eruptiva sostenida de vapor, gases y ceniza dispersándose hacia el este-noreste.</volcanicActivitySummary>
+    <volcanicCloud>
+      <cloudHeight>
+        <aboveSeaLevel uom="m">6700</aboveSeaLevel>
+        <flightLevel>FL220</flightLevel>
+      </cloudHeight>
+      <movementDirection>ENE</movementDirection>
+      <movementSpeed uom="km/h">35</movementSpeed>
+      <dispersionDistance uom="km">45</dispersionDistance>
+      <cloudCharacteristics>Pluma densa de ceniza gris hacia Puebla.</cloudCharacteristics>
+    </volcanicCloud>
+    <remarks>Monitoreo por radar meteorológico y cámaras Tlamacas.</remarks>
+    <contacts>cvo@cenapred.unam.mx</contacts>
+    <nextNotice>Dentro de 24 horas o antes si hay cambios.</nextNotice>
+  </vona>
+
+  <vona status="ISSUED">
+    <noticeNumber>2026/12</noticeNumber>
+    <issueTime>2026-09-25T13:45:00Z</issueTime>
+    <volcano>
+      <name>Volcán de Fuego</name>
+      <number>342090</number>
+      <location>
+        <latitude>14.473</latitude>
+        <longitude>-90.880</longitude>
+      </location>
+      <area>Chimaltenango, Guatemala</area>
+      <summitElevation uom="m">3763</summitElevation>
+    </volcano>
+    <observatory>INSIVUMEH - Guatemala</observatory>
+    <aviationColorCode>
+      <current>ORANGE</current>
+      <previous>ORANGE</previous>
+    </aviationColorCode>
+    <volcanicActivitySummary>Explosiones estrombolianas moderadas y constantes con ondas de choque audibles a más de 10 km. Caída de ceniza fina en comunidades al oeste y suroeste.</volcanicActivitySummary>
+    <volcanicCloud>
+      <cloudHeight>
+        <aboveSeaLevel uom="m">4800</aboveSeaLevel>
+        <flightLevel>FL160</flightLevel>
+      </cloudHeight>
+      <movementDirection>WSW</movementDirection>
+      <movementSpeed uom="km/h">28</movementSpeed>
+      <dispersionDistance uom="km">30</dispersionDistance>
+      <cloudCharacteristics>Ceniza gris oscura extendida en abanico hacia la costa del Pacífico.</cloudCharacteristics>
+    </volcanicCloud>
+    <remarks>Corrientes de densidad piroclástica observadas en barranca Ceniza.</remarks>
+    <contacts>vulcanologia@insivumeh.gob.gt</contacts>
+    <nextNotice>Monitoreo continuo activo.</nextNotice>
+  </vona>
+
+  <vona status="ISSUED">
+    <noticeNumber>2026/31</noticeNumber>
+    <issueTime>2026-09-25T03:45:00Z</issueTime>
+    <volcano>
+      <name>Sakurajima</name>
+      <number>282080</number>
+      <location>
+        <latitude>31.581</latitude>
+        <longitude>130.659</longitude>
+      </location>
+      <area>Kyushu, Japan</area>
+      <summitElevation uom="m">1117</summitElevation>
+    </volcano>
+    <observatory>JMA - Kagoshima Observatory</observatory>
+    <aviationColorCode>
+      <current>ORANGE</current>
+      <previous>YELLOW</previous>
+    </aviationColorCode>
+    <volcanicActivitySummary>Erupción explosiva en el cráter Minamidake con eyección balística de bombas volcánicas a más de 1 km.</volcanicActivitySummary>
+    <volcanicCloud>
+      <cloudHeight>
+        <aboveSeaLevel uom="m">4500</aboveSeaLevel>
+        <flightLevel>FL150</flightLevel>
+      </cloudHeight>
+      <movementDirection>SE</movementDirection>
+      <movementSpeed uom="km/h">40</movementSpeed>
+      <dispersionDistance uom="km">50</dispersionDistance>
+      <cloudCharacteristics>Columna eruptiva con densidad moderada hacia la bahía de Shibushi.</cloudCharacteristics>
+    </volcanicCloud>
+    <remarks>Registrado por radar meteorológico doppler y sismógrafos de banda ancha.</remarks>
+    <contacts>vo-info@jma.go.jp</contacts>
+    <nextNotice>Se emitirá boletín especial si hay nueva explosión.</nextNotice>
+  </vona>
+</vonas>

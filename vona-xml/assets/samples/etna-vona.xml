@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vona status="ISSUED" version="1.0">
+  <noticeNumber>2026/18</noticeNumber>
+  <issueTime>2026-09-25T12:15:00Z</issueTime>
+  <volcano>
+    <name>Etna</name>
+    <number>211060</number>
+    <location>
+      <latitude>37.751</latitude>
+      <longitude>14.995</longitude>
+    </location>
+    <area>Sicily, Italy</area>
+    <summitElevation uom="m">3357</summitElevation>
+  </volcano>
+  <observatory>INGV - Osservatorio Etneo (Catania)</observatory>
+  <aviationColorCode>
+    <current>RED</current>
+    <previous>ORANGE</previous>
+  </aviationColorCode>
+  <volcanicActivitySummary>Fontana di lava parossistica attiva al Cratere di Sud-Est con colate laviche traboccanti verso la Valle del Bove. Intensa emissione di cenere con formazione di una colonna eruttiva sostenuta.</volcanicActivitySummary>
+  <volcanicCloud>
+    <cloudHeight>
+      <aboveSeaLevel uom="m">9000</aboveSeaLevel>
+      <aboveSummit uom="m">5643</aboveSummit>
+      <flightLevel>FL295</flightLevel>
+    </cloudHeight>
+    <movementDirection>E</movementDirection>
+    <movementSpeed uom="km/h">50</movementSpeed>
+    <dispersionDistance uom="km">75</dispersionDistance>
+    <cloudCharacteristics>Colonna eruttiva scura e densa espansa verso est sul Mar Ionio. Caduta di cenere e lapilli segnalata sui centri abitati della costa ionica.</cloudCharacteristics>
+  </volcanicCloud>
+  <remarks>Tremore vulcanico su valori molto elevati. Sorveglianza attiva tramite rete radar Doppler, array infrasonico e sensori termici ad alta risolución.</remarks>
+  <contacts>direzione.oe@ingv.it | Tel: +39 095 7165800</contacts>
+  <nextNotice>Un nuovo avviso VONA sara emesso tempestivamente con l'evoluzione del parossismo.</nextNotice>
+</vona>

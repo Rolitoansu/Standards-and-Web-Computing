@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iwxxm:VolcanoObservatoryNoticeForAviation
+  xmlns:iwxxm="http://icao.int/iwxxm/2025-2"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  status="NORMAL"
+  permissibleUsage="OPERATIONAL">
+  
+  <iwxxm:issueTime>
+    <gml:TimeInstant gml:id="issue-time-1">
+      <gml:timePosition>2026-09-25T11:00:00Z</gml:timePosition>
+    </gml:TimeInstant>
+  </iwxxm:issueTime>
+
+  <iwxxm:noticeNumber>2026/02</iwxxm:noticeNumber>
+
+  <iwxxm:volcano>
+    <iwxxm:Volcano>
+      <iwxxm:name>Eyjafjallajökull</iwxxm:name>
+      <iwxxm:number>372020</iwxxm:number>
+      <iwxxm:position>
+        <gml:Point gml:id="volcano-pos-1" srsName="urn:ogc:def:crs:EPSG::4326">
+          <gml:pos>63.633 -19.617</gml:pos>
+        </gml:Point>
+      </iwxxm:position>
+      <iwxxm:elevation uom="m">1666</iwxxm:elevation>
+      <iwxxm:subregion>Suðurland, South Iceland</iwxxm:subregion>
+    </iwxxm:Volcano>
+  </iwxxm:volcano>
+
+  <iwxxm:aviationColourCode>
+    <iwxxm:AviationColourCode>
+      <iwxxm:currentColourCode>RED</iwxxm:currentColourCode>
+      <iwxxm:previousColourCode>ORANGE</iwxxm:previousColourCode>
+    </iwxxm:AviationColourCode>
+  </iwxxm:aviationColourCode>
+
+  <iwxxm:source>
+    <iwxxm:OriginatingObservatory>
+      <iwxxm:name>Icelandic Meteorological Office (IMO)</iwxxm:name>
+      <iwxxm:contact>veðurstofa@vedur.is</iwxxm:contact>
+    </iwxxm:OriginatingObservatory>
+  </iwxxm:source>
+
+  <iwxxm:volcanicActivitySummary>Explosive subglacial eruption producing substantial ash plume rising into upper troposphere with rapid glacial meltwater release.</iwxxm:volcanicActivitySummary>
+
+  <iwxxm:volcanicCloud>
+    <iwxxm:VolcanicCloud>
+      <iwxxm:verticalExtent uom="m">10000</iwxxm:verticalExtent>
+      <iwxxm:flightLevel>FL330</iwxxm:flightLevel>
+      <iwxxm:movementDirection>SE</iwxxm:movementDirection>
+      <iwxxm:movementSpeed uom="km/h">65</iwxxm:movementSpeed>
+      <iwxxm:dispersionDistance uom="km">110</iwxxm:dispersionDistance>
+      <iwxxm:remarks>Fine ash plume tracking south-eastward across the North Atlantic flight corridors towards European airspace.</iwxxm:remarks>
+    </iwxxm:VolcanicCloud>
+  </iwxxm:volcanicCloud>
+
+  <iwxxm:remarks>High-altitude plume confirmed by Keflavik C-band weather radar and Meteosat Second Generation SEVIRI ash product.</iwxxm:remarks>
+  <iwxxm:nextNotice>Follow-up notice to be issued at 17:00 UTC or upon escalation.</iwxxm:nextNotice>
+
+</iwxxm:VolcanoObservatoryNoticeForAviation>
