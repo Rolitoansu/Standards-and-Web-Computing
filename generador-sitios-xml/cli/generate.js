@@ -52,6 +52,7 @@ async function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, asse
       if (!fs.existsSync(destino)) fs.mkdirSync(destino, { recursive: true });
       const items = fs.readdirSync(origen, { withFileTypes: true });
       for (const item of items) {
+        if (!item.isDirectory() && !item.name.endsWith('.svg')) continue;
         const srcItem = path.join(origen, item.name);
         const destItem = path.join(destino, item.name);
         if (item.isDirectory()) {
@@ -81,6 +82,7 @@ async function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, asse
     function agregarDirectorioAZip(dir, prefijoZip) {
       const items = fs.readdirSync(dir, { withFileTypes: true });
       for (const item of items) {
+        if (!item.isDirectory() && !item.name.endsWith('.svg')) continue;
         const fullPath = path.join(dir, item.name);
         const zipPath = prefijoZip + item.name;
         if (item.isDirectory()) {

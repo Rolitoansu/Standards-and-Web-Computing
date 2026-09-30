@@ -81,29 +81,7 @@ body > main > section:nth-of-type(2) article {
   box-sizing: border-box;
 }
 
-body > main > section:nth-of-type(2) > div > ul > li:first-child {
-  grid-column: 1 / -1;
-}
 
-body > main > section:nth-of-type(2) > div > ul > li:first-child article {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-body > main > section:nth-of-type(2) > div > ul > li:first-child article > div:first-child {
-  border-radius: var(--radio-m);
-  overflow: hidden;
-  border: 0.0625rem solid var(--borde);
-}
-
-body > main > section:nth-of-type(2) > div > ul > li:first-child article > div:first-child img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
 
 body > main > section:nth-of-type(2) article > div:first-child {
   display: flex;
@@ -174,16 +152,14 @@ body > main > section:nth-of-type(2) article span[data-estado="progreso"] {
   color: var(--aviso);
 }
 
-body > main > section:nth-of-type(2) article > div:last-child,
-body > main > section:nth-of-type(2) > div > ul > li:first-child article > div:last-child > div:nth-last-child(2) {
+body > main > section:nth-of-type(2) article > div:last-child {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
   margin-top: auto;
 }
 
-body > main > section:nth-of-type(2) article > div:last-child span,
-body > main > section:nth-of-type(2) > div > ul > li:first-child article > div:last-child > div:nth-last-child(2) span {
+body > main > section:nth-of-type(2) article > div:last-child span {
   background: var(--primario-claro);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -204,28 +180,3 @@ body > main > section:nth-of-type(2) article em {
   margin-bottom: 0.4rem;
 }
 
-body > main > section:nth-of-type(2) > div > ul > li:first-child article a {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55rem 1.25rem;
-  border-radius: var(--radio-s);
-  font-size: 0.875rem;
-  font-weight: 600;
-  background: var(--primario);
-  color: #ffffff;
-  text-decoration: none;
-  margin-top: 1.25rem;
-  width: fit-content;
-  transition: background var(--transicion);
-}
-
-body > main > section:nth-of-type(2) > div > ul > li:first-child article a:hover {
-  background: var(--primario-hover);
-}
-
-@media (max-width: 48rem) {
-  body > main > section:nth-of-type(2) > div > ul > li:first-child article {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-}

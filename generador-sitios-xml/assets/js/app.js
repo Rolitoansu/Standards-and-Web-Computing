@@ -25,24 +25,33 @@
       .replace(/^-+|-+$/g, '');
   }
 
-  document.addEventListener('DOMContentLoaded', async function () {
+  function obtenerSalida(formulario) {
+    let salida = document.querySelector('output');
+    if (!salida) {
+      salida = document.createElement('output');
+      salida.setAttribute('aria-live', 'polite');
+      formulario.insertAdjacentElement('afterend', salida);
+    }
+    return salida;
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
     const formulario = document.querySelector('form');
-    const inputFichero = document.querySelector('input[type="file"]');
-    const salida = document.querySelector('output');
+    const inputFichero = document.getElementById('fichero-xml') || document.querySelector('input[type="file"]');
 
-    if (!formulario || !salida) return;
+    if (!formulario) return;
 
-    // Precargar módulo WebAssembly si está disponible
+    // Precargar módulo WebAssembly en segundo plano sin bloquear el hilo ni los eventos
     if (typeof WasmMetricsRunner !== 'undefined') {
-      try {
-        await WasmMetricsRunner.cargarModulo();
-      } catch (err) {
-        console.warn('Inicialización WASM en segundo plano:', err);
-      }
+      WasmMetricsRunner.cargarModulo().catch(err => {
+        console.warn('Precarga WASM en segundo plano:', err);
+      });
     }
 
     formulario.addEventListener('submit', async function (evento) {
       evento.preventDefault();
+      evento.stopPropagation();
+      const salida = obtenerSalida(formulario);
 
       if (!inputFichero || !inputFichero.files || inputFichero.files.length === 0) {
         salida.innerHTML = '<p>Por favor, selecciona y sube un archivo XML antes de continuar.</p>';
@@ -57,18 +66,21 @@
         salida.innerHTML = '<p>Leyendo archivo XML del dispositivo...</p>';
         contenidoXml = await archivo.text();
       } catch (err) {
-        salida.innerHTML = '<p>Error al leer el archivo desde el dispositivo.</p>';
+        salida.innerHTML = '<p>Error al leer el archivo XML desde el dispositivo.</p>';
         return;
       }
 
       try {
         salida.innerHTML = '<p>Ejecutando análisis WebAssembly (WASM) y generando sitio web...</p>';
 
-        // 2. Ejecutar análisis de métricas en WebAssembly (WASM)
+        // 2. Ejecutar análisis de métricas con el módulo nativo WebAssembly (WASM)
         let metricasWasm = null;
         if (typeof WasmMetricsRunner !== 'undefined') {
           await WasmMetricsRunner.cargarModulo();
           metricasWasm = WasmMetricsRunner.analizar(contenidoXml);
+          if (metricasWasm) {
+            metricasWasm.origen = 'xml_metrics.wasm';
+          }
         }
 
         // 3. Generación HTML con el motor semántico (el avatar se define directamente en el XML)
@@ -114,12 +126,8 @@
             <h3>Métricas WebAssembly (WASM)</h3>
             <dl>
               <div>
-                <dt>Motor de cómputo</dt>
-                <dd>${metricasWasm.motor}</dd>
-              </div>
-              <div>
-                <dt>Checksum Hash FNV-1a</dt>
-                <dd>0x${metricasWasm.hashHex.toUpperCase()}</dd>
+                <dt>Módulo ejecutado</dt>
+                <dd>${metricasWasm.origen}</dd>
               </div>
               <div>
                 <dt>Tamaño XML</dt>
@@ -129,24 +137,12 @@
                 <dt>Etiquetas XML</dt>
                 <dd>${metricasWasm.totalEtiquetas} nodos</dd>
               </div>
-              <div>
-                <dt>Complejidad</dt>
-                <dd>${metricasWasm.puntuacionComplejidad}</dd>
-              </div>
-              <div>
-                <dt>Tiempo de análisis</dt>
-                <dd>${metricasWasm.tiempoMs} ms</dd>
-              </div>
             </dl>
           `;
         }
 
         salida.innerHTML = `
           <p><strong>¡Sitio web generado y empaquetado con éxito para ${autor}!</strong></p>
-          <p>El paquete <code>${nombreZip}</code> (${tamanoKb} KB) se ha descargado automáticamente e incluye las 5 páginas W3C, estilos CSS, scripts accesibles y recursos vectoriales genéricos.</p>
-          <ul>
-            <li><a href="${urlZipDescarga}" download="${nombreZip}">Descargar nuevamente el paquete completo (${nombreZip})</a></li>
-          </ul>
           ${bloqueWasm}
         `;
       } catch (error) {

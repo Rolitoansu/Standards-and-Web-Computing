@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitio-personal xmlns="https://rolitoansu.github.io/xml/sitio-personal"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="https://rolitoansu.github.io/xml/sitio-personal ../schema/sitio-personal.xsd"
+                idioma="es"
+                version="1.0"
+                id="sitio-elena-garcia">
+
+  <metadatos>
+    <autor>
+      <nombre-completo>Elena García Montes</nombre-completo>
+      <nombre>Elena</nombre>
+      <apellidos>García Montes</apellidos>
+      <titular>Lead Data Scientist &amp; Machine Learning Researcher</titular>
+      <lema>Transformando datos complejos en modelos predictivos explicables y de alto impacto social.</lema>
+      <descripcion>Dra. Elena García Montes — Investigadora en Inteligencia Artificial y Científica de Datos Senior especializada en visión por computador y NLP biomédico.</descripcion>
+      <palabras-clave>Elena García, Data Science, Machine Learning, Deep Learning, PyTorch, Python, IA Médica, Computer Vision</palabras-clave>
+      <foto avatar="generico" alt="Fotografía de la Dra. Elena García Montes" ancho="208" alto="208"/>
+    </autor>
+
+    <contacto-info>
+      <email>elena.garcia.ai@research.org</email>
+      <ubicacion>Madrid, España</ubicacion>
+      <empresa>Instituto de Investigación Biomédica</empresa>
+      <disponibilidad>Disponible para conferencias, consultoría en IA y colaboraciones científicas</disponibilidad>
+    </contacto-info>
+
+    <redes-sociales>
+      <red tipo="email" url="mailto:elena.garcia.ai@research.org" usuario="elena.garcia.ai@research.org" etiqueta="Correo institucional"/>
+      <red tipo="linkedin" url="https://linkedin.com" usuario="Dra. Elena García" etiqueta="LinkedIn"/>
+      <red tipo="github" url="https://github.com" usuario="@elenagarcia-ai" etiqueta="GitHub"/>
+    </redes-sociales>
+  </metadatos>
+
+  <paginas>
+    <inicio>
+      <hero>
+        <saludo>Hola, soy</saludo>
+        <subtitulo>Lead Data Scientist &amp; Machine Learning Researcher</subtitulo>
+        <resumen>Doctora en Informática especializada en modelos de aprendizaje profundo para análisis de imágenes médicas y procesamiento de lenguaje natural en el ámbito de la salud.</resumen>
+        <acciones>
+          <accion texto="Investigación y Publicaciones" href="projects.html" tipo="primario"/>
+          <accion texto="Ver Trayectoria" href="cv.html" tipo="secundario"/>
+        </acciones>
+      </hero>
+
+      <datos-rapidos>
+        <metrica valor="8+" etiqueta="Años investigando en IA"/>
+        <metrica valor="14" etiqueta="Publicaciones indexadas"/>
+        <metrica valor="3" etiqueta="Patentes biomédicas"/>
+      </datos-rapidos>
+
+      <tecnologias-destacadas>
+        <titulo>Especialidades y Stack</titulo>
+        <descripcion>Ecosistema de computación científica, redes neuronales y canalizaciones de datos masivos.</descripcion>
+        <tecnologia categoria="data">
+          <nombre>Python</nombre>
+          <nivel>Experto</nivel>
+          <icono src="assets/img/logos/python.svg"/>
+        </tecnologia>
+        <tecnologia categoria="data">
+          <nombre>PyTorch / Deep Learning</nombre>
+          <nivel>Avanzado</nivel>
+          <icono src="assets/img/logos/python.svg"/>
+        </tecnologia>
+        <tecnologia categoria="backend">
+          <nombre>PostgreSQL / DuckDB</nombre>
+          <nivel>Avanzado</nivel>
+          <icono src="assets/img/logos/postgresql.svg"/>
+        </tecnologia>
+        <tecnologia categoria="devops">
+          <nombre>Docker / Kubernetes</nombre>
+          <nivel>Intermedio</nivel>
+          <icono src="assets/img/logos/docker.svg"/>
+        </tecnologia>
+      </tecnologias-destacadas>
+    </inicio>
+
+    <sobre-mi>
+      <cabecera>
+        <titulo>Sobre mí</titulo>
+        <subtitulo>Curiosidad científica, rigor matemático y vocación por la tecnología aplicada a la salud.</subtitulo>
+      </cabecera>
+
+      <trayectoria>
+        <titulo>Trayectoria científica</titulo>
+        <parrafo>Tras licenciarme en Matemáticas e Informática, completé mi tesis doctoral en Redes Convolucionales para la detección temprana de anomalías radiológicas con mención Cum Laude.</parrafo>
+        <parrafo>He liderado grupos de investigación aplicada financiados por el programa Horizonte Europa, transfiriendo algoritmos de visión por computador directamente a entornos clínicos hospitalarios.</parrafo>
+        <parrafo>Defiendo fervientemente la IA explicable, la reproducibilidad computacional y la ética en la toma de decisiones asistida por algoritmos.</parrafo>
+      </trayectoria>
+
+      <datos-personales>
+        <titulo-tabla>Ficha investigadora</titulo-tabla>
+        <dato etiqueta="Nombre completo">Dra. Elena García Montes</dato>
+        <dato etiqueta="Ubicación">Madrid, España</dato>
+        <dato etiqueta="Correo electrónico" enlace="mailto:elena.garcia.ai@research.org">elena.garcia.ai@research.org</dato>
+        <dato etiqueta="Institución">Centro Nacional de Investigación Biomédica</dato>
+        <dato etiqueta="Grado académico">Doctora en Inteligencia Artificial (PhD)</dato>
+        <dato etiqueta="Idiomas">Español (Nativo), Inglés (C2 Bilingüe), Francés (B1)</dato>
+      </datos-personales>
+
+      <intereses>
+        <titulo>Líneas de interés y divulgación</titulo>
+        <interes>
+          <titulo>Computación Cuántica y Bioinformática</titulo>
+          <descripcion>Estudio de algoritmos de optimización combinatoria y plegamiento de proteínas mediante simuladores cuánticos.</descripcion>
+        </interes>
+        <interes>
+          <titulo>Ajedrez y Lógica Matemática</titulo>
+          <descripcion>Jugadora federada aficionada al análisis de variantes tácticas y motores de evaluación posicional.</descripcion>
+        </interes>
+      </intereses>
+
+      <idiomas>
+        <idioma-item nombre="Español" nivel="Nativo" porcentaje="100"/>
+        <idioma-item nombre="Inglés" nivel="C2 Profesional" porcentaje="98"/>
+        <idioma-item nombre="Francés" nivel="B1 Intermedio" porcentaje="60"/>
+      </idiomas>
+    </sobre-mi>
+
+    <proyectos>
+      <cabecera>
+        <titulo>Proyectos e Investigación</titulo>
+        <subtitulo>Selección de modelos predictivos, librerías open-source y pipelines de inferencia en producción.</subtitulo>
+      </cabecera>
+
+      <categorias-filtro>
+        <categoria id="all" etiqueta="Todos"/>
+        <categoria id="vision" etiqueta="Visión Computacional"/>
+        <categoria id="nlp" etiqueta="NLP &amp; LLMs"/>
+        <categoria id="infra" etiqueta="MLOps &amp; Datos"/>
+      </categorias-filtro>
+
+      <lista-proyectos>
+        <proyecto categoria="vision" estado="completado" destacado="true">
+          <etiqueta-destacada>Publicado en Nature Digital Medicine</etiqueta-destacada>
+          <titulo>BioScan-Vision: Segmentación de Resonancias Magnéticas</titulo>
+          <descripcion>Arquitectura neuronal 3D basada en Transformers de atención dispersa para delimitar lesiones cerebrales en resonancias magnéticas volumétricas en menos de 2 segundos con un F1-score de 0.94.</descripcion>
+          <tecnologias>
+            <tag>PyTorch</tag>
+            <tag>Python</tag>
+            <tag>MONAI</tag>
+            <tag>CUDA</tag>
+            <tag>Docker</tag>
+          </tecnologias>
+          <enlaces>
+            <enlace tipo="articulo" url="https://github.com" texto="Leer paper"/>
+            <enlace tipo="codigo" url="https://github.com" texto="Código abierto"/>
+          </enlaces>
+        </proyecto>
+
+        <proyecto categoria="nlp" estado="completado" destacado="false">
+          <titulo>MedText-ES: Clasificador de Informes Clínicos en Español</titulo>
+          <descripcion>Modelo lingüístico adaptado al dominio clínico con fine-tuning de RoBERTa sobre corpus biomédicos anonimizados, permitiendo codificación CIE-10 automática con alta precisión.</descripcion>
+          <tecnologias>
+            <tag>HuggingFace</tag>
+            <tag>Transformers</tag>
+            <tag>PyTorch</tag>
+            <tag>FastAPI</tag>
+          </tecnologias>
+          <enlaces>
+            <enlace tipo="demo" url="https://github.com" texto="Ver API docs"/>
+          </enlaces>
+        </proyecto>
+
+        <proyecto categoria="infra" estado="en-progreso" destacado="false">
+          <titulo>AutoML-Track: Plataforma de MLOps y Linaje de Datos</titulo>
+          <descripcion>Infraestructura reproducible para monitorización de drift conceptual en modelos desplegados en producción mediante métricas de distancia Wasserstein y alertas automáticas.</descripcion>
+          <tecnologias>
+            <tag>MLflow</tag>
+            <tag>Kubernetes</tag>
+            <tag>Prometheus</tag>
+            <tag>Grafana</tag>
+          </tecnologias>
+          <enlaces>
+            <enlace tipo="documentacion" url="https://github.com" texto="Documentación"/>
+          </enlaces>
+        </proyecto>
+      </lista-proyectos>
+    </proyectos>
+
+    <curriculum>
+      <cabecera>
+        <titulo>Currículum Vitae</titulo>
+        <subtitulo>Historial académico, proyectos de I+D dirigidos y publicaciones destacadas.</subtitulo>
+        <descarga-pdf url="assets/cv-elena-garcia.pdf" texto="Descargar CV (PDF)"/>
+      </cabecera>
+
+      <experiencia-laboral>
+        <puesto>
+          <cargo>Investigadora Principal en Inteligencia Artificial</cargo>
+          <empresa>Instituto de Investigación Biomédica</empresa>
+          <periodo inicio="2021" fin="Actualidad"/>
+          <descripcion>Dirección de un equipo interdisciplinar de 6 investigadores en proyectos de diagnóstico asistido por computador e integración de modelos predictivos en el sistema de salud.</descripcion>
+          <logros>
+            <logro>Obtención de 1.2M€ en financiación competitiva de la Comisión Europea.</logro>
+            <logro>Despliegue de modelos de triaje asistido en 3 hospitales universitarios.</logro>
+          </logros>
+        </puesto>
+      </experiencia-laboral>
+
+      <formacion-academica>
+        <estudio>
+          <titulo>Doctorado en Inteligencia Artificial y Visión por Computador</titulo>
+          <institucion>Universidad Politécnica de Madrid</institucion>
+          <periodo inicio="2016" fin="2020"/>
+          <descripcion>Calificación Sobresaliente Cum Laude y Premio Extraordinario de Doctorado por la tesis en aprendizaje profundo sobre imágenes de alta resolución.</descripcion>
+        </estudio>
+      </formacion-academica>
+
+      <competencias>
+        <grupo nombre="Ciencia de Datos y IA">
+          <item nombre="PyTorch / TensorFlow" nivel="Avanzado"/>
+          <item nombre="Computer Vision (3D y 2D)" nivel="Avanzado"/>
+          <item nombre="NLP y LLM Fine-Tuning" nivel="Avanzado"/>
+          <item nombre="Estadística Bayesiana" nivel="Avanzado"/>
+        </grupo>
+        <grupo nombre="Infraestructura y MLOps">
+          <item nombre="Docker / Kubernetes" nivel="Medio"/>
+          <item nombre="MLflow y DVC" nivel="Avanzado"/>
+          <item nombre="Bases de datos vectoriales (Qdrant, pgvector)" nivel="Medio"/>
+        </grupo>
+      </competencias>
+    </curriculum>
+
+    <contacto>
+      <cabecera>
+        <titulo>Contacto</titulo>
+        <subtitulo>Conexión directa para propuestas científicas, charlas y proyectos de transferencia tecnológica.</subtitulo>
+      </cabecera>
+
+      <canales>
+        <canal tipo="email" etiqueta="Email" valor="elena.garcia.ai@research.org" href="mailto:elena.garcia.ai@research.org"/>
+        <canal tipo="linkedin" etiqueta="LinkedIn" valor="Dra. Elena García" href="https://linkedin.com"/>
+        <canal tipo="github" etiqueta="GitHub" valor="@elenagarcia-ai" href="https://github.com"/>
+      </canales>
+
+      <disponibilidad>
+        <estado>Disponible para comités de evaluación y ponencias magistrales</estado>
+        <descripcion>Interesada en participar en eventos sobre ética y avances en Inteligencia Artificial aplicada a la salud.</descripcion>
+      </disponibilidad>
+    </contacto>
+  </paginas>
+</sitio-personal>

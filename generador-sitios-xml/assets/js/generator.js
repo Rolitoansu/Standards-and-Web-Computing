@@ -811,25 +811,6 @@ ${generarFooter(datos)}
             <p>${escapeHtml(it.descripcion)}</p>
           </li>`).join('\n');
 
-    const conImg = s.intereses.items.filter(it => it.imagen && it.imagen.src);
-    const galeriaItemsHtml = conImg.map(it => `          <li>
-            <figure>
-              <img src="${escapeHtml(it.imagen.src)}" alt="${escapeHtml(it.imagen.alt || it.titulo)}" width="${escapeHtml(it.imagen.ancho || '600')}" height="${escapeHtml(it.imagen.alto || '450')}" loading="lazy">
-              <figcaption>${escapeHtml(it.titulo)}</figcaption>
-            </figure>
-          </li>`).join('\n');
-
-    const galeriaSeccion = conImg.length > 0 ? `    <section aria-label="Galería">
-      <div>
-        <h2>Galería</h2>
-        <hr>
-        <p>Algunos momentos y lugares destacados.</p>
-        <ul>
-${galeriaItemsHtml}
-        </ul>
-      </div>
-    </section>` : '';
-
     return `<!DOCTYPE html>
 <html lang="${datos.idioma}">
 <head>
@@ -882,8 +863,6 @@ ${aficionesHtml}
         </ul>
       </div>
     </section>
-
-${galeriaSeccion}
   </main>
 
 ${generarFooter(datos)}
@@ -898,49 +877,11 @@ ${generarFooter(datos)}
       return `          <button aria-pressed="${idx === 0 ? 'true' : 'false'}" data-filter="${escapeHtml(c.id)}">${escapeHtml(c.etiqueta)}</button>`;
     }).join('\n');
 
-    const articulosHtml = pr.proyectos.map((p, idx) => {
+    const articulosHtml = pr.proyectos.map((p) => {
       const tags = p.tecnologias.map(t => `                <span>${escapeHtml(t)}</span>`).join('\n');
-      const tagsFeatured = p.tecnologias.map(t => `                  <span>${escapeHtml(t)}</span>`).join('\n');
       const badge = p.destacado && p.etiquetaDestacada ? `                <em>${escapeHtml(p.etiquetaDestacada)}</em>\n` : '';
       const estadoLabel = capitalizar(p.estado || 'completado');
 
-      if (idx === 0) {
-        // Tarjeta destacada (primera fila ancha con imagen)
-        const imgSrc = p.imagen ? p.imagen.src : 'assets/img/yo.jpg';
-        const imgAlt = p.imagen ? p.imagen.alt : p.titulo;
-        const imgW = p.imagen ? p.imagen.ancho : '600';
-        const imgH = p.imagen ? p.imagen.alto : '380';
-        const enlaceBtn = p.enlaces && p.enlaces.length > 0
-          ? `                <a href="${escapeHtml(p.enlaces[0].url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.enlaces[0].texto)} →</a>`
-          : '';
-
-        return `          <li>
-            <article data-category="${escapeHtml(p.categoria)}" aria-label="${escapeHtml(p.titulo)}">
-              <div>
-                <img
-                  src="${escapeHtml(imgSrc)}"
-                  alt="${escapeHtml(imgAlt)}"
-                  width="${escapeHtml(imgW)}"
-                  height="${escapeHtml(imgH)}"
-                  loading="lazy"
-                >
-              </div>
-              <div>
-${badge}                <h3>${escapeHtml(p.titulo)}</h3>
-                <span data-estado="${escapeHtml(p.estado)}">${escapeHtml(estadoLabel)}</span>
-                <p>
-                  ${escapeHtml(p.descripcion)}
-                </p>
-                <div>
-${tagsFeatured}
-                </div>
-${enlaceBtn}
-              </div>
-            </article>
-          </li>`;
-      }
-
-      // Tarjetas regulares (grid de tarjetas con icono y enlace superior)
       const primerTech = (p.tecnologias && p.tecnologias[0]) ? p.tecnologias[0].toLowerCase() : '';
       let logoSrc = 'assets/img/logos/html5.svg';
       if (primerTech.includes('type') || primerTech.includes('ts')) logoSrc = 'assets/img/logos/typescript.svg';
@@ -964,9 +905,11 @@ ${enlaceBtn}
 ${iconLinks}
                 </div>
               </div>
-              <h3>${escapeHtml(p.titulo)}</h3>
-              <span data-estado="${escapeHtml(p.estado)}">${escapeHtml(estadoLabel)}</span>
-              <p>${escapeHtml(p.descripcion)}</p>
+              <div>
+${badge}                <h3>${escapeHtml(p.titulo)}</h3>
+                <span data-estado="${escapeHtml(p.estado)}">${escapeHtml(estadoLabel)}</span>
+                <p>${escapeHtml(p.descripcion)}</p>
+              </div>
               <div>
 ${tags}
               </div>
@@ -978,7 +921,6 @@ ${tags}
 <html lang="${datos.idioma}">
 <head>
 ${generarHead(datos, 'Proyectos', 'projects.css')}
-  <script src="assets/js/projects.js" defer></script>
 </head>
 <body>
 ${generarNav(datos, 'projects')}

@@ -7,8 +7,21 @@ const WasmMetricsRunner = (function () {
   let wasmInstance = null;
   let wasmMemory = null;
 
-  async function cargarModulo(wasmUrlOrPath) {
+  async function cargarModulo(wasmUrlOrPathOrBuffer) {
+    if (wasmUrlOrPathOrBuffer && (wasmUrlOrPathOrBuffer instanceof ArrayBuffer || (typeof Uint8Array !== 'undefined' && wasmUrlOrPathOrBuffer instanceof Uint8Array))) {
+      try {
+        const { instance } = await WebAssembly.instantiate(wasmUrlOrPathOrBuffer);
+        wasmInstance = instance;
+        wasmMemory = instance.exports.memory;
+        return wasmInstance;
+      } catch (err) {
+        console.warn('Error al instanciar módulo WASM desde buffer:', err);
+      }
+    }
+
     if (wasmInstance) return wasmInstance;
+
+    const wasmUrlOrPath = typeof wasmUrlOrPathOrBuffer === 'string' ? wasmUrlOrPathOrBuffer : null;
 
     try {
       if (typeof window !== 'undefined' && window.fetch) {
@@ -31,9 +44,7 @@ const WasmMetricsRunner = (function () {
               cargado = true;
               break;
             }
-          } catch {
-            // Probar siguiente ruta
-          }
+          } catch { }
         }
         if (!cargado) {
           console.warn('WASM no encontrado en las rutas del navegador, se usará fallback.');
