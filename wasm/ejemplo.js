@@ -193,8 +193,7 @@ function ejecutar() {
 
       } else if (operacion === "primo") {
         const n = parseInt(inputs[2].value, 10);
-        // Si el número es grande (> 100.000), 200 repeticiones bastan;
-        // si es pequeño, usamos más repeticiones para que la medición sea precisa.
+
         repeticiones = n > 100000 ? 200 : REPS;
         const warmup = n > 100000 ? 20 : WARMUP;
 
