@@ -21,8 +21,6 @@
 </head>
 
 <body>
-  <a href="#contenido">Saltar al contenido principal</a>
-
   <header>
     <div>
       <div>
@@ -54,31 +52,6 @@
   </header>
 
   <main>
-    <section aria-label="Avisos de muestra" data-seccion="muestras">
-      <h2 data-oculto-visual="true">Avisos de muestra</h2>
-      <span>Avisos de ejemplo:</span>
-      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/popocatepetl-vona.xml"
-        aria-pressed="true">
-        Popocatépetl
-      </button>
-      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/etna-vona.xml"
-        aria-pressed="false">
-        Etna
-      </button>
-      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/eyjafjallajokull-vona.xml"
-        aria-pressed="false">
-        Eyjafjallajökull
-      </button>
-      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/kilauea-vona.xml"
-        aria-pressed="false">
-        Kilauea
-      </button>
-      <button type="button" data-boton-muestra="true" data-archivo-muestra="assets/samples/multi-volcanoes-vona.xml"
-        aria-pressed="false">
-        Múltiples (Colección)
-      </button>
-    </section>
-
     <section aria-label="Parámetros de la alerta" data-seccion="resumen">
       <h2 data-oculto-visual="true">Parámetros de la alerta</h2>
       <article data-tarjeta-metrica="true">
@@ -89,8 +62,8 @@
             <circle cx="12" cy="10" r="3" />
           </svg>
         </header>
-        <strong data-metrica="volcan-nombre">Popocatépetl</strong>
-        <p data-metrica="volcan-ubicacion">19.023°, -98.622°</p>
+        <strong data-metrica="volcan-nombre">—</strong>
+        <p data-metrica="volcan-ubicacion">Sin archivo cargado</p>
       </article>
 
       <article data-tarjeta-metrica="true">
@@ -101,9 +74,9 @@
           </svg>
         </header>
         <div>
-          <span data-codigo-color="ORANGE" data-metrica="alerta-actual">ORANGE</span>
+          <span data-codigo-color="UNKNOWN" data-metrica="alerta-actual">—</span>
         </div>
-        <p data-metrica="alerta-previa">Previo: YELLOW</p>
+        <p data-metrica="alerta-previa">Previo: —</p>
       </article>
 
       <article data-tarjeta-metrica="true">
@@ -113,8 +86,8 @@
             <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
           </svg>
         </header>
-        <strong data-metrica="elevacion-cumbre">5,426 m</strong>
-        <p data-metrica="elevacion-ft">(17,802 ft)</p>
+        <strong data-metrica="elevacion-cumbre">— m</strong>
+        <p data-metrica="elevacion-ft">(— ft)</p>
       </article>
 
       <article data-tarjeta-metrica="true">
@@ -124,8 +97,8 @@
             <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
           </svg>
         </header>
-        <strong data-metrica="pluma-altitud">6,700 m (FL220)</strong>
-        <p data-metrica="pluma-viento">ENE a 35 km/h</p>
+        <strong data-metrica="pluma-altitud">—</strong>
+        <p data-metrica="pluma-viento">—</p>
       </article>
 
       <article data-tarjeta-metrica="true">
@@ -225,7 +198,7 @@
     <section aria-label="Resumen de actividad">
       <h2 data-oculto-visual="true">Resumen de actividad</h2>
       <blockquote data-resumen-actividad="true">
-        « Cargando resumen de la actividad volcánica del informe VONA... »
+        « Cargue un archivo XML de aviso VONA mediante el botón superior para visualizar la actividad volcánica. »
       </blockquote>
     </section>
 
@@ -242,7 +215,7 @@
           </thead>
           <tbody>
             <tr>
-              <td colspan="2">Cargando datos...</td>
+              <td colspan="2">Cargue un archivo XML para visualizar los detalles técnicos.</td>
             </tr>
           </tbody>
         </table>

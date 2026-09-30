@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vona status="ISSUED" version="1.0">
+  <noticeNumber>2026/05</noticeNumber>
+  <issueTime>2026-09-28T12:00:00Z</issueTime>
+  <volcano>
+    <name>Tajogaite (Cumbre Vieja)</name>
+    <number>383010</number>
+    <location>
+      <latitude>28.614</latitude>
+      <longitude>-17.867</longitude>
+    </location>
+    <area>La Palma, Islas Canarias, España</area>
+    <summitElevation uom="m">1120</summitElevation>
+  </volcano>
+  <observatory>IGN - Instituto Geográfico Nacional / PEVOLCA</observatory>
+  <aviationColorCode>
+    <current>ORANGE</current>
+    <previous>YELLOW</previous>
+  </aviationColorCode>
+  <volcanicActivitySummary>Incremento en la tasa de desgasificación y emisión pulsátil de ceniza fina con tremores volcánicos continuos en la zona del cono principal.</volcanicActivitySummary>
+  <volcanicCloud>
+    <cloudHeight>
+      <aboveSeaLevel uom="m">3500</aboveSeaLevel>
+      <aboveSummit uom="m">2380</aboveSummit>
+      <flightLevel>FL115</flightLevel>
+    </cloudHeight>
+    <movementDirection>WSW</movementDirection>
+    <movementSpeed uom="km/h">40</movementSpeed>
+    <dispersionDistance uom="km">60</dispersionDistance>
+    <cloudCharacteristics>Columna eruptiva con densidad moderada de ceniza dispersándose en dirección oeste-suroeste hacia el océano Atlántico.</cloudCharacteristics>
+  </volcanicCloud>
+  <remarks>Vigilancia sísmica y deformación del terreno monitorizada por estaciones telemétricas del IGN e Involcan. Restricción aérea temporal bajo nivel FL120.</remarks>
+  <contacts>vigilanciavolcanica@mitma.es | Tel: +34 91 597 96 00</contacts>
+  <nextNotice>Próximo aviso programado en 12 horas o en caso de variación significativa en la actividad.</nextNotice>
+</vona>

@@ -264,11 +264,17 @@ body > main > section:nth-of-type(6) > div > p {
   color: var(--texto-suave);
 }
 
-body > main > section:nth-of-type(6) > div > div {
+body > main > section:nth-of-type(6) > div > ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+body > main > section:nth-of-type(6) > div > ul > li {
+  display: contents;
 }
 
 body > main > section:nth-of-type(6) article {

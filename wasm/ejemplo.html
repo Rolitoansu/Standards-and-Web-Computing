@@ -11,19 +11,24 @@
 
   <header>
     <h1>WASM vs JavaScript</h1>
+    <p>Comparativa de rendimiento en tiempo real entre WebAssembly nativo (WAT) y JavaScript.</p>
   </header>
 
   <main>
     <section>
-      <h2>Selecciona una operacion</h2>
+      <h2>Selecciona una operación</h2>
 
-      <menu>
-        <button>Factorial (n!)</button>
-        <button>Coseno Taylor</button>
-        <button>Numero primo</button>
+      <menu role="tablist" class="tabs">
+        <button type="button" role="tab" class="tab-btn active" aria-selected="true" onclick="cambiarOperacion('factorial', 0)">Factorial (n!)</button>
+        <button type="button" role="tab" class="tab-btn" aria-selected="false" onclick="cambiarOperacion('coseno', 1)">Coseno Taylor</button>
+        <button type="button" role="tab" class="tab-btn" aria-selected="false" onclick="cambiarOperacion('primo', 2)">Número primo</button>
       </menu>
 
-      <form>
+      <p class="prueba-activa" aria-live="polite">
+        Prueba seleccionada: <strong id="nombre-prueba">Factorial (n!)</strong>
+      </p>
+
+      <form onsubmit="return false;">
         <p>
           <label>n (1 a 20)
             <br />
@@ -37,12 +42,12 @@
           </label>
         </p>
         <p hidden>
-          <label>Numero a comprobar
+          <label>Número a comprobar
             <br />
             <input type="number" value="982451653" min="2" />
           </label>
         </p>
-        <button type="button">Ejecutar</button>
+        <button type="button" onclick="ejecutar()">Ejecutar</button>
       </form>
 
       <table>
@@ -68,11 +73,11 @@
     </section>
 
     <section>
-      <h2>Codigo fuente WAT</h2>
+      <h2>Código fuente WAT</h2>
       <pre></pre>
     </section>
   </main>
 
-  <script src="ejemplo.js"></script>
+  <script src="ejemplo.js?v=4"></script>
 </body>
 </html>

@@ -1,15 +1,3 @@
-/**
- * vona_geodesy.cpp — Núcleo de cálculo de alta velocidad en C++ para WebAssembly
- * Diseñado conforme a las características intrínsecas de C++ / WebAssembly:
- * - Aritmética de punto flotante de 64 bits de bajo nivel (sin Garbage Collection).
- * - Algoritmos de geodesia esférica (fórmula Haversine directa y arcos terrestres).
- * - Vectorización y evaluación ultrarrápida de polígonos de pluma de ceniza volcánica.
- *
- * Compilación a WASM:
- *   emcc -O3 -s WASM=1 -s EXPORTED_FUNCTIONS="['_dest_lat','_dest_lon','_plume_area','_benchmark_geodesy']" \
- *        -o vona_geodesy.wasm src/wasm/vona_geodesy.cpp
- */
-
 #include <cmath>
 #include <cstdint>
 

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vona status="ISSUED" version="1.0">
+  <noticeNumber>2026/18</noticeNumber>
+  <issueTime>2026-09-28T08:15:00Z</issueTime>
+  <volcano>
+    <name>Sakurajima</name>
+    <number>282080</number>
+    <location>
+      <latitude>31.581</latitude>
+      <longitude>130.659</longitude>
+    </location>
+    <area>Kyushu, Japón</area>
+    <summitElevation uom="m">1117</summitElevation>
+  </volcano>
+  <observatory>JMA - Japan Meteorological Agency / Kagoshima Local Observatory</observatory>
+  <aviationColorCode>
+    <current>RED</current>
+    <previous>ORANGE</previous>
+  </aviationColorCode>
+  <volcanicActivitySummary>Erupción explosiva violenta en el cráter Minamidake a las 08:10 UTC con emisión continua de bombas volcánicas y densa columna de piroclastos y ceniza.</volcanicActivitySummary>
+  <volcanicCloud>
+    <cloudHeight>
+      <aboveSeaLevel uom="m">4800</aboveSeaLevel>
+      <aboveSummit uom="m">3683</aboveSummit>
+      <flightLevel>FL160</flightLevel>
+    </cloudHeight>
+    <movementDirection>E</movementDirection>
+    <movementSpeed uom="km/h">55</movementSpeed>
+    <dispersionDistance uom="km">85</dispersionDistance>
+    <cloudCharacteristics>Pluma densa y oscura de ceniza gruesa que se desplaza rápidamente hacia el este sobre la bahía de Kinkowan y la península de Osumi.</cloudCharacteristics>
+  </volcanicCloud>
+  <remarks>Detectado por radar meteorológico doppler y cámaras infrarrojas del JMA. Aviso de ceniza volcánica (VAAC Tokio) emitido para las rutas aéreas del Pacífico occidental.</remarks>
+  <contacts>vaac-tokyo@jma.go.jp | +81 3 3434 9050</contacts>
+  <nextNotice>Se emitirá una actualización en 3 horas o inmediatamente ante nueva explosión.</nextNotice>
+</vona>

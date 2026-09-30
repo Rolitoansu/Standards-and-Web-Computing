@@ -2,14 +2,17 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', function () {
-    const toggle = document.querySelector('body > header nav button');
-    const menu   = document.querySelector('body > header nav ul');
+    const toggle = document.querySelector('#nav-toggle');
+    const menu   = document.querySelector('#nav-menu');
 
     if (toggle && menu) {
-      toggle.addEventListener('click', function () {
-      const isOpen = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
-      toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const isOpen = menu.getAttribute('data-abierto') === 'true';
+        const next   = !isOpen;
+        menu.setAttribute('data-abierto', String(next));
+        toggle.setAttribute('aria-expanded', String(next));
+        toggle.setAttribute('aria-label', next ? 'Cerrar menú' : 'Abrir menú');
       });
 
       document.addEventListener('keydown', function (e) {
@@ -22,7 +25,9 @@
       });
 
       document.addEventListener('click', function (e) {
-        if (!toggle.contains(e.target) && !menu.contains(e.target)) {
+        if (menu.getAttribute('data-abierto') === 'true' &&
+            !toggle.contains(e.target) &&
+            !menu.contains(e.target)) {
           menu.setAttribute('data-abierto', 'false');
           toggle.setAttribute('aria-expanded', 'false');
           toggle.setAttribute('aria-label', 'Abrir menú');

@@ -1,15 +1,8 @@
-/**
- * vona_service.ts — Servicio tipado de análisis y procesamiento VONA XML
- * Diseñado con clases tipadas, inyección de dependencias y métodos seguros.
- */
-
 import { VonaNotice, VolcanoIdentity, VolcanicAshCloud, AviationColorCode, ValidationResult } from './vona_types';
 import { VonaValidator } from './vona_validator';
 
 export class VonaTypeScriptService {
-  /**
-   * Parsea y valida una cadena XML produciendo un objeto fuertemente tipado
-   */
+
   public parseAndValidate(xmlText: string): ValidationResult<VonaNotice[]> {
     const parser = new DOMParser();
     const doc = parser.parseFromString(xmlText, 'text/xml');

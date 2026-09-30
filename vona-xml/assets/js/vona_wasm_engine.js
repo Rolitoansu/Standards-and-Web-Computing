@@ -42,6 +42,13 @@
      * Calcula latitud de destino geodésico sobre la esfera terrestre WGS84
      */
     destLat(lat, lon, rumbo, distanciaKm) {
+      if (wasmExports && typeof wasmExports.dest_lat === 'function') {
+        try {
+          const res = wasmExports.dest_lat(lat, lon, rumbo, distanciaKm);
+          if (!isNaN(res)) return res;
+        } catch {}
+      }
+
       const radioTierraKm = 6371.0;
       const dRad = distanciaKm / radioTierraKm;
       const rRad = (rumbo * Math.PI) / 180.0;
@@ -59,6 +66,13 @@
      * Calcula longitud de destino geodésico sobre la esfera terrestre WGS84
      */
     destLon(lat, lon, rumbo, distanciaKm) {
+      if (wasmExports && typeof wasmExports.dest_lon === 'function') {
+        try {
+          const res = wasmExports.dest_lon(lat, lon, rumbo, distanciaKm);
+          if (!isNaN(res)) return res;
+        } catch {}
+      }
+
       const radioTierraKm = 6371.0;
       const dRad = distanciaKm / radioTierraKm;
       const rRad = (rumbo * Math.PI) / 180.0;

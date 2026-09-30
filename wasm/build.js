@@ -1,6 +1,3 @@
-// build.js — Compila ejemplo.wat → ejemplo.wasm usando el paquete npm "wabt"
-// Ejecutar con: node build.js
-
 const fs = require("fs");
 const path = require("path");
 
@@ -26,4 +23,9 @@ async function compilar() {
   modulo.destroy();
 }
 
-compilar().catch(console.error);
+compilar()
+  .then(() => process.exit(0))
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });

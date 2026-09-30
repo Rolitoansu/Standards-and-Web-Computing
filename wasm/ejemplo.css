@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: system-ui, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 1rem;
   line-height: 1.5;
   color: #222;
@@ -24,7 +24,8 @@ header {
 }
 
 header h1 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: 0.25rem;
 }
 
@@ -35,43 +36,72 @@ header p {
 
 section {
   border: 0.0625rem solid #ccc;
-  padding: 1rem;
+  padding: 1.25rem;
   margin-bottom: 1.5rem;
+  border-radius: 0.25rem;
 }
 
 section h2 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: bold;
   margin-bottom: 0.75rem;
 }
 
-section:last-of-type p {
-  font-size: 0.85rem;
-  color: #555;
-  margin-bottom: 0.5rem;
-}
-
-menu {
+/* ── Pestañas (Tabs) ── */
+menu.tabs {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  gap: 0.25rem;
+  border-bottom: 0.125rem solid #2563eb;
   margin-bottom: 1rem;
   padding: 0;
   list-style: none;
 }
 
-menu button {
-  padding: 0.25rem 0.6rem;
-  border: 0.0625rem solid #888;
-  background-color: #f0f0f0;
-  font-size: 0.85rem;
+menu.tabs button.tab-btn {
+  padding: 0.45rem 1rem;
+  border: 0.0625rem solid #ccc;
+  border-bottom: none;
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
+  border-radius: 0.375rem 0.375rem 0 0;
+  transition: background-color 0.15s, color 0.15s;
 }
 
-menu button:hover {
-  background-color: #e0e0e0;
+menu.tabs button.tab-btn:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
 }
 
+menu.tabs button.tab-btn.active,
+menu.tabs button.tab-btn[aria-selected="true"] {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* ── Reporte de prueba seleccionada ── */
+.prueba-activa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #334155;
+  background-color: #eff6ff;
+  border: 0.0625rem solid #bfdbfe;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.prueba-activa strong {
+  color: #1e40af;
+  font-weight: 700;
+}
+
+/* ── Formulario de ejecución ── */
 form {
   display: flex;
   gap: 0.75rem;
@@ -85,30 +115,40 @@ form p {
   flex-direction: column;
 }
 
+form p[hidden] {
+  display: none;
+}
+
 form label {
   font-size: 0.85rem;
+  font-weight: 500;
 }
 
 form input {
   margin-top: 0.2rem;
-  padding: 0.25rem 0.4rem;
+  padding: 0.35rem 0.5rem;
   border: 0.0625rem solid #888;
+  border-radius: 0.25rem;
   font-size: 0.95rem;
   font-family: ui-monospace, monospace;
-  width: 9rem;
+  width: 10rem;
 }
 
 form input:focus {
-  outline: 0.125rem solid #444;
+  outline: 0.125rem solid #2563eb;
+  border-color: #2563eb;
 }
 
 form > button {
-  padding: 0.3rem 1rem;
+  padding: 0.4rem 1.25rem;
   background-color: #222;
   color: #fff;
   border: none;
+  border-radius: 0.25rem;
   font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.15s;
 }
 
 form > button:hover {
@@ -120,6 +160,7 @@ form > button:disabled {
   cursor: not-allowed;
 }
 
+/* ── Tabla de resultados ── */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -128,7 +169,7 @@ table {
 
 th {
   border: 0.0625rem solid #ccc;
-  padding: 0.4rem 0.6rem;
+  padding: 0.45rem 0.65rem;
   background-color: #f5f5f5;
   text-align: left;
   font-size: 0.9rem;
@@ -136,7 +177,7 @@ th {
 
 td {
   border: 0.0625rem solid #ccc;
-  padding: 0.4rem 0.6rem;
+  padding: 0.45rem 0.65rem;
   font-family: ui-monospace, monospace;
   font-size: 0.9rem;
 }
@@ -147,21 +188,25 @@ tbody tr:first-child td {
 }
 
 tbody tr:last-child td {
-  font-size: 0.8rem;
-  color: #666;
+  font-size: 0.85rem;
+  color: #555;
 }
 
 output {
   display: block;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.85rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
   border: 0.0625rem solid #ccc;
-  min-height: 1.75rem;
+  border-radius: 0.25rem;
+  min-height: 2rem;
+  background-color: #fafafa;
 }
 
 pre {
   background-color: #f8f8f8;
   border: 0.0625rem solid #ccc;
+  border-radius: 0.25rem;
   padding: 0.75rem;
   font-family: ui-monospace, monospace;
   font-size: 0.8rem;
@@ -172,24 +217,16 @@ pre {
   white-space: pre;
 }
 
-footer {
-  border-top: 0.0625rem solid #ccc;
-  padding-top: 0.75rem;
-  text-align: center;
-}
-
-footer p {
-  font-size: 0.8rem;
-  color: #777;
-}
-
 @media (max-width: 30rem) {
-  menu {
+  menu.tabs {
     flex-direction: column;
+    border-bottom: none;
   }
 
-  menu button {
+  menu.tabs button.tab-btn {
     width: 100%;
+    border-bottom: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
   }
 
   form {

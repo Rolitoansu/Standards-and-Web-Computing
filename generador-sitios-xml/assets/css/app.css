@@ -1,0 +1,239 @@
+/**
+ * app.css — Hoja de estilo accesible y semántica para el Generador XML
+ * Cumplimiento estricto W3C:
+ * - Sin selectores de clase (.) ni de ID (#)
+ * - Exclusivamente unidades relativas (rem, em, %)
+ * - Tipografía nativa de sistema
+ */
+
+:root {
+  --fondo: #f8fafc;
+  --superficie: #ffffff;
+  --borde: #e2e8f0;
+  --borde-activo: #2563eb;
+  --primario: #2563eb;
+  --primario-hover: #1d4ed8;
+  --primario-suave: #eff6ff;
+  --texto: #0f172a;
+  --texto-suave: #475569;
+  --exito: #16a34a;
+  --exito-fondo: #f0fdf4;
+  --exito-borde: #bbf7d0;
+  --radio: 0.5rem;
+  --ancho-max: 48rem;
+  --transicion: 0.15s ease;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--fondo);
+  color: var(--texto);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cabecera */
+body > header {
+  background: var(--superficie);
+  border-bottom: 0.0625rem solid var(--borde);
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+body > header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--texto);
+  letter-spacing: -0.02em;
+}
+
+body > header h1 span {
+  color: var(--primario);
+}
+
+body > header p {
+  font-size: 1rem;
+  color: var(--texto-suave);
+  margin-top: 0.5rem;
+}
+
+/* Contenido Principal */
+body > main {
+  max-width: var(--ancho-max);
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+  width: 100%;
+  flex: 1;
+}
+
+body > main > section {
+  background: var(--superficie);
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio);
+  padding: 2.5rem;
+  box-shadow: 0 0.25rem 1rem rgba(15, 23, 42, 0.04);
+}
+
+body > main > section h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--texto);
+  margin-bottom: 0.75rem;
+}
+
+body > main > section > p {
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Formulario */
+body > main > section form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+body > main > section form fieldset {
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+  background: var(--fondo);
+}
+
+body > main > section form fieldset legend {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texto);
+  padding: 0 0.5rem;
+}
+
+body > main > section form fieldset p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+body > main > section form fieldset p label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texto);
+}
+
+body > main > section form fieldset p input[type="file"] {
+  font-size: 0.9rem;
+  padding: 1rem;
+  border: 0.125rem dashed var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--texto-suave);
+  cursor: pointer;
+  transition: border-color var(--transicion), background var(--transicion);
+}
+
+body > main > section form fieldset p input[type="file"]:hover,
+body > main > section form fieldset p input[type="file"]:focus-visible {
+  border-color: var(--primario);
+  background: var(--primario-suave);
+}
+
+body > main > section form button[type="submit"] {
+  background: var(--primario);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radio);
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transicion);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body > main > section form button[type="submit"]:hover {
+  background: var(--primario-hover);
+}
+
+body > main > section form button[type="submit"]:focus-visible,
+body > main > section form fieldset p input[type="file"]:focus-visible {
+  outline: 0.1875rem solid var(--primario);
+  outline-offset: 0.125rem;
+}
+
+/* Área de Salida */
+body > main > section output {
+  display: block;
+  margin-top: 2rem;
+  background: var(--fondo);
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.5rem;
+}
+
+body > main > section output p {
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+}
+
+body > main > section output p:first-of-type {
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 0.5rem;
+}
+
+body > main > section output p strong {
+  color: var(--primario);
+}
+
+body > main > section output ul {
+  list-style: none;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+body > main > section output ul li a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.625rem 1rem;
+  background: var(--superficie);
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio);
+  color: var(--primario);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transicion);
+}
+
+body > main > section output ul li a:hover {
+  background: var(--primario);
+  color: #ffffff;
+  border-color: var(--primario);
+}
+
+/* Pie */
+body > footer {
+  background: var(--superficie);
+  border-top: 0.0625rem solid var(--borde);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}

@@ -1,11 +1,3 @@
-/**
- * vona_validator.ts — Validador estricto de esquemas y tipos VONA XML en TypeScript
- * Aprovecha las capacidades avanzadas de TypeScript:
- * - Type Guards (predicados de tipos personalizados).
- * - Verificación exhaustiva en tiempo de ejecución.
- * - Chequeo de rangos geográficos [-90, 90] y [-180, 180].
- */
-
 import { AviationColorCode, GeoCoordinate, ValidationResult, VonaNotice } from './vona_types';
 
 export class VonaValidator {
@@ -13,16 +5,10 @@ export class VonaValidator {
     'RED', 'ORANGE', 'YELLOW', 'GREEN', 'UNKNOWN'
   ]);
 
-  /**
-   * Type Guard para verificar si un valor es un código de color aeronáutico válido
-   */
   public static isAviationColorCode(value: unknown): value is AviationColorCode {
     return typeof value === 'string' && VonaValidator.VALID_COLOR_CODES.has(value.toUpperCase());
   }
 
-  /**
-   * Valida coordenadas geográficas según estándares WGS84
-   */
   public static validateCoordinates(coord: GeoCoordinate): ValidationResult<GeoCoordinate> {
     const errors: string[] = [];
 
@@ -41,9 +27,6 @@ export class VonaValidator {
     };
   }
 
-  /**
-   * Validación semántica integral de un aviso VONA
-   */
   public static validateNotice(notice: Partial<VonaNotice>): ValidationResult<VonaNotice> {
     const errors: string[] = [];
 

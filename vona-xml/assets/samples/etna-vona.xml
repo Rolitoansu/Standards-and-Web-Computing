@@ -9,15 +9,15 @@
       <latitude>37.751</latitude>
       <longitude>14.995</longitude>
     </location>
-    <area>Sicily, Italy</area>
+    <area>Sicilia, Italia</area>
     <summitElevation uom="m">3357</summitElevation>
   </volcano>
-  <observatory>INGV - Osservatorio Etneo (Catania)</observatory>
+  <observatory>INGV - Observatorio Etneo (Catania)</observatory>
   <aviationColorCode>
     <current>RED</current>
     <previous>ORANGE</previous>
   </aviationColorCode>
-  <volcanicActivitySummary>Fontana di lava parossistica attiva al Cratere di Sud-Est con colate laviche traboccanti verso la Valle del Bove. Intensa emissione di cenere con formazione di una colonna eruttiva sostenuta.</volcanicActivitySummary>
+  <volcanicActivitySummary>Fuente de lava paroxística activa en el Cráter Sureste con coladas de lava desbordándose hacia el Valle del Bove. Intensa emisión de ceniza con formación de una columna eruptiva sostenida.</volcanicActivitySummary>
   <volcanicCloud>
     <cloudHeight>
       <aboveSeaLevel uom="m">9000</aboveSeaLevel>
@@ -27,9 +27,9 @@
     <movementDirection>E</movementDirection>
     <movementSpeed uom="km/h">50</movementSpeed>
     <dispersionDistance uom="km">75</dispersionDistance>
-    <cloudCharacteristics>Colonna eruttiva scura e densa espansa verso est sul Mar Ionio. Caduta di cenere e lapilli segnalata sui centri abitati della costa ionica.</cloudCharacteristics>
+    <cloudCharacteristics>Columna eruptiva oscura y densa extendiéndose hacia el este sobre el mar Jónico. Se reporta caída de ceniza y piroclastos en localidades costeras.</cloudCharacteristics>
   </volcanicCloud>
-  <remarks>Tremore vulcanico su valori molto elevati. Sorveglianza attiva tramite rete radar Doppler, array infrasonico e sensori termici ad alta risolución.</remarks>
+  <remarks>Tremor volcánico en valores muy elevados. Vigilancia activa mediante red de radar Doppler, matriz infrasónica y sensores térmicos de alta resolución.</remarks>
   <contacts>direzione.oe@ingv.it | Tel: +39 095 7165800</contacts>
-  <nextNotice>Un nuovo avviso VONA sara emesso tempestivamente con l'evoluzione del parossismo.</nextNotice>
+  <nextNotice>Se emitirá un nuevo aviso VONA oportunamente ante la evolución del paroxismo.</nextNotice>
 </vona>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitio-personal xmlns="https://rolitoansu.github.io/xml/sitio-personal"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="https://rolitoansu.github.io/xml/sitio-personal ../schema/sitio-personal.xsd"
+                idioma="es"
+                version="1.0"
+                id="sitio-marcos-sanchez">
+
+  <metadatos>
+    <autor>
+      <nombre-completo>Marcos Sánchez Rivas</nombre-completo>
+      <nombre>Marcos</nombre>
+      <apellidos>Sánchez Rivas</apellidos>
+      <titular>Lead Design Systems Architect &amp; Creative Technologist</titular>
+      <lema>Uniendo la precisión del código modular con la delicadeza del diseño visual inclusivo.</lema>
+      <descripcion>Marcos Sánchez — Diseñador de sistemas y desarrollador frontend especializado en WebGL, microinteracciones fluidas y accesibilidad universal.</descripcion>
+      <palabras-clave>Marcos Sánchez, Design Systems, UX/UI, Creative Tech, Three.js, WebGL, TypeScript, CSS Architecture</palabras-clave>
+      <foto src="assets/img/yo.jpg" alt="Fotografía de Marcos Sánchez" ancho="208" alto="208"/>
+    </autor>
+
+    <contacto-info>
+      <email>marcos.sanchez@designops.studio</email>
+      <ubicacion>Barcelona, España</ubicacion>
+      <empresa>DesignOps Studio</empresa>
+      <disponibilidad>Aceptando proyectos selectos de consultoría en sistemas de diseño y WebGL</disponibilidad>
+    </contacto-info>
+
+    <redes-sociales>
+      <red tipo="email" url="mailto:marcos.sanchez@designops.studio" usuario="marcos.sanchez@designops.studio" etiqueta="Email profesional"/>
+      <red tipo="linkedin" url="https://linkedin.com" usuario="Marcos Sánchez" etiqueta="LinkedIn"/>
+      <red tipo="github" url="https://github.com" usuario="@marcossanchez" etiqueta="GitHub"/>
+      <red tipo="twitter" url="https://twitter.com" usuario="@marcos_design" etiqueta="X / Twitter"/>
+    </redes-sociales>
+  </metadatos>
+
+  <paginas>
+    <inicio>
+      <hero>
+        <saludo>Hola, soy</saludo>
+        <subtitulo>Lead Design Systems Architect &amp; Creative Technologist</subtitulo>
+        <resumen>Construyo puentes entre equipos de diseño y de ingeniería, creando sistemas de diseño escalables, experiencias web inmersivas en 3D y componentes 100% accesibles.</resumen>
+        <acciones>
+          <accion texto="Ver Sistemas y Proyectos" href="projects.html" tipo="primario"/>
+          <accion texto="Hablemos de Diseño" href="contact.html" tipo="secundario"/>
+        </acciones>
+      </hero>
+
+      <datos-rapidos>
+        <metrica valor="6+" etiqueta="Años en Design Systems"/>
+        <metrica valor="40+" etiqueta="Componentes accesibles"/>
+        <metrica valor="3" etiqueta="Premios Awwwards"/>
+      </datos-rapidos>
+
+      <tecnologias-destacadas>
+        <titulo>Tecnologías Creativas</titulo>
+        <descripcion>Herramientas de vanguardia para experiencias de usuario memorables y código impecable.</descripcion>
+        <tecnologia categoria="frontend">
+          <nombre>TypeScript</nombre>
+          <nivel>Experto</nivel>
+          <icono src="assets/img/logos/typescript.svg"/>
+        </tecnologia>
+        <tecnologia categoria="frontend">
+          <nombre>CSS3 / Layouts Avanzados</nombre>
+          <nivel>Experto</nivel>
+          <icono src="assets/img/logos/css3.svg"/>
+        </tecnologia>
+        <tecnologia categoria="frontend">
+          <nombre>React / Web Components</nombre>
+          <nivel>Avanzado</nivel>
+          <icono src="assets/img/logos/react.svg"/>
+        </tecnologia>
+        <tecnologia categoria="frontend">
+          <nombre>WebGL / Three.js</nombre>
+          <nivel>Avanzado</nivel>
+          <icono src="assets/img/logos/javascript.svg"/>
+        </tecnologia>
+      </tecnologias-destacadas>
+    </inicio>
+
+    <sobre-mi>
+      <cabecera>
+        <titulo>Sobre mí</titulo>
+        <subtitulo>Obsesionado con los detalles, el ritmo visual y la ergonomía de software.</subtitulo>
+      </cabecera>
+
+      <trayectoria>
+        <titulo>Filosofía de diseño y desarrollo</titulo>
+        <parrafo>Mi carrera comenzó en el diseño gráfico editorial, pero pronto descubrí que la web era el soporte interactivo definitivo. Desde entonces combino la tipografía y la teoría del color con la arquitectura de componentes y la ingeniería de software.</parrafo>
+        <parrafo>He creado sistemas de diseño para empresas del sector fintech y media, asegurando cumplimiento estricto WCAG AAA, soporte multilenguaje y rendimiento de 60 frames por segundo en animaciones.</parrafo>
+        <parrafo>Disfruto impartiendo talleres sobre tokens de diseño, prototipado interactivo con shaders GLSL y accesibilidad cognitiva.</parrafo>
+      </trayectoria>
+
+      <datos-personales>
+        <titulo-tabla>Perfil profesional</titulo-tabla>
+        <dato etiqueta="Nombre completo">Marcos Sánchez Rivas</dato>
+        <dato etiqueta="Ubicación">Barcelona, España</dato>
+        <dato etiqueta="Correo de contacto" enlace="mailto:marcos.sanchez@designops.studio">marcos.sanchez@designops.studio</dato>
+        <dato etiqueta="Estudio actual">DesignOps Studio (Socio fundador)</dato>
+        <dato etiqueta="Enfoque principal">Sistemas de Diseño &amp; Creative Web</dato>
+        <dato etiqueta="Idiomas">Español (Nativo), Catalán (Nativo), Inglés (Avanzado C1)</dato>
+      </datos-personales>
+
+      <intereses>
+        <titulo>Pasiones y aficiones</titulo>
+        <interes>
+          <titulo>Fotografía arquitectónica analógica</titulo>
+          <descripcion>Capturar el brutalismo y la geometría urbana en película blanco y negro de formato medio.</descripcion>
+        </interes>
+        <interes>
+          <titulo>Sintetizadores modulares</titulo>
+          <descripcion>Exploración de paisajes sonoros y diseño de audio generativo sincronizado con gráficos web.</descripcion>
+        </interes>
+      </intereses>
+
+      <idiomas>
+        <idioma-item nombre="Español" nivel="Nativo" porcentaje="100"/>
+        <idioma-item nombre="Catalán" nivel="Nativo" porcentaje="100"/>
+        <idioma-item nombre="Inglés" nivel="C1 Avanzado" porcentaje="90"/>
+      </idiomas>
+    </sobre-mi>
+
+    <proyectos>
+      <cabecera>
+        <titulo>Sistemas y Experiencias</titulo>
+        <subtitulo>Selección de design systems, librerías interactivas y proyectos creativos en producción.</subtitulo>
+      </cabecera>
+
+      <categorias-filtro>
+        <categoria id="all" etiqueta="Todos"/>
+        <categoria id="design-system" etiqueta="Design Systems"/>
+        <categoria id="creative" etiqueta="Creative Web &amp; 3D"/>
+        <categoria id="tools" etiqueta="Herramientas &amp; CLI"/>
+      </categorias-filtro>
+
+      <lista-proyectos>
+        <proyecto categoria="design-system" estado="completado" destacado="true">
+          <etiqueta-destacada>Design System Multiplataforma</etiqueta-destacada>
+          <titulo>Aura Design System: Tokens y Componentes Accesibles</titulo>
+          <descripcion>Librería completa de más de 45 componentes sin dependencias pesadas, gobernados por Design Tokens sincronizados automáticamente desde Figma a CSS variables y TypeScript types.</descripcion>
+          <tecnologias>
+            <tag>TypeScript</tag>
+            <tag>CSS Custom Properties</tag>
+            <tag>Web Components</tag>
+            <tag>Storybook</tag>
+            <tag>WCAG 2.1 AA</tag>
+          </tecnologias>
+          <enlaces>
+            <enlace tipo="demo" url="https://github.com" texto="Storybook Demo"/>
+            <enlace tipo="codigo" url="https://github.com" texto="GitHub"/>
+          </enlaces>
+        </proyecto>
+
+        <proyecto categoria="creative" estado="completado" destacado="false">
+          <titulo>Aether: Escultura 3D Procedural en WebGL</titulo>
+          <descripcion>Experiencia visual reactiva al cursor que genera mallas topológicas con deformación simplex noise en shaders GLSL, logrando renderizado fluido a 60 FPS en dispositivos móviles.</descripcion>
+          <tecnologias>
+            <tag>Three.js</tag>
+            <tag>GLSL</tag>
+            <tag>WebGL</tag>
+            <tag>WebAudio API</tag>
+          </tecnologias>
+          <enlaces>
+            <enlace tipo="demo" url="https://github.com" texto="Ver experiencia 3D"/>
+          </enlaces>
+        </proyecto>
+
+        <proyecto categoria="tools" estado="en-progreso" destacado="false">
+          <titulo>Tokens-CLI: Generador de estilos desde JSON/XML</titulo>
+          <descripcion>Herramienta de consola para transformar esquemas semánticos de tokens de color y tipografía en CSS listo para producción con soporte para modo oscuro automático.</descripcion>
+          <tecnologias>
+            <tag>Node.js</tag>
+            <tag>TypeScript</tag>
+            <tag>PostCSS</tag>
+          </tecnologias>
+          <enlaces>
+            <enlace tipo="codigo" url="https://github.com" texto="Repositorio"/>
+          </enlaces>
+        </proyecto>
+      </lista-proyectos>
+    </proyectos>
+
+    <curriculum>
+      <cabecera>
+        <titulo>Currículum Vitae</titulo>
+        <subtitulo>Experiencia liderando equipos de producto y diseñando arquitecturas frontend.</subtitulo>
+        <descarga-pdf url="assets/cv-marcos-sanchez.pdf" texto="Descargar Currículum (PDF)"/>
+      </cabecera>
+
+      <experiencia-laboral>
+        <puesto>
+          <cargo>Lead Design Systems Architect</cargo>
+          <empresa>DesignOps Studio</empresa>
+          <periodo inicio="2020" fin="Actualidad"/>
+          <descripcion>Definición de metodologías de trabajo entre diseño y desarrollo, creación de frameworks internos de componentes y auditoría de accesibilidad para clientes en Europa.</descripcion>
+          <logros>
+            <logro>Reducción del 40% en el tiempo de desarrollo de nuevas funcionalidades para clientes corporativos.</logro>
+            <logro>Certificación WCAG 2.1 AA en todas las plataformas creadas.</logro>
+          </logros>
+        </puesto>
+      </experiencia-laboral>
+
+      <formacion-academica>
+        <estudio>
+          <titulo>Grado en Multimedia y Diseño de Interacción</titulo>
+          <institucion>Universitat Politècnica de Catalunya</institucion>
+          <periodo inicio="2014" fin="2018"/>
+          <descripcion>Especialización en computación gráfica, diseño centrado en el usuario, interfaces accesibles y programación orientada a objetos.</descripcion>
+        </estudio>
+      </formacion-academica>
+
+      <competencias>
+        <grupo nombre="Diseño de Interacción y Frontend">
+          <item nombre="Design Tokens y Arquitectura CSS" nivel="Avanzado"/>
+          <item nombre="TypeScript y Web Components" nivel="Avanzado"/>
+          <item nombre="WebGL y Shaders GLSL" nivel="Avanzado"/>
+          <item nombre="Auditorías de Accesibilidad (A11y)" nivel="Avanzado"/>
+        </grupo>
+        <grupo nombre="Herramientas y metodologías">
+          <item nombre="Figma Avanzado (Variables y AutoLayout)" nivel="Avanzado"/>
+          <item nombre="Storybook y Testing Visual" nivel="Avanzado"/>
+          <item nombre="Git y Semantic Release" nivel="Avanzado"/>
+        </grupo>
+      </competencias>
+    </curriculum>
+
+    <contacto>
+      <cabecera>
+        <titulo>Contacto</titulo>
+        <subtitulo>Hablemos sobre diseño de interacción, accesibilidad o experiencias web innovadoras.</subtitulo>
+      </cabecera>
+
+      <canales>
+        <canal tipo="email" etiqueta="Email" valor="marcos.sanchez@designops.studio" href="mailto:marcos.sanchez@designops.studio"/>
+        <canal tipo="linkedin" etiqueta="LinkedIn" valor="Marcos Sánchez" href="https://linkedin.com"/>
+        <canal tipo="github" etiqueta="GitHub" valor="@marcossanchez" href="https://github.com"/>
+        <canal tipo="twitter" etiqueta="X / Twitter" valor="@marcos_design" href="https://twitter.com"/>
+      </canales>
+
+      <disponibilidad>
+        <estado>Disponible para asesorías técnicas y masterclasses</estado>
+        <descripcion>Interesado en proyectos que valoren el detalle estético y el rigor técnico en igual medida.</descripcion>
+      </disponibilidad>
+    </contacto>
+  </paginas>
+</sitio-personal>

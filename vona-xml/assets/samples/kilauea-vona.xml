@@ -9,15 +9,15 @@
       <latitude>19.421</latitude>
       <longitude>-155.287</longitude>
     </location>
-    <area>Hawaii, United States</area>
+    <area>Hawái, Estados Unidos</area>
     <summitElevation uom="m">1222</summitElevation>
   </volcano>
-  <observatory>USGS - Hawaiian Volcano Observatory (HVO)</observatory>
+  <observatory>USGS - Observatorio de Volcanes de Hawái (HVO)</observatory>
   <aviationColorCode>
     <current>ORANGE</current>
     <previous>YELLOW</previous>
   </aviationColorCode>
-  <volcanicActivitySummary>Vigorous lava fountaining within Halemaʻumaʻu crater with continuous effusion. Plume composed primarily of water vapor, sulfur dioxide (SO2), and intermittent Pele's hair and volcanic ash.</volcanicActivitySummary>
+  <volcanicActivitySummary>Vigorosas fuentes de lava dentro del cráter Halemaʻumaʻu con efusión continua. Pluma compuesta principalmente de vapor de agua, dióxido de azufre (SO2) y emisiones intermitentes de cabellos de Pelé y ceniza volcánica.</volcanicActivitySummary>
   <volcanicCloud>
     <cloudHeight>
       <aboveSeaLevel uom="m">3000</aboveSeaLevel>
@@ -27,9 +27,9 @@
     <movementDirection>SW</movementDirection>
     <movementSpeed uom="km/h">25</movementSpeed>
     <dispersionDistance uom="km">35</dispersionDistance>
-    <cloudCharacteristics>Volcanic smog (vog) plume drifting southwest under prevailing northeast trade wind conditions.</cloudCharacteristics>
+    <cloudCharacteristics>Pluma de smog volcánico (vog) desplazándose hacia el suroeste bajo condiciones de vientos alisios del noreste.</cloudCharacteristics>
   </volcanicCloud>
-  <remarks>Sulfur dioxide gas emission rates elevated at approximately 8,000 tonnes per day. Airborne particulate hazards localized downwind.</remarks>
+  <remarks>Emisión elevada de dióxido de azufre estimada en 8.000 toneladas diarias. Peligro localizado de partículas aéreas en la dirección del viento.</remarks>
   <contacts>askHVO@usgs.gov | Tel: +1 808 967 8811</contacts>
-  <nextNotice>Daily summary or immediately if hazard envelope expands.</nextNotice>
+  <nextNotice>Resumen diario o inmediatamente si el radio de peligro se expande.</nextNotice>
 </vona>

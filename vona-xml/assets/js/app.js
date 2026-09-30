@@ -100,8 +100,8 @@
         const configMapa = {
           container: contenedorMapa,
           style: estiloOpenStreetMap,
-          center: [-98.622, 19.023],
-          zoom: 3.5,
+          center: [0, 20],
+          zoom: 1.8,
           pitch: 0,
           bearing: 0,
           antialias: true
@@ -853,11 +853,28 @@
             procesarCadenaXml(eventoLectura.target.result);
           };
           lector.readAsText(archivos[0]);
+          entradaArchivo.value = '';
         }
       });
     }
 
-    // Selector de volcán
+    // Soporte para arrastrar y soltar (Drag and Drop) de archivos XML en cualquier parte
+    window.addEventListener('dragover', (e) => {
+      e.preventDefault();
+    });
+    window.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const archivos = e.dataTransfer?.files;
+      if (archivos && archivos.length > 0) {
+        const lector = new FileReader();
+        lector.onload = (eventoLectura) => {
+          procesarCadenaXml(eventoLectura.target.result);
+        };
+        lector.readAsText(archivos[0]);
+      }
+    });
+
+    // Selector de volcán (para archivos con múltiples avisos VONA)
     if (selectorVolcan) {
       selectorVolcan.addEventListener('change', () => {
         const indice = parseInt(selectorVolcan.value, 10);
@@ -865,16 +882,6 @@
           indiceVolcanActivo = indice;
           actualizarResumenVisual(datosVolcanesActuales[indice]);
           renderizarEnMapa(datosVolcanesActuales[indice]);
-        }
-      });
-    }
-
-    // Botones de muestras predeterminadas
-    for (const btn of botonesMuestra) {
-      btn.addEventListener('click', () => {
-        const archivo = btn.getAttribute('data-archivo-muestra');
-        if (archivo) {
-          cargarMuestra(archivo, btn);
         }
       });
     }
@@ -935,8 +942,8 @@
       });
     }
 
-    // Iniciar el mapa y cargar muestra inicial
+    // Iniciar el mapa en espera de archivo XML
     inicializarMapa();
-    cargarMuestra('assets/samples/popocatepetl-vona.xml', botonesMuestra[0] || null);
   });
 }());
+

@@ -1,11 +1,3 @@
-/**
- * vona_types.ts — Tipos e interfaces de dominio del estándar VONA OACI / IWXXM
- * Diseñado conforme a las características intrínsecas de TypeScript:
- * - Sistema de tipos estático y tipos de unión discriminada.
- * - Inmutabilidad mediante readonly.
- * - Validación estructural de datos aeronáuticos.
- */
-
 export type AviationColorCode = 'RED' | 'ORANGE' | 'YELLOW' | 'GREEN' | 'UNKNOWN';
 
 export type FlightLevel = `FL${number}` | 'N/A';

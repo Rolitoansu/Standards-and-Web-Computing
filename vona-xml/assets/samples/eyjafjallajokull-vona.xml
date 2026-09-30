@@ -25,7 +25,7 @@
         </gml:Point>
       </iwxxm:position>
       <iwxxm:elevation uom="m">1666</iwxxm:elevation>
-      <iwxxm:subregion>Suðurland, South Iceland</iwxxm:subregion>
+      <iwxxm:subregion>Suðurland, Sur de Islandia</iwxxm:subregion>
     </iwxxm:Volcano>
   </iwxxm:volcano>
 
@@ -38,12 +38,12 @@
 
   <iwxxm:source>
     <iwxxm:OriginatingObservatory>
-      <iwxxm:name>Icelandic Meteorological Office (IMO)</iwxxm:name>
-      <iwxxm:contact>veðurstofa@vedur.is</iwxxm:contact>
+      <iwxxm:name>Oficina Meteorológica de Islandia (IMO)</iwxxm:name>
+      <iwxxm:contact>vedurstofa@vedur.is</iwxxm:contact>
     </iwxxm:OriginatingObservatory>
   </iwxxm:source>
 
-  <iwxxm:volcanicActivitySummary>Explosive subglacial eruption producing substantial ash plume rising into upper troposphere with rapid glacial meltwater release.</iwxxm:volcanicActivitySummary>
+  <iwxxm:volcanicActivitySummary>Erupción subglaciar explosiva con emisión masiva de columna de ceniza hacia la troposfera superior y rápida liberación de agua de deshielo glaciar.</iwxxm:volcanicActivitySummary>
 
   <iwxxm:volcanicCloud>
     <iwxxm:VolcanicCloud>
@@ -52,11 +52,11 @@
       <iwxxm:movementDirection>SE</iwxxm:movementDirection>
       <iwxxm:movementSpeed uom="km/h">65</iwxxm:movementSpeed>
       <iwxxm:dispersionDistance uom="km">110</iwxxm:dispersionDistance>
-      <iwxxm:remarks>Fine ash plume tracking south-eastward across the North Atlantic flight corridors towards European airspace.</iwxxm:remarks>
+      <iwxxm:remarks>Pluma de ceniza fina desplazándose hacia el sureste a través de los corredores aéreos del Atlántico Norte hacia el espacio aéreo europeo.</iwxxm:remarks>
     </iwxxm:VolcanicCloud>
   </iwxxm:volcanicCloud>
 
-  <iwxxm:remarks>High-altitude plume confirmed by Keflavik C-band weather radar and Meteosat Second Generation SEVIRI ash product.</iwxxm:remarks>
-  <iwxxm:nextNotice>Follow-up notice to be issued at 17:00 UTC or upon escalation.</iwxxm:nextNotice>
+  <iwxxm:remarks>Pluma a gran altitud confirmada por radar meteorológico en banda C de Keflavik y productos satelitales MSG SEVIRI.</iwxxm:remarks>
+  <iwxxm:nextNotice>Siguiente aviso programado a las 17:00 UTC o de inmediato ante mayor escalamiento.</iwxxm:nextNotice>
 
 </iwxxm:VolcanoObservatoryNoticeForAviation>

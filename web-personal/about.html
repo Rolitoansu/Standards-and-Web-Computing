@@ -19,8 +19,8 @@
   <header>
     <nav aria-label="Navegación principal">
       <a href="index.html" aria-label="Raúl Antuña — Inicio">Mi página personal</a>
-      <button type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
-      <ul data-abierto="false">
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
+      <ul id="nav-menu" data-abierto="false">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="about.html" aria-current="page">Sobre mí</a></li>
         <li><a href="projects.html">Proyectos</a></li>
@@ -108,29 +108,20 @@
         <p>Lo que hago cuando no estoy frente al ordenador (o cuando sí lo estoy, pero por gusto).</p>
         <ul>
           <li>
-            <h3>Senderismo</h3>
-            <p>Los Picos de Europa son mi lugar favorito para desconectar.</p>
-          </li>
-          <li>
             <h3>Cine</h3>
-            <p>Fan del cine de ciencia ficción, thrillers y documentales de tecnología.</p>
+            <p>Me gusta el cine de acción.</p>
           </li>
           <li>
             <h3>Música</h3>
-            <p>Escucho mucho indie rock, electrónica y bandas sonoras de películas.</p>
-          </li>
-          <li>
-            <h3>Lectura</h3>
-            <p>Me encantan los libros de divulgación tecnológica y ensayo.</p>
+            <p>Escucho música pop, trap entre otros géneros.</p>
           </li>
           <li>
             <h3>Fútbol</h3>
             <p>Sigo al Sporting de Gijón, para lo bueno y para lo malo.</p>
           </li>
           <li>
-            <span aria-hidden="true"></span>
-            <h3>Viajes</h3>
-            <p>Me encanta explorar nuevas ciudades europeas en fin de semana.</p>
+            <h3>Tiempo Libre</h3>
+            <p>Me gusta pasar tiempo con mis amigos y descansar.</p>
           </li>
         </ul>
       </div>
@@ -181,7 +172,55 @@
         </div>
       </div>
     </section>
+
+    <section aria-label="Radios de Fórmula 1">
+      <div>
+        <h2>Radios de Fórmula 1</h2>
+        <hr>
+        <p>Algunos de los mejores mensajes de radio que ha dejado la Fórmula 1.</p>
+        <ul>
+          <li>
+            <article>
+              <h3>"Multi 21, Seb" — Vettel en Malasia 2013</h3>
+              <p>Webber le pide a Vettel que no le adelante… y Vettel le adelanta igualmente. La cara de Mark lo dice
+                todo.</p>
+              <audio controls preload="metadata" aria-label="Radio Multi 21 Vettel Malasia 2013">
+                <source src="assets/audio/multi21.mp3" type="audio/mpeg">
+                <source src="assets/audio/multi21.ogg" type="audio/ogg">
+                <p>Tu navegador no soporta audio HTML5. <a href="assets/audio/multi21.mp3" download>Descarga el
+                    audio</a>.</p>
+              </audio>
+            </article>
+          </li>
+          <li>
+            <article>
+              <h3>"This is HAMMER TIME" — Wolff 2020</h3>
+              <p>Toto Wolff desatando a Hamilton en Hungría con la frase más épica de la radio moderna. Puro fuego.</p>
+              <audio controls preload="metadata" aria-label="Radio Hammer Time Toto Wolff">
+                <source src="assets/audio/hammer-time.mp3" type="audio/mpeg">
+                <source src="assets/audio/hammer-time.ogg" type="audio/ogg">
+                <p>Tu navegador no soporta audio HTML5. <a href="assets/audio/hammer-time.mp3" download>Descarga el
+                    audio</a>.</p>
+              </audio>
+            </article>
+          </li>
+          <li>
+            <article>
+              <h3>"My front wing, my front wing!" — Grosjean 2012</h3>
+              <p>Grosjean desesperado con su alerón delantero. Un clásico de la radio que no pasa de moda.</p>
+              <audio controls preload="metadata" aria-label="Radio Grosjean front wing 2012">
+                <source src="assets/audio/grosjean-front-wing.mp3" type="audio/mpeg">
+                <source src="assets/audio/grosjean-front-wing.ogg" type="audio/ogg">
+                <p>Tu navegador no soporta audio HTML5. <a href="assets/audio/grosjean-front-wing.mp3" download>Descarga
+                    el audio</a>.</p>
+              </audio>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
   </main>
+
 
   <footer>
     <p>
