@@ -53,10 +53,3 @@ export interface ValidationResult<T> {
   readonly errors: ReadonlyArray<string>;
 }
 
-export interface BenchmarkMetrics {
-  readonly language: 'JavaScript' | 'TypeScript' | 'WebAssembly';
-  readonly iterations: number;
-  readonly totalTimeMs: number;
-  readonly avgTimeMicroseconds: number;
-  readonly operationsPerSecond: number;
-}

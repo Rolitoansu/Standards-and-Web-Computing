@@ -54,19 +54,4 @@ double plume_area(double dist_km, double apertura_deg) {
     return 0.5 * dist_km * dist_km * theta_rad;
 }
 
-/**
- * Función intensiva de cálculo para benchmarking de rendimiento contra JS / TS.
- * Ejecuta N iteraciones de interpolación poligonal geodésica.
- */
-double benchmark_geodesy(double lat, double lon, double rumbo_deg, double dist_km, int32_t iteraciones) {
-    double acum = 0.0;
-    for (int32_t i = 0; i < iteraciones; ++i) {
-        double rumbo_var = rumbo_deg + (i % 360);
-        double dist_var = dist_km + (i % 50);
-        acum += dest_lat(lat, lon, rumbo_var, dist_var);
-        acum += dest_lon(lat, lon, rumbo_var, dist_var);
-    }
-    return acum;
-}
-
 }

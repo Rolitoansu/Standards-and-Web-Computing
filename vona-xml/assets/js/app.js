@@ -237,10 +237,14 @@
     function generarCirculoZona(lat, lon, radioKm, etiqueta) {
       const puntos = [];
       const pasos = 64;
-      for (let i = 0; i <= pasos; i++) {
+      for (let i = 0; i < pasos; i++) {
         const angulo = (i * 360) / pasos;
         const pt = calcularPuntoDestino(lat, lon, angulo, radioKm);
         puntos.push(pt);
+      }
+      // Cierre exacto del anillo lineal GeoJSON
+      if (puntos.length > 0) {
+        puntos.push([puntos[0][0], puntos[0][1]]);
       }
 
       return {
