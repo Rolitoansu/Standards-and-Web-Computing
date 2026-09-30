@@ -15,7 +15,7 @@
       <lema>Uniendo la precisión del código modular con la delicadeza del diseño visual inclusivo.</lema>
       <descripcion>Marcos Sánchez — Diseñador de sistemas y desarrollador frontend especializado en WebGL, microinteracciones fluidas y accesibilidad universal.</descripcion>
       <palabras-clave>Marcos Sánchez, Design Systems, UX/UI, Creative Tech, Three.js, WebGL, TypeScript, CSS Architecture</palabras-clave>
-      <foto src="assets/img/yo.jpg" alt="Fotografía de Marcos Sánchez" ancho="208" alto="208"/>
+      <foto avatar="disenador" alt="Fotografía de Marcos Sánchez" ancho="208" alto="208"/>
     </autor>
 
     <contacto-info>

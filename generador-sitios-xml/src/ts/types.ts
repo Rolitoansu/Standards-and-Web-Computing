@@ -15,6 +15,7 @@ export interface MetadatosAutor {
     alt: string;
     ancho?: number;
     alto?: number;
+    avatar?: 'generico' | 'desarrollador' | 'disenador' | 'personalizado' | string;
   };
 }
 
@@ -257,4 +258,18 @@ export interface ResultadoGeneracion {
     tamanoTotalBytes: number;
     tiempoGeneracionMs: number;
   };
+}
+
+export interface OpcionesGenerador {
+  avatarGenerico?: 'avatar-generico.svg' | 'avatar-desarrollador.svg' | 'avatar-disenador.svg' | 'original' | string;
+  usarFotosGenericas?: boolean;
+}
+
+export interface MetricasWasm {
+  motor: 'WebAssembly (WASM)' | 'JavaScript Fallback';
+  hashHex: string;
+  totalBytes: number;
+  totalEtiquetas: number;
+  puntuacionComplejidad: number;
+  tiempoMs: number;
 }

@@ -1,34 +1,36 @@
 #!/usr/bin/env node
-/**
- * generate.js — Generador CLI semántico W3C para PersonalSiteML
- * Genera sitios web personales completos con HTML5 semántico (sin divs innecesarios).
- */
 
 const fs = require('fs');
 const path = require('path');
 const PersonalSiteGenerator = require('../assets/js/generator.js');
+const WasmMetricsRunner = require('../src/js/wasm_runner.js');
 const JSZip = require('../assets/js/jszip.min.js');
 
-function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, assetsSourceDir) {
+async function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, assetsSourceDir, opciones = {}) {
   const nombreXml = path.basename(xmlFilePath);
   console.log(`\nProcesando ${nombreXml} -> ${outputDir}`);
   const t0 = Date.now();
 
   const xmlContent = fs.readFileSync(xmlFilePath, 'utf-8');
-  const res = PersonalSiteGenerator.generarSitioDesdeXml(xmlContent);
 
-  // Crear directorios
+  await WasmMetricsRunner.cargarModulo();
+  const metricasWasm = WasmMetricsRunner.analizar(xmlContent);
+  console.log(`[WASM] Motor: ${metricasWasm.motor} | Hash: 0x${metricasWasm.hashHex.toUpperCase()} | Nodos: ${metricasWasm.totalEtiquetas} | Complejidad: ${metricasWasm.puntuacionComplejidad} | Tiempo: ${metricasWasm.tiempoMs} ms`);
+
+  const res = PersonalSiteGenerator.generarSitioDesdeXml(xmlContent, {
+    avatarGenerico: opciones.avatarGenerico || 'avatar-generico.svg',
+    usarFotosGenericas: opciones.usarFotosGenericas !== undefined ? opciones.usarFotosGenericas : true
+  });
+
   fs.mkdirSync(outputDir, { recursive: true });
   fs.mkdirSync(path.join(outputDir, 'assets/css'), { recursive: true });
   fs.mkdirSync(path.join(outputDir, 'assets/js'), { recursive: true });
   fs.mkdirSync(path.join(outputDir, 'assets/img/logos'), { recursive: true });
 
-  // Guardar los 5 archivos HTML generados
   for (const [nombreHtml, contenido] of Object.entries(res.paginas)) {
     fs.writeFileSync(path.join(outputDir, nombreHtml), contenido, 'utf-8');
   }
 
-  // Copiar plantillas CSS estáticas existentes (idénticas para todos)
   const cssFiles = ['base.css', 'layout.css', 'index.css', 'about.css', 'projects.css', 'cv.css', 'contact.css'];
   for (const c of cssFiles) {
     const src = path.join(templatesDir, c);
@@ -37,7 +39,6 @@ function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, assetsSour
     }
   }
 
-  // Copiar scripts JS existentes
   const jsFiles = ['nav.js', 'projects.js'];
   for (const j of jsFiles) {
     const src = path.join(templatesDir, j);
@@ -46,7 +47,6 @@ function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, assetsSour
     }
   }
 
-  // Copiar imágenes reutilizando si ya existen
   if (fs.existsSync(assetsSourceDir)) {
     function copiarDirectorio(origen, destino) {
       if (!fs.existsSync(destino)) fs.mkdirSync(destino, { recursive: true });
@@ -57,16 +57,13 @@ function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, assetsSour
         if (item.isDirectory()) {
           copiarDirectorio(srcItem, destItem);
         } else {
-          if (!fs.existsSync(destItem)) {
-            fs.copyFileSync(srcItem, destItem);
-          }
+          fs.copyFileSync(srcItem, destItem);
         }
       }
     }
     copiarDirectorio(assetsSourceDir, path.join(outputDir, 'assets/img'));
   }
 
-  // Generar paquete ZIP autónomo completo con JSZip
   const zip = new JSZip();
   for (const [nombreHtml, contenido] of Object.entries(res.paginas)) {
     zip.file(nombreHtml, contenido);
@@ -80,16 +77,36 @@ function generarSitioCompletoFs(xmlFilePath, outputDir, templatesDir, assetsSour
     if (fs.existsSync(src)) zip.file('assets/js/' + j, fs.readFileSync(src, 'utf-8'));
   }
 
-  zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE', compressionOptions: { level: 6 } })
-    .then(buffer => {
-      fs.writeFileSync(outputDir + '.zip', buffer);
-    });
+  if (fs.existsSync(assetsSourceDir)) {
+    function agregarDirectorioAZip(dir, prefijoZip) {
+      const items = fs.readdirSync(dir, { withFileTypes: true });
+      for (const item of items) {
+        const fullPath = path.join(dir, item.name);
+        const zipPath = prefijoZip + item.name;
+        if (item.isDirectory()) {
+          agregarDirectorioAZip(fullPath, zipPath + '/');
+        } else {
+          zip.file(zipPath, fs.readFileSync(fullPath));
+        }
+      }
+    }
+    agregarDirectorioAZip(assetsSourceDir, 'assets/img/');
+  }
+
+  const zipBuffer = await zip.generateAsync({
+    type: 'nodebuffer',
+    compression: 'DEFLATE',
+    compressionOptions: { level: 6 }
+  });
+
+  const zipPath = outputDir + '.zip';
+  fs.writeFileSync(zipPath, zipBuffer);
 
   const t1 = Date.now();
-  console.log(`[OK] Generado en ${t1 - t0} ms -> ${outputDir}.zip`);
+  console.log(`[OK] Generado en ${t1 - t0} ms -> ${zipPath} (${(zipBuffer.length / 1024).toFixed(1)} KB)`);
 }
 
-function main() {
+async function main() {
   const args = process.argv.slice(2);
   const baseDir = path.resolve(__dirname, '..');
   const templatesDir = path.join(baseDir, 'templates');
@@ -97,38 +114,46 @@ function main() {
 
   if (args.includes('--all') || args.length === 0) {
     const sitios = [
-      { xml: 'ejemplos-xml/raul-antuna.xml', out: 'sitios-generados/raul-antuna' },
-      { xml: 'ejemplos-xml/elena-garcia.xml', out: 'sitios-generados/elena-garcia' },
-      { xml: 'ejemplos-xml/marcos-sanchez.xml', out: 'sitios-generados/marcos-sanchez' }
+      { xml: 'ejemplos-xml/raul-antuna.xml', out: 'sitios-generados/raul-antuna', avatar: 'avatar-desarrollador.svg' },
+      { xml: 'ejemplos-xml/elena-garcia.xml', out: 'sitios-generados/elena-garcia', avatar: 'avatar-generico.svg' },
+      { xml: 'ejemplos-xml/marcos-sanchez.xml', out: 'sitios-generados/marcos-sanchez', avatar: 'avatar-disenador.svg' }
     ];
 
     for (const s of sitios) {
       const xmlPath = path.join(baseDir, s.xml);
       const outPath = path.join(baseDir, s.out);
-      generarSitioCompletoFs(xmlPath, outPath, templatesDir, assetsDir);
+      await generarSitioCompletoFs(xmlPath, outPath, templatesDir, assetsDir, { avatarGenerico: s.avatar });
     }
-    console.log(`\nSitios generados correctamente con HTML5 semántico W3C.`);
+    console.log(`\nSitios y paquetes ZIP generados correctamente.`);
   } else {
     let inputXml = null;
     let outputDir = null;
+    let avatar = 'avatar-generico.svg';
+
     for (let i = 0; i < args.length; i++) {
       if (args[i] === '--input' && args[i + 1]) {
-        inputXml = path.resolve(args[i + 1]);
-        i++;
-      } else if (args[i] === '--output' && args[i + 1]) {
-        outputDir = path.resolve(args[i + 1]);
-        i++;
+        inputXml = args[i + 1];
+      }
+      if (args[i] === '--output' && args[i + 1]) {
+        outputDir = args[i + 1];
+      }
+      if (args[i] === '--avatar' && args[i + 1]) {
+        avatar = args[i + 1];
       }
     }
+
     if (!inputXml || !outputDir) {
-      console.error('Uso: node cli/generate.js --input <archivo.xml> --output <directorio>');
-      console.error('      node cli/generate.js --all');
+      console.error('Uso: node cli/generate.js --input <ruta-xml> --output <dir-salida> [--avatar <svg>]');
       process.exit(1);
     }
-    generarSitioCompletoFs(inputXml, outputDir, templatesDir, assetsDir);
+
+    const xmlPath = path.resolve(baseDir, inputXml);
+    const outPath = path.resolve(baseDir, outputDir);
+    await generarSitioCompletoFs(xmlPath, outPath, templatesDir, assetsDir, { avatarGenerico: avatar });
   }
 }
 
-if (require.main === module) {
-  main();
-}
+main().catch(err => {
+  console.error('Error durante la generación:', err);
+  process.exit(1);
+});

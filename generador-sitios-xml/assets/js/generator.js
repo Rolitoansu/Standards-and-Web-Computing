@@ -7,6 +7,12 @@
 const PersonalSiteGenerator = (function () {
   'use strict';
 
+  const AVATARES = {
+    desarrollador: 'assets/img/avatar-desarrollador.svg',
+    disenador: 'assets/img/avatar-disenador.svg',
+    generico: 'assets/img/avatar-generico.svg'
+  };
+
   function escapeHtml(str) {
     if (!str) return '';
     return String(str)
@@ -236,7 +242,8 @@ const PersonalSiteGenerator = (function () {
     return parseXmlSimple(xmlString);
   }
 
-  function extraerDatos(doc) {
+  function extraerDatos(doc, opciones = {}) {
+    opciones = opciones || {};
     const root = doc.documentElement;
     const rootTag = root.localName || root.tagName.split(':').pop();
     if (rootTag !== 'sitio-personal') {
@@ -250,6 +257,9 @@ const PersonalSiteGenerator = (function () {
     const autorEl = metaEl.getElementsByTagName('autor')[0] || metaEl.getElementsByTagNameNS('*', 'autor')[0];
     const fotoEl = autorEl ? (autorEl.getElementsByTagName('foto')[0] || autorEl.getElementsByTagNameNS('*', 'foto')[0]) : null;
 
+    const avatar = getAttr(fotoEl, 'avatar', 'generico');
+    const fotoSrc = AVATARES[avatar] || AVATARES[opciones.avatarGenerico] || AVATARES.generico;
+
     const autor = {
       nombreCompleto: getText(autorEl, 'nombre-completo'),
       nombre: getText(autorEl, 'nombre'),
@@ -259,10 +269,11 @@ const PersonalSiteGenerator = (function () {
       descripcion: getText(autorEl, 'descripcion'),
       palabrasClave: getText(autorEl, 'palabras-clave'),
       foto: {
-        src: getAttr(fotoEl, 'src', 'assets/img/yo.jpg'),
+        src: fotoSrc,
         alt: getAttr(fotoEl, 'alt', 'Fotografía de perfil'),
         ancho: getAttr(fotoEl, 'ancho', '208'),
-        alto: getAttr(fotoEl, 'alto', '208')
+        alto: getAttr(fotoEl, 'alto', '208'),
+        avatar: avatar || undefined
       }
     };
 
@@ -371,12 +382,13 @@ const PersonalSiteGenerator = (function () {
       for (let i = 0; i < intNodes.length; i++) {
         const it = intNodes[i];
         const imgEl = it.getElementsByTagName('imagen')[0] || it.getElementsByTagNameNS('*', 'imagen')[0];
+        let intSrc = (imgEl && getAttr(imgEl, 'src', '')) || 'assets/img/interes-generico.svg';
         interesesList.push({
           titulo: getText(it, 'titulo'),
           descripcion: getText(it, 'descripcion'),
-          imagen: imgEl ? {
-            src: getAttr(imgEl, 'src', ''),
-            alt: getAttr(imgEl, 'alt', ''),
+          imagen: imgEl || opciones.usarFotosGenericas ? {
+            src: intSrc || 'assets/img/interes-generico.svg',
+            alt: getAttr(imgEl, 'alt', getText(it, 'titulo') || 'Interés o afición'),
             ancho: getAttr(imgEl, 'ancho', '600'),
             alto: getAttr(imgEl, 'alto', '450')
           } : null
@@ -449,6 +461,8 @@ const PersonalSiteGenerator = (function () {
           }
         }
 
+        let projSrc = (imgP && getAttr(imgP, 'src', '')) || 'assets/img/proyecto-generico.svg';
+
         proyectosList.push({
           categoria: getAttr(p, 'categoria', 'web'),
           estado: getAttr(p, 'estado', 'completado'),
@@ -456,9 +470,9 @@ const PersonalSiteGenerator = (function () {
           etiquetaDestacada: getText(p, 'etiqueta-destacada'),
           titulo: getText(p, 'titulo'),
           descripcion: getText(p, 'descripcion'),
-          imagen: imgP ? {
-            src: getAttr(imgP, 'src', ''),
-            alt: getAttr(imgP, 'alt', ''),
+          imagen: imgP || opciones.usarFotosGenericas ? {
+            src: projSrc || 'assets/img/proyecto-generico.svg',
+            alt: getAttr(imgP, 'alt', getText(p, 'titulo') || 'Imagen del proyecto'),
             ancho: getAttr(imgP, 'ancho', '600'),
             alto: getAttr(imgP, 'alto', '380')
           } : null,
@@ -1182,9 +1196,9 @@ ${generarFooter(datos)}
 </html>`;
   }
 
-  function generarSitioDesdeXml(xmlString) {
+  function generarSitioDesdeXml(xmlString, opciones = {}) {
     const doc = parseXml(xmlString);
-    const datos = extraerDatos(doc);
+    const datos = extraerDatos(doc, opciones);
 
     return {
       datos,

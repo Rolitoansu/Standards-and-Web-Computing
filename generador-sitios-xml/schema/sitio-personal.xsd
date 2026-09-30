@@ -50,6 +50,28 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="TipoAvatar">
+    <xs:annotation>
+      <xs:documentation>
+        Estilos predefinidos de avatar vectorial o referencia directa al recurso SVG:
+        - generico: Avatar profesional neutro en SVG.
+        - desarrollador: Avatar de perfil técnico / software con estética dev.
+        - disenador: Avatar de perfil creativo y diseño UX/UI.
+        - personalizado: Utiliza la imagen local o remota del atributo src.
+        También admite los nombres de fichero SVG correspondientes.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="generico"/>
+      <xs:enumeration value="desarrollador"/>
+      <xs:enumeration value="disenador"/>
+      <xs:enumeration value="personalizado"/>
+      <xs:enumeration value="avatar-generico.svg"/>
+      <xs:enumeration value="avatar-desarrollador.svg"/>
+      <xs:enumeration value="avatar-disenador.svg"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <!-- ======================================================== -->
   <!-- ELEMENTO RAÍZ: SITIO-PERSONAL                            -->
   <!-- ======================================================== -->
@@ -87,8 +109,16 @@
       <xs:element name="lema" type="xs:string" minOccurs="0"/>
       <xs:element name="descripcion" type="xs:string"/>
       <xs:element name="palabras-clave" type="xs:string"/>
-      <xs:element name="foto" type="TipoImagen"/>
+      <xs:element name="foto" type="TipoFotoAutor"/>
     </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TipoFotoAutor">
+    <xs:attribute name="src" type="xs:string" use="optional" default="assets/img/avatar-generico.svg"/>
+    <xs:attribute name="alt" type="xs:string" use="required"/>
+    <xs:attribute name="ancho" type="xs:positiveInteger" use="optional" default="208"/>
+    <xs:attribute name="alto" type="xs:positiveInteger" use="optional" default="208"/>
+    <xs:attribute name="avatar" type="TipoAvatar" use="optional" default="generico"/>
   </xs:complexType>
 
   <xs:complexType name="TipoImagen">
@@ -96,6 +126,7 @@
     <xs:attribute name="alt" type="xs:string" use="required"/>
     <xs:attribute name="ancho" type="xs:positiveInteger" use="optional"/>
     <xs:attribute name="alto" type="xs:positiveInteger" use="optional"/>
+    <xs:attribute name="avatar" type="TipoAvatar" use="optional"/>
   </xs:complexType>
 
   <xs:complexType name="TipoContactoInfo">

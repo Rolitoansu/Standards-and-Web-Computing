@@ -18,7 +18,7 @@
       <lema>Desarrollador backend apasionado por el software robusto, arquitecturas limpias y tecnologías web.</lema>
       <descripcion>Raúl Antuña — AEM Backend Engineer en Hiberus y estudiante de Máster en Ingeniería Web. Página personal con proyectos y currículum.</descripcion>
       <palabras-clave>Raúl Antuña, ingeniería web, AEM, Adobe Experience Manager, Hiberus, backend, desarrollador, Asturias</palabras-clave>
-      <foto src="assets/img/yo.jpg" alt="Fotografía de perfil de Raúl Antuña" ancho="208" alto="208"/>
+      <foto avatar="desarrollador" alt="Fotografía de perfil de Raúl Antuña" ancho="208" alto="208"/>
     </autor>
 
     <contacto-info>

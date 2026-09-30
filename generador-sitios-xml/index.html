@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Generador de sitios web personales completos a partir de un archivo XML.">
+  <meta name="description"
+    content="Generador accesible de sitios web personales completos a partir de un archivo XML con WebAssembly y TypeScript.">
   <title>Generador Web Personal desde XML</title>
   <link rel="stylesheet" href="assets/css/app.css">
   <script src="assets/js/jszip.min.js" defer></script>
+  <script src="assets/js/wasm_runner.js" defer></script>
   <script src="assets/js/templates_bundle.js" defer></script>
   <script src="assets/js/generator.js" defer></script>
   <script src="assets/js/app.js" defer></script>
 </head>
+
 <body>
 
   <header>
@@ -21,23 +25,20 @@
   <main>
     <section aria-label="Generador de páginas web">
       <h2>Generación automática de sitio web personal</h2>
-      <p>Sube tu archivo XML conforme al estándar para generar y descargar automáticamente todas las páginas HTML del sitio web personal (Inicio, Sobre mí, Proyectos, Currículum y Contacto).</p>
+      <p>Sube tu archivo XML conforme al estándar <code>PersonalSiteML</code> para generar y descargar automáticamente
+        el paquete ZIP completo con las 5 páginas HTML5 (Inicio, Sobre mí, Proyectos, Currículum y Contacto).</p>
 
       <form action="#" method="post" aria-label="Formulario de generación de sitio web">
         <fieldset>
-          <legend>Archivo XML</legend>
+          <legend>Documento XML</legend>
           <p>
             <label for="fichero-xml">Seleccionar archivo XML (.xml):</label>
             <input type="file" id="fichero-xml" name="fichero-xml" accept=".xml,text/xml,application/xml" required>
           </p>
         </fieldset>
 
-        <button type="submit">Generar y Descargar Sitio Web Completo</button>
+        <button type="submit">Generar y Descargar Sitio Web (ZIP)</button>
       </form>
-
-      <output aria-live="polite">
-        <p>Selecciona un archivo XML en el formulario y pulsa el botón para generar las páginas.</p>
-      </output>
     </section>
   </main>
 
@@ -46,4 +47,5 @@
   </footer>
 
 </body>
+
 </html>

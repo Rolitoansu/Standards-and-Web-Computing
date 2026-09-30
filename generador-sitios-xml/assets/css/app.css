@@ -228,6 +228,64 @@ body > main > section output ul li a:hover {
   border-color: var(--primario);
 }
 
+body > main > section form fieldset p select {
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio);
+  background: var(--superficie);
+  color: var(--texto);
+  cursor: pointer;
+  transition: border-color var(--transicion);
+}
+
+body > main > section form fieldset p select:focus-visible {
+  outline: 0.1875rem solid var(--primario);
+  outline-offset: 0.125rem;
+}
+
+body > main > section form fieldset label:has(input[type="checkbox"]) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.625rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+body > main > section form fieldset label input[type="checkbox"] {
+  width: 1.125rem;
+  height: 1.125rem;
+  accent-color: var(--primario);
+  cursor: pointer;
+}
+
+body > main > section dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: var(--superficie);
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio);
+}
+
+body > main > section dl dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--texto-suave);
+}
+
+body > main > section dl dd {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primario);
+  margin-top: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
 /* Pie */
 body > footer {
   background: var(--superficie);

@@ -1,0 +1,12 @@
+{
+  "xml.fileAssociations": [
+    {
+      "pattern": "generador-sitios-xml/**/*.xml",
+      "systemId": "generador-sitios-xml/schema/sitio-personal.xsd"
+    },
+    {
+      "pattern": "**/ejemplos-xml/*.xml",
+      "systemId": "../schema/sitio-personal.xsd"
+    }
+  ]
+}

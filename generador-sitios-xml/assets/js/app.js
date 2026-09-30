@@ -1,5 +1,5 @@
 /**
- * app.js — Controlador del formulario accesible para la generación del paquete ZIP con JSZip
+ * app.js — Controlador del formulario accesible para la generación del paquete ZIP con WebAssembly y Fotos Genéricas
  */
 
 (function () {
@@ -25,82 +25,134 @@
       .replace(/^-+|-+$/g, '');
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', async function () {
     const formulario = document.querySelector('form');
     const inputFichero = document.querySelector('input[type="file"]');
     const salida = document.querySelector('output');
 
-    if (!formulario || !inputFichero || !salida) return;
+    if (!formulario || !salida) return;
 
-    formulario.addEventListener('submit', function (evento) {
+    // Precargar módulo WebAssembly si está disponible
+    if (typeof WasmMetricsRunner !== 'undefined') {
+      try {
+        await WasmMetricsRunner.cargarModulo();
+      } catch (err) {
+        console.warn('Inicialización WASM en segundo plano:', err);
+      }
+    }
+
+    formulario.addEventListener('submit', async function (evento) {
       evento.preventDefault();
 
-      if (!inputFichero.files || inputFichero.files.length === 0) {
-        salida.innerHTML = '<p>Por favor, selecciona un archivo XML antes de continuar.</p>';
+      if (!inputFichero || !inputFichero.files || inputFichero.files.length === 0) {
+        salida.innerHTML = '<p>Por favor, selecciona y sube un archivo XML antes de continuar.</p>';
         return;
       }
 
+      let contenidoXml = '';
       const archivo = inputFichero.files[0];
-      const lector = new FileReader();
+      const nombreArchivoOrigen = archivo.name;
 
-      lector.onload = async function (e) {
-        try {
-          salida.innerHTML = '<p>Procesando archivo XML y empaquetando sitio web...</p>';
-
-          const contenidoXml = e.target.result;
-          const resultado = PersonalSiteGenerator.generarSitioDesdeXml(contenidoXml);
-          const paginas = resultado.paginas;
-          const autor = resultado.datos.autor.nombreCompleto || 'Personal';
-          const slug = slugify(autor);
-
-          // Inicializar JSZip
-          const zip = new JSZip();
-
-          // 1. Agregar las 5 páginas HTML generadas a la raíz del ZIP
-          for (const [nombreHtml, contenidoHtml] of Object.entries(paginas)) {
-            zip.file(nombreHtml, contenidoHtml);
-          }
-
-          // 2. Agregar los recursos de estilo CSS y scripts JS
-          if (typeof TEMPLATES_BUNDLE !== 'undefined') {
-            for (const [rutaArchivo, contenido] of Object.entries(TEMPLATES_BUNDLE)) {
-              zip.file(rutaArchivo, contenido);
-            }
-          }
-
-          // 3. Generar archivo ZIP binario con JSZip
-          const zipBlob = await zip.generateAsync({
-            type: 'blob',
-            compression: 'DEFLATE',
-            compressionOptions: { level: 6 }
-          });
-
-          const nombreZip = `sitio-${slug}.zip`;
-
-          // 4. Descargar automáticamente el ZIP
-          descargarBlob(nombreZip, zipBlob);
-
-          // 5. Presentar resultado accesible en output
-          const urlZipDescarga = URL.createObjectURL(zipBlob);
-          salida.innerHTML = `
-            <p><strong>¡Sitio web generado con éxito para ${autor}!</strong></p>
-            <p>Se ha descargado el archivo ZIP con todas las páginas generadas:</p>
-            <ul>
-              <li><a href="${urlZipDescarga}" download="${nombreZip}">Descargar de nuevo el paquete completo (${nombreZip})</a></li>
-            </ul>
-            <p>Cada archivo HTML contiene todo su CSS y scripts minificados directamente en la etiqueta <code>&lt;head&gt;</code>, garantizando que cada página sea 100% autocontenida y funcional sin dependencias externas.</p>
-          `;
-        } catch (error) {
-          console.error(error);
-          salida.innerHTML = `<p>Error al procesar el archivo XML: ${error.message}</p>`;
-        }
-      };
-
-      lector.onerror = function () {
+      try {
+        salida.innerHTML = '<p>Leyendo archivo XML del dispositivo...</p>';
+        contenidoXml = await archivo.text();
+      } catch (err) {
         salida.innerHTML = '<p>Error al leer el archivo desde el dispositivo.</p>';
-      };
+        return;
+      }
 
-      lector.readAsText(archivo);
+      try {
+        salida.innerHTML = '<p>Ejecutando análisis WebAssembly (WASM) y generando sitio web...</p>';
+
+        // 2. Ejecutar análisis de métricas en WebAssembly (WASM)
+        let metricasWasm = null;
+        if (typeof WasmMetricsRunner !== 'undefined') {
+          await WasmMetricsRunner.cargarModulo();
+          metricasWasm = WasmMetricsRunner.analizar(contenidoXml);
+        }
+
+        // 3. Generación HTML con el motor semántico (el avatar se define directamente en el XML)
+        const resultado = PersonalSiteGenerator.generarSitioDesdeXml(contenidoXml);
+        const paginas = resultado.paginas;
+        const autor = resultado.datos.autor.nombreCompleto || 'Personal';
+        const slug = slugify(autor);
+
+        // 5. Inicializar JSZip y empaquetar
+        const zip = new JSZip();
+
+        // 5.1 Agregar las 5 páginas HTML generadas a la raíz del ZIP
+        for (const [nombreHtml, contenidoHtml] of Object.entries(paginas)) {
+          zip.file(nombreHtml, contenidoHtml);
+        }
+
+        // 5.2 Agregar recursos estáticos (CSS, JS, imágenes genéricas y logos)
+        if (typeof TEMPLATES_BUNDLE !== 'undefined') {
+          for (const [rutaArchivo, contenido] of Object.entries(TEMPLATES_BUNDLE)) {
+            zip.file(rutaArchivo, contenido);
+          }
+        }
+
+        // 6. Generar archivo binario ZIP comprimido
+        const zipBlob = await zip.generateAsync({
+          type: 'blob',
+          compression: 'DEFLATE',
+          compressionOptions: { level: 6 }
+        });
+
+        const nombreZip = `sitio-${slug}.zip`;
+
+        // 7. Descargar automáticamente el ZIP
+        descargarBlob(nombreZip, zipBlob);
+
+        // 8. Presentar resultado accesible y métricas WASM en el elemento <output>
+        const urlZipDescarga = URL.createObjectURL(zipBlob);
+        const tamanoKb = (zipBlob.size / 1024).toFixed(1);
+
+        let bloqueWasm = '';
+        if (metricasWasm) {
+          bloqueWasm = `
+            <h3>Métricas WebAssembly (WASM)</h3>
+            <dl>
+              <div>
+                <dt>Motor de cómputo</dt>
+                <dd>${metricasWasm.motor}</dd>
+              </div>
+              <div>
+                <dt>Checksum Hash FNV-1a</dt>
+                <dd>0x${metricasWasm.hashHex.toUpperCase()}</dd>
+              </div>
+              <div>
+                <dt>Tamaño XML</dt>
+                <dd>${metricasWasm.totalBytes} bytes</dd>
+              </div>
+              <div>
+                <dt>Etiquetas XML</dt>
+                <dd>${metricasWasm.totalEtiquetas} nodos</dd>
+              </div>
+              <div>
+                <dt>Complejidad</dt>
+                <dd>${metricasWasm.puntuacionComplejidad}</dd>
+              </div>
+              <div>
+                <dt>Tiempo de análisis</dt>
+                <dd>${metricasWasm.tiempoMs} ms</dd>
+              </div>
+            </dl>
+          `;
+        }
+
+        salida.innerHTML = `
+          <p><strong>¡Sitio web generado y empaquetado con éxito para ${autor}!</strong></p>
+          <p>El paquete <code>${nombreZip}</code> (${tamanoKb} KB) se ha descargado automáticamente e incluye las 5 páginas W3C, estilos CSS, scripts accesibles y recursos vectoriales genéricos.</p>
+          <ul>
+            <li><a href="${urlZipDescarga}" download="${nombreZip}">Descargar nuevamente el paquete completo (${nombreZip})</a></li>
+          </ul>
+          ${bloqueWasm}
+        `;
+      } catch (error) {
+        console.error(error);
+        salida.innerHTML = `<p>Error al procesar el archivo XML: ${error.message}</p>`;
+      }
     });
   });
 })();

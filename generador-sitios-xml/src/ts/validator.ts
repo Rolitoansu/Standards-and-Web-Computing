@@ -29,6 +29,13 @@ export class PersonalSiteValidator {
       avisos.push('La descripción para SEO en metadatos está vacía.');
     }
 
+    // Validar estilo de avatar conforme al XSD (TipoAvatar)
+    const avatarValido = ['generico', 'desarrollador', 'disenador', 'personalizado', 'avatar-generico.svg', 'avatar-desarrollador.svg', 'avatar-disenador.svg'];
+    const avatar = sitio.metadatos?.autor?.foto?.avatar;
+    if (avatar && !avatarValido.includes(avatar)) {
+      errores.push(`Valor de avatar no válido en el XSD: "${avatar}". Valores permitidos: ${avatarValido.join(', ')}.`);
+    }
+
     // Validar Email
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!sitio.metadatos?.contactoInfo?.email || !emailRegex.test(sitio.metadatos.contactoInfo.email)) {

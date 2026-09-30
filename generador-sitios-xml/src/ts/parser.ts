@@ -22,10 +22,17 @@ import {
   ProyectoItem,
   PuestoExperiencia,
   EstudioFormacion,
-  GrupoCompetencias
+  GrupoCompetencias,
+  OpcionesGenerador
 } from './types';
 
 export class PersonalSiteXMLParser {
+  private static readonly AVATARES: Record<string, string> = {
+    desarrollador: 'assets/img/avatar-desarrollador.svg',
+    disenador: 'assets/img/avatar-disenador.svg',
+    generico: 'assets/img/avatar-generico.svg'
+  };
+
   /**
    * Obtiene el texto directo de un elemento hijo o cadena vacía si no existe
    */
@@ -71,7 +78,7 @@ export class PersonalSiteXMLParser {
   /**
    * Parsea un documento XML DOM y construye el objeto SitioPersonalModel
    */
-  public static parseDocument(doc: Document): SitioPersonalModel {
+  public static parseDocument(doc: Document, opciones?: OpcionesGenerador): SitioPersonalModel {
     const root = doc.documentElement;
     const rootTag = root.localName || root.tagName.split(':').pop();
     if (rootTag !== 'sitio-personal') {
@@ -91,6 +98,10 @@ export class PersonalSiteXMLParser {
     // Autor
     const autorEl = metaEl.getElementsByTagName('autor')[0] || metaEl.getElementsByTagNameNS('*', 'autor')[0];
     const fotoEl = autorEl ? (autorEl.getElementsByTagName('foto')[0] || autorEl.getElementsByTagNameNS('*', 'foto')[0]) : null;
+
+    const avatar = this.getAttr(fotoEl, 'avatar', 'generico');
+    const fotoSrc = PersonalSiteXMLParser.AVATARES[avatar] || (opciones?.avatarGenerico && PersonalSiteXMLParser.AVATARES[opciones.avatarGenerico]) || PersonalSiteXMLParser.AVATARES.generico;
+
     const autor: MetadatosAutor = {
       nombreCompleto: this.getText(autorEl, 'nombre-completo'),
       nombre: this.getText(autorEl, 'nombre'),
@@ -100,10 +111,11 @@ export class PersonalSiteXMLParser {
       descripcion: this.getText(autorEl, 'descripcion'),
       palabrasClave: this.getText(autorEl, 'palabras-clave'),
       foto: {
-        src: this.getAttr(fotoEl, 'src', 'assets/img/yo.jpg'),
+        src: fotoSrc,
         alt: this.getAttr(fotoEl, 'alt', 'Fotografía de perfil'),
         ancho: parseInt(this.getAttr(fotoEl, 'ancho', '208'), 10),
-        alto: parseInt(this.getAttr(fotoEl, 'alto', '208'), 10)
+        alto: parseInt(this.getAttr(fotoEl, 'alto', '208'), 10),
+        avatar: avatar || undefined
       }
     };
 

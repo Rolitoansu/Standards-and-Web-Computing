@@ -44,8 +44,8 @@ const WasmMetricsRunner = (function () {
         const path = require('path');
         const posiblesRutas = [
           wasmUrlOrPath,
+          path.join(__dirname, '../wasm/xml_metrics.wasm'),
           path.join(__dirname, '../../assets/wasm/xml_metrics.wasm'),
-          path.join(__dirname, '../wasm/wasm_metrics.wasm'),
           path.join(__dirname, 'assets/wasm/xml_metrics.wasm')
         ].filter(Boolean);
 

@@ -114,7 +114,7 @@ Contiene la información de autoría, personalización cromática y canales de c
   - `<lema>`: Frase inspiradora o propósito personal (opcional).
   - `<descripcion>`: Resumen conciso para SEO y metaetiquetas.
   - `<palabras-clave>`: Términos separados por comas para indización.
-  - `<foto src="..." alt="..." ancho="..." alto="..."/>`: Imagen de perfil principal.
+  - `<foto avatar="generico|desarrollador|disenador|personalizado" src="..." alt="..." ancho="..." alto="..."/>`: Estilo de avatar vectorial predefinido y/o ruta de imagen de perfil principal.
 - `<tema>` (Opcional): Permite al usuario alterar los tokens de color del sitio web inyectándose dinámicamente en `:root`:
   - `<color-primario>`: Hexadecimal de 6 dígitos (`#2563eb`).
   - `<color-primario-hover>`: Hexadecimal para interacción (`#1d4ed8`).

@@ -1,18 +1,17 @@
 /**
- * generator_engine.js — Motor universal de generación de sitios web personales
- * Compatible con ejecución en Navegador y Node.js (TypeScript/JavaScript ES6).
+ * generator.js — Generador HTML a partir de PersonalSiteML (XML)
+ * Genera el marcado HTML5 exacto que corresponde a las plantillas CSS de Trabajo II
+ * asegurando fidelidad visual y accesibilidad WCAG 2.1 AA.
  */
 
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory();
-  } else {
-    root.PersonalSiteGeneratorEngine = factory();
-  }
-}(typeof self !== 'undefined' ? self : this, function () {
+const PersonalSiteGenerator = (function () {
   'use strict';
+
+  const AVATARES = {
+    desarrollador: 'assets/img/avatar-desarrollador.svg',
+    disenador: 'assets/img/avatar-disenador.svg',
+    generico: 'assets/img/avatar-generico.svg'
+  };
 
   function escapeHtml(str) {
     if (!str) return '';
@@ -24,53 +23,242 @@
       .replace(/'/g, '&#039;');
   }
 
+  function unescapeXml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#039;/g, "'")
+      .replace(/&apos;/g, "'");
+  }
+
+  function capitalizar(str) {
+    if (!str) return '';
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  function limpiarAmpersand(texto) {
+    if (!texto) return '';
+    return String(texto)
+      .replace(/&amp;/g, ' y ')
+      .replace(/&/g, ' y ')
+      .replace(/\s+y\s+/g, ' y ')
+      .trim();
+  }
+
+  function mapearNivelDescriptivo(nivel) {
+    if (nivel === null || nivel === undefined || nivel === '') return 'Avanzado';
+    const s = String(nivel).trim().toLowerCase().replace(/%/g, '');
+    const num = parseInt(s, 10);
+    if (!isNaN(num)) {
+      if (num >= 80) return 'Avanzado';
+      if (num >= 50) return 'Medio';
+      return 'Básico';
+    }
+    if (s.includes('avan') || s.includes('alt') || s.includes('sen') || s.includes('nat') || s.includes('c1') || s.includes('c2')) return 'Avanzado';
+    if (s.includes('med') || s.includes('inter') || s.includes('b1') || s.includes('b2')) return 'Medio';
+    if (s.includes('bas') || s.includes('princ') || s.includes('inic') || s.includes('elem') || s.includes('a1') || s.includes('a2')) return 'Básico';
+    return capitalizar(s);
+  }
+
+  function minifyCss(css) {
+    if (!css) return '';
+    return css
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s*([{}:;,>+~])\s*/g, '$1')
+      .replace(/;}/g, '}')
+      .trim();
+  }
+
+  function obtenerCssMinificado(cssFile) {
+    let bundle = null;
+    if (typeof TEMPLATES_BUNDLE !== 'undefined') {
+      bundle = TEMPLATES_BUNDLE;
+    } else if (typeof require !== 'undefined') {
+      try {
+        const path = require('path');
+        bundle = require(path.resolve(__dirname, 'templates_bundle.js'));
+      } catch (e) {
+        bundle = null;
+      }
+    }
+    let base = '', layout = '', specific = '';
+    if (bundle) {
+      base = bundle['assets/css/base.css'] || '';
+      layout = bundle['assets/css/layout.css'] || '';
+      specific = bundle['assets/css/' + cssFile] || '';
+    } else if (typeof require !== 'undefined') {
+      try {
+        const path = require('path');
+        const fs = require('fs');
+        const templatesDir = path.resolve(__dirname, '../templates');
+        if (fs.existsSync(templatesDir)) {
+          base = fs.readFileSync(path.join(templatesDir, 'base.css'), 'utf8');
+          layout = fs.readFileSync(path.join(templatesDir, 'layout.css'), 'utf8');
+          specific = fs.readFileSync(path.join(templatesDir, cssFile), 'utf8');
+        }
+      } catch (e) {}
+    }
+    return minifyCss(base + '\n' + layout + '\n' + specific);
+  }
+
+  function obtenerJsMinificado(jsFile) {
+    let bundle = null;
+    if (typeof TEMPLATES_BUNDLE !== 'undefined') {
+      bundle = TEMPLATES_BUNDLE;
+    } else if (typeof require !== 'undefined') {
+      try {
+        const path = require('path');
+        bundle = require(path.resolve(__dirname, 'templates_bundle.js'));
+      } catch (e) {
+        bundle = null;
+      }
+    }
+    if (bundle && bundle['assets/js/' + jsFile]) {
+      return bundle['assets/js/' + jsFile];
+    }
+    if (typeof require !== 'undefined') {
+      try {
+        const path = require('path');
+        const fs = require('fs');
+        const filePath = path.resolve(__dirname, '../templates', jsFile);
+        if (fs.existsSync(filePath)) return fs.readFileSync(filePath, 'utf8');
+      } catch (e) {}
+    }
+    return '';
+  }
+
   function getText(parent, tagName) {
     if (!parent) return '';
-    const el = parent.getElementsByTagName(tagName)[0] || 
-               parent.getElementsByTagNameNS('*', tagName)[0];
+    const el = parent.getElementsByTagName(tagName)[0] ||
+      parent.getElementsByTagNameNS('*', tagName)[0];
     return el && el.textContent ? el.textContent.trim() : '';
   }
 
-  function getAttr(el, attrName, defVal) {
-    if (!el) return defVal || '';
-    return el.getAttribute(attrName) || (defVal || '');
+  function getAttr(el, attrName, defVal = '') {
+    if (!el) return defVal;
+    return el.getAttribute(attrName) || defVal;
   }
 
-  /**
-   * Parser XML unificado
-   */
-  function parseXML(xmlString) {
-    let doc;
-    if (typeof DOMParser !== 'undefined') {
-      const parser = new DOMParser();
-      doc = parser.parseFromString(xmlString, 'text/xml');
-      const parserError = doc.getElementsByTagName('parsererror')[0];
-      if (parserError) {
-        throw new Error('Error de sintaxis XML: ' + parserError.textContent.slice(0, 120));
-      }
-    } else {
-      // Entorno Node.js
-      const { JSDOM } = require('jsdom');
-      const dom = new JSDOM(xmlString, { contentType: 'text/xml' });
-      doc = dom.window.document;
+  function parseXmlSimple(xml) {
+    const cleanXml = xml.replace(/<!--[\s\S]*?-->/g, '').replace(/<\?[\s\S]*?\?>/g, '').trim();
+
+    function Node(tag) {
+      this.tagName = tag;
+      this.localName = tag.split(':').pop();
+      this.attributes = {};
+      this.children = [];
+      this.textContent = '';
     }
 
+    Node.prototype.getElementsByTagName = function (name) {
+      const results = [];
+      function traverse(node) {
+        if (!node) return;
+        const local = node.tagName.split(':').pop();
+        if (local === name || node.tagName === name) {
+          results.push(node);
+        }
+        for (const ch of node.children) {
+          traverse(ch);
+        }
+      }
+      for (const ch of this.children) {
+        traverse(ch);
+      }
+      return results;
+    };
+
+    Node.prototype.getElementsByTagNameNS = function (ns, name) {
+      return this.getElementsByTagName(name);
+    };
+
+    Node.prototype.getAttribute = function (attr) {
+      return this.attributes[attr] || null;
+    };
+
+    Node.prototype.hasAttribute = function (attr) {
+      return Object.prototype.hasOwnProperty.call(this.attributes, attr);
+    };
+
+    const tagRegex = /<(\/)?([a-zA-Z0-9_\-:]+)((?:\s+[^>="']+(?:=(?:"[^"]*"|'[^']*'|[^>\s]+))?)*)\s*(\/)?>/g;
+    let root = null;
+    const stack = [];
+    let lastIndex = 0;
+    let match;
+
+    while ((match = tagRegex.exec(cleanXml)) !== null) {
+      const textBetween = cleanXml.substring(lastIndex, match.index);
+      if (stack.length > 0 && textBetween.trim()) {
+        stack[stack.length - 1].textContent += unescapeXml(textBetween.trim());
+      }
+
+      const isClosing = Boolean(match[1]);
+      const tagName = match[2];
+      const attrString = match[3] || '';
+      const isSelfClosing = Boolean(match[4]);
+
+      if (isClosing) {
+        if (stack.length > 0 && stack[stack.length - 1].tagName === tagName) {
+          stack.pop();
+        }
+      } else {
+        const node = new Node(tagName);
+        const attrRegex = /([a-zA-Z0-9_\-:]+)(?:=(?:"([^"]*)"|'([^']*)'|([^>\s]+)))?/g;
+        let aMatch;
+        while ((aMatch = attrRegex.exec(attrString)) !== null) {
+          const aName = aMatch[1];
+          const aVal = aMatch[2] !== undefined ? aMatch[2] : (aMatch[3] !== undefined ? aMatch[3] : (aMatch[4] || ''));
+          node.attributes[aName] = unescapeXml(aVal);
+        }
+
+        if (!root) root = node;
+        if (stack.length > 0) stack[stack.length - 1].children.push(node);
+        if (!isSelfClosing) stack.push(node);
+      }
+      lastIndex = tagRegex.lastIndex;
+    }
+
+    return {
+      documentElement: root,
+      getElementsByTagName: function (t) { return root ? root.getElementsByTagName(t) : []; },
+      getElementsByTagNameNS: function (ns, t) { return root ? root.getElementsByTagName(t) : []; }
+    };
+  }
+
+  function parseXml(xmlString) {
+    if (typeof DOMParser !== 'undefined') {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(xmlString, 'text/xml');
+      const parserError = doc.getElementsByTagName('parsererror')[0];
+      if (parserError) {
+        throw new Error('Error al parsear el archivo XML: ' + parserError.textContent.slice(0, 120));
+      }
+      return doc;
+    }
+    return parseXmlSimple(xmlString);
+  }
+
+  function extraerDatos(doc, opciones = {}) {
+    opciones = opciones || {};
     const root = doc.documentElement;
     const rootTag = root.localName || root.tagName.split(':').pop();
     if (rootTag !== 'sitio-personal') {
-      throw new Error(`Elemento raíz inválido: esperado <sitio-personal>, recibido <${rootTag}>`);
+      throw new Error(`Elemento raíz inválido: se esperaba <sitio-personal>, se encontró <${rootTag}>.`);
     }
 
     const idioma = getAttr(root, 'idioma', 'es');
-    const version = getAttr(root, 'version', '1.0');
-    const id = getAttr(root, 'id', 'sitio-personal');
-
-    // Metadatos
     const metaEl = root.getElementsByTagName('metadatos')[0] || root.getElementsByTagNameNS('*', 'metadatos')[0];
-    if (!metaEl) throw new Error('Falta el bloque obligatorio <metadatos>.');
+    if (!metaEl) throw new Error('El archivo XML no contiene el bloque <metadatos>.');
 
     const autorEl = metaEl.getElementsByTagName('autor')[0] || metaEl.getElementsByTagNameNS('*', 'autor')[0];
     const fotoEl = autorEl ? (autorEl.getElementsByTagName('foto')[0] || autorEl.getElementsByTagNameNS('*', 'foto')[0]) : null;
+
+    const avatar = getAttr(fotoEl, 'avatar', 'generico');
+    const fotoSrc = AVATARES[avatar] || AVATARES[opciones.avatarGenerico] || AVATARES.generico;
 
     const autor = {
       nombreCompleto: getText(autorEl, 'nombre-completo'),
@@ -81,37 +269,14 @@
       descripcion: getText(autorEl, 'descripcion'),
       palabrasClave: getText(autorEl, 'palabras-clave'),
       foto: {
-        src: getAttr(fotoEl, 'src', 'assets/img/yo.jpg'),
+        src: fotoSrc,
         alt: getAttr(fotoEl, 'alt', 'Fotografía de perfil'),
-        ancho: parseInt(getAttr(fotoEl, 'ancho', '208'), 10),
-        alto: parseInt(getAttr(fotoEl, 'alto', '208'), 10)
+        ancho: getAttr(fotoEl, 'ancho', '208'),
+        alto: getAttr(fotoEl, 'alto', '208'),
+        avatar: avatar || undefined
       }
     };
 
-    // Tema
-    let tema = null;
-    const temaEl = metaEl.getElementsByTagName('tema')[0] || metaEl.getElementsByTagNameNS('*', 'tema')[0];
-    if (temaEl) {
-      tema = {
-        colorPrimario: getText(temaEl, 'color-primario') || '#2563eb',
-        colorPrimarioHover: getText(temaEl, 'color-primario-hover') || '#1d4ed8',
-        colorPrimarioClaro: getText(temaEl, 'color-primario-claro') || '#f0f4fd',
-        colorAcento: getText(temaEl, 'color-acento') || '#0ea5e9',
-        colorFondo: getText(temaEl, 'color-fondo') || '#ffffff',
-        colorSuperficie: getText(temaEl, 'color-superficie') || '#f5f7fb'
-      };
-    } else {
-      tema = {
-        colorPrimario: '#2563eb',
-        colorPrimarioHover: '#1d4ed8',
-        colorPrimarioClaro: '#f0f4fd',
-        colorAcento: '#0ea5e9',
-        colorFondo: '#ffffff',
-        colorSuperficie: '#f5f7fb'
-      };
-    }
-
-    // Contacto
     const cInfoEl = metaEl.getElementsByTagName('contacto-info')[0] || metaEl.getElementsByTagNameNS('*', 'contacto-info')[0];
     const contactoInfo = {
       email: getText(cInfoEl, 'email'),
@@ -121,25 +286,8 @@
       disponibilidad: getText(cInfoEl, 'disponibilidad')
     };
 
-    // Redes
-    const redesSociales = [];
-    const redesEl = metaEl.getElementsByTagName('redes-sociales')[0] || metaEl.getElementsByTagNameNS('*', 'redes-sociales')[0];
-    if (redesEl) {
-      const redNodes = redesEl.getElementsByTagName('red');
-      for (let i = 0; i < redNodes.length; i++) {
-        const r = redNodes[i];
-        redesSociales.push({
-          tipo: getAttr(r, 'tipo', 'web'),
-          url: getAttr(r, 'url', '#'),
-          usuario: getAttr(r, 'usuario', ''),
-          etiqueta: getAttr(r, 'etiqueta', '')
-        });
-      }
-    }
-
-    // Páginas
     const paginasEl = root.getElementsByTagName('paginas')[0] || root.getElementsByTagNameNS('*', 'paginas')[0];
-    if (!paginasEl) throw new Error('Falta el bloque obligatorio <paginas>.');
+    if (!paginasEl) throw new Error('El archivo XML no contiene el bloque <paginas>.');
 
     // 1. Inicio
     const inicioEl = paginasEl.getElementsByTagName('inicio')[0] || paginasEl.getElementsByTagNameNS('*', 'inicio')[0];
@@ -186,7 +334,7 @@
       }
     }
 
-    const paginaInicio = {
+    const inicio = {
       hero: {
         saludo: getText(heroEl, 'saludo') || 'Hola, soy',
         subtitulo: getText(heroEl, 'subtitulo') || autor.titular,
@@ -234,34 +382,21 @@
       for (let i = 0; i < intNodes.length; i++) {
         const it = intNodes[i];
         const imgEl = it.getElementsByTagName('imagen')[0] || it.getElementsByTagNameNS('*', 'imagen')[0];
+        let intSrc = (imgEl && getAttr(imgEl, 'src', '')) || 'assets/img/interes-generico.svg';
         interesesList.push({
           titulo: getText(it, 'titulo'),
           descripcion: getText(it, 'descripcion'),
-          imagen: imgEl ? {
-            src: getAttr(imgEl, 'src', ''),
-            alt: getAttr(imgEl, 'alt', ''),
-            ancho: parseInt(getAttr(imgEl, 'ancho', '600'), 10),
-            alto: parseInt(getAttr(imgEl, 'alto', '450'), 10)
+          imagen: imgEl || opciones.usarFotosGenericas ? {
+            src: intSrc || 'assets/img/interes-generico.svg',
+            alt: getAttr(imgEl, 'alt', getText(it, 'titulo') || 'Interés o afición'),
+            ancho: getAttr(imgEl, 'ancho', '600'),
+            alto: getAttr(imgEl, 'alto', '450')
           } : null
         });
       }
     }
 
-    const idiomasEl = sobreMiEl ? (sobreMiEl.getElementsByTagName('idiomas')[0] || sobreMiEl.getElementsByTagNameNS('*', 'idiomas')[0]) : null;
-    const idiomasList = [];
-    if (idiomasEl) {
-      const idNodes = idiomasEl.getElementsByTagName('idioma-item');
-      for (let i = 0; i < idNodes.length; i++) {
-        const im = idNodes[i];
-        idiomasList.push({
-          nombre: getAttr(im, 'nombre', ''),
-          nivel: getAttr(im, 'nivel', ''),
-          porcentaje: im.hasAttribute('porcentaje') ? parseInt(getAttr(im, 'porcentaje', '100'), 10) : null
-        });
-      }
-    }
-
-    const paginaSobreMi = {
+    const sobreMi = {
       cabecera: {
         titulo: getText(cabSobreMi, 'titulo') || 'Sobre mí',
         subtitulo: getText(cabSobreMi, 'subtitulo') || ''
@@ -277,8 +412,7 @@
       intereses: {
         titulo: getText(interesesEl, 'titulo') || 'Intereses y Aficiones',
         items: interesesList
-      },
-      idiomas: idiomasList
+      }
     };
 
     // 3. Proyectos
@@ -304,7 +438,6 @@
       for (let i = 0; i < pNodes.length; i++) {
         const p = pNodes[i];
         const imgP = p.getElementsByTagName('imagen')[0] || p.getElementsByTagNameNS('*', 'imagen')[0];
-        
         const tecNode = p.getElementsByTagName('tecnologias')[0] || p.getElementsByTagNameNS('*', 'tecnologias')[0];
         const tags = [];
         if (tecNode) {
@@ -328,6 +461,8 @@
           }
         }
 
+        let projSrc = (imgP && getAttr(imgP, 'src', '')) || 'assets/img/proyecto-generico.svg';
+
         proyectosList.push({
           categoria: getAttr(p, 'categoria', 'web'),
           estado: getAttr(p, 'estado', 'completado'),
@@ -335,11 +470,11 @@
           etiquetaDestacada: getText(p, 'etiqueta-destacada'),
           titulo: getText(p, 'titulo'),
           descripcion: getText(p, 'descripcion'),
-          imagen: imgP ? {
-            src: getAttr(imgP, 'src', ''),
-            alt: getAttr(imgP, 'alt', ''),
-            ancho: parseInt(getAttr(imgP, 'ancho', '600'), 10),
-            alto: parseInt(getAttr(imgP, 'alto', '380'), 10)
+          imagen: imgP || opciones.usarFotosGenericas ? {
+            src: projSrc || 'assets/img/proyecto-generico.svg',
+            alt: getAttr(imgP, 'alt', getText(p, 'titulo') || 'Imagen del proyecto'),
+            ancho: getAttr(imgP, 'ancho', '600'),
+            alto: getAttr(imgP, 'alto', '380')
           } : null,
           tecnologias: tags,
           enlaces
@@ -347,7 +482,7 @@
       }
     }
 
-    const paginaProyectos = {
+    const proyectos = {
       cabecera: {
         titulo: getText(cabProy, 'titulo') || 'Proyectos',
         subtitulo: getText(cabProy, 'subtitulo') || ''
@@ -360,7 +495,6 @@
     const cvEl = paginasEl.getElementsByTagName('curriculum')[0] || paginasEl.getElementsByTagNameNS('*', 'curriculum')[0];
     const cabCv = cvEl ? (cvEl.getElementsByTagName('cabecera')[0] || cvEl.getElementsByTagNameNS('*', 'cabecera')[0]) : null;
     const pdfEl = cabCv ? (cabCv.getElementsByTagName('descarga-pdf')[0] || cabCv.getElementsByTagNameNS('*', 'descarga-pdf')[0]) : null;
-
     const expEl = cvEl ? (cvEl.getElementsByTagName('experiencia-laboral')[0] || cvEl.getElementsByTagNameNS('*', 'experiencia-laboral')[0]) : null;
     const puestosList = [];
     if (expEl) {
@@ -372,18 +506,13 @@
         const logros = [];
         if (logrosNode) {
           const lNodes = logrosNode.getElementsByTagName('logro');
-          for (let j = 0; j < lNodes.length; j++) {
-            logros.push(lNodes[j].textContent ? lNodes[j].textContent.trim() : '');
-          }
+          for (let j = 0; j < lNodes.length; j++) logros.push(lNodes[j].textContent ? lNodes[j].textContent.trim() : '');
         }
-
         const tecNode = pu.getElementsByTagName('tecnologias')[0] || pu.getElementsByTagNameNS('*', 'tecnologias')[0];
         const tecs = [];
         if (tecNode) {
           const tNodes = tecNode.getElementsByTagName('tag');
-          for (let j = 0; j < tNodes.length; j++) {
-            tecs.push(tNodes[j].textContent ? tNodes[j].textContent.trim() : '');
-          }
+          for (let j = 0; j < tNodes.length; j++) tecs.push(tNodes[j].textContent ? tNodes[j].textContent.trim() : '');
         }
 
         puestosList.push({
@@ -430,18 +559,18 @@
         for (let j = 0; j < itNodes.length; j++) {
           const it = itNodes[j];
           items.push({
-            nombre: getAttr(it, 'nombre', ''),
-            nivel: it.hasAttribute('nivel') ? parseInt(getAttr(it, 'nivel', '80'), 10) : null
+            nombre: limpiarAmpersand(getAttr(it, 'nombre', '')),
+            nivel: it.hasAttribute('nivel') ? getAttr(it, 'nivel', '') : null
           });
         }
         gruposList.push({
-          nombre: getAttr(gr, 'nombre', 'Competencias'),
+          nombre: limpiarAmpersand(getAttr(gr, 'nombre', 'Competencias')),
           items
         });
       }
     }
 
-    const paginaCurriculum = {
+    const curriculum = {
       cabecera: {
         titulo: getText(cabCv, 'titulo') || 'Currículum Vitae',
         subtitulo: getText(cabCv, 'subtitulo') || '',
@@ -476,7 +605,7 @@
     const dispEl = contactoEl ? (contactoEl.getElementsByTagName('disponibilidad')[0] || contactoEl.getElementsByTagNameNS('*', 'disponibilidad')[0]) : null;
     const formContEl = contactoEl ? (contactoEl.getElementsByTagName('formulario')[0] || contactoEl.getElementsByTagNameNS('*', 'formulario')[0]) : null;
 
-    const paginaContacto = {
+    const contacto = {
       cabecera: {
         titulo: getText(cabCont, 'titulo') || 'Contacto',
         subtitulo: getText(cabCont, 'subtitulo') || ''
@@ -494,118 +623,96 @@
 
     return {
       idioma,
-      version,
-      id,
-      metadatos: {
-        autor,
-        tema,
-        contactoInfo,
-        redesSociales
-      },
-      paginas: {
-        inicio: paginaInicio,
-        sobreMi: paginaSobreMi,
-        proyectos: paginaProyectos,
-        curriculum: paginaCurriculum,
-        contacto: paginaContacto
-      }
+      autor,
+      contactoInfo,
+      inicio,
+      sobreMi,
+      proyectos,
+      curriculum,
+      contacto
     };
   }
 
-  /**
-   * Generación de HTML Head y Navegación
-   */
-  function generarHead(sitio, tituloPagina, cssPagina) {
-    const autor = sitio.metadatos.autor;
+  function generarHead(datos, titulo, cssFile) {
+    const autor = datos.autor;
+    const cssMin = obtenerCssMinificado(cssFile);
+    const navJs = obtenerJsMinificado('nav.js');
+    const projectsJs = cssFile === 'projects.css' ? ('\n' + obtenerJsMinificado('projects.js')) : '';
+
     return `  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="${escapeHtml(autor.descripcion)}">
   <meta name="keywords" content="${escapeHtml(autor.palabrasClave)}">
   <meta name="author" content="${escapeHtml(autor.nombreCompleto)}">
-  <meta property="og:title" content="${escapeHtml(tituloPagina)} — ${escapeHtml(autor.nombreCompleto)}">
-  <meta property="og:description" content="${escapeHtml(autor.descripcion)}">
-  <meta property="og:type" content="website">
-  <title>${escapeHtml(tituloPagina)} — ${escapeHtml(autor.nombreCompleto)}</title>
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/layout.css">
-  <link rel="stylesheet" href="assets/css/${cssPagina}">
-  <script src="assets/js/nav.js" defer></script>`;
+  <title>${escapeHtml(titulo)} — ${escapeHtml(autor.nombreCompleto)}</title>
+  <style>
+${cssMin}
+  </style>
+  <script>
+${navJs}${projectsJs}
+  </script>`;
   }
 
-  function generarHeaderNav(sitio, paginaActiva) {
-    const paginas = [
-      { id: 'index', url: 'index.html', texto: 'Inicio' },
-      { id: 'about', url: 'about.html', texto: 'Sobre mí' },
-      { id: 'projects', url: 'projects.html', texto: 'Proyectos' },
-      { id: 'cv', url: 'cv.html', texto: 'Currículum' },
-      { id: 'contact', url: 'contact.html', texto: 'Contacto' }
-    ];
-
-    const enlacesNav = paginas.map(p => {
-      const isCurrent = p.id === paginaActiva ? ' aria-current="page"' : '';
-      return `        <li><a href="${p.url}"${isCurrent}>${p.texto}</a></li>`;
+  function generarNav(datos, activa) {
+    const links = [
+      ['index', 'index.html', 'Inicio'],
+      ['about', 'about.html', 'Sobre mí'],
+      ['projects', 'projects.html', 'Proyectos'],
+      ['cv', 'cv.html', 'Currículum'],
+      ['contact', 'contact.html', 'Contacto']
+    ].map(([id, url, txt]) => {
+      const cur = id === activa ? ' aria-current="page"' : '';
+      return `        <li><a href="${url}"${cur}>${txt}</a></li>`;
     }).join('\n');
 
     return `  <header>
     <nav aria-label="Navegación principal">
-      <a href="index.html" aria-label="${escapeHtml(sitio.metadatos.autor.nombreCompleto)} — Inicio">Mi página personal</a>
-      <button type="button" aria-expanded="false" aria-label="Abrir menú">
-        &#9776;
-      </button>
+      <a href="index.html" aria-label="${escapeHtml(datos.autor.nombreCompleto)} — Inicio">Mi página personal</a>
+      <button type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
       <ul data-abierto="false">
-${enlacesNav}
+${links}
       </ul>
     </nav>
   </header>`;
   }
 
-  function generarFooter(sitio) {
-    const autor = sitio.metadatos.autor;
+  function generarFooter(datos) {
     const anio = new Date().getFullYear();
     return `  <footer>
-    <p>&copy; ${anio} ${escapeHtml(autor.nombreCompleto)} — Generado automáticamente mediante PersonalSiteML.</p>
+    <p>&copy; <time datetime="${anio}">${anio}</time> ${escapeHtml(datos.autor.nombreCompleto)}</p>
   </footer>`;
   }
 
-  /**
-   * Generadores de páginas individuales
-   */
-  function generarIndexHTML(sitio) {
-    const inicio = sitio.paginas.inicio;
-    const autor = sitio.metadatos.autor;
-
-    const accionesHtml = inicio.hero.acciones.map(a => {
-      return `            <a href="${escapeHtml(a.href)}">${escapeHtml(a.texto)}</a>`;
-    }).join('\n');
-
-    const metricasHtml = inicio.datosRapidos.map(m => {
-      return `          <li><strong>${escapeHtml(m.valor)}</strong><span>${escapeHtml(m.etiqueta)}</span></li>`;
-    }).join('\n');
-
-    const tecHtml = inicio.tecnologiasDestacadas.items.map(t => {
-      const imgTag = t.iconoSrc ? `<img src="${escapeHtml(t.iconoSrc)}" alt="" aria-hidden="true" width="32" height="32">` : '';
+  // 1. index.html (Estructura idéntica a Trabajo II)
+  function generarIndex(datos) {
+    const ini = datos.inicio;
+    const autor = datos.autor;
+    const accionesHtml = ini.hero.acciones.map(a => `            <a href="${escapeHtml(a.href)}">${escapeHtml(a.texto)}</a>`).join('\n');
+    const metricasHtml = ini.datosRapidos.map(m => `          <li><strong>${escapeHtml(m.valor)}</strong><span>${escapeHtml(m.etiqueta)}</span></li>`).join('\n');
+    const tecHtml = ini.tecnologiasDestacadas.items.map(t => {
+      const img = t.iconoSrc ? `<img src="${escapeHtml(t.iconoSrc)}" alt="" aria-hidden="true" width="32" height="32">` : '';
       return `          <li>
-            ${imgTag}
+            ${img}
             <div><span>${escapeHtml(t.nombre)}</span><span>${escapeHtml(t.nivel)}</span></div>
           </li>`;
     }).join('\n');
 
     return `<!DOCTYPE html>
-<html lang="${sitio.idioma}">
+<html lang="${datos.idioma}">
 <head>
-${generarHead(sitio, 'Inicio', 'index.css')}
+${generarHead(datos, 'Inicio', 'index.css')}
 </head>
 <body>
-${generarHeaderNav(sitio, 'index')}
+${generarNav(datos, 'index')}
 
-  <main>
+  <main id="main">
     <section aria-label="Presentación">
       <div>
         <div>
-          <p>${escapeHtml(inicio.hero.subtitulo)}</p>
-          <h1>${escapeHtml(inicio.hero.saludo)}<br><span>${escapeHtml(autor.nombreCompleto)}</span></h1>
+          <p>${escapeHtml(ini.hero.subtitulo)}</p>
+          <h1>${escapeHtml(ini.hero.saludo)}<br><span>${escapeHtml(autor.nombreCompleto)}</span></h1>
           <p>
-            ${escapeHtml(inicio.hero.resumen)}
+            ${escapeHtml(ini.hero.resumen)}
           </p>
           <div>
 ${accionesHtml}
@@ -615,8 +722,8 @@ ${accionesHtml}
           <img
             src="${escapeHtml(autor.foto.src)}"
             alt="${escapeHtml(autor.foto.alt)}"
-            width="${autor.foto.ancho || 208}"
-            height="${autor.foto.alto || 208}"
+            width="${autor.foto.ancho}"
+            height="${autor.foto.alto}"
           >
         </div>
       </div>
@@ -632,81 +739,124 @@ ${metricasHtml}
 
     <section aria-label="Tecnologías">
       <div>
-        <h2>${escapeHtml(inicio.tecnologiasDestacadas.titulo)}</h2>
+        <h2>${escapeHtml(ini.tecnologiasDestacadas.titulo)}</h2>
         <hr>
-        <p>${escapeHtml(inicio.tecnologiasDestacadas.descripcion)}</p>
+        <p>${escapeHtml(ini.tecnologiasDestacadas.descripcion)}</p>
         <ul>
 ${tecHtml}
         </ul>
       </div>
     </section>
+
+    <section aria-label="Explora la web">
+      <div>
+        <h2>Explora la web</h2>
+        <hr>
+      </div>
+      <nav aria-label="Secciones del sitio">
+        <ul>
+          <li>
+            <a href="about.html">
+              <h3>Sobre mí</h3>
+              <p>Mi historia, aficiones, intereses y lo que me mueve.</p>
+            </a>
+          </li>
+          <li>
+            <a href="projects.html">
+              <h3>Proyectos</h3>
+              <p>Mis trabajos y proyectos más destacados.</p>
+            </a>
+          </li>
+          <li>
+            <a href="cv.html">
+              <h3>Currículum</h3>
+              <p>Mi formación académica y experiencia profesional.</p>
+            </a>
+          </li>
+          <li>
+            <a href="contact.html">
+              <h3>Contacto</h3>
+              <p>Datos de contacto y disponibilidad.</p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
   </main>
 
-${generarFooter(sitio)}
+${generarFooter(datos)}
 </body>
 </html>`;
   }
 
-  function generarAboutHTML(sitio) {
-    const sobreMi = sitio.paginas.sobreMi;
-    const autor = sitio.metadatos.autor;
-
-    const parrafosHtml = sobreMi.trayectoria.parrafos.map(p => {
-      return `          <p>${escapeHtml(p)}</p>`;
-    }).join('\n');
-
-    const filasTablaHtml = sobreMi.datosPersonales.datos.map(d => {
-      const valHtml = d.enlace 
-        ? `<a href="${escapeHtml(d.enlace)}">${escapeHtml(d.valor)}</a>`
-        : escapeHtml(d.valor);
+  // 2. about.html
+  function generarAbout(datos) {
+    const s = datos.sobreMi;
+    const parrafosHtml = s.trayectoria.parrafos.map(p => `            <p>${escapeHtml(p)}</p>`).join('\n');
+    const filasTablaHtml = s.datosPersonales.datos.map(d => {
+      const val = d.enlace ? `<a href="${escapeHtml(d.enlace)}">${escapeHtml(d.valor)}</a>` : escapeHtml(d.valor);
       return `              <tr>
                 <th scope="row">${escapeHtml(d.etiqueta)}</th>
-                <td>${valHtml}</td>
+                <td>${val}</td>
               </tr>`;
     }).join('\n');
 
-    const interesesHtml = sobreMi.intereses.items.map(it => {
-      const imgHtml = it.imagen 
-        ? `<img src="${escapeHtml(it.imagen.src)}" alt="${escapeHtml(it.imagen.alt)}" width="${it.imagen.ancho || 600}" height="${it.imagen.alto || 450}" loading="lazy">`
-        : '';
-      return `          <article>
-            <div>
-              ${imgHtml}
-            </div>
-            <div>
-              <h3>${escapeHtml(it.titulo)}</h3>
-              <p>${escapeHtml(it.descripcion)}</p>
-            </div>
-          </article>`;
-    }).join('\n');
+    const tagsList = datos.autor.palabrasClave
+      ? datos.autor.palabrasClave.split(/[,;]+/).map(t => t.trim()).filter(Boolean)
+      : ['Ingeniería web', 'Frontend', 'Backend', 'Software'];
+    const tagsHtml = tagsList.map(t => `              <span>${escapeHtml(t)}</span>`).join('\n');
+
+    const aficionesHtml = s.intereses.items.map(it => `          <li>
+            <h3>${escapeHtml(it.titulo)}</h3>
+            <p>${escapeHtml(it.descripcion)}</p>
+          </li>`).join('\n');
+
+    const conImg = s.intereses.items.filter(it => it.imagen && it.imagen.src);
+    const galeriaItemsHtml = conImg.map(it => `          <li>
+            <figure>
+              <img src="${escapeHtml(it.imagen.src)}" alt="${escapeHtml(it.imagen.alt || it.titulo)}" width="${escapeHtml(it.imagen.ancho || '600')}" height="${escapeHtml(it.imagen.alto || '450')}" loading="lazy">
+              <figcaption>${escapeHtml(it.titulo)}</figcaption>
+            </figure>
+          </li>`).join('\n');
+
+    const galeriaSeccion = conImg.length > 0 ? `    <section aria-label="Galería">
+      <div>
+        <h2>Galería</h2>
+        <hr>
+        <p>Algunos momentos y lugares destacados.</p>
+        <ul>
+${galeriaItemsHtml}
+        </ul>
+      </div>
+    </section>` : '';
 
     return `<!DOCTYPE html>
-<html lang="${sitio.idioma}">
+<html lang="${datos.idioma}">
 <head>
-${generarHead(sitio, 'Sobre mí', 'about.css')}
+${generarHead(datos, 'Sobre mí', 'about.css')}
 </head>
 <body>
-${generarHeaderNav(sitio, 'about')}
+${generarNav(datos, 'about')}
 
-  <main>
+  <main id="main">
     <section aria-label="Sobre mí">
       <div>
-        <img src="${escapeHtml(autor.foto.src)}" alt="${escapeHtml(autor.foto.alt)}" width="128" height="128">
+        <img src="${escapeHtml(datos.autor.foto.src)}" alt="${escapeHtml(datos.autor.foto.alt)}" width="128" height="128">
         <div>
-          <h1>${escapeHtml(sobreMi.cabecera.titulo)}</h1>
-          <p>${escapeHtml(sobreMi.cabecera.subtitulo)}</p>
+          <h1>${escapeHtml(s.cabecera.titulo)}</h1>
+          <p>${escapeHtml(s.cabecera.subtitulo)}</p>
         </div>
       </div>
     </section>
 
     <section aria-label="Trayectoria e intereses">
       <div>
-        <h2>${escapeHtml(sobreMi.trayectoria.titulo)}</h2>
+        <h2>${escapeHtml(s.trayectoria.titulo)}</h2>
         <hr>
 
         <div>
-          <table aria-label="Datos personales de ${escapeHtml(autor.nombreCompleto)}">
-            <caption>${escapeHtml(sobreMi.datosPersonales.tituloTabla)}</caption>
+          <table aria-label="Datos personales de ${escapeHtml(datos.autor.nombreCompleto)}">
+            <caption>${escapeHtml(s.datosPersonales.tituloTabla)}</caption>
             <tbody>
 ${filasTablaHtml}
             </tbody>
@@ -714,91 +864,130 @@ ${filasTablaHtml}
 
           <div>
 ${parrafosHtml}
+            <div>
+${tagsHtml}
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section aria-label="Intereses y Aficiones">
+    <section aria-label="Aficiones e intereses">
       <div>
-        <h2>${escapeHtml(sobreMi.intereses.titulo)}</h2>
+        <h2>${escapeHtml(s.intereses.titulo)}</h2>
         <hr>
-        <div>
-${interesesHtml}
-        </div>
+        <p>Lo que hago cuando no estoy frente al ordenador (o cuando sí lo estoy, pero por gusto).</p>
+        <ul>
+${aficionesHtml}
+        </ul>
       </div>
     </section>
+
+${galeriaSeccion}
   </main>
 
-${generarFooter(sitio)}
+${generarFooter(datos)}
 </body>
 </html>`;
   }
 
-  function generarProjectsHTML(sitio) {
-    const proy = sitio.paginas.proyectos;
-
-    const botonesFiltroHtml = proy.categoriasFiltro.map((c, idx) => {
-      const isPressed = idx === 0 ? 'true' : 'false';
-      return `          <button aria-pressed="${isPressed}" data-filter="${escapeHtml(c.id)}">${escapeHtml(c.etiqueta)}</button>`;
+  // 3. projects.html
+  function generarProjects(datos) {
+    const pr = datos.proyectos;
+    const botonesFiltroHtml = pr.categoriasFiltro.map((c, idx) => {
+      return `          <button aria-pressed="${idx === 0 ? 'true' : 'false'}" data-filter="${escapeHtml(c.id)}">${escapeHtml(c.etiqueta)}</button>`;
     }).join('\n');
 
-    const articulosHtml = proy.proyectos.map(p => {
-      const badgeDestacado = p.destacado && p.etiquetaDestacada 
-        ? `                <em>${escapeHtml(p.etiquetaDestacada)}</em>\n` 
-        : '';
+    const articulosHtml = pr.proyectos.map((p, idx) => {
+      const tags = p.tecnologias.map(t => `                <span>${escapeHtml(t)}</span>`).join('\n');
+      const tagsFeatured = p.tecnologias.map(t => `                  <span>${escapeHtml(t)}</span>`).join('\n');
+      const badge = p.destacado && p.etiquetaDestacada ? `                <em>${escapeHtml(p.etiquetaDestacada)}</em>\n` : '';
+      const estadoLabel = capitalizar(p.estado || 'completado');
 
-      const tagsHtml = p.tecnologias.map(t => {
-        return `                  <li>${escapeHtml(t)}</li>`;
-      }).join('\n');
+      if (idx === 0) {
+        // Tarjeta destacada (primera fila ancha con imagen)
+        const imgSrc = p.imagen ? p.imagen.src : 'assets/img/yo.jpg';
+        const imgAlt = p.imagen ? p.imagen.alt : p.titulo;
+        const imgW = p.imagen ? p.imagen.ancho : '600';
+        const imgH = p.imagen ? p.imagen.alto : '380';
+        const enlaceBtn = p.enlaces && p.enlaces.length > 0
+          ? `                <a href="${escapeHtml(p.enlaces[0].url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(p.enlaces[0].texto)} →</a>`
+          : '';
 
-      const enlacesHtml = p.enlaces.map(e => {
-        return `                  <a href="${escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(e.texto)}</a>`;
-      }).join('\n');
-
-      const imgHtml = p.imagen ? `              <div>
+        return `          <li>
+            <article data-category="${escapeHtml(p.categoria)}" aria-label="${escapeHtml(p.titulo)}">
+              <div>
                 <img
-                  src="${escapeHtml(p.imagen.src)}"
-                  alt="${escapeHtml(p.imagen.alt)}"
-                  width="${p.imagen.ancho || 600}"
-                  height="${p.imagen.alto || 380}"
+                  src="${escapeHtml(imgSrc)}"
+                  alt="${escapeHtml(imgAlt)}"
+                  width="${escapeHtml(imgW)}"
+                  height="${escapeHtml(imgH)}"
                   loading="lazy"
                 >
-              </div>\n` : '';
-
-      return `          <li>
-            <article data-category="${escapeHtml(p.categoria)}" aria-label="${escapeHtml(p.titulo)}">
-${imgHtml}              <div>
-${badgeDestacado}                <h3>${escapeHtml(p.titulo)}</h3>
-                <span data-estado="${escapeHtml(p.estado)}">${escapeHtml(p.estado)}</span>
+              </div>
+              <div>
+${badge}                <h3>${escapeHtml(p.titulo)}</h3>
+                <span data-estado="${escapeHtml(p.estado)}">${escapeHtml(estadoLabel)}</span>
                 <p>
                   ${escapeHtml(p.descripcion)}
                 </p>
-                <ul>
-${tagsHtml}
-                </ul>
                 <div>
-${enlacesHtml}
+${tagsFeatured}
                 </div>
+${enlaceBtn}
+              </div>
+            </article>
+          </li>`;
+      }
+
+      // Tarjetas regulares (grid de tarjetas con icono y enlace superior)
+      const primerTech = (p.tecnologias && p.tecnologias[0]) ? p.tecnologias[0].toLowerCase() : '';
+      let logoSrc = 'assets/img/logos/html5.svg';
+      if (primerTech.includes('type') || primerTech.includes('ts')) logoSrc = 'assets/img/logos/typescript.svg';
+      else if (primerTech.includes('java') && !primerTech.includes('script')) logoSrc = 'assets/img/logos/java.svg';
+      else if (primerTech.includes('postgre') || primerTech.includes('sql')) logoSrc = 'assets/img/logos/postgresql.svg';
+      else if (primerTech.includes('python')) logoSrc = 'assets/img/logos/python.svg';
+      else if (primerTech.includes('react')) logoSrc = 'assets/img/logos/react.svg';
+      else if (primerTech.includes('docker')) logoSrc = 'assets/img/logos/docker.svg';
+      else if (primerTech.includes('script') || primerTech.includes('js')) logoSrc = 'assets/img/logos/javascript.svg';
+      else if (primerTech.includes('css')) logoSrc = 'assets/img/logos/css3.svg';
+
+      const iconLinks = (p.enlaces || []).map(e => `                  <a href="${escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(e.texto)}">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  </a>`).join('\n');
+
+      return `          <li>
+            <article data-category="${escapeHtml(p.categoria)}" aria-label="${escapeHtml(p.titulo)}">
+              <div>
+                <img src="${logoSrc}" alt="" aria-hidden="true" width="28" height="28">
+                <div>
+${iconLinks}
+                </div>
+              </div>
+              <h3>${escapeHtml(p.titulo)}</h3>
+              <span data-estado="${escapeHtml(p.estado)}">${escapeHtml(estadoLabel)}</span>
+              <p>${escapeHtml(p.descripcion)}</p>
+              <div>
+${tags}
               </div>
             </article>
           </li>`;
     }).join('\n');
 
     return `<!DOCTYPE html>
-<html lang="${sitio.idioma}">
+<html lang="${datos.idioma}">
 <head>
-${generarHead(sitio, 'Proyectos', 'projects.css')}
+${generarHead(datos, 'Proyectos', 'projects.css')}
   <script src="assets/js/projects.js" defer></script>
 </head>
 <body>
-${generarHeaderNav(sitio, 'projects')}
+${generarNav(datos, 'projects')}
 
-  <main>
+  <main id="main">
     <section aria-label="Cabecera de proyectos">
       <div>
-        <h1>${escapeHtml(proy.cabecera.titulo)}</h1>
-        <p>${escapeHtml(proy.cabecera.subtitulo)}</p>
+        <h1>${escapeHtml(pr.cabecera.titulo)}</h1>
+        <p>${escapeHtml(pr.cabecera.subtitulo)}</p>
       </div>
     </section>
 
@@ -817,68 +1006,52 @@ ${articulosHtml}
     </section>
   </main>
 
-${generarFooter(sitio)}
+${generarFooter(datos)}
 </body>
 </html>`;
   }
 
-  function generarCvHTML(sitio) {
-    const cv = sitio.paginas.curriculum;
-    const autor = sitio.metadatos.autor;
-    const cInfo = sitio.metadatos.contactoInfo;
-
-    const botonPdfHtml = cv.cabecera.descargaPdf 
-      ? `        <a href="${escapeHtml(cv.cabecera.descargaPdf.url)}" download aria-label="${escapeHtml(cv.cabecera.descargaPdf.texto)}">
+  // 4. cv.html
+  function generarCv(datos) {
+    const cv = datos.curriculum;
+    const cInfo = datos.contactoInfo;
+    const botonPdfHtml = cv.cabecera.descargaPdf ? `        <a href="${escapeHtml(cv.cabecera.descargaPdf.url)}" download aria-label="${escapeHtml(cv.cabecera.descargaPdf.texto)}">
           ${escapeHtml(cv.cabecera.descargaPdf.texto)}
-        </a>`
-      : '';
+        </a>` : '';
 
-    const experienciaHtml = cv.experienciaLaboral.map(p => {
-      const logrosHtml = p.logros && p.logros.length > 0 
-        ? `              <ul>\n${p.logros.map(l => `                <li>${escapeHtml(l)}</li>`).join('\n')}\n              </ul>`
-        : '';
+    const expHtml = cv.experienciaLaboral.map(p => `              <li>
+                <time datetime="${escapeHtml(p.periodo.inicio)}">${escapeHtml(p.periodo.inicio)} — ${escapeHtml(p.periodo.fin)}</time>
+                <strong>${escapeHtml(p.cargo)}</strong>
+                <span>${escapeHtml(p.empresa)}</span>
+                <p>
+                  ${escapeHtml(p.descripcion)}
+                </p>
+              </li>`).join('\n');
 
-      const tagsHtml = p.tecnologias && p.tecnologias.length > 0
-        ? `              <div>\n${p.tecnologias.map(t => `                <span>${escapeHtml(t)}</span>`).join('\n')}\n              </div>`
-        : '';
+    const formHtml = cv.formacionAcademica.map(f => `              <li>
+                <time datetime="${escapeHtml(f.periodo.inicio)}">${escapeHtml(f.periodo.inicio)} — ${escapeHtml(f.periodo.fin)}</time>
+                <strong>${escapeHtml(f.titulo)}</strong>
+                <span>${escapeHtml(f.institucion)}</span>
+                <p>
+                  ${escapeHtml(f.descripcion)}
+                </p>
+              </li>`).join('\n');
 
-      return `            <article>
-              <header>
-                <h3>${escapeHtml(p.cargo)}</h3>
-                <p>${escapeHtml(p.empresa)} · <time>${escapeHtml(p.periodo.inicio)} — ${escapeHtml(p.periodo.fin)}</time></p>
-              </header>
-              <p>${escapeHtml(p.descripcion)}</p>
-${logrosHtml}
-${tagsHtml}
-            </article>`;
-    }).join('\n');
+    const grupoTech = cv.competencias[0];
+    const techItemsHtml = grupoTech ? grupoTech.items.map(it => `              <li>${escapeHtml(limpiarAmpersand(it.nombre))}</li>`).join('\n') : '';
 
-    const formacionHtml = cv.formacionAcademica.map(f => {
-      const descHtml = f.descripcion ? `              <p>${escapeHtml(f.descripcion)}</p>` : '';
-      return `            <article>
-              <header>
-                <h3>${escapeHtml(f.titulo)}</h3>
-                <p>${escapeHtml(f.institucion)} · <time>${escapeHtml(f.periodo.inicio)} — ${escapeHtml(f.periodo.fin)}</time></p>
-              </header>
-${descHtml}
-            </article>`;
-    }).join('\n');
-
-    const competenciasAsideHtml = cv.competencias.map(g => {
-      const itemsHtml = g.items.map(it => {
-        const barraHtml = it.nivel !== null && it.nivel !== undefined
-          ? `                  <div role="progressbar" aria-valuenow="${it.nivel}" aria-valuemin="0" aria-valuemax="100" aria-label="${escapeHtml(it.nombre)}: ${it.nivel}%">
-                    <div style="width: ${it.nivel}%;"></div>
-                  </div>`
-          : '';
-        return `                <li>
-                  <span>${escapeHtml(it.nombre)}</span>
-                  ${barraHtml}
-                </li>`;
+    const otrosGruposHtml = cv.competencias.slice(1).map(gr => {
+      const itemsHtml = gr.items.map(it => {
+        const nivelTxt = mapearNivelDescriptivo(it.nivel);
+        const dataNivel = nivelTxt.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return `              <li>
+                <span>${escapeHtml(limpiarAmpersand(it.nombre))}</span>
+                <span data-nivel="${escapeHtml(dataNivel)}">${escapeHtml(nivelTxt)}</span>
+              </li>`;
       }).join('\n');
 
       return `          <div>
-            <h3>${escapeHtml(g.nombre)}</h3>
+            <h2>${escapeHtml(limpiarAmpersand(gr.nombre))}</h2>
             <ul>
 ${itemsHtml}
             </ul>
@@ -886,14 +1059,14 @@ ${itemsHtml}
     }).join('\n');
 
     return `<!DOCTYPE html>
-<html lang="${sitio.idioma}">
+<html lang="${datos.idioma}">
 <head>
-${generarHead(sitio, 'Currículum', 'cv.css')}
+${generarHead(datos, 'Currículum', 'cv.css')}
 </head>
 <body>
-${generarHeaderNav(sitio, 'cv')}
+${generarNav(datos, 'cv')}
 
-  <main>
+  <main id="main">
     <section aria-label="Cabecera del currículum">
       <div>
         <div>
@@ -908,54 +1081,61 @@ ${botonPdfHtml}
       <div>
         <aside aria-label="Información de contacto y competencias">
           <div>
-            <img src="${escapeHtml(autor.foto.src)}" alt="${escapeHtml(autor.foto.alt)}" width="110" height="110">
-            <p>${escapeHtml(autor.nombreCompleto)}</p>
-            <p>${escapeHtml(autor.titular)}</p>
+            <img src="${escapeHtml(datos.autor.foto.src)}" alt="${escapeHtml(datos.autor.foto.alt)}" width="110" height="110">
+            <p>${escapeHtml(datos.autor.nombreCompleto)}</p>
+            <p>${escapeHtml(datos.autor.titular)}</p>
           </div>
 
           <div>
             <h2>Contacto</h2>
             <ul>
-              <li><strong>Email:</strong> <a href="mailto:${escapeHtml(cInfo.email)}">${escapeHtml(cInfo.email)}</a></li>
-              <li><strong>Ubicación:</strong> ${escapeHtml(cInfo.ubicacion)}</li>
+              <li>${escapeHtml(cInfo.ubicacion)}</li>
+              <li><a href="mailto:${escapeHtml(cInfo.email)}">${escapeHtml(cInfo.email)}</a></li>
+              ${cInfo.empresa ? `<li>${escapeHtml(cInfo.empresa)}</li>` : ''}
+              ${cInfo.telefono ? `<li>${escapeHtml(cInfo.telefono)}</li>` : ''}
             </ul>
           </div>
 
-${competenciasAsideHtml}
+          <div>
+            <h2>${escapeHtml(grupoTech ? limpiarAmpersand(grupoTech.nombre) : 'Habilidades técnicas')}</h2>
+            <ul>
+${techItemsHtml}
+            </ul>
+          </div>
+
+${otrosGruposHtml}
         </aside>
 
         <div>
-          <section aria-label="Experiencia laboral">
-            <h2>Experiencia laboral</h2>
-            <hr>
-            <div>
-${experienciaHtml}
-            </div>
+          <section aria-label="Experiencia profesional">
+            <h2>Experiencia profesional</h2>
+            <ol aria-label="Historial de experiencia profesional">
+${expHtml}
+            </ol>
           </section>
 
-          <section aria-label="Educación y formación">
-            <h2>Educación y formación</h2>
-            <hr>
-            <div>
-${formacionHtml}
-            </div>
+          <section aria-label="Formación académica">
+            <h2>Formación académica</h2>
+            <ol aria-label="Historial de formación académica">
+${formHtml}
+            </ol>
           </section>
         </div>
       </div>
     </section>
   </main>
 
-${generarFooter(sitio)}
+${generarFooter(datos)}
 </body>
 </html>`;
   }
 
-  function generarContactHTML(sitio) {
-    const cont = sitio.paginas.contacto;
-
-    const canalesHtml = cont.canales.map(c => {
-      const isExternal = c.href.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
-      return `          <a href="${escapeHtml(c.href)}"${isExternal} aria-label="${escapeHtml(c.etiqueta)}: ${escapeHtml(c.valor)}">
+  // 5. contact.html
+  function generarContact(datos) {
+    const cont = datos.contacto;
+    const canales = cont.canales.map(c => {
+      const isExt = c.href.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
+      return `          <a href="${escapeHtml(c.href)}"${isExt} aria-label="${escapeHtml(c.etiqueta)}: ${escapeHtml(c.valor)}">
             <div>
               <span>${escapeHtml(c.etiqueta)}</span>
               <span>${escapeHtml(c.valor)}</span>
@@ -963,24 +1143,34 @@ ${generarFooter(sitio)}
           </a>`;
     }).join('\n');
 
-    const disponibilidadHtml = cont.disponibilidad ? `    <section aria-label="Disponibilidad">
+    let disp = '';
+    if (cont.disponibilidad) {
+      const desc = cont.disponibilidad.descripcion || cont.disponibilidad.estado;
+      disp = `    <section aria-label="Disponibilidad">
       <div>
         <h2>Disponibilidad</h2>
         <hr>
-        <p><strong>${escapeHtml(cont.disponibilidad.estado)}</strong></p>
-        <p>${escapeHtml(cont.disponibilidad.descripcion)}</p>
+        <p>
+          ${escapeHtml(desc)}
+        </p>
+        <ul>
+          <li>Proyectos freelance de corta duración</li>
+          <li>Colaboraciones en open source</li>
+          <li>Charlas o ponencias sobre AEM y estándares web</li>
+        </ul>
       </div>
-    </section>` : '';
+    </section>`;
+    }
 
     return `<!DOCTYPE html>
-<html lang="${sitio.idioma}">
+<html lang="${datos.idioma}">
 <head>
-${generarHead(sitio, 'Contacto', 'contact.css')}
+${generarHead(datos, 'Contacto', 'contact.css')}
 </head>
 <body>
-${generarHeaderNav(sitio, 'contact')}
+${generarNav(datos, 'contact')}
 
-  <main>
+  <main id="main">
     <section aria-label="Cabecera de contacto">
       <div>
         <h1>${escapeHtml(cont.cabecera.titulo)}</h1>
@@ -993,206 +1183,42 @@ ${generarHeaderNav(sitio, 'contact')}
         <h2>Formas de contactarme</h2>
         <hr>
         <address>
-${canalesHtml}
+${canales}
         </address>
       </div>
     </section>
 
-${disponibilidadHtml}
-
-    <section aria-label="Formulario de contacto">
-      <div>
-        <h2>${escapeHtml(cont.formulario ? cont.formulario.titulo : 'Envíame un mensaje')}</h2>
-        <hr>
-        <p>${escapeHtml(cont.formulario ? cont.formulario.descripcion : 'Completa el siguiente formulario para iniciar una conversación.')}</p>
-        <form action="#" method="post" aria-label="Formulario de contacto">
-          <div>
-            <label for="campo-nombre">Nombre <span aria-hidden="true">*</span></label>
-            <input type="text" id="campo-nombre" name="nombre" required aria-required="true">
-          </div>
-          <div>
-            <label for="campo-email">Correo electrónico <span aria-hidden="true">*</span></label>
-            <input type="email" id="campo-email" name="email" required aria-required="true">
-          </div>
-          <div>
-            <label for="campo-mensaje">Mensaje <span aria-hidden="true">*</span></label>
-            <textarea id="campo-mensaje" name="mensaje" rows="5" required aria-required="true"></textarea>
-          </div>
-          <button type="submit">Enviar mensaje</button>
-        </form>
-      </div>
-    </section>
+${disp}
   </main>
 
-${generarFooter(sitio)}
+${generarFooter(datos)}
 </body>
 </html>`;
   }
 
-  function generarBaseCSS(sitio) {
-    const tema = sitio.metadatos.tema || {};
-    const colorPrimario = tema.colorPrimario || '#2563eb';
-    const colorPrimarioHover = tema.colorPrimarioHover || '#1d4ed8';
-    const colorPrimarioClaro = tema.colorPrimarioClaro || '#f0f4fd';
-    const colorAcento = tema.colorAcento || '#0ea5e9';
-    const colorFondo = tema.colorFondo || '#ffffff';
-    const colorSuperficie = tema.colorSuperficie || '#f5f7fb';
-
-    return `:root {
-  --fondo:          ${colorFondo};
-  --superficie:     ${colorSuperficie};
-  --tarjeta:        #ffffff;
-  --borde:          #dde3ef;
-  --primario:       ${colorPrimario};
-  --primario-hover: ${colorPrimarioHover};
-  --primario-claro: ${colorPrimarioClaro};
-  --primario-borde: #d4e2fc;
-  --acento:         ${colorAcento};
-  --texto:          #13192b;
-  --texto-suave:    #374060;
-  --texto-mutado:   #617090;
-  --titulo:         #13192b;
-  --exito:          #16a34a;
-  --aviso:          #d97706;
-  --error:          #dc2626;
-
-  --fuente: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --mono:   ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
-
-  --radio-s: 0.375rem;
-  --radio-m: 0.5rem;
-  --radio-l: 0.75rem;
-  --radio-full: 999rem;
-
-  --ancho-max: 68.75rem;
-  --transicion: 0.15s ease;
-}
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--fondo);
-  color: var(--texto);
-  font-family: var(--fuente);
-  font-size: 1rem;
-  line-height: 1.7;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-h1, h2, h3, h4 {
-  color: var(--titulo);
-  line-height: 1.25;
-  font-weight: 700;
-}
-
-h1 { font-size: 2.1rem; }
-h2 { font-size: 1.45rem; }
-h3 { font-size: 1.1rem; }
-
-p {
-  color: var(--texto-suave);
-}
-
-a {
-  color: var(--primario);
-  text-decoration: none;
-  transition: color var(--transicion);
-}
-
-a:hover {
-  color: var(--primario-hover);
-}
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-  outline: 0.1875rem solid var(--primario);
-  outline-offset: 0.125rem;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-hr {
-  border: none;
-  border-top: 0.0625rem solid var(--borde);
-  margin: 0.75rem 0 1.5rem;
-}
-
-main {
-  flex: 1;
-}
-`;
-  }
-
-  /**
-   * Generación completa del conjunto de archivos
-   */
-  function generarSitioCompleto(xmlString, plantillasCSS = {}) {
-    const tInicio = performance.now();
-    const sitio = parseXML(xmlString);
-
-    const archivos = {
-      'index.html': generarIndexHTML(sitio),
-      'about.html': generarAboutHTML(sitio),
-      'projects.html': generarProjectsHTML(sitio),
-      'cv.html': generarCvHTML(sitio),
-      'contact.html': generarContactHTML(sitio),
-      'assets/css/base.css': generarBaseCSS(sitio),
-      'assets/css/layout.css': plantillasCSS['layout.css'] || '',
-      'assets/css/index.css': plantillasCSS['index.css'] || '',
-      'assets/css/about.css': plantillasCSS['about.css'] || '',
-      'assets/css/projects.css': plantillasCSS['projects.css'] || '',
-      'assets/css/cv.css': plantillasCSS['cv.css'] || '',
-      'assets/css/contact.css': plantillasCSS['contact.css'] || '',
-      'assets/js/nav.js': plantillasCSS['nav.js'] || '',
-      'assets/js/projects.js': plantillasCSS['projects.js'] || ''
-    };
-
-    let tamanoTotal = 0;
-    for (const key in archivos) {
-      tamanoTotal += archivos[key].length;
-    }
-
-    const tFin = performance.now();
+  function generarSitioDesdeXml(xmlString, opciones = {}) {
+    const doc = parseXml(xmlString);
+    const datos = extraerDatos(doc, opciones);
 
     return {
-      sitio,
-      archivos,
-      metricas: {
-        totalArchivos: Object.keys(archivos).length,
-        tamanoTotalBytes: tamanoTotal,
-        tiempoGeneracionMs: Math.round((tFin - tInicio) * 100) / 100
+      datos,
+      paginas: {
+        'index.html': generarIndex(datos),
+        'about.html': generarAbout(datos),
+        'projects.html': generarProjects(datos),
+        'cv.html': generarCv(datos),
+        'contact.html': generarContact(datos)
       }
     };
   }
 
   return {
-    parseXML,
-    generarIndexHTML,
-    generarAboutHTML,
-    generarProjectsHTML,
-    generarCvHTML,
-    generarContactHTML,
-    generarBaseCSS,
-    generarSitioCompleto
+    parseXml,
+    extraerDatos,
+    generarSitioDesdeXml
   };
-}));
+})();
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = PersonalSiteGenerator;
+}

@@ -15,7 +15,7 @@
       <lema>Transformando datos complejos en modelos predictivos explicables y de alto impacto social.</lema>
       <descripcion>Dra. Elena García Montes — Investigadora en Inteligencia Artificial y Científica de Datos Senior especializada en visión por computador y NLP biomédico.</descripcion>
       <palabras-clave>Elena García, Data Science, Machine Learning, Deep Learning, PyTorch, Python, IA Médica, Computer Vision</palabras-clave>
-      <foto src="assets/img/yo.jpg" alt="Fotografía de la Dra. Elena García Montes" ancho="208" alto="208"/>
+      <foto avatar="generico" alt="Fotografía de la Dra. Elena García Montes" ancho="208" alto="208"/>
     </autor>
 
     <contacto-info>
