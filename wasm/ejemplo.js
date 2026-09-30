@@ -19,6 +19,22 @@ function js_factorial_bigint(n) {
   return r;
 }
 
+function js_bench_factorial(n, reps) {
+  let v = 1;
+  for (let i = 0; i < reps; i++) {
+    v = js_factorial(n);
+  }
+  return v;
+}
+
+function js_bench_factorial_bigint(n, reps) {
+  let v = 1n;
+  for (let i = 0; i < reps; i++) {
+    v = js_factorial_bigint(n);
+  }
+  return v;
+}
+
 function js_coseno(x) {
   const x2 = x * x;
   let termino = 1.0, suma = 1.0;
@@ -47,14 +63,25 @@ function js_es_primo(n) {
   return 1;
 }
 
-function bench(fn, reps = REPS, warmup = WARMUP) {
-  fn(warmup);
+function js_bench_es_primo(n, reps) {
+  let v = 0;
+  for (let i = 0; i < reps; i++) {
+    v = js_es_primo(n);
+  }
+  return v;
+}
+
+function bench(benchFn, reps = REPS, warmup = WARMUP) {
+  if (warmup > 0) {
+    benchFn(warmup);
+  }
 
   const t0 = performance.now();
-  const v = fn(reps);
+  const v = benchFn(reps);
   const t1 = performance.now();
+  const tiempo = t1 - t0;
 
-  return { valor: v, tiempo: (t1 - t0).toFixed(3) };
+  return { valor: v, tiempo: tiempo.toFixed(3), tiempoNum: tiempo };
 }
 
 function cambiarOperacion(op, idx) {
@@ -93,21 +120,27 @@ function mostrarResultados(rw, rj, reps = REPS) {
   if (celdas.length >= 4) {
     celdas[0].textContent = rw.valor;
     celdas[1].textContent = rj.valor;
-    celdas[2].textContent = `${rw.tiempo} ms (${reps} repeticiones)`;
-    celdas[3].textContent = `${rj.tiempo} ms (${reps} repeticiones)`;
+    celdas[2].textContent = `${rw.tiempo} ms (${Number(reps).toLocaleString()} repeticiones)`;
+    celdas[3].textContent = `${rj.tiempo} ms (${Number(reps).toLocaleString()} repeticiones)`;
   }
 
   if (!banner) return;
 
-  const tw = parseFloat(rw.tiempo);
-  const tj = parseFloat(rj.tiempo);
+  const tw = rw.tiempoNum ?? parseFloat(rw.tiempo);
+  const tj = rj.tiempoNum ?? parseFloat(rj.tiempo);
 
-  if (tw < tj) {
+  if (tw < 0.001 && tj < 0.001) {
+    banner.textContent = "Ambas implementaciones tardaron prácticamente lo mismo (< 0.001 ms).";
+  } else if (tw < 0.001) {
+    banner.textContent = "WebAssembly fue prácticamente instantáneo comparado con JavaScript.";
+  } else if (tj < 0.001) {
+    banner.textContent = "JavaScript fue prácticamente instantáneo comparado con WebAssembly.";
+  } else if (tw < tj) {
     const ratio = (tj / tw).toFixed(2);
-    banner.textContent = `WebAssembly fue ${ratio}× más rápido que JavaScript`;
+    banner.textContent = `WebAssembly fue ${ratio}x más rápido que JavaScript`;
   } else if (tj < tw) {
     const ratio = (tw / tj).toFixed(2);
-    banner.textContent = `JavaScript fue ${ratio}× más rápido que WebAssembly`;
+    banner.textContent = `JavaScript fue ${ratio}x más rápido que WebAssembly`;
   } else {
     banner.textContent = "Ambas implementaciones tardaron exactamente lo mismo.";
   }
@@ -135,29 +168,39 @@ function ejecutar() {
 
       if (operacion === "factorial") {
         const n = parseInt(inputs[0].value, 10);
+        repeticiones = REPS;
+        const warmup = WARMUP;
+
         if (n <= 20) {
-          rw = bench(v => Number(wasm.factorial(BigInt(v))), n);
-          rj = bench(js_factorial, n);
+          rw = bench(r => Number(wasm.bench_factorial(BigInt(n), r)), repeticiones, warmup);
+          rj = bench(r => js_bench_factorial(n, r), repeticiones, warmup);
         } else {
-          rw = bench(v => wasm.factorial(BigInt(v)), n);
-          rj = bench(js_factorial_bigint, n);
+          rw = bench(r => wasm.bench_factorial(BigInt(n), r), repeticiones, warmup);
+          rj = bench(r => js_bench_factorial_bigint(n, r), repeticiones, warmup);
         }
         rw.valor = String(rw.valor);
         rj.valor = String(rj.valor);
 
       } else if (operacion === "coseno") {
         const x = parseFloat(inputs[1].value);
+        repeticiones = REPS;
 
-        rw = bench(n => wasm.bench_coseno(x, n), repeticiones);
-        rj = bench(n => js_bench_coseno(x, n), repeticiones);
+        rw = bench(n => wasm.bench_coseno(x, n), repeticiones, WARMUP);
+        rj = bench(n => js_bench_coseno(x, n), repeticiones, WARMUP);
 
-        rw.valor = rw.valor.toFixed(8);
-        rj.valor = rj.valor.toFixed(8);
+        rw.valor = Number(rw.valor).toFixed(8);
+        rj.valor = Number(rj.valor).toFixed(8);
+
       } else if (operacion === "primo") {
         const n = parseInt(inputs[2].value, 10);
-        repeticiones = 200;
-        rw = bench(wasm.es_primo, n, repeticiones, 20);
-        rj = bench(js_es_primo, n, repeticiones, 20);
+        // Si el número es grande (> 100.000), 200 repeticiones bastan;
+        // si es pequeño, usamos más repeticiones para que la medición sea precisa.
+        repeticiones = n > 100000 ? 200 : REPS;
+        const warmup = n > 100000 ? 20 : WARMUP;
+
+        rw = bench(r => wasm.bench_es_primo(n, r), repeticiones, warmup);
+        rj = bench(r => js_bench_es_primo(n, r), repeticiones, warmup);
+
         rw.valor = rw.valor === 1 ? "Sí es primo" : "No es primo";
         rj.valor = rj.valor === 1 ? "Sí es primo" : "No es primo";
       }
