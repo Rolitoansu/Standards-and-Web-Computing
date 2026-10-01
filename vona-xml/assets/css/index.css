@@ -31,7 +31,7 @@ body > header label[data-boton-subir] svg {
   height: 0.9375rem;
 }
 
-body > main div[role="alert"][data-estado] {
+body > main [role="alert"][data-estado] {
   padding: 0.5rem 0.875rem;
   border-radius: var(--radio-sm);
   font-size: 0.8125rem;
@@ -41,21 +41,21 @@ body > main div[role="alert"][data-estado] {
   border: 0.0625rem solid transparent;
 }
 
-body > main div[role="alert"][data-estado="error"] {
+body > main [role="alert"][data-estado="error"] {
   display: flex;
   background-color: var(--color-alerta-rojo-fondo);
   border-color: var(--color-alerta-rojo-borde);
   color: var(--color-alerta-rojo-texto);
 }
 
-body > main div[role="alert"][data-estado="exito"] {
+body > main [role="alert"][data-estado="exito"] {
   display: flex;
   background-color: var(--color-alerta-verde-fondo);
   border-color: var(--color-alerta-verde-borde);
   color: var(--color-alerta-verde-texto);
 }
 
-body > main div[role="alert"] svg {
+body > main [role="alert"] svg {
   width: 0.9375rem;
   height: 0.9375rem;
   flex-shrink: 0;
@@ -228,14 +228,14 @@ body > main > section[data-seccion="mapa"] > header h2 svg {
   color: var(--color-primario);
 }
 
-body > main div[data-controles-mapa] {
+body > main [data-controles-mapa] {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.3125rem;
 }
 
-body > main div[data-controles-mapa] button {
+body > main [data-controles-mapa] button {
   background-color: var(--color-superficie);
   border: 0.0625rem solid var(--color-borde);
   color: var(--color-texto-secundario);
@@ -250,19 +250,19 @@ body > main div[data-controles-mapa] button {
   transition: background-color 0.1s ease;
 }
 
-body > main div[data-controles-mapa] button:hover {
+body > main [data-controles-mapa] button:hover {
   background-color: var(--color-superficie-subrayada);
   color: var(--color-texto);
 }
 
-body > main div[data-controles-mapa] button[aria-pressed="true"] {
+body > main [data-controles-mapa] button[aria-pressed="true"] {
   background-color: var(--color-primario-suave);
   border-color: var(--color-primario);
   color: var(--color-primario-oscuro);
   font-weight: 600;
 }
 
-body > main div[data-controles-mapa] svg {
+body > main [data-controles-mapa] svg {
   width: 0.75rem;
   height: 0.75rem;
 }
@@ -276,14 +276,14 @@ body > main select[data-selector-volcan] {
   font-size: 0.6875rem;
 }
 
-div[data-mapa="contenedor"] {
+[data-mapa="contenedor"] {
   width: 100%;
   height: 32rem;
   position: relative;
   background-color: #e2e8f0;
 }
 
-div[data-leyenda-mapa] {
+[data-leyenda-mapa] {
   position: absolute;
   bottom: 1rem;
   left: 1rem;
@@ -299,7 +299,7 @@ div[data-leyenda-mapa] {
   box-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.08);
 }
 
-div[data-leyenda-mapa] h3 {
+[data-leyenda-mapa] h3 {
   font-size: 0.625rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -307,14 +307,14 @@ div[data-leyenda-mapa] h3 {
   color: var(--color-texto-apagado);
 }
 
-div[data-leyenda-mapa] ul {
+[data-leyenda-mapa] ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 0.1875rem;
 }
 
-div[data-leyenda-mapa] ul li {
+[data-leyenda-mapa] ul li {
   display: flex;
   align-items: center;
   gap: 0.4375rem;
@@ -322,7 +322,7 @@ div[data-leyenda-mapa] ul li {
   color: var(--color-texto-secundario);
 }
 
-div[data-leyenda-mapa] span[data-simbolo-leyenda] {
+[data-leyenda-mapa] span[data-simbolo-leyenda] {
   width: 0.625rem;
   height: 0.625rem;
   border-radius: var(--radio-sm);
@@ -330,7 +330,7 @@ div[data-leyenda-mapa] span[data-simbolo-leyenda] {
   flex-shrink: 0;
 }
 
-div[data-marcador-volcan] {
+[data-marcador-volcan] {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -338,7 +338,7 @@ div[data-marcador-volcan] {
   transform: translate(-50%, -100%);
 }
 
-div[data-marcador-icono] {
+[data-marcador-icono] {
   width: 1.75rem;
   height: 1.75rem;
   border-radius: var(--radio-sm);
@@ -350,12 +350,12 @@ div[data-marcador-icono] {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
 }
 
-div[data-marcador-icono] svg {
+[data-marcador-icono] svg {
   width: 1rem;
   height: 1rem;
 }
 
-div[data-popup-vona] {
+[data-popup-vona] {
   color: var(--color-texto);
   max-width: 16rem;
   display: flex;
@@ -364,12 +364,12 @@ div[data-popup-vona] {
   font-size: 0.75rem;
 }
 
-div[data-popup-vona] h4 {
+[data-popup-vona] h4 {
   font-size: 0.8125rem;
   font-weight: 700;
 }
 
-div[data-popup-vona] p {
+[data-popup-vona] p {
   color: var(--color-texto-secundario);
   margin-bottom: 0.125rem;
 }
@@ -385,7 +385,7 @@ body > main blockquote[data-resumen-actividad] {
   line-height: 1.5;
 }
 
-body > main div[data-contenedor-tabla] {
+body > main [data-contenedor-tabla] {
   width: 100%;
   overflow-x: auto;
 }
@@ -431,11 +431,11 @@ body > main tbody tr:nth-child(even) {
 }
 
 @media (max-width: 48rem) {
-  div[data-mapa="contenedor"] {
+  [data-mapa="contenedor"] {
     height: 22rem;
   }
 
-  div[data-leyenda-mapa] {
+  [data-leyenda-mapa] {
     bottom: 0.5rem;
     left: 0.5rem;
     right: 0.5rem;

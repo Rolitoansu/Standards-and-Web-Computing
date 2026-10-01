@@ -238,5 +238,86 @@
       f64.mul
       f64.const 0.008726646259971648
       f64.mul
+    )
+
+    ;; -------------------------------------------------------------------------
+    ;; distancia_km(lat1, lon1, lat2, lon2) → distancia geodésica en km
+    ;; -------------------------------------------------------------------------
+    (func $distancia_km (export "distancia_km")
+      (param $lat1 f64) (param $lon1 f64) (param $lat2 f64) (param $lon2 f64)
+      (result f64)
+      (local $dlat f64)
+      (local $dlon_deg f64)
+      (local $lat_media f64)
+      (local $cos_lat f64)
+      (local $dlon f64)
+
+      ;; dlat = (lat2 - lat1) * 111.13295
+      local.get $lat2
+      local.get $lat1
+      f64.sub
+      f64.const 111.13295
+      f64.mul
+      local.set $dlat
+
+      ;; dlon_deg = lon2 - lon1
+      local.get $lon2
+      local.get $lon1
+      f64.sub
+      local.set $dlon_deg
+
+      ;; Ajuste por cruce de antimeridiano (> 180 o < -180)
+      local.get $dlon_deg
+      f64.const 180.0
+      f64.gt
+      if
+        local.get $dlon_deg
+        f64.const 360.0
+        f64.sub
+        local.set $dlon_deg
+      else
+        local.get $dlon_deg
+        f64.const -180.0
+        f64.lt
+        if
+          local.get $dlon_deg
+          f64.const 360.0
+          f64.add
+          local.set $dlon_deg
+        end
+      end
+
+      ;; lat_media = ((lat1 + lat2) * 0.5) * (pi / 180)
+      local.get $lat1
+      local.get $lat2
+      f64.add
+      f64.const 0.5
+      f64.mul
+      f64.const 0.017453292519943295
+      f64.mul
+      local.set $lat_media
+
+      ;; cos_lat = cos(lat_media)
+      local.get $lat_media
+      call $cos
+      local.set $cos_lat
+
+      ;; dlon = dlon_deg * 111.13295 * cos_lat
+      local.get $dlon_deg
+      f64.const 111.13295
+      f64.mul
+      local.get $cos_lat
+      f64.mul
+      local.set $dlon
+
+      ;; return sqrt(dlat^2 + dlon^2)
+      local.get $dlat
+      local.get $dlat
+      f64.mul
+      local.get $dlon
+      local.get $dlon
+      f64.mul
+      f64.add
+      f64.sqrt
+    )
   )
-)

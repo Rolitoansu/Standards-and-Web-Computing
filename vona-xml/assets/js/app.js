@@ -18,10 +18,10 @@
     }
 
     // Elementos del DOM seleccionados mediante atributos estructurales
-    const contenedorMapa = document.querySelector('div[data-mapa="contenedor"]');
+    const contenedorMapa = document.querySelector('[data-mapa="contenedor"]');
     const entradaArchivo = document.querySelector('input[type="file"][data-entrada-archivo]');
     const botonesMuestra = document.querySelectorAll('button[data-boton-muestra]');
-    const alertaMensaje = document.querySelector('div[role="alert"][data-estado]');
+    const alertaMensaje = document.querySelector('[role="alert"][data-estado]');
     const selectorVolcan = document.querySelector('select[data-selector-volcan]');
 
     // Elementos de métricas y tecnología
@@ -120,6 +120,35 @@
             renderizarEnMapa(datosVolcanesActuales[indiceVolcanActivo]);
           }
         });
+
+        // Medición geodésica interactiva con WebAssembly al hacer clic en cualquier punto del mapa
+        mapa.on('click', (e) => {
+          if (!datosVolcanesActuales || datosVolcanesActuales.length === 0) return;
+          const volcan = datosVolcanesActuales[indiceVolcanActivo];
+          if (!volcan || !window.VonaWasm || typeof window.VonaWasm.distanciaKm !== 'function') return;
+
+          // Si el clic fue sobre la pluma, el popup de la pluma ya se encarga
+          try {
+            const features = mapa.queryRenderedFeatures(e.point, {
+              layers: ['capa-pluma-dispersion']
+            });
+            if (features && features.length > 0) return;
+          } catch { }
+
+          const distKm = window.VonaWasm.distanciaKm(e.lngLat.lat, e.lngLat.lng, volcan.lat, volcan.lon);
+
+          new window.mapboxgl.Popup({ offset: 15 })
+            .setLngLat(e.lngLat)
+            .setHTML(
+              `<article data-popup-vona="true">` +
+              `<h4>Medición Geodésica</h4>` +
+              `<p><strong>Punto seleccionado:</strong> ${e.lngLat.lat.toFixed(2)}°, ${e.lngLat.lng.toFixed(2)}°</p>` +
+              `<p><strong>Distancia al cráter (${volcan.nombre}):</strong></p>` +
+              `<p style="font-size: 1.15rem; font-weight: bold; color: var(--color-primario, #0284c7);">${Math.round(distKm).toLocaleString()} km</p>` +
+              `</article>`
+            )
+            .addTo(mapa);
+        });
       } catch (error) {
         mostrarNotificacion(`Error al inicializar el mapa: ${error.message}`, 'error');
       }
@@ -161,7 +190,7 @@
     }
 
     /**
-     * Calcula coordenadas de destino geodésico sobre la esfera terrestre (Haversine directa)
+     * Calcula coordenadas de destino geodésico sobre la esfera terrestre
      * Delega al kernel WebAssembly o al módulo matemático geodésico
      */
     function calcularPuntoDestino(lat, lon, rumboGrados, distanciaKm) {
@@ -469,6 +498,11 @@
           ['Canal de Contacto', volcan.contactos]
         ];
 
+        if (window.VonaWasm && typeof window.VonaWasm.distanciaKm === 'function') {
+          const distMadrid = window.VonaWasm.distanciaKm(volcan.lat, volcan.lon, 40.4168, -3.7038);
+          filas.push(['Distancia Geodésica a Madrid', `${Math.round(distMadrid).toLocaleString()} km`]);
+        }
+
         for (const [etiqueta, valor] of filas) {
           const tr = document.createElement('tr');
           const th = document.createElement('th');
@@ -535,7 +569,7 @@
 
       // 1. Marcadores sobrios de volcanes
       datosVolcanesActuales.forEach((v, i) => {
-        const contenedorMarcador = document.createElement('div');
+        const contenedorMarcador = document.createElement('figure');
         contenedorMarcador.setAttribute('data-marcador-volcan', 'true');
         contenedorMarcador.setAttribute('data-volcan-indice', String(i));
 
@@ -544,19 +578,19 @@
         else if (v.colorActual === 'ORANGE') colorHex = '#9a3412';
         else if (v.colorActual === 'GREEN') colorHex = '#166534';
 
-        const iconoCaja = document.createElement('div');
+        const iconoCaja = document.createElement('span');
         iconoCaja.setAttribute('data-marcador-icono', 'true');
         iconoCaja.style.borderColor = colorHex;
         iconoCaja.innerHTML = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="${colorHex}" stroke="#0f172a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2 22 8-16 4 8 2-4 6 12Z"/></svg>`;
 
         contenedorMarcador.appendChild(iconoCaja);
 
-        const popupHtml = `<div data-popup-vona="true">` +
+        const popupHtml = `<article data-popup-vona="true">` +
           `<h4>${v.nombre} (${v.numero})</h4>` +
           `<p><strong>Alerta:</strong> <span data-codigo-color="${v.colorActual}">${v.colorActual}</span></p>` +
           `<p><strong>Elevación:</strong> ${v.elevacionM} m</p>` +
           `<p><strong>Pluma:</strong> ${v.altitudNivelMarM > 0 ? `${v.altitudNivelMarM} m (${v.nivelVuelo})` : 'Sin emisión'}</p>` +
-          `</div>`;
+          `</article>`;
 
         const popup = new window.mapboxgl.Popup({ offset: 20 }).setHTML(popupHtml);
 
@@ -684,13 +718,13 @@
           new window.mapboxgl.Popup()
             .setLngLat(e.lngLat)
             .setHTML(
-              `<div data-popup-vona="true">` +
+              `<article data-popup-vona="true">` +
               `<h4>Pluma de Ceniza Volcánica</h4>` +
               `<p><strong>Altitud:</strong> ${volcanActivo.altitudNivelMarM} m (${volcanActivo.nivelVuelo})</p>` +
               `<p><strong>Rumbo:</strong> ${volcanActivo.direccionHumo} (${volcanActivo.rumboGrados}°)</p>` +
               `<p><strong>Velocidad:</strong> ${volcanActivo.velocidadHumoKmH} km/h</p>` +
               `<p><strong>Alcance:</strong> ${distanciaPluma} km</p>` +
-              `</div>`
+              `</article>`
             )
             .addTo(mapa);
         });

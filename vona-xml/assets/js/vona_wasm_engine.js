@@ -105,6 +105,31 @@
         }
       }
       return 0.5 * distanciaKm * distanciaKm * (aperturaDeg * (Math.PI / 180.0));
+    },
+
+    /**
+     * Calcula la distancia geodésica entre dos coordenadas en km
+     */
+    distanciaKm(lat1, lon1, lat2, lon2) {
+      if (wasmExports && typeof wasmExports.distancia_km === 'function') {
+        try {
+          const d = wasmExports.distancia_km(lat1, lon1, lat2, lon2);
+          if (!isNaN(d) && d >= 0) return d;
+        } catch {
+          // Fallback a fórmula analítica
+        }
+      }
+      const rTierra = 6371.0;
+      const dLat = ((lat2 - lat1) * Math.PI) / 180.0;
+      const dLon = ((lon2 - lon1) * Math.PI) / 180.0;
+      const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos((lat1 * Math.PI) / 180.0) *
+          Math.cos((lat2 * Math.PI) / 180.0) *
+          Math.sin(dLon / 2) *
+          Math.sin(dLon / 2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return rTierra * c;
     }
   };
 

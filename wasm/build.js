@@ -19,7 +19,7 @@ async function compilar() {
   const { buffer } = modulo.toBinary({});
   fs.writeFileSync(wasmPath, Buffer.from(buffer));
 
-  console.log(`✅ ejemplo.wasm generado (${buffer.byteLength} bytes)`);
+  console.log(`ejemplo.wasm generado (${buffer.byteLength} bytes)`);
   modulo.destroy();
 }
 

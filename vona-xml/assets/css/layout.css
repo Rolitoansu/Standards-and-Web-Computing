@@ -7,6 +7,7 @@ body > header {
   z-index: 100;
 }
 
+body > header > section,
 body > header > div {
   max-width: var(--ancho-maximo-layout);
   margin-left: auto;
@@ -18,12 +19,14 @@ body > header > div {
   gap: 1.5rem;
 }
 
+body > header > section > hgroup,
 body > header > div > div:first-of-type {
   display: flex;
   align-items: center;
   gap: 0.875rem;
 }
 
+body > header > section > hgroup svg,
 body > header > div > div:first-of-type svg {
   width: 2rem;
   height: 2rem;
@@ -118,6 +121,7 @@ body > footer {
   margin-top: auto;
 }
 
+body > footer > section,
 body > footer > div {
   max-width: var(--ancho-maximo-layout);
   margin-left: auto;

@@ -126,7 +126,7 @@
             <h3>Métricas WebAssembly (WASM)</h3>
             <dl>
               <div>
-                <dt>Módulo ejecutado</dt>
+                <dt>Módulo</dt>
                 <dd>${metricasWasm.origen}</dd>
               </div>
               <div>

@@ -22,19 +22,19 @@
 
 <body>
   <header>
-    <div>
-      <div>
+    <section>
+      <hgroup>
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <path d="m2 22 8-16 4 8 2-4 6 12Z" />
           <path d="M10 6h4" />
           <path d="M12 2v2" />
         </svg>
-        <div>
+        <span>
           <h1>VONA — Avisos Volcánicos para Aviación</h1>
           <p>OACI Doc 9766 / WMO IWXXM</p>
-        </div>
-      </div>
+        </span>
+      </hgroup>
 
       <nav aria-label="Carga de archivo VONA">
         <label data-boton-subir="true">
@@ -48,7 +48,7 @@
           <span>Cargar XML</span>
         </label>
       </nav>
-    </div>
+    </section>
   </header>
 
   <main>
@@ -73,9 +73,9 @@
             <polygon points="12 2 2 22 22 22 12 2" />
           </svg>
         </header>
-        <div>
+        <p>
           <span data-codigo-color="UNKNOWN" data-metrica="alerta-actual">—</span>
-        </div>
+        </p>
         <p data-metrica="alerta-previa">Previo: —</p>
       </article>
 
@@ -130,7 +130,7 @@
 
         <select data-selector-volcan="true" data-oculto-visual="true" aria-label="Seleccionar volcán"></select>
 
-        <div data-controles-mapa="true">
+        <nav data-controles-mapa="true" aria-label="Controles del mapa">
           <button type="button" data-control="globo" aria-pressed="true">
             <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10" />
@@ -162,11 +162,11 @@
             </svg>
             <span>Centrar</span>
           </button>
-        </div>
+        </nav>
       </header>
 
-      <div data-mapa="contenedor">
-        <div data-leyenda-mapa="true">
+      <figure data-mapa="contenedor" aria-label="Globo interactivo">
+        <aside data-leyenda-mapa="true" aria-label="Leyenda de códigos OACI">
           <h3>Códigos OACI</h3>
           <ul>
             <li>
@@ -191,8 +191,8 @@
               <span><strong>Pluma:</strong> Dispersión eólica de ceniza</span>
             </li>
           </ul>
-        </div>
-      </div>
+        </aside>
+      </figure>
     </section>
 
     <section aria-label="Resumen de actividad">
@@ -204,7 +204,7 @@
 
     <section aria-label="Detalles técnicos del aviso" data-seccion="detalles">
       <h2 data-oculto-visual="true">Detalles técnicos del aviso</h2>
-      <div data-contenedor-tabla="true">
+      <figure data-contenedor-tabla="true">
         <table data-tabla-vona="true">
           <caption>Parámetros transmitidos en el aviso aeronáutico VONA</caption>
           <thead>
@@ -219,15 +219,15 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </figure>
     </section>
   </main>
 
   <footer>
-    <div>
+    <section>
       <p>Visualizador VONA &bull; OACI Doc 9766 &bull; <time datetime="2026-09-25">2026</time></p>
       <p><small>Usa la rueda del ratón sobre el mapa para alejar y ver el globo terráqueo completo.</small></p>
-    </div>
+    </section>
   </footer>
 </body>
 
