@@ -4,7 +4,7 @@ body > main > section:first-of-type {
   padding: 3.5rem 0;
 }
 
-body > main > section:first-of-type > div {
+body > main > section:first-of-type > header {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -47,7 +47,7 @@ body > main > section:nth-of-type(2) {
   padding: 3rem 0 4.5rem;
 }
 
-body > main > section:nth-of-type(2) > div {
+body > main > section:nth-of-type(2) > article {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -57,24 +57,26 @@ body > main > section:nth-of-type(2) > div {
   align-items: start;
 }
 
-body > main > section:nth-of-type(2) > div > aside {
+body > main > section:nth-of-type(2) > article > aside {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div {
+body > main > section:nth-of-type(2) > article > aside > figure,
+body > main > section:nth-of-type(2) > article > aside > section {
   background: var(--tarjeta);
   border: 0.0625rem solid var(--borde);
   border-radius: var(--radio-m);
   padding: 1.25rem;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:first-child {
+body > main > section:nth-of-type(2) > article > aside > figure {
+  margin: 0;
   text-align: center;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:first-child img {
+body > main > section:nth-of-type(2) > article > aside > figure img {
   width: 6.875rem;
   height: 6.875rem;
   border-radius: 50%;
@@ -84,19 +86,20 @@ body > main > section:nth-of-type(2) > div > aside > div:first-child img {
   display: block;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:first-child > p:first-of-type {
+body > main > section:nth-of-type(2) > article > aside > figure strong {
   font-weight: 700;
   color: var(--titulo);
   font-size: 1.05rem;
+  display: block;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:first-child > p:last-of-type {
+body > main > section:nth-of-type(2) > article > aside > figure p {
   font-size: 0.8rem;
   color: var(--texto-mutado);
   margin-top: 0.25rem;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div > h2 {
+body > main > section:nth-of-type(2) > article > aside > section > h2 {
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -105,7 +108,7 @@ body > main > section:nth-of-type(2) > div > aside > div > h2 {
   margin-bottom: 1rem;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(2) ul {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -114,7 +117,7 @@ body > main > section:nth-of-type(2) > div > aside > div:nth-child(2) ul {
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(2) ul li {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -122,17 +125,17 @@ body > main > section:nth-of-type(2) > div > aside > div:nth-child(2) ul li {
   color: var(--texto-suave);
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(2) ul li a {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul li a {
   color: var(--texto-suave);
   text-decoration: none;
   transition: color var(--transicion);
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(2) ul li a:hover {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul li a:hover {
   color: var(--primario);
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(3) ul {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(2) ul {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
@@ -141,7 +144,7 @@ body > main > section:nth-of-type(2) > div > aside > div:nth-child(3) ul {
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(3) ul li {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(2) ul li {
   background: var(--primario-claro);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -151,7 +154,7 @@ body > main > section:nth-of-type(2) > div > aside > div:nth-child(3) ul li {
   font-weight: 500;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(4) ul {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(3) ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -160,7 +163,7 @@ body > main > section:nth-of-type(2) > div > aside > div:nth-child(4) ul {
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > div > aside > div:nth-child(n+4) ul li {
+body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(3) ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -168,7 +171,7 @@ body > main > section:nth-of-type(2) > div > aside > div:nth-child(n+4) ul li {
   color: var(--texto-suave);
 }
 
-body > main > section:nth-of-type(2) > div > aside span[data-nivel] {
+body > main > section:nth-of-type(2) > article > aside span[data-nivel] {
   background: var(--primario-claro);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -176,35 +179,15 @@ body > main > section:nth-of-type(2) > div > aside span[data-nivel] {
   padding: 0.18rem 0.65rem;
   font-size: 0.75rem;
   font-weight: 600;
-  text-transform: capitalize;
 }
 
-body > main > section:nth-of-type(2) > div > aside span[data-nivel="avanzado"] {
-  background: rgba(22, 163, 74, 0.1);
-  color: var(--exito);
-  border-color: rgba(22, 163, 74, 0.25);
-}
-
-body > main > section:nth-of-type(2) > div > aside span[data-nivel="medio"] {
-  background: var(--primario-claro);
-  color: var(--primario);
-  border-color: var(--primario-borde);
-}
-
-body > main > section:nth-of-type(2) > div > aside span[data-nivel="basico"],
-body > main > section:nth-of-type(2) > div > aside span[data-nivel="principiante"] {
-  background: var(--superficie);
-  color: var(--texto-mutado);
-  border-color: var(--borde);
-}
-
-body > main > section:nth-of-type(2) > div > div {
+body > main > section:nth-of-type(2) > article > section {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
-body > main > section:nth-of-type(2) > div > div section > h2 {
+body > main > section:nth-of-type(2) > article > section > section > h2 {
   font-size: 1.15rem;
   display: flex;
   align-items: center;
@@ -213,14 +196,14 @@ body > main > section:nth-of-type(2) > div > div section > h2 {
   color: var(--titulo);
 }
 
-body > main > section:nth-of-type(2) > div > div section ol {
+body > main > section:nth-of-type(2) > article > section > section ol {
   position: relative;
   padding-left: 1.5rem;
   list-style: none;
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > div > div section ol::before {
+body > main > section:nth-of-type(2) > article > section > section ol::before {
   content: '';
   position: absolute;
   left: 0;
@@ -230,17 +213,17 @@ body > main > section:nth-of-type(2) > div > div section ol::before {
   background: var(--borde);
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li {
+body > main > section:nth-of-type(2) > article > section > section ol li {
   position: relative;
   padding-bottom: 1.75rem;
   color: var(--texto-suave);
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li:last-child {
+body > main > section:nth-of-type(2) > article > section > section ol li:last-child {
   padding-bottom: 0;
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li::before {
+body > main > section:nth-of-type(2) > article > section > section ol li::before {
   content: '';
   position: absolute;
   left: -1.5rem;
@@ -253,7 +236,7 @@ body > main > section:nth-of-type(2) > div > div section ol li::before {
   transform: translateX(-0.25rem);
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li > time {
+body > main > section:nth-of-type(2) > article > section > section ol li > time {
   display: block;
   font-size: 0.75rem;
   font-weight: 600;
@@ -262,14 +245,14 @@ body > main > section:nth-of-type(2) > div > div section ol li > time {
   margin-bottom: 0.25rem;
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li > strong {
+body > main > section:nth-of-type(2) > article > section > section ol li > strong {
   display: block;
   font-size: 1rem;
   font-weight: 700;
   color: var(--titulo);
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li > span {
+body > main > section:nth-of-type(2) > article > section > section ol li > span {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -278,18 +261,18 @@ body > main > section:nth-of-type(2) > div > div section ol li > span {
   margin-bottom: 0.5rem;
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li > span img {
+body > main > section:nth-of-type(2) > article > section > section ol li > span img {
   display: inline-block;
   vertical-align: middle;
 }
 
-body > main > section:nth-of-type(2) > div > div section ol li > p {
+body > main > section:nth-of-type(2) > article > section > section ol li > p {
   font-size: 0.85rem;
   line-height: 1.6;
   color: var(--texto-suave);
 }
 
-body > main > section:nth-of-type(2) > div > div section > ul {
+body > main > section:nth-of-type(2) > article > section > section:last-child > ul {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -298,7 +281,7 @@ body > main > section:nth-of-type(2) > div > div section > ul {
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > div > div section > ul li {
+body > main > section:nth-of-type(2) > article > section > section:last-child > ul li {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -310,25 +293,31 @@ body > main > section:nth-of-type(2) > div > div section > ul li {
   background: var(--tarjeta);
 }
 
-body > main > section:nth-of-type(2) > div > div section > ul li > div > strong {
+body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > p > a {
   display: block;
   font-size: 0.875rem;
+  font-weight: 600;
   color: var(--titulo);
+  text-decoration: none;
 }
 
-body > main > section:nth-of-type(2) > div > div section > ul li > div > span {
+body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > p > a:hover {
+  color: var(--primario);
+}
+
+body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > p > span {
   font-size: 0.78rem;
   color: var(--texto-mutado);
 }
 
-body > main > section:nth-of-type(2) > div > div section > ul li > time {
+body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > time {
   font-size: 0.75rem;
   color: var(--texto-mutado);
   font-weight: 500;
 }
 
 @media (max-width: 48rem) {
-  body > main > section:nth-of-type(2) > div {
+  body > main > section:nth-of-type(2) > article {
     grid-template-columns: 1fr;
   }
 }

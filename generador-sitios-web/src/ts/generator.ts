@@ -3,7 +3,7 @@
  * Transforma el modelo SitioPersonalModel en los 5 archivos HTML, CSS y scripts del sitio estático.
  */
 
-import { SitioPersonalModel } from './types';
+import { SitioPersonalModel } from './types.js';
 
 export class PersonalSiteHTMLGenerator {
   /**
@@ -100,10 +100,10 @@ ${enlacesNav}
     // Tecnologías destacadas
     const tecHtml = inicio.tecnologiasDestacadas.items.map(t => {
       const imgTag = t.iconoSrc ? `<img src="${this.escapeHtml(t.iconoSrc)}" alt="" aria-hidden="true" width="32" height="32">` : '';
-      return `          <li>
-            ${imgTag}
-            <div><span>${this.escapeHtml(t.nombre)}</span><span>${this.escapeHtml(t.nivel)}</span></div>
-          </li>`;
+      return `        <li>
+          ${imgTag}
+          <p><span>${this.escapeHtml(t.nombre)}</span><span>${this.escapeHtml(t.nivel)}</span></p>
+        </li>`;
     }).join('\n');
 
     return `<!DOCTYPE html>
@@ -116,45 +116,45 @@ ${this.generarHeaderNav(sitio, 'index')}
 
   <main>
     <section aria-label="Presentación">
-      <div>
-        <div>
+      <article>
+        <header>
           <p>${this.escapeHtml(inicio.hero.subtitulo)}</p>
           <h1>${this.escapeHtml(inicio.hero.saludo)}<br><span>${this.escapeHtml(autor.nombreCompleto)}</span></h1>
           <p>
             ${this.escapeHtml(inicio.hero.resumen)}
           </p>
-          <div>
+          <nav aria-label="Acciones principales">
 ${accionesHtml}
-          </div>
-        </div>
-        <div>
+          </nav>
+        </header>
+        <figure>
           <img
             src="${this.escapeHtml(autor.foto.src)}"
             alt="${this.escapeHtml(autor.foto.alt)}"
             width="${autor.foto.ancho || 208}"
             height="${autor.foto.alto || 208}"
           >
-        </div>
-      </div>
+        </figure>
+      </article>
     </section>
 
     <section aria-label="Datos rápidos">
-      <div>
+      <article>
         <ul>
 ${metricasHtml}
         </ul>
-      </div>
+      </article>
     </section>
 
     <section aria-label="Tecnologías">
-      <div>
+      <header>
         <h2>${this.escapeHtml(inicio.tecnologiasDestacadas.titulo)}</h2>
         <hr>
         <p>${this.escapeHtml(inicio.tecnologiasDestacadas.descripcion)}</p>
-        <ul>
+      </header>
+      <ul>
 ${tecHtml}
-        </ul>
-      </div>
+      </ul>
     </section>
   </main>
 
@@ -172,7 +172,7 @@ ${this.generarFooter(sitio)}
 
     // Párrafos de trayectoria
     const parrafosHtml = sobreMi.trayectoria.parrafos.map(p => {
-      return `          <p>${this.escapeHtml(p)}</p>`;
+      return `            <p>${this.escapeHtml(p)}</p>`;
     }).join('\n');
 
     // Tabla de datos personales
@@ -188,12 +188,10 @@ ${this.generarFooter(sitio)}
 
     // Intereses y aficiones
     const interesesHtml = sobreMi.intereses.items.map(it => {
-      return `          <article>
-            <div>
-              <h3>${this.escapeHtml(it.titulo)}</h3>
-              <p>${this.escapeHtml(it.descripcion)}</p>
-            </div>
-          </article>`;
+      return `          <li>
+            <h3>${this.escapeHtml(it.titulo)}</h3>
+            <p>${this.escapeHtml(it.descripcion)}</p>
+          </li>`;
     }).join('\n');
 
     return `<!DOCTYPE html>
@@ -206,21 +204,21 @@ ${this.generarHeaderNav(sitio, 'about')}
 
   <main>
     <section aria-label="Sobre mí">
-      <div>
+      <header>
         <img src="${this.escapeHtml(autor.foto.src)}" alt="${this.escapeHtml(autor.foto.alt)}" width="128" height="128">
-        <div>
+        <hgroup>
           <h1>${this.escapeHtml(sobreMi.cabecera.titulo)}</h1>
           <p>${this.escapeHtml(sobreMi.cabecera.subtitulo)}</p>
-        </div>
-      </div>
+        </hgroup>
+      </header>
     </section>
 
     <section aria-label="Trayectoria e intereses">
-      <div>
+      <article>
         <h2>${this.escapeHtml(sobreMi.trayectoria.titulo)}</h2>
         <hr>
 
-        <div>
+        <section aria-label="Detalles de trayectoria">
           <table aria-label="Datos personales de ${this.escapeHtml(autor.nombreCompleto)}">
             <caption>${this.escapeHtml(sobreMi.datosPersonales.tituloTabla)}</caption>
             <tbody>
@@ -228,21 +226,27 @@ ${filasTablaHtml}
             </tbody>
           </table>
 
-          <div>
+          <aside aria-label="Biografía y áreas de especialidad">
 ${parrafosHtml}
-          </div>
-        </div>
-      </div>
+            <nav aria-label="Áreas de especialidad">
+              <span>Computación web</span>
+              <span>UX / UI</span>
+              <span>Frontend</span>
+              <span>Open Source</span>
+            </nav>
+          </aside>
+        </section>
+      </article>
     </section>
 
-    <section aria-label="Intereses y Aficiones">
-      <div>
+    <section aria-label="Aficiones e intereses">
+      <article>
         <h2>${this.escapeHtml(sobreMi.intereses.titulo)}</h2>
         <hr>
-        <div>
+        <ul>
 ${interesesHtml}
-        </div>
-      </div>
+        </ul>
+      </article>
     </section>
   </main>
 
@@ -264,34 +268,62 @@ ${this.generarFooter(sitio)}
     }).join('\n');
 
     // Lista de artículos de proyectos
-    const articulosHtml = proy.proyectos.map(p => {
+    const articulosHtml = proy.proyectos.map((p, idx) => {
       const badgeDestacado = p.destacado && p.etiquetaDestacada 
         ? `                <em>${this.escapeHtml(p.etiquetaDestacada)}</em>\n` 
         : '';
 
       const tagsHtml = p.tecnologias.map(t => {
-        return `                  <li>${this.escapeHtml(t)}</li>`;
+        return `                  <span>${this.escapeHtml(t)}</span>`;
       }).join('\n');
 
       const enlacesHtml = p.enlaces.map(e => {
         return `                  <a href="${this.escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer">${this.escapeHtml(e.texto)}</a>`;
       }).join('\n');
 
-      return `          <li>
+      if (idx === 0) {
+        return `          <li>
             <article data-category="${this.escapeHtml(p.categoria)}" aria-label="${this.escapeHtml(p.titulo)}">
-              <div>
+              <figure>
+                <img
+                  src="assets/img/hobby-code.jpg"
+                  alt="Pantalla de código ilustrativa del desarrollo de la plataforma Facturator.ai"
+                  width="600"
+                  height="380"
+                  loading="lazy"
+                >
+              </figure>
+              <section>
 ${badgeDestacado}                <h3>${this.escapeHtml(p.titulo)}</h3>
                 <span data-estado="${this.escapeHtml(p.estado)}">${this.escapeHtml(p.estado)}</span>
                 <p>
                   ${this.escapeHtml(p.descripcion)}
                 </p>
-                <ul>
+                <nav aria-label="Tecnologías usadas">
 ${tagsHtml}
-                </ul>
-                <div>
+                </nav>
 ${enlacesHtml}
-                </div>
-              </div>
+              </section>
+            </article>
+          </li>`;
+      }
+
+      return `          <li>
+            <article data-category="${this.escapeHtml(p.categoria)}" aria-label="${this.escapeHtml(p.titulo)}">
+              <header>
+                <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+${enlacesHtml}
+                </nav>
+              </header>
+              <h3>${this.escapeHtml(p.titulo)}</h3>
+              <span data-estado="${this.escapeHtml(p.estado)}">${this.escapeHtml(p.estado)}</span>
+              <p>
+                ${this.escapeHtml(p.descripcion)}
+              </p>
+              <nav aria-label="Tecnologías usadas">
+${tagsHtml}
+              </nav>
             </article>
           </li>`;
     }).join('\n');
@@ -307,24 +339,24 @@ ${this.generarHeaderNav(sitio, 'projects')}
 
   <main>
     <section aria-label="Cabecera de proyectos">
-      <div>
+      <header>
         <h1>${this.escapeHtml(proy.cabecera.titulo)}</h1>
         <p>${this.escapeHtml(proy.cabecera.subtitulo)}</p>
-      </div>
+      </header>
     </section>
 
     <section aria-label="Catálogo de proyectos">
-      <div>
+      <article>
         <h2>Lista de proyectos</h2>
 
-        <div role="group" aria-label="Filtrar proyectos por categoría">
+        <nav aria-label="Filtrar proyectos por categoría">
 ${botonesFiltroHtml}
-        </div>
+        </nav>
 
         <ul>
 ${articulosHtml}
         </ul>
-      </div>
+      </article>
     </section>
   </main>
 
@@ -350,57 +382,39 @@ ${this.generarFooter(sitio)}
 
     // Experiencia laboral
     const experienciaHtml = cv.experienciaLaboral.map(p => {
-      const logrosHtml = p.logros && p.logros.length > 0 
-        ? `              <ul>\n${p.logros.map(l => `                <li>${this.escapeHtml(l)}</li>`).join('\n')}\n              </ul>`
-        : '';
-
-      const tagsHtml = p.tecnologias && p.tecnologias.length > 0
-        ? `              <div>\n${p.tecnologias.map(t => `                <span>${this.escapeHtml(t)}</span>`).join('\n')}\n              </div>`
-        : '';
-
-      return `            <article>
-              <header>
-                <h3>${this.escapeHtml(p.cargo)}</h3>
-                <p>${this.escapeHtml(p.empresa)} · <time>${this.escapeHtml(p.periodo.inicio)} — ${this.escapeHtml(p.periodo.fin)}</time></p>
-              </header>
-              <p>${this.escapeHtml(p.descripcion)}</p>
-${logrosHtml}
-${tagsHtml}
-            </article>`;
+      return `              <li>
+                <time datetime="${this.escapeHtml(p.periodo.inicio)}">${this.escapeHtml(p.periodo.inicio)} — ${this.escapeHtml(p.periodo.fin)}</time>
+                <strong>${this.escapeHtml(p.cargo)}</strong>
+                <span>${this.escapeHtml(p.empresa)}</span>
+                <p>${this.escapeHtml(p.descripcion)}</p>
+              </li>`;
     }).join('\n');
 
     // Formación académica
     const formacionHtml = cv.formacionAcademica.map(f => {
-      const descHtml = f.descripcion ? `              <p>${this.escapeHtml(f.descripcion)}</p>` : '';
-      return `            <article>
-              <header>
-                <h3>${this.escapeHtml(f.titulo)}</h3>
-                <p>${this.escapeHtml(f.institucion)} · <time>${this.escapeHtml(f.periodo.inicio)} — ${this.escapeHtml(f.periodo.fin)}</time></p>
-              </header>
-${descHtml}
-            </article>`;
+      const descHtml = f.descripcion ? `\n                <p>${this.escapeHtml(f.descripcion)}</p>` : '';
+      return `              <li>
+                <time datetime="${this.escapeHtml(f.periodo.inicio)}">${this.escapeHtml(f.periodo.inicio)} — ${this.escapeHtml(f.periodo.fin)}</time>
+                <strong>${this.escapeHtml(f.titulo)}</strong>
+                <span>${this.escapeHtml(f.institucion)}</span>${descHtml}
+              </li>`;
     }).join('\n');
 
     // Competencias en aside
     const competenciasAsideHtml = cv.competencias.map(g => {
       const itemsHtml = g.items.map(it => {
-        const barraHtml = it.nivel !== undefined 
-          ? `                  <div role="progressbar" aria-valuenow="${it.nivel}" aria-valuemin="0" aria-valuemax="100" aria-label="${this.escapeHtml(it.nombre)}: ${it.nivel}%">
-                    <div style="width: ${it.nivel}%;"></div>
-                  </div>`
-          : '';
-        return `                <li>
-                  <span>${this.escapeHtml(it.nombre)}</span>
-                  ${barraHtml}
-                </li>`;
+        return `              <li>
+                <span>${this.escapeHtml(it.nombre)}</span>
+                ${it.nivel !== undefined ? `<span data-nivel="${it.nivel}">${it.nivel}%</span>` : ''}
+              </li>`;
       }).join('\n');
 
-      return `          <div>
-            <h3>${this.escapeHtml(g.nombre)}</h3>
+      return `          <section aria-label="${this.escapeHtml(g.nombre)}">
+            <h2>${this.escapeHtml(g.nombre)}</h2>
             <ul>
 ${itemsHtml}
             </ul>
-          </div>`;
+          </section>`;
     }).join('\n');
 
     return `<!DOCTYPE html>
@@ -413,53 +427,55 @@ ${this.generarHeaderNav(sitio, 'cv')}
 
   <main>
     <section aria-label="Cabecera del currículum">
-      <div>
-        <div>
+      <header>
+        <hgroup>
           <h1>${this.escapeHtml(cv.cabecera.titulo)}</h1>
           <p>${this.escapeHtml(cv.cabecera.subtitulo)}</p>
-        </div>
+        </hgroup>
 ${botonPdfHtml}
-      </div>
+      </header>
     </section>
 
     <section aria-label="Contenido del currículum">
-      <div>
+      <article>
         <aside aria-label="Información de contacto y competencias">
-          <div>
+          <figure>
             <img src="${this.escapeHtml(autor.foto.src)}" alt="${this.escapeHtml(autor.foto.alt)}" width="110" height="110">
-            <p>${this.escapeHtml(autor.nombreCompleto)}</p>
-            <p>${this.escapeHtml(autor.titular)}</p>
-          </div>
+            <figcaption>
+              <strong>${this.escapeHtml(autor.nombreCompleto)}</strong>
+              <p>${this.escapeHtml(autor.titular)}</p>
+            </figcaption>
+          </figure>
 
-          <div>
+          <section aria-label="Contacto">
             <h2>Contacto</h2>
             <ul>
-              <li><strong>Email:</strong> <a href="mailto:${this.escapeHtml(cInfo.email)}">${this.escapeHtml(cInfo.email)}</a></li>
-              <li><strong>Ubicación:</strong> ${this.escapeHtml(cInfo.ubicacion)}</li>
+              <li>Asturias, España</li>
+              <li><a href="mailto:${this.escapeHtml(cInfo.email)}">${this.escapeHtml(cInfo.email)}</a></li>
+              <li><a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">GitHub</a></li>
             </ul>
-          </div>
+          </section>
 
 ${competenciasAsideHtml}
         </aside>
 
-        <div>
-          <section aria-label="Experiencia laboral">
+        <section aria-label="Historial profesional y académico">
+          <section aria-label="Experiencia profesional">
             <h2>Experiencia laboral</h2>
-            <hr>
-            <div>
+            <ol aria-label="Historial de experiencia laboral">
 ${experienciaHtml}
-            </div>
+            </ol>
           </section>
 
-          <section aria-label="Educación y formación">
-            <h2>Educación y formación</h2>
-            <hr>
-            <div>
+          <section aria-label="Formación académica">
+            <h2>Formación académica</h2>
+            <ol aria-label="Historial de formación académica">
 ${formacionHtml}
-            </div>
+            </ol>
           </section>
-        </div>
-      </div>
+        </section>
+      </article>
     </section>
   </main>
 
@@ -478,21 +494,21 @@ ${this.generarFooter(sitio)}
     const canalesHtml = cont.canales.map(c => {
       const isExternal = c.href.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
       return `          <a href="${this.escapeHtml(c.href)}"${isExternal} aria-label="${this.escapeHtml(c.etiqueta)}: ${this.escapeHtml(c.valor)}">
-            <div>
+            <p>
               <span>${this.escapeHtml(c.etiqueta)}</span>
               <span>${this.escapeHtml(c.valor)}</span>
-            </div>
+            </p>
           </a>`;
     }).join('\n');
 
     // Disponibilidad
     const disponibilidadHtml = cont.disponibilidad ? `    <section aria-label="Disponibilidad">
-      <div>
+      <article>
         <h2>Disponibilidad</h2>
         <hr>
         <p><strong>${this.escapeHtml(cont.disponibilidad.estado)}</strong></p>
         <p>${this.escapeHtml(cont.disponibilidad.descripcion)}</p>
-      </div>
+      </article>
     </section>` : '';
 
     return `<!DOCTYPE html>
@@ -505,20 +521,20 @@ ${this.generarHeaderNav(sitio, 'contact')}
 
   <main>
     <section aria-label="Cabecera de contacto">
-      <div>
+      <header>
         <h1>${this.escapeHtml(cont.cabecera.titulo)}</h1>
         <p>${this.escapeHtml(cont.cabecera.subtitulo)}</p>
-      </div>
+      </header>
     </section>
 
     <section aria-label="Formas de contactarme">
-      <div>
+      <article>
         <h2>Formas de contactarme</h2>
         <hr>
         <address>
 ${canalesHtml}
         </address>
-      </div>
+      </article>
     </section>
 
 ${disponibilidadHtml}

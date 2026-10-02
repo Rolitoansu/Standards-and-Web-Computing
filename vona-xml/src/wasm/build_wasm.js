@@ -2,12 +2,16 @@ const fs = require("fs");
 const path = require("path");
 
 async function compilar() {
-  // Cargar wabt desde la instalación local de npm
   let wabtFactory;
   try {
     wabtFactory = require("wabt");
   } catch {
-    wabtFactory = require("/var/www/html/wasm/node_modules/wabt");
+    const localWabt = path.resolve(__dirname, "../../../wasm/node_modules/wabt");
+    if (fs.existsSync(localWabt)) {
+      wabtFactory = require(localWabt);
+    } else {
+      wabtFactory = require("/var/www/html/wasm/node_modules/wabt");
+    }
   }
 
   const wabt = await wabtFactory();

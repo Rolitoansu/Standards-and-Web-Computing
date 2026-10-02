@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="assets/css/index.css">
 
   <script src="https://unpkg.com/maplibre-gl@5.1.0/dist/maplibre-gl.js" defer></script>
-  <script src="assets/js/vona_ts_engine.js" defer></script>
+  <script type="module" src="assets/ts/index.js"></script>
   <script src="assets/js/vona_wasm_engine.js" defer></script>
   <script src="assets/js/nav.js" defer></script>
   <script src="assets/js/app.js" defer></script>
@@ -22,8 +22,8 @@
 
 <body>
   <header>
-    <div>
-      <div>
+    <section aria-label="Identificación de la aplicación">
+      <a href="index.html" aria-label="Inicio VONA">
         <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round">
           <path d="m2 22 8-16 4 8 2-4 6 12Z" />
@@ -34,7 +34,7 @@
           <h1>VONA — Avisos Volcánicos para Aviación</h1>
           <p>OACI Doc 9766 / WMO IWXXM</p>
         </hgroup>
-      </div>
+      </a>
 
       <nav aria-label="Carga de archivo VONA">
         <label data-boton-subir="true">
@@ -48,7 +48,7 @@
           <span>Cargar XML</span>
         </label>
       </nav>
-    </div>
+    </section>
   </header>
 
   <main>
@@ -224,10 +224,11 @@
   </main>
 
   <footer>
-    <div>
+    <section aria-label="Información del sitio">
+      <h2 data-oculto-visual="true">Información del sitio</h2>
       <p>Visualizador VONA &bull; OACI Doc 9766 &bull; <time datetime="2026-09-25">2026</time></p>
       <p><small>Usa la rueda del ratón sobre el mapa para alejar y ver el globo terráqueo completo.</small></p>
-    </div>
+    </section>
   </footer>
 </body>
 

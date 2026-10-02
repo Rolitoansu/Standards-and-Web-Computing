@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Raúl Antuña — AEM Backend Engineer en Hiberus y estudiante de Máster en Ingeniería Web. Página personal con proyectos y currículum.">
-  <meta name="keywords" content="Raúl Antuña, ingeniería web, AEM, Adobe Experience Manager, Hiberus, backend, desarrollador, Asturias">
+  <meta name="description"
+    content="Raúl Antuña — AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web en la Universidad de Oviedo.">
+  <meta name="keywords" content="Raúl Antuña, AEM, Java, Backend, Ingeniero Web, Asturias, Hiberus, portfolio">
   <meta name="author" content="Raúl Antuña">
-  <meta property="og:title" content="Raúl Antuña — Inicio">
-  <meta property="og:description" content="AEM Backend Engineer en Hiberus y estudiante de Máster en Ingeniería Web en la Universidad de Oviedo.">
-  <meta property="og:type" content="website">
   <title>Raúl Antuña — Inicio</title>
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/index.css">
   <script src="assets/js/nav.js" defer></script>
 </head>
+
 <body>
   <header>
+    <a href="index.html">Raúl Antuña</a>
     <nav aria-label="Navegación principal">
-      <a href="index.html" aria-label="Raúl Antuña — Inicio">Mi página personal</a>
-      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">
-        &#9776;
+      <button aria-expanded="false" aria-label="Abrir menú de navegación">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
       </button>
-      <ul id="nav-menu" data-abierto="false">
+      <ul>
         <li><a href="index.html" aria-current="page">Inicio</a></li>
         <li><a href="about.html">Sobre mí</a></li>
         <li><a href="projects.html">Proyectos</a></li>
@@ -35,83 +40,83 @@
   <main>
 
     <section aria-label="Presentación">
-      <div>
-        <div>
+      <article>
+        <header>
           <p>AEM Backend Engineer · Máster en Ingeniería Web</p>
           <h1>Hola, soy<br><span>Raúl Antuña</span></h1>
           <p>
             Desarrollador backend en Hiberus y estudiante del Máster en Ingeniería Web
             en la Universidad de Oviedo. Me gustan los videojuegos y pasar tiempo libre.
           </p>
-          <div>
+          <nav aria-label="Acciones principales">
             <a href="about.html">Conóceme mejor</a>
             <a href="contact.html">Contactar</a>
-          </div>
-        </div>
-        <div>
+          </nav>
+        </header>
+        <figure>
           <img
             src="assets/img/yo.jpg"
             alt="Fotografía de perfil de Raúl Antuña"
             width="208"
             height="208"
           >
-        </div>
-      </div>
+        </figure>
+      </article>
     </section>
 
     <section aria-label="Datos rápidos">
-      <div>
+      <article>
         <ul>
           <li><strong>1+</strong><span>Año de experiencia</span></li>
           <li><strong>5+</strong><span>Proyectos realizados</span></li>
           <li><strong>AEM</strong><span>Especialidad principal</span></li>
         </ul>
-      </div>
+      </article>
     </section>
 
     <section aria-label="Tecnologías">
-      <div>
+      <header>
         <h2>Tecnologías</h2>
         <hr>
         <p>Las principales herramientas con las que trabajo a diario.</p>
-        <ul>
-          <li>
-            <img src="assets/img/logos/html5.svg" alt="" aria-hidden="true" width="32" height="32">
-            <div><span>HTML5</span><span>Avanzado</span></div>
-          </li>
-          <li>
-            <img src="assets/img/logos/css3.svg" alt="" aria-hidden="true" width="32" height="32">
-            <div><span>CSS3</span><span>Avanzado</span></div>
-          </li>
-          <li>
-            <img src="assets/img/logos/javascript.svg" alt="" aria-hidden="true" width="32" height="32">
-            <div><span>JavaScript</span><span>Avanzado</span></div>
-          </li>
-          <li>
-            <img src="assets/img/logos/react.svg" alt="" aria-hidden="true" width="32" height="32">
-            <div><span>React</span><span>Intermedio</span></div>
-          </li>
-          <li>
-            <img src="assets/img/logos/python.svg" alt="" aria-hidden="true" width="32" height="32">
-            <div><span>Python</span><span>Intermedio</span></div>
-          </li>
-          <li>
-            <img src="assets/img/logos/postgresql.svg" alt="" aria-hidden="true" width="32" height="32">
-            <div><span>SQL / PostgreSQL</span><span>Intermedio</span></div>
-          </li>
-          <li>
-            <img src="assets/img/logos/docker.svg" alt="" aria-hidden="true" width="32" height="32">
-            <div><span>Docker</span><span>Intermedio</span></div>
-          </li>
-        </ul>
-      </div>
+      </header>
+      <ul>
+        <li>
+          <img src="assets/img/logos/html5.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>HTML5</span><span>Avanzado</span></p>
+        </li>
+        <li>
+          <img src="assets/img/logos/css3.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>CSS3</span><span>Avanzado</span></p>
+        </li>
+        <li>
+          <img src="assets/img/logos/javascript.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>JavaScript</span><span>Avanzado</span></p>
+        </li>
+        <li>
+          <img src="assets/img/logos/react.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>React</span><span>Intermedio</span></p>
+        </li>
+        <li>
+          <img src="assets/img/logos/python.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>Python</span><span>Intermedio</span></p>
+        </li>
+        <li>
+          <img src="assets/img/logos/postgresql.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>SQL / PostgreSQL</span><span>Intermedio</span></p>
+        </li>
+        <li>
+          <img src="assets/img/logos/docker.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>Docker</span><span>Intermedio</span></p>
+        </li>
+      </ul>
     </section>
 
     <section aria-label="Explora la web">
-      <div>
+      <header>
         <h2>Explora la web</h2>
         <hr>
-      </div>
+      </header>
       <nav aria-label="Secciones del sitio">
         <ul>
           <li>

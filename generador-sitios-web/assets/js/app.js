@@ -158,18 +158,12 @@
           bloqueWasm = `
             <h3>Métricas WebAssembly (WASM)</h3>
             <dl>
-              <div>
-                <dt>Módulo ejecutado</dt>
-                <dd>${metricasWasm.origen}</dd>
-              </div>
-              <div>
-                <dt>Tamaño XML</dt>
-                <dd>${metricasWasm.totalBytes} bytes</dd>
-              </div>
-              <div>
-                <dt>Etiquetas XML</dt>
-                <dd>${metricasWasm.totalEtiquetas} nodos</dd>
-              </div>
+              <dt>Módulo ejecutado</dt>
+              <dd>${metricasWasm.origen}</dd>
+              <dt>Tamaño XML</dt>
+              <dd>${metricasWasm.totalBytes} bytes</dd>
+              <dt>Etiquetas XML</dt>
+              <dd>${metricasWasm.totalEtiquetas} nodos</dd>
             </dl>
           `;
         }

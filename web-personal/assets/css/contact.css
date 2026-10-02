@@ -4,7 +4,7 @@ body > main > section:first-of-type {
   padding: 3.5rem 0;
 }
 
-body > main > section:first-of-type > div {
+body > main > section:first-of-type > header {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -18,7 +18,7 @@ body > main > section:first-of-type p {
   margin-top: 0.5rem;
 }
 
-body > main > section:nth-of-type(2) > div {
+body > main > section:nth-of-type(2) > article {
   max-width: 42rem;
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -49,13 +49,13 @@ body > main > section:nth-of-type(2) address a:hover {
   background: var(--superficie);
 }
 
-body > main > section:nth-of-type(2) address a > div > span:first-child {
+body > main > section:nth-of-type(2) address a > p > span:first-child {
   display: block;
   font-size: 0.75rem;
   color: var(--texto-mutado);
 }
 
-body > main > section:nth-of-type(2) address a > div > span:last-child {
+body > main > section:nth-of-type(2) address a > p > span:last-child {
   font-size: 0.925rem;
   font-weight: 600;
   color: var(--titulo);
@@ -66,13 +66,13 @@ body > main > section:nth-of-type(3) {
   border-top: 0.0625rem solid var(--borde);
 }
 
-body > main > section:nth-of-type(3) > div {
+body > main > section:nth-of-type(3) > article {
   max-width: 42rem;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-body > main > section:nth-of-type(3) > div > p {
+body > main > section:nth-of-type(3) > article > p {
   margin-bottom: 1.25rem;
 }
 

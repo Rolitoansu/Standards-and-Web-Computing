@@ -1,7 +1,15 @@
-import { VonaNotice, VolcanoIdentity, VolcanicAshCloud, AviationColorCode, ValidationResult } from './vona_types';
-import { VonaValidator } from './vona_validator';
+import { VonaNotice, VolcanoIdentity, VolcanicAshCloud, AviationColorCode, ValidationResult } from './vona_types.js';
+import { VonaValidator } from './vona_validator.js';
 
 export class VonaTypeScriptService {
+
+  public parse(cadenaXml: string): VonaNotice[] {
+    const res = this.parseAndValidate(cadenaXml);
+    if (!res.isValid || !res.data) {
+      throw new Error(`Validación TypeScript fallida: ${res.errors.join('; ')}`);
+    }
+    return res.data;
+  }
 
   public parseAndValidate(xmlText: string): ValidationResult<VonaNotice[]> {
     const parser = new DOMParser();

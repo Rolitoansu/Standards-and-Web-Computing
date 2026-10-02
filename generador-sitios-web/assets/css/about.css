@@ -4,7 +4,7 @@ body > main > section:first-of-type {
   padding: 3.5rem 0;
 }
 
-body > main > section:first-of-type > div {
+body > main > section:first-of-type > header {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -13,7 +13,7 @@ body > main > section:first-of-type > div {
   gap: 2rem;
 }
 
-body > main > section:first-of-type > div img {
+body > main > section:first-of-type > header img {
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
@@ -26,7 +26,7 @@ body > main > section:first-of-type h1 {
   color: var(--titulo);
 }
 
-body > main > section:first-of-type > div p {
+body > main > section:first-of-type > header p {
   margin-top: 0.5rem;
   font-size: 1rem;
   color: var(--texto-suave);
@@ -36,25 +36,19 @@ body > main > section:nth-of-type(2) {
   padding: 3.5rem 0;
 }
 
-body > main > section:nth-of-type(2) > div {
+body > main > section:nth-of-type(2) > article {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 body > main > section:nth-of-type(2) h2 {
-  position: static;
-  width: auto;
-  height: auto;
-  margin: 0 0 0.5rem;
-  overflow: visible;
-  clip-path: none;
-  white-space: normal;
   font-size: 1.5rem;
+  margin-bottom: 0.5rem;
   color: var(--titulo);
 }
 
-body > main > section:nth-of-type(2) > div > div {
+body > main > section:nth-of-type(2) > article > section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
@@ -90,19 +84,19 @@ body > main > section:nth-of-type(2) table td a {
   text-decoration: none;
 }
 
-body > main > section:nth-of-type(2) > div > div > div:last-child > p {
+body > main > section:nth-of-type(2) > article > section > aside > p {
   margin-bottom: 1rem;
   line-height: 1.6;
   color: var(--texto-suave);
 }
 
-body > main > section:nth-of-type(2) > div > div > div:last-child > div {
+body > main > section:nth-of-type(2) > article > section > aside > nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-body > main > section:nth-of-type(2) > div > div > div:last-child > div span {
+body > main > section:nth-of-type(2) > article > section > aside > nav span {
   background: var(--primario-claro);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -119,7 +113,7 @@ body > main > section:nth-of-type(3) {
   padding: 3.5rem 0;
 }
 
-body > main > section:nth-of-type(3) > div {
+body > main > section:nth-of-type(3) > article {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -130,7 +124,7 @@ body > main > section:nth-of-type(3) h2 {
   color: var(--titulo);
 }
 
-body > main > section:nth-of-type(3) > div > p {
+body > main > section:nth-of-type(3) > article > p {
   color: var(--texto-suave);
   margin-top: 0.5rem;
 }
@@ -164,12 +158,10 @@ body > main > section:nth-of-type(3) ul li p {
 }
 
 body > main > section:nth-of-type(4) {
-  background: var(--superficie);
-  border-top: 0.0625rem solid var(--borde);
-  padding: 3.5rem 0 4.5rem;
+  padding: 3.5rem 0;
 }
 
-body > main > section:nth-of-type(4) > div {
+body > main > section:nth-of-type(4) > article {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
@@ -180,19 +172,113 @@ body > main > section:nth-of-type(4) h2 {
   color: var(--titulo);
 }
 
-body > main > section:nth-of-type(4) > div > p {
+body > main > section:nth-of-type(4) > article > p {
+  color: var(--texto-suave);
+  margin-top: 0.5rem;
+}
+
+body > main > section:nth-of-type(4) ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+body > main > section:nth-of-type(4) figure {
+  margin: 0;
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio-m);
+  overflow: hidden;
+  background: var(--tarjeta);
+}
+
+body > main > section:nth-of-type(4) figure img {
+  width: 100%;
+  height: 17.5rem;
+  object-fit: cover;
+  display: block;
+}
+
+body > main > section:nth-of-type(4) figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--texto-mutado);
+}
+
+body > main > section:nth-of-type(5) {
+  padding: 3.5rem 0;
+}
+
+body > main > section:nth-of-type(5) > article {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body > main > section:nth-of-type(5) h2 {
+  font-size: 1.5rem;
+  color: var(--titulo);
+}
+
+body > main > section:nth-of-type(5) > article > p {
+  margin: 0.5rem 0 1.5rem;
+  max-width: 48rem;
+  color: var(--texto-suave);
+  line-height: 1.55;
+}
+
+body > main > section:nth-of-type(5) figure {
+  margin: 0;
+  max-width: 48rem;
+  border-radius: var(--radio-m);
+  overflow: hidden;
+  border: 0.0625rem solid var(--borde);
+}
+
+body > main > section:nth-of-type(5) video {
+  width: 100%;
+  display: block;
+  max-height: 28rem;
+}
+
+body > main > section:nth-of-type(6) {
+  background: var(--superficie);
+  border-top: 0.0625rem solid var(--borde);
+  padding: 3.5rem 0 4.5rem;
+}
+
+body > main > section:nth-of-type(6) > article {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body > main > section:nth-of-type(6) h2 {
+  font-size: 1.5rem;
+  color: var(--titulo);
+}
+
+body > main > section:nth-of-type(6) > article > p {
   margin: 0.5rem 0 1.5rem;
   color: var(--texto-suave);
 }
 
-body > main > section:nth-of-type(4) > div > div {
+body > main > section:nth-of-type(6) > article > ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
+  list-style: none;
+  padding: 0;
 }
 
-body > main > section:nth-of-type(4) article {
+body > main > section:nth-of-type(6) > article > ul > li {
+  display: contents;
+}
+
+body > main > section:nth-of-type(6) article {
   background: var(--tarjeta);
   border: 0.0625rem solid var(--borde);
   border-radius: var(--radio-m);
@@ -201,13 +287,13 @@ body > main > section:nth-of-type(4) article {
   flex-direction: column;
 }
 
-body > main > section:nth-of-type(4) article h3 {
+body > main > section:nth-of-type(6) article h3 {
   font-size: 1.05rem;
   margin-bottom: 0.4rem;
   color: var(--titulo);
 }
 
-body > main > section:nth-of-type(4) article p {
+body > main > section:nth-of-type(6) article p {
   font-size: 0.85rem;
   margin-bottom: 1.25rem;
   color: var(--texto-mutado);
@@ -215,20 +301,20 @@ body > main > section:nth-of-type(4) article p {
   flex: 1;
 }
 
-body > main > section:nth-of-type(4) audio {
+body > main > section:nth-of-type(6) audio {
   width: 100%;
   accent-color: var(--primario);
 }
 
 @media (max-width: 48rem) {
-  body > main > section:first-of-type > div {
+  body > main > section:first-of-type > header {
     flex-direction: column;
     text-align: center;
   }
 
-  body > main > section:nth-of-type(2) > div > div,
-  body > main > section:nth-of-type(4) > div > div {
+  body > main > section:nth-of-type(2) > article > section,
+  body > main > section:nth-of-type(4) ul,
+  body > main > section:nth-of-type(6) > article > ul {
     grid-template-columns: 1fr;
   }
 }
-

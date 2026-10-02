@@ -1,8 +1,3 @@
-/**
- * vona_wasm_engine.js — Cargador e interfaz del módulo WebAssembly (compilado desde C++)
- * Aprovecha la velocidad de cómputo en bajo nivel para geodesia esférica y dispersión de ceniza.
- * Refactorizado a ES6+ con const, let y mejores prácticas.
- */
 (function (global) {
   'use strict';
 

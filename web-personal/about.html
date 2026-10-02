@@ -33,21 +33,21 @@
   <main>
 
     <section aria-label="Sobre mí">
-      <div>
+      <header>
         <img src="assets/img/yo.jpg" alt="Fotografía de perfil de Raúl Antuña" width="128" height="128">
-        <div>
+        <hgroup>
           <h1>Sobre mí</h1>
           <p>Un poco de quién soy, qué me gusta y qué me motiva cada día.</p>
-        </div>
-      </div>
+        </hgroup>
+      </header>
     </section>
 
     <section aria-label="Trayectoria e intereses">
-      <div>
+      <article>
         <h2>Trayectoria e intereses</h2>
         <hr>
 
-        <div>
+        <section aria-label="Detalles de trayectoria">
 
           <table aria-label="Datos personales de Raúl Antuña">
             <caption>Datos de contacto e información básica</caption>
@@ -79,7 +79,7 @@
             </tbody>
           </table>
 
-          <div>
+          <aside aria-label="Biografía y áreas de especialidad">
             <p>
               Soy Raúl Antuña, nacido y criado en Asturias. Tras terminar el Grado
               en Ingeniería Informática en la Universidad de Oviedo (2022-2026),
@@ -90,19 +90,19 @@
               Paralelamente curso el Máster en Ingeniería Web, donde profundizo
               en computación web avanzada.
             </p>
-            <div>
+            <nav aria-label="Áreas de especialidad">
               <span>Computación web</span>
               <span>UX / UI</span>
               <span>Frontend</span>
               <span>Open Source</span>
-            </div>
-          </div>
-        </div>
-      </div>
+            </nav>
+          </aside>
+        </section>
+      </article>
     </section>
 
     <section aria-label="Aficiones e intereses">
-      <div>
+      <article>
         <h2>Aficiones e intereses</h2>
         <hr>
         <p>Lo que hago cuando no estoy frente al ordenador (o cuando sí lo estoy, pero por gusto).</p>
@@ -124,11 +124,11 @@
             <p>Me gusta pasar tiempo con mis amigos y descansar.</p>
           </li>
         </ul>
-      </div>
+      </article>
     </section>
 
     <section aria-label="Galería">
-      <div>
+      <article>
         <h2>Galería</h2>
         <hr>
         <p>Algunos momentos y lugares que me definen.</p>
@@ -148,18 +148,18 @@
             </figure>
           </li>
         </ul>
-      </div>
+      </article>
     </section>
 
     <section aria-label="Fórmula 1 y pasión por el motor">
-      <div>
+      <article>
         <h2>Fórmula 1 y pasión por el motor</h2>
         <hr>
         <p>
           Además del desarrollo web y la ingeniería de software, sigo cada carrera de Fórmula 1: me apasiona la
           convergencia entre tecnología punta, telemetría en tiempo real y competición al límite.
         </p>
-        <div>
+        <figure>
           <video controls preload="metadata" aria-label="Vídeo de Fórmula 1 en circuito">
             <source src="assets/video/f1.mp4" type="video/mp4">
             <source src="assets/video/f1.ogv" type="video/ogg">
@@ -169,15 +169,15 @@
               <a href="assets/video/f1.mp4" download>Descarga el vídeo de Fórmula 1</a>.
             </p>
           </video>
-        </div>
-      </div>
+        </figure>
+      </article>
     </section>
 
     <section aria-label="Radios de Fórmula 1">
-      <div>
+      <article>
         <h2>Radios de Fórmula 1</h2>
         <hr>
-        <p>Algunos de los mejores mensajes de radio que ha dejado la Fórmula 1.</p>
+        <p>Algunos de los mejores mensajes de radio y momentos sonoros que ha dejado la Fórmula 1.</p>
         <ul>
           <li>
             <article>
@@ -204,20 +204,8 @@
               </audio>
             </article>
           </li>
-          <li>
-            <article>
-              <h3>"My front wing, my front wing!" — Grosjean 2012</h3>
-              <p>Grosjean desesperado con su alerón delantero. Un clásico de la radio que no pasa de moda.</p>
-              <audio controls preload="metadata" aria-label="Radio Grosjean front wing 2012">
-                <source src="assets/audio/grosjean-front-wing.mp3" type="audio/mpeg">
-                <source src="assets/audio/grosjean-front-wing.ogg" type="audio/ogg">
-                <p>Tu navegador no soporta audio HTML5. <a href="assets/audio/grosjean-front-wing.mp3" download>Descarga
-                    el audio</a>.</p>
-              </audio>
-            </article>
-          </li>
         </ul>
-      </div>
+      </article>
     </section>
   </main>
 

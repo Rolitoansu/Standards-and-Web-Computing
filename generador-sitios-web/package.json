@@ -2,9 +2,9 @@
   "name": "generador-sitios-web",
   "version": "1.0.0",
   "description": "Generador de Sitios Web Personales a partir de XML PersonalSiteML con soporte WebAssembly",
+  "type": "module",
   "scripts": {
-    "build:ts": "node build_ts.js",
-    "typecheck": "node build_ts.js"
+    "build": "tsc"
   },
   "devDependencies": {
     "typescript": "^5.0.0"

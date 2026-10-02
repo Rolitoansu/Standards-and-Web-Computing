@@ -2,8 +2,8 @@
   'use strict';
 
   document.addEventListener('DOMContentLoaded', function () {
-    const botones   = document.querySelectorAll('div[role="group"] button');
-    const proyectos = document.querySelectorAll('body > main > section:nth-of-type(2) > div > ul > li');
+    const botones   = document.querySelectorAll('nav[aria-label="Filtrar proyectos por categoría"] button');
+    const proyectos = document.querySelectorAll('body > main > section:nth-of-type(2) > article > ul > li');
 
     if (!botones.length || !proyectos.length) {
       return;

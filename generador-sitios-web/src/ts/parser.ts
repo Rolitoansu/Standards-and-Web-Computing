@@ -24,7 +24,7 @@ import {
   EstudioFormacion,
   GrupoCompetencias,
   OpcionesGenerador
-} from './types';
+} from './types.js';
 
 export class PersonalSiteXMLParser {
   private static readonly AVATARES: Record<string, string> = {

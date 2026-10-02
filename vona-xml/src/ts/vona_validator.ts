@@ -1,4 +1,4 @@
-import { AviationColorCode, GeoCoordinate, ValidationResult, VonaNotice } from './vona_types';
+import { AviationColorCode, GeoCoordinate, ValidationResult, VonaNotice } from './vona_types.js';
 
 export class VonaValidator {
   private static readonly VALID_COLOR_CODES: ReadonlySet<string> = new Set([

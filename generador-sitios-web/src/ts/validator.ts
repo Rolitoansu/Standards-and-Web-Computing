@@ -2,7 +2,7 @@
  * validator.ts — Validador semántico y estructural en TypeScript para PersonalSiteML
  */
 
-import { SitioPersonalModel } from './types';
+import { SitioPersonalModel } from './types.js';
 
 export interface ValidacionResultado {
   esValido: boolean;

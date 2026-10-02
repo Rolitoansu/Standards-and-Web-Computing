@@ -125,7 +125,7 @@ hr {
 }
 
 table caption,
-body > main > section:nth-of-type(2) > div > h2:first-of-type {
+body > main > section:nth-of-type(2) > article > h2:first-of-type {
   position: absolute;
   width: 0.0625rem;
   height: 0.0625rem;

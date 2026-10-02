@@ -7,8 +7,7 @@ body > header {
   z-index: 100;
 }
 
-body > header > section,
-body > header > div {
+body > header > section {
   max-width: var(--ancho-maximo-layout);
   margin-left: auto;
   margin-right: auto;
@@ -19,15 +18,17 @@ body > header > div {
   gap: 1.5rem;
 }
 
-body > header > section > hgroup,
-body > header > div > div:first-of-type {
+body > header > section > a:first-of-type,
+body > header > section > hgroup {
   display: flex;
   align-items: center;
   gap: 0.875rem;
+  text-decoration: none;
+  color: inherit;
 }
 
-body > header > section > hgroup svg,
-body > header > div > div:first-of-type svg {
+body > header > section > a:first-of-type svg,
+body > header > section > hgroup svg {
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
@@ -121,8 +122,7 @@ body > footer {
   margin-top: auto;
 }
 
-body > footer > section,
-body > footer > div {
+body > footer > section {
   max-width: var(--ancho-maximo-layout);
   margin-left: auto;
   margin-right: auto;
