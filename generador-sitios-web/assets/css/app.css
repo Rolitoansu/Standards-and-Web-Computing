@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--fondo);
   color: var(--texto);
   line-height: 1.6;
@@ -141,7 +141,7 @@ body > main > section form fieldset p input[type="file"] {
   background: var(--superficie);
   color: var(--texto-suave);
   cursor: pointer;
-  transition: border-color var(--transicion), background var(--transicion);
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 body > main > section form fieldset p input[type="file"]:hover,
@@ -159,7 +159,7 @@ body > main > section form button[type="submit"] {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background var(--transicion);
+  transition: background 0.15s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -222,13 +222,13 @@ body > main > section output ul li a {
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all var(--transicion);
+  transition: all 0.15s ease;
 }
 
 body > main > section output ul li a:hover {
-  background: var(--primario);
+  background: var(--primario-hover);
   color: #ffffff;
-  border-color: var(--primario);
+  border-color: transparent;
 }
 
 body > main > section form fieldset p select {
@@ -239,7 +239,7 @@ body > main > section form fieldset p select {
   background: var(--superficie);
   color: var(--texto);
   cursor: pointer;
-  transition: border-color var(--transicion);
+  transition: border-color 0.15s ease;
 }
 
 body > main > section form fieldset p select:focus-visible {
