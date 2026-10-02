@@ -115,6 +115,26 @@
         mapa.addControl(new motor.NavigationControl({ visualizePitch: true }), 'top-right');
         mapa.addControl(new motor.ScaleControl({ unit: 'metric' }), 'bottom-right');
 
+        // Cumplimiento W3C ARIA: MapLibre genera internamente divs para marcadores con tabindex y aria-label sin rol
+        if (window.MutationObserver && contenedorMapa) {
+          const observadorW3C = new MutationObserver((mutations) => {
+            mutations.forEach((mutacion) => {
+              mutacion.addedNodes.forEach((nodo) => {
+                if (nodo.nodeType === 1) {
+                  if (nodo.classList && nodo.classList.contains('maplibregl-marker')) {
+                    nodo.setAttribute('role', 'button');
+                  }
+                  if (nodo.querySelectorAll) {
+                    const markers = nodo.querySelectorAll('.maplibregl-marker');
+                    markers.forEach((m) => m.setAttribute('role', 'button'));
+                  }
+                }
+              });
+            });
+          });
+          observadorW3C.observe(contenedorMapa, { childList: true, subtree: true });
+        }
+
         mapa.on('load', () => {
           if (datosVolcanesActuales.length > 0) {
             renderizarEnMapa(datosVolcanesActuales[indiceVolcanActivo]);
@@ -598,6 +618,12 @@
           .setLngLat([v.lon, v.lat])
           .setPopup(popup)
           .addTo(mapa);
+
+        const elMarcador = marcador.getElement();
+        if (elMarcador) {
+          elMarcador.setAttribute('role', 'button');
+          elMarcador.setAttribute('aria-label', `Volcán ${v.nombre}`);
+        }
 
         contenedorMarcador.addEventListener('click', () => {
           if (i !== indiceVolcanActivo) {
