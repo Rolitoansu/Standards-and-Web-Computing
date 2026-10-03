@@ -266,6 +266,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-cambiarOperacion("factorial", 0);
-cargarWasm();
