@@ -47,11 +47,14 @@ Metodología rigurosa de medición (Benchmarking):
   - Carga intensiva: cada prueba ejecuta 100.000 repeticiones consecutivas
     para magnificar las diferencias temporales y obtener cifras estadísticamente
     significativas.
-  - Reducción del sobrecoste de frontera (Boundary Crossing): además de
-    las funciones individuales, el archivo WAT incluye funciones de benchmark
-    internas ($bench_factorial, $bench_coseno, $bench_es_primo) que iteran
-    dentro del propio módulo WASM. Esto elimina el sobrecoste de interoperabilidad
-    JS-WASM en cada llamada y mide la velocidad real del código compilado.
+  - Reducción del sobrecoste de frontera (Boundary Crossing) y benchmarking inlined:
+    Además de las funciones individuales, el archivo WAT incluye funciones de benchmark
+    internas ($bench_factorial, $bench_coseno, $bench_es_primo) con el cómputo algorítmico
+    integrado de forma inlined dentro del bucle. Esto elimina por completo el sobrecoste
+    de interoperabilidad JS-WASM en cada llamada y evita la sobrecarga artificial de
+    creación de marcos de pila (instrucción call) que wat2wasm no inlínea automáticamente,
+    compitiendo en estricta igualdad de condiciones con el inlining que realiza el compilador
+    JIT de JavaScript.
   - Temporización de alta precisión: medición mediante la API estándar
     `performance.now()`, con resolución de microsegundos, y cálculo automático
     del factor de aceleración (Speedup = Tiempo_JS / Tiempo_WASM).
@@ -64,11 +67,12 @@ Metodología rigurosa de medición (Benchmarking):
   · ejemplo.wat   → Código fuente WebAssembly en formato texto (WAT).
                     Escrito manualmente con instrucciones de la máquina de pila
                     de WebAssembly (declaración de tipos, locales, bucles con
-                    block/loop/br_if, aritmética i32/i64/f64 y funciones de benchmark).
+                    block/loop/br_if, aritmética i32/i64/f64 y funciones de benchmark
+                    con lógica algorítmica inlined).
 
   · ejemplo.wasm  → Módulo binario compilado a partir de ejemplo.wat mediante
                     la herramienta oficial WABT (WebAssembly Binary Toolkit).
-                    Tamaño ultracompacto: únicamente 459 bytes.
+                    Tamaño ultracompacto: únicamente 661 bytes.
 
   · ejemplo.js    → Controlador y benchmark en JavaScript:
                     - Carga e instanciación asíncrona del binario WASM mediante

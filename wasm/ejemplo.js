@@ -22,15 +22,20 @@ function js_factorial_bigint(n) {
 function js_bench_factorial(n, reps) {
   let v = 1;
   for (let i = 0; i < reps; i++) {
-    v = js_factorial(n);
+    let r = 1;
+    for (let j = 2; j <= n; j++) r *= j;
+    v = r;
   }
   return v;
 }
 
 function js_bench_factorial_bigint(n, reps) {
   let v = 1n;
+  const lim = BigInt(n);
   for (let i = 0; i < reps; i++) {
-    v = js_factorial_bigint(n);
+    let r = 1n;
+    for (let j = 2n; j <= lim; j++) r *= j;
+    v = r;
   }
   return v;
 }
@@ -47,9 +52,16 @@ function js_coseno(x) {
 }
 
 function js_bench_coseno(x, reps) {
+  const x2 = x * x;
   let v = 0;
-  for (let i = 0; i < reps; i++) {
-    v = js_coseno(x);
+  for (let r = 0; r < reps; r++) {
+    let termino = 1.0, suma = 1.0;
+    for (let i = 1; i <= 50; i++) {
+      const di = 2 * i;
+      termino *= -x2 / ((di - 1) * di);
+      suma += termino;
+    }
+    v = suma;
   }
   return v;
 }
@@ -65,8 +77,18 @@ function js_es_primo(n) {
 
 function js_bench_es_primo(n, reps) {
   let v = 0;
-  for (let i = 0; i < reps; i++) {
-    v = js_es_primo(n);
+  for (let r = 0; r < reps; r++) {
+    if (n < 2) { v = 0; continue; }
+    if (n === 2) { v = 1; continue; }
+    if (n % 2 === 0) { v = 0; continue; }
+    let esP = 1;
+    for (let d = 3; d * d <= n; d += 2) {
+      if (n % d === 0) {
+        esP = 0;
+        break;
+      }
+    }
+    v = esP;
   }
   return v;
 }
@@ -171,13 +193,8 @@ function ejecutar() {
         repeticiones = REPS;
         const warmup = WARMUP;
 
-        if (n <= 20) {
-          rw = bench(r => Number(wasm.bench_factorial(BigInt(n), r)), repeticiones, warmup);
-          rj = bench(r => js_bench_factorial(n, r), repeticiones, warmup);
-        } else {
-          rw = bench(r => wasm.bench_factorial(BigInt(n), r), repeticiones, warmup);
-          rj = bench(r => js_bench_factorial_bigint(n, r), repeticiones, warmup);
-        }
+        rw = bench(r => wasm.bench_factorial(BigInt(n), r), repeticiones, warmup);
+        rj = bench(r => js_bench_factorial_bigint(n, r), repeticiones, warmup);
         rw.valor = String(rw.valor);
         rj.valor = String(rj.valor);
 
