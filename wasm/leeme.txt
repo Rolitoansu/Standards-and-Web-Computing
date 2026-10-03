@@ -44,25 +44,19 @@ de ambos entornos sometiéndolos a tres algoritmos matemáticos intensivos:
      - Ejemplo: comprobación del primo 982.451.653 (31.344 comprobaciones de división
        por repetición, evaluado en 2.000 repeticiones para superar el umbral de ruido del temporizador).
 
-Metodología rigurosa de medición (Benchmarking):
-  - Calentamiento previo (Warmup) y Tier-up: se ejecutan 10.000 iteraciones iniciales
-    para permitir que el motor del navegador (V8, SpiderMonkey, JavaScriptCore)
-    compile el módulo WebAssembly al tier óptimo de código máquina nativo (TurboFan)
-    y estabilice las optimizaciones JIT.
-  - Carga intensiva: cada prueba ejecuta entre 2.000 y 100.000 repeticiones consecutivas
-    para magnificar las diferencias temporales y obtener cifras estadísticamente
-    significativas que superen con holgura el ruido de los temporizadores de los navegadores.
-  - Reducción del sobrecoste de frontera (Boundary Crossing) y benchmarking inlined:
-    Además de las funciones individuales, el archivo WAT incluye funciones de benchmark
-    internas ($bench_factorial, $bench_coseno, $bench_es_primo) con el cómputo algorítmico
-    integrado de forma inlined dentro del bucle. Esto elimina por completo el sobrecoste
-    de interoperabilidad JS-WASM en cada llamada y evita la sobrecarga artificial de
-    creación de marcos de pila (instrucción call) que wat2wasm no inlínea automáticamente,
-    compitiendo en estricta igualdad de condiciones con el inlining que realiza el compilador
-    JIT de JavaScript.
-  - Temporización de alta precisión: medición mediante la API estándar
-    `performance.now()`, con resolución de microsegundos, y cálculo automático
-    del factor de aceleración (Speedup = Tiempo_JS / Tiempo_WASM).
+Detalles de la medición y benchmarking:
+  - Calentamiento previo (Warmup): se ejecutan iteraciones iniciales para que
+    tanto el JIT de JavaScript como el compilador de WebAssembly optimicen las
+    funciones antes de empezar a cronometrar.
+  - Repeticiones suficientes: se ejecutan entre 2.000 y 100.000 repeticiones según
+    el algoritmo, garantizando que el tiempo total sea representativo y no se pierda
+    en el redondeo de los temporizadores del navegador.
+  - Bucles internos inlined en WAT: las funciones $bench_* incluyen la lógica del
+    algoritmo directamente dentro del bucle. Esto evita el coste de llamada entre
+    JS y WASM en cada vuelta y permite competir en igualdad con JS, cuyo motor
+    inlínea las funciones pequeñas automáticamente.
+  - Temporización: medición mediante `performance.now()` y cálculo del factor de
+    mejora (Tiempo_JS / Tiempo_WASM).
 
 
 --------------------------------------------------------------------
@@ -189,30 +183,25 @@ WebAssembly Core Specification:
       que WebAssembly actúa como motor de cálculo para tareas intensivas en CPU
       (criptografía, procesamiento de audio/vídeo, motores físicos, compresión, etc.).
 
-4.7 Comportamiento y capacidades según el motor del navegador (Safari vs Chromium):
-    - Rendimiento en Apple Safari (WebKit / JavaScriptCore):
-      En navegadores basados en WebKit como Safari, el motor de ejecución es
-      JavaScriptCore (JSC). Su canalización de compilación para WebAssembly utiliza
-      los compiladores BBQ (Build-Bytecode-Quickly) y OMG (Optimizing-Math-Generator).
-      Al estar estrechamente optimizado para el ecosistema macOS y la arquitectura
-      Apple Silicon (procesadores M1/M2/M3/M4 de arquitectura ARM64), JavaScriptCore
-      mapea de forma directa e inmediata los tipos `i32`, `i64` y `f64` de WASM sobre
-      los registros hardware de la CPU.
-    - Menor dependencia de heurísticas especulativas:
-      A diferencia del compilador TurboFan de Google Chrome (motor V8), que aplica
-      técnicas muy agresivas de optimización especulativa sobre bucles puros de JavaScript
-      (llegando a desenrollar iteraciones completas o saltarse cómputos si detecta valores
-      invariantes), JavaScriptCore en Safari ejecuta el código respetando de forma más
-      fidedigna la carga real de cada ciclo. En Safari, WebAssembly funciona de manera
-      óptima y predecible desde la primera ejecución, mostrando ventajas de velocidad
-      consistentes y sostenidas frente a JavaScript.
-    - Resolución de temporizadores y mitigación de canal lateral (Spectre):
-      Las capacidades y políticas de seguridad de cada navegador introducen pequeñas
-      variaciones en la resolución de `performance.now()`. En Safari, el redondeo de
-      marcas de tiempo está calibrado de manera diferente a Chrome. Gracias al diseño
-      del benchmark implementado —con cargas de entre 2.000 y 100.000 repeticiones— se
-      supera el umbral de ruido del temporizador en cualquier motor, permitiendo apreciar
-      la superioridad de WebAssembly tanto en Safari como en navegadores basados en Chromium.
+4.7 Comportamiento según el navegador (Safari vs Chrome):
+    - Safari (WebKit / JavaScriptCore):
+      En Safari la comparativa es especialmente clara y favorable a WASM.
+      El motor JavaScriptCore compila WebAssembly de forma muy directa a código
+      máquina (usando sus compiladores internos BBQ y OMG), mapeando los tipos
+      i32, i64 y f64 directamente a registros de CPU de la máquina.
+    - Optimizaciones de bucle en Chrome (motor V8):
+      En Chrome, el compilador JIT (TurboFan) a veces hace "trampa" en benchmarks
+      sintéticos: si detecta que un bucle repite el mismo cálculo sin efectos
+      secundarios, puede eliminar iteraciones o reutilizar registros. JavaScriptCore
+      en Safari no es tan agresivo eliminando código en caliente y ejecuta cada
+      iteración tal cual, por lo que el rendimiento real de WebAssembly se nota
+      mucho más frente a JavaScript.
+    - Resolución del temporizador:
+      Cada navegador aplica precisiones distintas en performance.now() por temas
+      de seguridad (Spectre). En Safari las mediciones cortas son más sensibles a
+      este redondeo, motivo por el cual se aumentaron las repeticiones en las
+      pruebas pesadas (como el primo) para que el resultado sea fiable y no dependa
+      del navegador donde se ejecute.
 
 
 --------------------------------------------------------------------
