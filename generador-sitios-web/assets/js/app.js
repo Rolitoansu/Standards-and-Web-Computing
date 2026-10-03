@@ -147,9 +147,6 @@
         descargarBlob(nombreZip, zipBlob);
 
         // 8. Presentar resultado accesible y métricas WASM en el elemento <output>
-        const urlZipDescarga = URL.createObjectURL(zipBlob);
-        const tamanoKb = (zipBlob.size / 1024).toFixed(1);
-
         let bloqueWasm = '';
         if (metricasWasm) {
           const tamanoXmlKb = (metricasWasm.totalBytes / 1024).toFixed(2);
@@ -179,13 +176,6 @@
 
         salida.innerHTML = `
           <p><strong>¡Sitio web generado y empaquetado con éxito para ${autor}!</strong></p>
-          <ul>
-            <li>
-              <a href="${urlZipDescarga}" download="${nombreZip}">
-                Descargar paquete comprimido (${nombreZip} · ${tamanoKb} KB)
-              </a>
-            </li>
-          </ul>
           ${bloqueWasm}
         `;
       } catch (error) {
