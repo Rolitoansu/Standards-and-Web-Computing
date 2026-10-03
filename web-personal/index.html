@@ -17,17 +17,10 @@
 
 <body>
   <header>
-    <a href="index.html">Raúl Antuña</a>
     <nav aria-label="Navegación principal">
-      <button aria-expanded="false" aria-label="Abrir menú de navegación">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-      <ul>
+      <a href="index.html" aria-label="Raúl Antuña — Inicio">Mi página personal</a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
+      <ul id="nav-menu" data-abierto="false">
         <li><a href="index.html" aria-current="page">Inicio</a></li>
         <li><a href="about.html">Sobre mí</a></li>
         <li><a href="projects.html">Proyectos</a></li>
