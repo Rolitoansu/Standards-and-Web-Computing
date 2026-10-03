@@ -43,9 +43,9 @@ function js_bench_factorial_bigint(n, reps) {
 function js_coseno(x) {
   const x2 = x * x;
   let termino = 1.0, suma = 1.0;
-  for (let i = 1; i <= 50; i++) {
+  for (let i = 1; i <= 15; i++) {
     const di = 2 * i;
-    termino *= -x2 / ((di - 1) * di);
+    termino = (termino * -x2) / ((di - 1) * di);
     suma += termino;
   }
   return suma;
@@ -56,9 +56,9 @@ function js_bench_coseno(x, reps) {
   let v = 0;
   for (let r = 0; r < reps; r++) {
     let termino = 1.0, suma = 1.0;
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 15; i++) {
       const di = 2 * i;
-      termino *= -x2 / ((di - 1) * di);
+      termino = (termino * -x2) / ((di - 1) * di);
       suma += termino;
     }
     v = suma;
@@ -211,8 +211,8 @@ function ejecutar() {
       } else if (operacion === "primo") {
         const n = parseInt(inputs[2].value, 10);
 
-        repeticiones = n > 100000 ? 200 : REPS;
-        const warmup = n > 100000 ? 20 : WARMUP;
+        repeticiones = n > 100000 ? 2000 : REPS;
+        const warmup = n > 100000 ? 200 : WARMUP;
 
         rw = bench(r => wasm.bench_es_primo(n, r), repeticiones, warmup);
         rj = bench(r => js_bench_es_primo(n, r), repeticiones, warmup);

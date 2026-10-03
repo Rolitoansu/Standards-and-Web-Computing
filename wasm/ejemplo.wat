@@ -40,7 +40,7 @@
     (local.get $r)
   )
 
-  ;; Coseno mediante serie de Taylor (50 términos)
+  ;; Coseno mediante serie de Taylor (15 términos, precisión IEEE-754 completa)
   (func $coseno (export "coseno") (param $x f64) (result f64)
     (local $suma    f64)
     (local $termino f64)
@@ -53,7 +53,7 @@
     (local.set $di      (i32.const 2))
     (block $end
       (loop $loop
-        (br_if $end (i32.gt_u (local.get $di) (i32.const 100)))
+        (br_if $end (i32.gt_u (local.get $di) (i32.const 30)))
         ;; denom = (di - 1) * di
         (local.set $denom
           (f64.convert_i32_u
@@ -63,11 +63,11 @@
             )
           )
         )
-        ;; termino = termino * (-x^2 / denom)
+        ;; termino = (termino * -x^2) / denom
         (local.set $termino
-          (f64.mul
-            (local.get $termino)
-            (f64.div (local.get $neg_x2) (local.get $denom))
+          (f64.div
+            (f64.mul (local.get $termino) (local.get $neg_x2))
+            (local.get $denom)
           )
         )
         (local.set $suma (f64.add (local.get $suma) (local.get $termino)))
@@ -89,13 +89,13 @@
     (block $end_bench
       (loop $loop_bench
         (br_if $end_bench (i32.eqz (local.get $reps)))
-        ;; Cálculo inlined de la serie de Taylor (50 términos)
+        ;; Cálculo inlined de la serie de Taylor (15 términos)
         (local.set $termino (f64.const 1.0))
         (local.set $suma    (f64.const 1.0))
         (local.set $di      (i32.const 2))
         (block $end_taylor
           (loop $loop_taylor
-            (br_if $end_taylor (i32.gt_u (local.get $di) (i32.const 100)))
+            (br_if $end_taylor (i32.gt_u (local.get $di) (i32.const 30)))
             (local.set $denom
               (f64.convert_i32_u
                 (i32.mul
@@ -105,9 +105,9 @@
               )
             )
             (local.set $termino
-              (f64.mul
-                (local.get $termino)
-                (f64.div (local.get $neg_x2) (local.get $denom))
+              (f64.div
+                (f64.mul (local.get $termino) (local.get $neg_x2))
+                (local.get $denom)
               )
             )
             (local.set $suma (f64.add (local.get $suma) (local.get $termino)))
