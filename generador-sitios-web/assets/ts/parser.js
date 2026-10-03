@@ -378,7 +378,7 @@ export class PersonalSiteXMLParser {
                     const it = itNodes[j];
                     items.push({
                         nombre: this.getAttr(it, 'nombre', ''),
-                        nivel: it.hasAttribute('nivel') ? parseInt(this.getAttr(it, 'nivel', '80'), 10) : undefined
+                        nivel: it.hasAttribute('nivel') ? this.getAttr(it, 'nivel', '') : undefined
                     });
                 }
                 gruposList.push({

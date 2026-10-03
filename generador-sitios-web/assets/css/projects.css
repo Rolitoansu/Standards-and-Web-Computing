@@ -81,11 +81,11 @@ body > main > section:nth-of-type(2) article article {
   box-sizing: border-box;
 }
 
-body > main > section:nth-of-type(2) > article > ul > li:first-child {
+body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) {
   grid-column: 1 / -1;
 }
 
-body > main > section:nth-of-type(2) > article > ul > li:first-child article {
+body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) article {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
   gap: 2rem;

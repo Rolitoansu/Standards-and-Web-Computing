@@ -180,7 +180,7 @@ export interface EstudioFormacion {
 
 export interface ItemCompetencia {
   nombre: string;
-  nivel?: number;
+  nivel?: string;
 }
 
 export interface GrupoCompetencias {

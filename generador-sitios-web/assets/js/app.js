@@ -78,9 +78,6 @@
         if (typeof WasmMetricsRunner !== 'undefined') {
           await WasmMetricsRunner.cargarModulo();
           metricasWasm = WasmMetricsRunner.analizar(contenidoXml);
-          if (metricasWasm) {
-            metricasWasm.origen = 'xml_metrics.wasm (compilado desde xml_metrics.wat)';
-          }
         }
 
         // 3. Generación HTML con el motor semántico (el avatar se define directamente en el XML)
@@ -155,21 +152,40 @@
 
         let bloqueWasm = '';
         if (metricasWasm) {
+          const tamanoXmlKb = (metricasWasm.totalBytes / 1024).toFixed(2);
+          const tiempoTexto = metricasWasm.tiempoMs > 0 ? `${metricasWasm.tiempoMs} ms` : '< 0.05 ms (instantáneo)';
+
           bloqueWasm = `
-            <h3>Métricas WebAssembly (WASM)</h3>
+            <h3>Métricas de análisis WebAssembly (WASM)</h3>
+            <p>El documento XML fue analizado directamente en memoria lineal mediante el módulo nativo compilado <code>xml_metrics.wasm</code>:</p>
             <dl>
-              <dt>Módulo ejecutado</dt>
-              <dd>${metricasWasm.origen}</dd>
-              <dt>Tamaño XML</dt>
-              <dd>${metricasWasm.totalBytes} bytes</dd>
-              <dt>Etiquetas XML</dt>
-              <dd>${metricasWasm.totalEtiquetas} nodos</dd>
+              <dt>Motor de cómputo</dt>
+              <dd><code>${metricasWasm.motor}</code></dd>
+              <dt>Módulo binario</dt>
+              <dd>xml_metrics.wasm (279 B compilado)</dd>
+              <dt>Tamaño del documento</dt>
+              <dd>${tamanoXmlKb} KB (${metricasWasm.totalBytes.toLocaleString('es-ES')} bytes)</dd>
+              <dt>Delimitadores léxicos (&lt;)</dt>
+              <dd>${metricasWasm.totalEtiquetas.toLocaleString('es-ES')} aperturas de etiqueta</dd>
+              <dt>Integridad (Hash FNV-1a 32-bit)</dt>
+              <dd><code>0x${metricasWasm.hashHex.toUpperCase()}</code></dd>
+              <dt>Complejidad estructural</dt>
+              <dd>${metricasWasm.puntuacionComplejidad.toLocaleString('es-ES')} pts</dd>
+              <dt>Tiempo de cómputo</dt>
+              <dd>${tiempoTexto}</dd>
             </dl>
           `;
         }
 
         salida.innerHTML = `
           <p><strong>¡Sitio web generado y empaquetado con éxito para ${autor}!</strong></p>
+          <ul>
+            <li>
+              <a href="${urlZipDescarga}" download="${nombreZip}">
+                Descargar paquete comprimido (${nombreZip} · ${tamanoKb} KB)
+              </a>
+            </li>
+          </ul>
           ${bloqueWasm}
         `;
       } catch (error) {

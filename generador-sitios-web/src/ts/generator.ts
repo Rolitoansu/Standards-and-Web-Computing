@@ -267,48 +267,25 @@ ${this.generarFooter(sitio)}
       return `          <button aria-pressed="${isPressed}" data-filter="${this.escapeHtml(c.id)}">${this.escapeHtml(c.etiqueta)}</button>`;
     }).join('\n');
 
-    // Lista de artículos de proyectos
+    // Lista de artículos de proyectos (renderizado uniforme sin imágenes de captura)
     const articulosHtml = proy.proyectos.map((p, idx) => {
       const badgeDestacado = p.destacado && p.etiquetaDestacada 
-        ? `                <em>${this.escapeHtml(p.etiquetaDestacada)}</em>\n` 
+        ? `              <em>${this.escapeHtml(p.etiquetaDestacada)}</em>\n` 
         : '';
 
       const tagsHtml = p.tecnologias.map(t => {
-        return `                  <span>${this.escapeHtml(t)}</span>`;
+        return `                <span>${this.escapeHtml(t)}</span>`;
       }).join('\n');
 
       const enlacesHtml = p.enlaces.map(e => {
-        return `                  <a href="${this.escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer">${this.escapeHtml(e.texto)}</a>`;
+        return `                  <a href="${this.escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer" aria-label="${this.escapeHtml(e.texto)}: ${this.escapeHtml(p.titulo)}">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>`;
       }).join('\n');
 
-      if (p.imagen) {
-        return `          <li>
-            <article data-category="${this.escapeHtml(p.categoria)}" aria-label="${this.escapeHtml(p.titulo)}">
-              <figure>
-                <img
-                  src="${this.escapeHtml(p.imagen.src)}"
-                  alt="${this.escapeHtml(p.imagen.alt)}"
-                  width="${p.imagen.ancho || 600}"
-                  height="${p.imagen.alto || 380}"
-                  loading="lazy"
-                >
-              </figure>
-              <section>
-${badgeDestacado}                <h3>${this.escapeHtml(p.titulo)}</h3>
-                <span data-estado="${this.escapeHtml(p.estado)}">${this.escapeHtml(p.estado)}</span>
-                <p>
-                  ${this.escapeHtml(p.descripcion)}
-                </p>
-                <nav aria-label="Tecnologías usadas">
-${tagsHtml}
-                </nav>
-${enlacesHtml}
-              </section>
-            </article>
-          </li>`;
-      }
-
-      // Si no tiene imagen, se determina el logo tecnológico según la primera tecnología coincidente
+      // Determinar logo tecnológico según la primera tecnología coincidente
       const logosDisponibles = ['typescript', 'javascript', 'python', 'java', 'c', 'go', 'react', 'svelte', 'docker', 'postgresql', 'html5', 'css3'];
       let logoTech = 'typescript';
       for (const t of p.tecnologias) {
@@ -328,7 +305,7 @@ ${enlacesHtml}
 ${enlacesHtml}
                 </nav>
               </header>
-              <h3>${this.escapeHtml(p.titulo)}</h3>
+${badgeDestacado}              <h3>${this.escapeHtml(p.titulo)}</h3>
               <span data-estado="${this.escapeHtml(p.estado)}">${this.escapeHtml(p.estado)}</span>
               <p>
                 ${this.escapeHtml(p.descripcion)}
@@ -412,22 +389,38 @@ ${this.generarFooter(sitio)}
               </li>`;
     }).join('\n');
 
-    // Competencias en aside
-    const competenciasAsideHtml = cv.competencias.map(g => {
-      const itemsHtml = g.items.map(it => {
-        return `              <li>
-                <span>${this.escapeHtml(it.nombre)}</span>
-                ${it.nivel !== undefined ? `<span data-nivel="${it.nivel}">${it.nivel}%</span>` : ''}
-              </li>`;
-      }).join('\n');
-
-      return `          <section aria-label="${this.escapeHtml(g.nombre)}">
-            <h2>${this.escapeHtml(g.nombre)}</h2>
+    // Habilidades técnicas en aside (píldoras sin porcentajes ni NaN, idéntico a web-personal)
+    const itemsTecnicos: string[] = [];
+    for (const g of cv.competencias) {
+      for (const it of g.items) {
+        itemsTecnicos.push(`              <li>${this.escapeHtml(it.nombre)}</li>`);
+      }
+    }
+    const habilidadesSectionHtml = itemsTecnicos.length > 0 ? `          <section aria-label="Habilidades técnicas">
+            <h2>Habilidades técnicas</h2>
             <ul>
-${itemsHtml}
+${itemsTecnicos.join('\n')}
             </ul>
-          </section>`;
-    }).join('\n');
+          </section>\n` : '';
+
+    // Idiomas en aside (igual que en web personal, con data-nivel y sin porcentajes)
+    let idiomasSectionHtml = '';
+    const listaIdiomas = sitio.paginas.sobreMi?.idiomas || [];
+    if (listaIdiomas.length > 0) {
+      const itemsIdiomas = listaIdiomas.map(idm => {
+        const slugNivel = idm.nivel.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'intermedio';
+        return `              <li>
+                <span>${this.escapeHtml(idm.nombre)}</span>
+                <span data-nivel="${this.escapeHtml(slugNivel)}">${this.escapeHtml(idm.nivel)}</span>
+              </li>`;
+      });
+      idiomasSectionHtml = `          <section aria-label="Idiomas">
+            <h2>Idiomas</h2>
+            <ul>
+${itemsIdiomas.join('\n')}
+            </ul>
+          </section>\n`;
+    }
 
     // Contacto dinámico para el aside a partir de metadatos del XML
     const itemsContacto: string[] = [];
@@ -512,9 +505,8 @@ ${botonPdfHtml}
           </figure>
 
 ${contactoSectionHtml}
-
-${competenciasAsideHtml}
-        </aside>
+${habilidadesSectionHtml}
+${idiomasSectionHtml}        </aside>
 
         <section aria-label="Historial profesional y académico">
 ${seccionesHtml}
