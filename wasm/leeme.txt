@@ -167,7 +167,7 @@ WebAssembly Core Specification:
       intervenir en el ciclo de vida del recolector de basura de JavaScript.
 
 4.4 Tamaño binario ultracompacto y descompresión instantánea:
-    - El binario `ejemplo.wasm` pesa escasos 459 bytes. Un módulo equivalente en
+    - El binario `ejemplo.wasm` pesa escasos 659 bytes. Un módulo equivalente en
       JavaScript requeriría un tamaño sustancialmente mayor en bytes de texto.
     - El análisis sintáctico (parsing) de texto JavaScript consume tiempo de CPU
       al cargar la página. El formato binario de WASM está diseñado para ser
@@ -188,6 +188,31 @@ WebAssembly Core Specification:
       responder a eventos de interfaz y gestionar APIs web de alto nivel, mientras
       que WebAssembly actúa como motor de cálculo para tareas intensivas en CPU
       (criptografía, procesamiento de audio/vídeo, motores físicos, compresión, etc.).
+
+4.7 Comportamiento y capacidades según el motor del navegador (Safari vs Chromium):
+    - Rendimiento en Apple Safari (WebKit / JavaScriptCore):
+      En navegadores basados en WebKit como Safari, el motor de ejecución es
+      JavaScriptCore (JSC). Su canalización de compilación para WebAssembly utiliza
+      los compiladores BBQ (Build-Bytecode-Quickly) y OMG (Optimizing-Math-Generator).
+      Al estar estrechamente optimizado para el ecosistema macOS y la arquitectura
+      Apple Silicon (procesadores M1/M2/M3/M4 de arquitectura ARM64), JavaScriptCore
+      mapea de forma directa e inmediata los tipos `i32`, `i64` y `f64` de WASM sobre
+      los registros hardware de la CPU.
+    - Menor dependencia de heurísticas especulativas:
+      A diferencia del compilador TurboFan de Google Chrome (motor V8), que aplica
+      técnicas muy agresivas de optimización especulativa sobre bucles puros de JavaScript
+      (llegando a desenrollar iteraciones completas o saltarse cómputos si detecta valores
+      invariantes), JavaScriptCore en Safari ejecuta el código respetando de forma más
+      fidedigna la carga real de cada ciclo. En Safari, WebAssembly funciona de manera
+      óptima y predecible desde la primera ejecución, mostrando ventajas de velocidad
+      consistentes y sostenidas frente a JavaScript.
+    - Resolución de temporizadores y mitigación de canal lateral (Spectre):
+      Las capacidades y políticas de seguridad de cada navegador introducen pequeñas
+      variaciones en la resolución de `performance.now()`. En Safari, el redondeo de
+      marcas de tiempo está calibrado de manera diferente a Chrome. Gracias al diseño
+      del benchmark implementado —con cargas de entre 2.000 y 100.000 repeticiones— se
+      supera el umbral de ruido del temporizador en cualquier motor, permitiendo apreciar
+      la superioridad de WebAssembly tanto en Safari como en navegadores basados en Chromium.
 
 
 --------------------------------------------------------------------
