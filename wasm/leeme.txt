@@ -53,40 +53,7 @@ Los tres algoritmos evaluados son:
 - leeme.txt     : Este documento de información para la corrección.
 
 
-3. INSTRUCCIONES PARA LA CORRECCIÓN
---------------------------------------------------------------------
-Debido a las restricciones de seguridad del navegador (CORS al cargar
-módulos WebAssembly por fetch), no se puede abrir el HTML directamente
-con doble clic (protocolo file://). Es necesario servir la carpeta por HTTP.
-
-Pasos para ejecutar la prueba:
-
-1) Abrir una terminal en el directorio `wasm/` de la práctica.
-2) Iniciar un servidor HTTP local con cualquiera de estas opciones:
-
-   Con Python 3:
-     python3 -m http.server 8000
-
-   Con Node.js:
-     npx serve .
-     (o `npx http-server .`)
-
-   Con PHP:
-     php -S localhost:8000
-
-3) Abrir en el navegador:
-     http://localhost:8000/ejemplo.html
-
-4) Seleccionar cualquiera de las tres pestañas (Factorial, Coseno o Primo)
-   y pulsar en "Ejecutar" para lanzar las mediciones en tiempo real.
-
-Recompilación opcional de WASM:
-Si se desea regenerar `ejemplo.wasm` a partir de `ejemplo.wat`:
-  npm install
-  node build.js
-
-
-4. METODOLOGÍA DEL BENCHMARKING
+3. METODOLOGÍA DEL BENCHMARKING
 --------------------------------------------------------------------
 Para que la comparativa entre WASM y JS sea justa y representativa, se
 han aplicado los siguientes criterios técnicos:
@@ -114,7 +81,7 @@ han aplicado los siguientes criterios técnicos:
   que aplican los navegadores modernos para mitigar ataques como Spectre.
 
 
-5. VENTAJAS DE WEBASSEMBLY FRENTE A JAVASCRIPT
+4. VENTAJAS DE WEBASSEMBLY FRENTE A JAVASCRIPT
 --------------------------------------------------------------------
 1) Soporte nativo de enteros de 64 bits (i64):
    En Factorial, WASM ejecuta `i64.mul` en un solo ciclo de CPU. En JS, `Number`
@@ -137,7 +104,7 @@ han aplicado los siguientes criterios técnicos:
    valida de forma prácticamente instantánea.
 
 
-6. OBSERVACIONES SOBRE NAVEGADORES (SAFARI VS CHROME)
+5. OBSERVACIONES SOBRE NAVEGADORES (SAFARI VS CHROME)
 --------------------------------------------------------------------
 Durante las pruebas de la práctica se han observado diferencias según el
 motor de JavaScript del navegador:
