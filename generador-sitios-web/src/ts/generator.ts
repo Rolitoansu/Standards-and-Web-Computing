@@ -496,6 +496,7 @@ ${this.generarHeaderNav(sitio, 'cv')}
 
     <section aria-label="Contenido del currículum">
       <article>
+        <h2>${this.escapeHtml(cv.cabecera.titulo)}</h2>
         <aside aria-label="Información de contacto y competencias">
           <figure>
             <img src="${this.escapeHtml(autor.foto.src)}" alt="${this.escapeHtml(autor.foto.alt)}" width="110" height="110">

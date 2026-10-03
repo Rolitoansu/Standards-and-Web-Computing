@@ -57,6 +57,18 @@ body > main > section:nth-of-type(2) > article {
   align-items: start;
 }
 
+body > main > section:nth-of-type(2) > article > h2 {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  padding: 0;
+  margin: -0.0625rem;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 body > main > section:nth-of-type(2) > article > aside {
   display: flex;
   flex-direction: column;
