@@ -23,10 +23,13 @@ de ambos entornos sometiéndolos a tres algoritmos matemáticos intensivos:
        (tipo nativo `i64` en WASM frente a `BigInt` y `Number` en JavaScript).
      - Ejemplo: 15! = 1.307.674.368.000.
 
-  2. Coseno por Serie de Taylor (50 iteraciones):
+  2. Coseno por Serie de Taylor (15 iteraciones, precisión completa IEEE-754):
      - Aproxima el coseno trigonométrico de un ángulo en radianes mediante
        el desarrollo en serie de Taylor:
          cos(x) = 1 - x^2/2! + x^4/4! - x^6/6! + ... + (-1)^k * x^(2k)/(2k)!
+     - Con 15 términos, el error residual es inferior a 10^-16 (límite físico
+       de la precisión de doble precisión de 64 bits `f64`), coincidiendo
+       con Math.cos(x) en todos sus dígitos significativos sin ciclos redundantes.
      - Evalúa el rendimiento de operaciones continuas en coma flotante de
        doble precisión (tipo `f64` en WASM frente a números float de JS).
      - No utiliza funciones matemáticas nativas de la librería estándar
@@ -38,15 +41,17 @@ de ambos entornos sometiéndolos a tres algoritmos matemáticos intensivos:
      - Evalúa el rendimiento ante ramificaciones condicionales intensivas
        y operaciones de resto/módulo (`i32.rem_u` en WASM frente al
        operador `%` en JS).
-     - Ejemplo: comprobación del primo 982.451.653 (31.344 iteraciones).
+     - Ejemplo: comprobación del primo 982.451.653 (31.344 comprobaciones de división
+       por repetición, evaluado en 2.000 repeticiones para superar el umbral de ruido del temporizador).
 
 Metodología rigurosa de medición (Benchmarking):
-  - Calentamiento previo (Warmup): se ejecutan 5.000 iteraciones iniciales
+  - Calentamiento previo (Warmup) y Tier-up: se ejecutan 10.000 iteraciones iniciales
     para permitir que el motor del navegador (V8, SpiderMonkey, JavaScriptCore)
-    estabilice y optimice las funciones JIT.
-  - Carga intensiva: cada prueba ejecuta 100.000 repeticiones consecutivas
+    compile el módulo WebAssembly al tier óptimo de código máquina nativo (TurboFan)
+    y estabilice las optimizaciones JIT.
+  - Carga intensiva: cada prueba ejecuta entre 2.000 y 100.000 repeticiones consecutivas
     para magnificar las diferencias temporales y obtener cifras estadísticamente
-    significativas.
+    significativas que superen con holgura el ruido de los temporizadores de los navegadores.
   - Reducción del sobrecoste de frontera (Boundary Crossing) y benchmarking inlined:
     Además de las funciones individuales, el archivo WAT incluye funciones de benchmark
     internas ($bench_factorial, $bench_coseno, $bench_es_primo) con el cómputo algorítmico
@@ -72,7 +77,7 @@ Metodología rigurosa de medición (Benchmarking):
 
   · ejemplo.wasm  → Módulo binario compilado a partir de ejemplo.wat mediante
                     la herramienta oficial WABT (WebAssembly Binary Toolkit).
-                    Tamaño ultracompacto: únicamente 661 bytes.
+                    Tamaño ultracompacto: únicamente 659 bytes.
 
   · ejemplo.js    → Controlador y benchmark en JavaScript:
                     - Carga e instanciación asíncrona del binario WASM mediante

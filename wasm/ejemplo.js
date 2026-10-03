@@ -168,7 +168,7 @@ function mostrarResultados(rw, rj, reps = REPS) {
   }
 }
 
-function ejecutar() {
+async function ejecutar() {
   const banner = document.querySelector("output");
   const btnEjec = document.querySelector("form > button");
   const inputs = document.querySelectorAll("form input");
@@ -183,60 +183,68 @@ function ejecutar() {
     btnEjec.textContent = "Calculando...";
   }
 
-  setTimeout(() => {
-    try {
-      let rw, rj;
-      let repeticiones = REPS;
+  // Dejamos que el navegador pinte el estado y complete el tier-up de TurboFan
+  await new Promise(r => setTimeout(r, 25));
 
-      if (operacion === "factorial") {
-        const n = parseInt(inputs[0].value, 10);
-        repeticiones = REPS;
-        const warmup = WARMUP;
+  try {
+    let rw, rj;
+    let repeticiones = REPS;
 
-        rw = bench(r => wasm.bench_factorial(BigInt(n), r), repeticiones, warmup);
-        rj = bench(r => js_bench_factorial_bigint(n, r), repeticiones, warmup);
-        rw.valor = String(rw.valor);
-        rj.valor = String(rj.valor);
+    if (operacion === "factorial") {
+      const n = parseInt(inputs[0].value, 10);
+      repeticiones = REPS;
+      const warmup = WARMUP;
 
-      } else if (operacion === "coseno") {
-        const x = parseFloat(inputs[1].value);
-        repeticiones = REPS;
+      rw = bench(r => wasm.bench_factorial(BigInt(n), r), repeticiones, warmup);
+      rj = bench(r => js_bench_factorial_bigint(n, r), repeticiones, warmup);
+      rw.valor = String(rw.valor);
+      rj.valor = String(rj.valor);
 
-        rw = bench(n => wasm.bench_coseno(x, n), repeticiones, WARMUP);
-        rj = bench(n => js_bench_coseno(x, n), repeticiones, WARMUP);
+    } else if (operacion === "coseno") {
+      const x = parseFloat(inputs[1].value);
+      repeticiones = REPS;
 
-        rw.valor = Number(rw.valor).toFixed(8);
-        rj.valor = Number(rj.valor).toFixed(8);
+      rw = bench(n => wasm.bench_coseno(x, n), repeticiones, WARMUP);
+      rj = bench(n => js_bench_coseno(x, n), repeticiones, WARMUP);
 
-      } else if (operacion === "primo") {
-        const n = parseInt(inputs[2].value, 10);
+      rw.valor = Number(rw.valor).toFixed(8);
+      rj.valor = Number(rj.valor).toFixed(8);
 
-        repeticiones = n > 100000 ? 2000 : REPS;
-        const warmup = n > 100000 ? 200 : WARMUP;
+    } else if (operacion === "primo") {
+      const n = parseInt(inputs[2].value, 10);
 
-        rw = bench(r => wasm.bench_es_primo(n, r), repeticiones, warmup);
-        rj = bench(r => js_bench_es_primo(n, r), repeticiones, warmup);
+      repeticiones = n > 100000 ? 2000 : REPS;
+      const warmup = n > 100000 ? 200 : WARMUP;
 
-        rw.valor = rw.valor === 1 ? "Sí es primo" : "No es primo";
-        rj.valor = rj.valor === 1 ? "Sí es primo" : "No es primo";
-      }
+      rw = bench(r => wasm.bench_es_primo(n, r), repeticiones, warmup);
+      rj = bench(r => js_bench_es_primo(n, r), repeticiones, warmup);
 
-      mostrarResultados(rw, rj, repeticiones);
-    } catch (e) {
-      if (banner) banner.textContent = "Error: " + e.message;
-    } finally {
-      if (btnEjec) {
-        btnEjec.disabled = false;
-        btnEjec.textContent = "Ejecutar";
-      }
+      rw.valor = rw.valor === 1 ? "Sí es primo" : "No es primo";
+      rj.valor = rj.valor === 1 ? "Sí es primo" : "No es primo";
     }
-  }, 20);
+
+    mostrarResultados(rw, rj, repeticiones);
+  } catch (e) {
+    if (banner) banner.textContent = "Error: " + e.message;
+  } finally {
+    if (btnEjec) {
+      btnEjec.disabled = false;
+      btnEjec.textContent = "Ejecutar";
+    }
+  }
 }
 
 async function cargarWasm() {
   try {
     const buf = await (await fetch("ejemplo.wasm")).arrayBuffer();
     wasm = (await WebAssembly.instantiate(buf, {})).instance.exports;
+    setTimeout(() => {
+      try {
+        wasm.bench_factorial(15n, 10000);
+        wasm.bench_coseno(1.0472, 10000);
+        wasm.bench_es_primo(982451653, 500);
+      } catch {}
+    }, 50);
   } catch (err) {
     console.error("Error al cargar WASM:", err);
   }
