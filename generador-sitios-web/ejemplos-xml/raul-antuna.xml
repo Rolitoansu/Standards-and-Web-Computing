@@ -160,6 +160,7 @@
           <etiqueta-destacada>Proyecto destacado</etiqueta-destacada>
           <titulo>Facturator.ai — Plataforma SaaS con IA</titulo>
           <descripcion>Ecosistema SaaS completo para la extracción inteligente, procesamiento OCR y gestión contable de facturas y tickets. Arquitectura modular con backend transaccional en Go (WebSockets, Stripe, PostgreSQL/Supabase), pipelines de visión artificial en Python y frontend reactivo en SvelteKit con TypeScript.</descripcion>
+          <imagen src="assets/img/facturator.png" alt="Pantalla de código ilustrativa del desarrollo de la plataforma Facturator.ai" ancho="600" alto="380"/>
           <tecnologias>
             <tag>Go</tag>
             <tag>SvelteKit</tag>

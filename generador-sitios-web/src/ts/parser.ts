@@ -443,6 +443,21 @@ export class PersonalSiteXMLParser {
       }
     }
 
+    // Determinar orden de secciones según su orden de aparición en el XML
+    const ordenSecciones: ('experiencia' | 'formacion')[] = [];
+    if (cvEl) {
+      for (let i = 0; i < cvEl.children.length; i++) {
+        const localTag = cvEl.children[i].localName || cvEl.children[i].tagName;
+        if (localTag === 'experiencia-laboral' && !ordenSecciones.includes('experiencia')) {
+          ordenSecciones.push('experiencia');
+        } else if (localTag === 'formacion-academica' && !ordenSecciones.includes('formacion')) {
+          ordenSecciones.push('formacion');
+        }
+      }
+    }
+    if (!ordenSecciones.includes('experiencia')) ordenSecciones.push('experiencia');
+    if (!ordenSecciones.includes('formacion')) ordenSecciones.push('formacion');
+
     const paginaCurriculum: PaginaCurriculum = {
       cabecera: {
         titulo: this.getText(cabCv, 'titulo') || 'Currículum Vitae',
@@ -452,6 +467,7 @@ export class PersonalSiteXMLParser {
           texto: this.getAttr(pdfEl, 'texto', 'Descargar PDF')
         } : undefined
       },
+      ordenSecciones,
       experienciaLaboral: puestosList,
       formacionAcademica: estudiosList,
       competencias: gruposList

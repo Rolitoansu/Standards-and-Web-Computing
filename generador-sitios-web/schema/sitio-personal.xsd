@@ -392,9 +392,11 @@
           </xs:complexContent>
         </xs:complexType>
       </xs:element>
-      <xs:element name="experiencia-laboral" type="TipoExperienciaLaboral"/>
-      <xs:element name="formacion-academica" type="TipoFormacionAcademica"/>
-      <xs:element name="competencias" type="TipoCompetencias" minOccurs="0"/>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element name="experiencia-laboral" type="TipoExperienciaLaboral"/>
+        <xs:element name="formacion-academica" type="TipoFormacionAcademica"/>
+        <xs:element name="competencias" type="TipoCompetencias"/>
+      </xs:choice>
     </xs:sequence>
   </xs:complexType>
 

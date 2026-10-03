@@ -1,6 +1,6 @@
 "use strict";
 
-const REPS = 50000;
+const REPS = 100000;
 const WARMUP = 5000;
 
 let wasm = null;

@@ -197,6 +197,7 @@ export interface PaginaCurriculum {
       texto: string;
     };
   };
+  ordenSecciones?: ('experiencia' | 'formacion')[];
   experienciaLaboral: PuestoExperiencia[];
   formacionAcademica: EstudioFormacion[];
   competencias: GrupoCompetencias[];

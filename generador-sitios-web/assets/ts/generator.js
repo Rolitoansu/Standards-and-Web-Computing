@@ -53,10 +53,10 @@ export class PersonalSiteHTMLGenerator {
         return `  <header>
     <nav aria-label="Navegación principal">
       <a href="index.html" aria-label="${this.escapeHtml(sitio.metadatos.autor.nombreCompleto)} — Inicio">Mi página personal</a>
-      <button type="button" aria-expanded="false" aria-label="Abrir menú">
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">
         &#9776;
       </button>
-      <ul data-abierto="false">
+      <ul id="nav-menu" data-abierto="false">
 ${enlacesNav}
       </ul>
     </nav>
@@ -258,15 +258,15 @@ ${this.generarFooter(sitio)}
             const enlacesHtml = p.enlaces.map(e => {
                 return `                  <a href="${this.escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer">${this.escapeHtml(e.texto)}</a>`;
             }).join('\n');
-            if (idx === 0) {
+            if (p.imagen) {
                 return `          <li>
             <article data-category="${this.escapeHtml(p.categoria)}" aria-label="${this.escapeHtml(p.titulo)}">
               <figure>
                 <img
-                  src="assets/img/hobby-code.jpg"
-                  alt="Pantalla de código ilustrativa del desarrollo de la plataforma Facturator.ai"
-                  width="600"
-                  height="380"
+                  src="${this.escapeHtml(p.imagen.src)}"
+                  alt="${this.escapeHtml(p.imagen.alt)}"
+                  width="${p.imagen.ancho || 600}"
+                  height="${p.imagen.alto || 380}"
                   loading="lazy"
                 >
               </figure>
@@ -284,10 +284,21 @@ ${enlacesHtml}
             </article>
           </li>`;
             }
+            // Si no tiene imagen, se determina el logo tecnológico según la primera tecnología coincidente
+            const logosDisponibles = ['typescript', 'javascript', 'python', 'java', 'c', 'go', 'react', 'svelte', 'docker', 'postgresql', 'html5', 'css3'];
+            let logoTech = 'typescript';
+            for (const t of p.tecnologias) {
+                const clean = t.toLowerCase().replace(/[^a-z0-9]/g, '');
+                const match = logosDisponibles.find(l => clean.includes(l) || l.includes(clean));
+                if (match) {
+                    logoTech = match;
+                    break;
+                }
+            }
             return `          <li>
             <article data-category="${this.escapeHtml(p.categoria)}" aria-label="${this.escapeHtml(p.titulo)}">
               <header>
-                <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <img src="assets/img/logos/${logoTech}.svg" alt="" aria-hidden="true" width="28" height="28">
                 <nav aria-label="Enlaces del proyecto">
 ${enlacesHtml}
                 </nav>
@@ -385,6 +396,52 @@ ${itemsHtml}
             </ul>
           </section>`;
         }).join('\n');
+        // Contacto dinámico para el aside a partir de metadatos del XML
+        const itemsContacto = [];
+        if (cInfo.ubicacion) {
+            itemsContacto.push(`              <li>${this.escapeHtml(cInfo.ubicacion)}</li>`);
+        }
+        if (cInfo.email) {
+            itemsContacto.push(`              <li><a href="mailto:${this.escapeHtml(cInfo.email)}">${this.escapeHtml(cInfo.email)}</a></li>`);
+        }
+        if (cInfo.telefono) {
+            itemsContacto.push(`              <li><a href="tel:${this.escapeHtml(cInfo.telefono)}">${this.escapeHtml(cInfo.telefono)}</a></li>`);
+        }
+        for (const r of sitio.metadatos.redesSociales || []) {
+            const redNombre = r.tipo.charAt(0).toUpperCase() + r.tipo.slice(1);
+            itemsContacto.push(`              <li><a href="${this.escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">${this.escapeHtml(redNombre)}</a></li>`);
+        }
+        const contactoSectionHtml = itemsContacto.length > 0 ? `          <section aria-label="Contacto">
+            <h2>Contacto</h2>
+            <ul>
+${itemsContacto.join('\n')}
+            </ul>
+          </section>\n` : '';
+        // Secciones principales respetando el orden del XML
+        const seccionesMap = {};
+        if (cv.experienciaLaboral.length > 0) {
+            seccionesMap['experiencia'] = `          <section aria-label="Experiencia profesional">
+            <h2>Experiencia laboral</h2>
+            <ol aria-label="Historial de experiencia profesional">
+${experienciaHtml}
+            </ol>
+          </section>`;
+        }
+        if (cv.formacionAcademica.length > 0) {
+            seccionesMap['formacion'] = `          <section aria-label="Formación académica">
+            <h2>Formación académica</h2>
+            <ol aria-label="Historial de formación académica">
+${formacionHtml}
+            </ol>
+          </section>`;
+        }
+        const orden = cv.ordenSecciones && cv.ordenSecciones.length > 0
+            ? cv.ordenSecciones
+            : ['experiencia', 'formacion'];
+        const seccionesHtml = orden
+            .map(k => seccionesMap[k])
+            .filter(Boolean)
+            .join('\n\n');
         return `<!DOCTYPE html>
 <html lang="${sitio.idioma}">
 <head>
@@ -415,33 +472,13 @@ ${botonPdfHtml}
             </figcaption>
           </figure>
 
-          <section aria-label="Contacto">
-            <h2>Contacto</h2>
-            <ul>
-              <li>Asturias, España</li>
-              <li><a href="mailto:${this.escapeHtml(cInfo.email)}">${this.escapeHtml(cInfo.email)}</a></li>
-              <li><a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-              <li><a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            </ul>
-          </section>
+${contactoSectionHtml}
 
 ${competenciasAsideHtml}
         </aside>
 
         <section aria-label="Historial profesional y académico">
-          <section aria-label="Experiencia profesional">
-            <h2>Experiencia laboral</h2>
-            <ol aria-label="Historial de experiencia laboral">
-${experienciaHtml}
-            </ol>
-          </section>
-
-          <section aria-label="Formación académica">
-            <h2>Formación académica</h2>
-            <ol aria-label="Historial de formación académica">
-${formacionHtml}
-            </ol>
-          </section>
+${seccionesHtml}
         </section>
       </article>
     </section>
