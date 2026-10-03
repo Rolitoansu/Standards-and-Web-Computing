@@ -15,13 +15,24 @@
     (local.get $r)
   )
 
-  ;; Benchmark de factorial para ejecutar repeticiones internamente
+  ;; Benchmark de factorial INLINED (sin sobrecarga de llamadas a función por iteración)
   (func $bench_factorial (export "bench_factorial") (param $n i64) (param $reps i32) (result i64)
     (local $r i64)
+    (local $cur i64)
     (block $end_bench
       (loop $loop_bench
         (br_if $end_bench (i32.eqz (local.get $reps)))
-        (local.set $r (call $factorial (local.get $n)))
+        ;; Cálculo inlined de factorial
+        (local.set $r (i64.const 1))
+        (local.set $cur (local.get $n))
+        (block $end_fact
+          (loop $loop_fact
+            (br_if $end_fact (i64.le_u (local.get $cur) (i64.const 1)))
+            (local.set $r (i64.mul (local.get $r) (local.get $cur)))
+            (local.set $cur (i64.sub (local.get $cur) (i64.const 1)))
+            (br $loop_fact)
+          )
+        )
         (local.set $reps (i32.sub (local.get $reps) (i32.const 1)))
         (br $loop_bench)
       )
@@ -67,18 +78,48 @@
     (local.get $suma)
   )
 
-  ;; Benchmark de coseno para medir repeticiones
+  ;; Benchmark de coseno INLINED (sin sobrecarga de llamadas a función por iteración)
   (func $bench_coseno (export "bench_coseno") (param $x f64) (param $reps i32) (result f64)
-    (local $r f64)
+    (local $suma    f64)
+    (local $termino f64)
+    (local $neg_x2  f64)
+    (local $di      i32)
+    (local $denom   f64)
+    (local.set $neg_x2 (f64.neg (f64.mul (local.get $x) (local.get $x))))
     (block $end_bench
       (loop $loop_bench
         (br_if $end_bench (i32.eqz (local.get $reps)))
-        (local.set $r (call $coseno (local.get $x)))
+        ;; Cálculo inlined de la serie de Taylor (50 términos)
+        (local.set $termino (f64.const 1.0))
+        (local.set $suma    (f64.const 1.0))
+        (local.set $di      (i32.const 2))
+        (block $end_taylor
+          (loop $loop_taylor
+            (br_if $end_taylor (i32.gt_u (local.get $di) (i32.const 100)))
+            (local.set $denom
+              (f64.convert_i32_u
+                (i32.mul
+                  (i32.sub (local.get $di) (i32.const 1))
+                  (local.get $di)
+                )
+              )
+            )
+            (local.set $termino
+              (f64.mul
+                (local.get $termino)
+                (f64.div (local.get $neg_x2) (local.get $denom))
+              )
+            )
+            (local.set $suma (f64.add (local.get $suma) (local.get $termino)))
+            (local.set $di (i32.add (local.get $di) (i32.const 2)))
+            (br $loop_taylor)
+          )
+        )
         (local.set $reps (i32.sub (local.get $reps) (i32.const 1)))
         (br $loop_bench)
       )
     )
-    (local.get $r)
+    (local.get $suma)
   )
 
   ;; Test de primalidad para entero de 32 bits
@@ -103,13 +144,42 @@
     (i32.const 1)
   )
 
-  ;; Benchmark de primalidad para medir repeticiones
+  ;; Benchmark de primalidad INLINED (sin sobrecarga de llamadas a función por iteración)
   (func $bench_es_primo (export "bench_es_primo") (param $n i32) (param $reps i32) (result i32)
     (local $r i32)
+    (local $d i32)
     (block $end_bench
       (loop $loop_bench
         (br_if $end_bench (i32.eqz (local.get $reps)))
-        (local.set $r (call $es_primo (local.get $n)))
+        ;; Comprobación inlined de primalidad
+        (block $done_primo
+          (if (i32.lt_u (local.get $n) (i32.const 2))
+            (then (local.set $r (i32.const 0)) (br $done_primo))
+          )
+          (if (i32.eq (local.get $n) (i32.const 2))
+            (then (local.set $r (i32.const 1)) (br $done_primo))
+          )
+          (if (i32.eqz (i32.rem_u (local.get $n) (i32.const 2)))
+            (then (local.set $r (i32.const 0)) (br $done_primo))
+          )
+          (local.set $d (i32.const 3))
+          (local.set $r (i32.const 1))
+          (block $end_check
+            (loop $loop_check
+              (br_if $end_check
+                (i32.gt_u (i32.mul (local.get $d) (local.get $d)) (local.get $n))
+              )
+              (if (i32.eqz (i32.rem_u (local.get $n) (local.get $d)))
+                (then
+                  (local.set $r (i32.const 0))
+                  (br $end_check)
+                )
+              )
+              (local.set $d (i32.add (local.get $d) (i32.const 2)))
+              (br $loop_check)
+            )
+          )
+        )
         (local.set $reps (i32.sub (local.get $reps) (i32.const 1)))
         (br $loop_bench)
       )
