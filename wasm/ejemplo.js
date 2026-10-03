@@ -1,7 +1,7 @@
 "use strict";
 
 const REPS = 100000;
-const WARMUP = 5000;
+const WARMUP = 10000;
 
 let wasm = null;
 let operacion = "factorial";
