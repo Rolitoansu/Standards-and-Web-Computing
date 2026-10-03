@@ -169,8 +169,7 @@
             <tag>Docker</tag>
           </tecnologias>
           <enlaces>
-            <enlace tipo="demo" url="https://github.com/Rolitoansu" texto="Ver detalles"/>
-            <enlace tipo="codigo" url="https://github.com/Rolitoansu" texto="Repositorio"/>
+            <enlace tipo="codigo" url="https://github.com/Rolitoansu/Facturator.ai" texto="Ver código en GitHub"/>
           </enlaces>
         </proyecto>
 
