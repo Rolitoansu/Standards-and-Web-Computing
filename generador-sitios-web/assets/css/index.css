@@ -1,9 +1,11 @@
 body > main > section:first-of-type {
   background: linear-gradient(135deg, #eef3ff 0%, #f5f7fb 50%, #e8f5ff 100%);
   border-bottom: 0.0625rem solid var(--borde);
-  padding: 0;
+  padding: 4rem max(1.5rem, calc((100% - var(--ancho-max)) / 2));
   min-height: calc(100vh - 3.75rem);
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
   align-items: center;
   position: relative;
   overflow: hidden;
@@ -33,20 +35,12 @@ body > main > section:first-of-type::after {
   pointer-events: none;
 }
 
-body > main > section:first-of-type > article {
+body > main > section:first-of-type > header {
   position: relative;
   z-index: 1;
-  max-width: var(--ancho-max);
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 3rem;
-  align-items: center;
-  width: 100%;
 }
 
-body > main > section:first-of-type > article > header > p:first-child {
+body > main > section:first-of-type > header > p:first-child {
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -66,13 +60,13 @@ body > main > section:first-of-type h1 span {
   color: var(--primario);
 }
 
-body > main > section:first-of-type > article > header > p:nth-child(3) {
+body > main > section:first-of-type > header > p:nth-child(3) {
   font-size: 1.05rem;
   max-width: 30rem;
   margin-bottom: 2rem;
 }
 
-body > main > section:first-of-type > article > header > nav {
+body > main > section:first-of-type > header > nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -103,11 +97,13 @@ body > main > section:first-of-type a[href="contact.html"] {
   border: 0.09375rem solid var(--primario);
 }
 
-body > main > section:first-of-type > article > figure {
+body > main > section:first-of-type > figure {
+  position: relative;
+  z-index: 1;
   margin: 0;
 }
 
-body > main > section:first-of-type > article > figure img {
+body > main > section:first-of-type > figure img {
   width: 13rem;
   height: 13rem;
   border-radius: 50%;
@@ -123,13 +119,10 @@ body > main > section:nth-of-type(2) {
   padding: 2rem 0;
 }
 
-body > main > section:nth-of-type(2) > article {
+body > main > section:nth-of-type(2) ul {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
-}
-
-body > main > section:nth-of-type(2) ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
   gap: 1rem;
@@ -248,22 +241,23 @@ body > main > section > header > p:first-of-type {
 }
 
 @media (max-width: 43.75rem) {
-  body > main > section:first-of-type > article {
+  body > main > section:first-of-type {
     grid-template-columns: 1fr;
     text-align: center;
     justify-items: center;
+    padding: 3rem 1.5rem;
   }
 
-  body > main > section:first-of-type > article > figure {
+  body > main > section:first-of-type > figure {
     order: -1;
   }
 
-  body > main > section:first-of-type > article > figure img {
+  body > main > section:first-of-type > figure img {
     width: 9rem;
     height: 9rem;
   }
 
-  body > main > section:first-of-type > article > header > nav {
+  body > main > section:first-of-type > header > nav {
     justify-content: center;
   }
 }

@@ -116,34 +116,30 @@ ${this.generarHeaderNav(sitio, 'index')}
 
   <main>
     <section aria-label="Presentación">
-      <article>
-        <header>
-          <p>${this.escapeHtml(inicio.hero.subtitulo)}</p>
-          <h1>${this.escapeHtml(inicio.hero.saludo)}<br><span>${this.escapeHtml(autor.nombreCompleto)}</span></h1>
-          <p>
-            ${this.escapeHtml(inicio.hero.resumen)}
-          </p>
-          <nav aria-label="Acciones principales">
+      <header>
+        <p>${this.escapeHtml(inicio.hero.subtitulo)}</p>
+        <h1>${this.escapeHtml(inicio.hero.saludo)}<br><span>${this.escapeHtml(autor.nombreCompleto)}</span></h1>
+        <p>
+          ${this.escapeHtml(inicio.hero.resumen)}
+        </p>
+        <nav aria-label="Acciones principales">
 ${accionesHtml}
-          </nav>
-        </header>
-        <figure>
-          <img
-            src="${this.escapeHtml(autor.foto.src)}"
-            alt="${this.escapeHtml(autor.foto.alt)}"
-            width="${autor.foto.ancho || 208}"
-            height="${autor.foto.alto || 208}"
-          >
-        </figure>
-      </article>
+        </nav>
+      </header>
+      <figure>
+        <img
+          src="${this.escapeHtml(autor.foto.src)}"
+          alt="${this.escapeHtml(autor.foto.alt)}"
+          width="${autor.foto.ancho || 208}"
+          height="${autor.foto.alto || 208}"
+        >
+      </figure>
     </section>
 
     <section aria-label="Datos rápidos">
-      <article>
-        <ul>
+      <ul>
 ${metricasHtml}
-        </ul>
-      </article>
+      </ul>
     </section>
 
     <section aria-label="Tecnologías">
