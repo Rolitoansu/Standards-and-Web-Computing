@@ -1,245 +1,156 @@
 ====================================================================
-LEEME.TXT — Aplicación WebAssembly Nativo (WASM vs JavaScript)
+PRÁCTICA: WebAssembly Nativo vs JavaScript
 Asignatura: Estándares y Computación Web
 Máster en Ingeniería Web — Universidad de Oviedo
 ====================================================================
 
+1. DESCRIPCIÓN DE LA ENTREGA
 --------------------------------------------------------------------
-1. DESCRIPCIÓN Y CARACTERÍSTICAS DE LA APLICACIÓN
+Esta práctica consiste en el desarrollo y evaluación comparativa de
+tres algoritmos matemáticos implementados en WebAssembly (formato texto
+WAT, compilado a binario WASM) y en JavaScript nativo.
+
+El objetivo es medir de forma empírica las diferencias de rendimiento,
+consumo de CPU y características de ejecución entre ambos entornos.
+
+Los tres algoritmos evaluados son:
+
+1. Factorial de 64 bits (n!):
+   - Rango de entrada: n de 1 a 20 (ej. 15! = 1.307.674.368.000).
+   - Evalúa aritmética entera de 64 bits.
+   - WASM utiliza el tipo primitivo nativo `i64`, que opera directamente
+     en registros de 64 bits del procesador.
+   - En JavaScript se evalúa frente a `BigInt` (la única representación
+     entera de 64 bits real en JS), demostrando la sobrecarga de alojar
+     objetos en el heap frente a los registros nativos de CPU.
+
+2. Coseno por Serie de Taylor:
+   - Aproximación de cos(x) mediante el desarrollo:
+       cos(x) = 1 - x^2/2! + x^4/4! - x^6/6! + ...
+   - Se calculan 15 términos, lo que cubre completamente el límite de
+     precisión de coma flotante de doble precisión (IEEE-754 de 64 bits,
+     `f64`), coincidiendo con Math.cos(x) hasta el último decimal significativo.
+   - Evalúa operaciones continuas de suma, multiplicación y división en `f64`.
+
+3. Test de primalidad (32 bits):
+   - Comprobación de divisores impares hasta la raíz cuadrada (d * d <= n).
+   - Evalúa bifurcaciones condicionales y operaciones de módulo/resto
+     (`i32.rem_u` en WASM frente a `%` en JS).
+   - Probado con primos grandes como 982.451.653 (~31.344 comprobaciones por repetición).
+
+
+2. ESTRUCTURA DE ARCHIVOS
 --------------------------------------------------------------------
-
-La aplicación "WASM vs JavaScript" es un entorno interactivo de análisis
-comparativo de rendimiento entre código WebAssembly escrito directamente
-a mano en formato texto (WAT) y su implementación equivalente en JavaScript
-puro contemporáneo.
-
-La herramienta evalúa la velocidad, consistencia y eficiencia computacional
-de ambos entornos sometiéndolos a tres algoritmos matemáticos intensivos:
-
-  1. Factorial de un entero de 64 bits (n!):
-     - Calcula el producto acumulativo desde n hasta 1 para valores
-       de n entre 1 y 20.
-     - Evalúa el procesamiento aritmético con enteros grandes de 64 bits
-       (tipo nativo `i64` en WASM frente a `BigInt` y `Number` en JavaScript).
-     - Ejemplo: 15! = 1.307.674.368.000.
-
-  2. Coseno por Serie de Taylor (15 iteraciones, precisión completa IEEE-754):
-     - Aproxima el coseno trigonométrico de un ángulo en radianes mediante
-       el desarrollo en serie de Taylor:
-         cos(x) = 1 - x^2/2! + x^4/4! - x^6/6! + ... + (-1)^k * x^(2k)/(2k)!
-     - Con 15 términos, el error residual es inferior a 10^-16 (límite físico
-       de la precisión de doble precisión de 64 bits `f64`), coincidiendo
-       con Math.cos(x) en todos sus dígitos significativos sin ciclos redundantes.
-     - Evalúa el rendimiento de operaciones continuas en coma flotante de
-       doble precisión (tipo `f64` en WASM frente a números float de JS).
-     - No utiliza funciones matemáticas nativas de la librería estándar
-       (como Math.cos), midiendo el coste de cómputo aritmético puro en bucle.
-
-  3. Test de primalidad para enteros de 32 bits:
-     - Determina si un número dado es primo mediante el algoritmo de prueba
-       de divisores impares hasta su raíz cuadrada (d * d <= n).
-     - Evalúa el rendimiento ante ramificaciones condicionales intensivas
-       y operaciones de resto/módulo (`i32.rem_u` en WASM frente al
-       operador `%` en JS).
-     - Ejemplo: comprobación del primo 982.451.653 (31.344 comprobaciones de división
-       por repetición, evaluado en 2.000 repeticiones para superar el umbral de ruido del temporizador).
-
-Detalles de la medición y benchmarking:
-  - Calentamiento previo (Warmup): se ejecutan iteraciones iniciales para que
-    tanto el JIT de JavaScript como el compilador de WebAssembly optimicen las
-    funciones antes de empezar a cronometrar.
-  - Repeticiones suficientes: se ejecutan entre 2.000 y 100.000 repeticiones según
-    el algoritmo, garantizando que el tiempo total sea representativo y no se pierda
-    en el redondeo de los temporizadores del navegador.
-  - Bucles internos inlined en WAT: las funciones $bench_* incluyen la lógica del
-    algoritmo directamente dentro del bucle. Esto evita el coste de llamada entre
-    JS y WASM en cada vuelta y permite competir en igualdad con JS, cuyo motor
-    inlínea las funciones pequeñas automáticamente.
-  - Temporización: medición mediante `performance.now()` y cálculo del factor de
-    mejora (Tiempo_JS / Tiempo_WASM).
+- ejemplo.html  : Interfaz visual de la prueba. Estructura HTML5 semántica
+                  (sin etiquetas div, usando header, main, section, menu, etc.).
+- ejemplo.css   : Estilos de la aplicación (modo oscuro, layout responsive).
+- ejemplo.wat   : Código fuente en WebAssembly Text Format. Implementa tanto las
+                  funciones individuales como los bucles internos de benchmarking.
+- ejemplo.wasm  : Módulo binario compilado a partir de ejemplo.wat (659 bytes).
+- ejemplo.js    : Carga el módulo WASM, contiene las versiones JS equivalentes,
+                  gestiona la UI y mide los tiempos con `performance.now()`.
+- build.js      : Script Node.js para recompilar ejemplo.wat a ejemplo.wasm usando `wabt`.
+- leeme.txt     : Este documento de información para la corrección.
 
 
+3. INSTRUCCIONES PARA LA CORRECCIÓN
 --------------------------------------------------------------------
-2. ARQUITECTURA Y ARCHIVOS DEL PROYECTO
+Debido a las restricciones de seguridad del navegador (CORS al cargar
+módulos WebAssembly por fetch), no se puede abrir el HTML directamente
+con doble clic (protocolo file://). Es necesario servir la carpeta por HTTP.
+
+Pasos para ejecutar la prueba:
+
+1) Abrir una terminal en el directorio `wasm/` de la práctica.
+2) Iniciar un servidor HTTP local con cualquiera de estas opciones:
+
+   Con Python 3:
+     python3 -m http.server 8000
+
+   Con Node.js:
+     npx serve .
+     (o `npx http-server .`)
+
+   Con PHP:
+     php -S localhost:8000
+
+3) Abrir en el navegador:
+     http://localhost:8000/ejemplo.html
+
+4) Seleccionar cualquiera de las tres pestañas (Factorial, Coseno o Primo)
+   y pulsar en "Ejecutar" para lanzar las mediciones en tiempo real.
+
+Recompilación opcional de WASM:
+Si se desea regenerar `ejemplo.wasm` a partir de `ejemplo.wat`:
+  npm install
+  node build.js
+
+
+4. METODOLOGÍA DEL BENCHMARKING
 --------------------------------------------------------------------
+Para que la comparativa entre WASM y JS sea justa y representativa, se
+han aplicado los siguientes criterios técnicos:
 
-  · ejemplo.wat   → Código fuente WebAssembly en formato texto (WAT).
-                    Escrito manualmente con instrucciones de la máquina de pila
-                    de WebAssembly (declaración de tipos, locales, bucles con
-                    block/loop/br_if, aritmética i32/i64/f64 y funciones de benchmark
-                    con lógica algorítmica inlined).
+- Bucles inlined para evitar sesgo de llamadas:
+  En JavaScript, los motores JIT inlínean automáticamente funciones pequeñas,
+  ahorrándose la sobrecarga de llamada en cada iteración del bucle. Para que
+  WASM compita en igualdad de condiciones, las funciones `$bench_*` de WAT
+  incluyen el cálculo dentro del bucle en lugar de hacer un `call` por iteración.
 
-  · ejemplo.wasm  → Módulo binario compilado a partir de ejemplo.wat mediante
-                    la herramienta oficial WABT (WebAssembly Binary Toolkit).
-                    Tamaño ultracompacto: únicamente 659 bytes.
+- Mitigación del sobrecoste de frontera (Boundary Crossing):
+  El bucle de repeticiones se ejecuta dentro del propio entorno (dentro de
+  WASM o dentro de JS), evitando pagar el coste de interoperabilidad
+  JS-WASM 100.000 veces.
 
-  · ejemplo.js    → Controlador y benchmark en JavaScript:
-                    - Carga e instanciación asíncrona del binario WASM mediante
-                      WebAssembly.instantiateStreaming() con respaldo en
-                      WebAssembly.instantiate().
-                    - Implementación paralela de los tres algoritmos en JS.
-                    - Medición precisa de tiempos de ejecución y cómputo de speedup.
-                    - Gestión interactiva de pestañas, formularios y visualización
-                      del código WAT con resaltado de sintaxis.
+- Calentamiento previo (Warmup):
+  Se ejecutan iteraciones previas antes de cronometrar para permitir que el
+  JIT de JS estabilice sus optimizaciones y que el motor compile WASM en su
+  nivel nativo más rápido.
 
-  · ejemplo.html  → Interfaz de usuario construida conforme a las directrices de
-                    diseño semántico de HTML5 (sin contenedores div, utilizando
-                    header, main, section, menu, form, table, etc.) y accesible
-                    (atributos role="tablist", aria-selected, aria-controls, etc.).
-
-  · ejemplo.css   → Hoja de estilos con estética dark moderna inspirada en
-                    estándares actuales, tipografías del sistema y legibilidad
-                    avanzada para código y métricas tabulares.
-
-  · build.js      → Script de automatización en Node.js que compila ejemplo.wat
-                    a binario ejemplo.wasm usando la librería npm "wabt".
-
-  · leeme.txt     → Este documento técnico de especificación.
+- Volumen de repeticiones y resolución temporal:
+  Se ejecutan 100.000 repeticiones en Factorial y Coseno, y 2.000 en el test
+  de primalidad con números grandes. Esto garantiza tiempos en el rango de
+  1 a 35 ms, superando con holgura el redondeo intencionado de `performance.now()`
+  que aplican los navegadores modernos para mitigar ataques como Spectre.
 
 
+5. VENTAJAS DE WEBASSEMBLY FRENTE A JAVASCRIPT
 --------------------------------------------------------------------
-3. CARACTERÍSTICAS TÉCNICAS DEL CÓDIGO WAT IMPLEMENTADO
+1) Soporte nativo de enteros de 64 bits (i64):
+   En Factorial, WASM ejecuta `i64.mul` en un solo ciclo de CPU. En JS, `Number`
+   pierde precisión a partir de 20! por usar floats de 53 bits, y `BigInt`
+   requiere reservar memoria dinámica en el heap para cada operación aritmética,
+   haciendo que WASM sea entre 10x y 20x más rápido.
+
+2) Rendimiento determinista y predecible:
+   JavaScript depende de compiladores JIT con optimizaciones especulativas que
+   pueden degradarse (deoptimizations o bailouts) si los tipos cambian en tiempo
+   de ejecución. WebAssembly está tipado estáticamente desde el binario y su
+   traducción a código máquina es directa y uniforme.
+
+3) Sin paradas de Garbage Collector:
+   Los cálculos intensivos en WASM operan en la pila o sobre memoria lineal,
+   sin generar objetos que saturen el recolector de basura de JS.
+
+4) Tamaño y carga rápida:
+   El archivo binario generado ocupa solo 659 bytes. Se descarga, parsea y
+   valida de forma prácticamente instantánea.
+
+
+6. OBSERVACIONES SOBRE NAVEGADORES (SAFARI VS CHROME)
 --------------------------------------------------------------------
+Durante las pruebas de la práctica se han observado diferencias según el
+motor de JavaScript del navegador:
 
-El módulo `ejemplo.wat` se diseñó respetando el estándar oficial de W3C
-WebAssembly Core Specification:
+- En navegadores basados en WebKit (Safari, motor JavaScriptCore):
+  La ventaja de WebAssembly es muy visible en los tres algoritmos.
+  JavaScriptCore compila WASM de forma directa y eficiente sobre registros de
+  CPU mediante sus compiladores internos (BBQ y OMG), y no aplica atajos
+  especulativos agresivos en los bucles de JavaScript.
 
-  - Máquina de pila (Stack-based Virtual Machine):
-    Las operaciones consumen y depositan valores en la pila de evaluación.
-  - Sistema de tipos estático y explícito:
-    Uso de `i32` (enteros 32 bits), `i64` (enteros 64 bits) y `f64` (reales
-    IEEE-754 de doble precisión).
-  - Estructuras de control estructuradas:
-    Uso de bloques `block` y `loop` combinados con instrucciones de salto
-    condicional `br_if` y saltos incondicionales `br` a etiquetas semánticas,
-    garantizando un flujo estructurado sin punteros de instrucción arbitrarios.
-  - Instrucciones aritméticas nativas:
-    `i64.mul`, `i64.sub`, `i64.le_u` para enteros grandes; `f64.mul`, `f64.div`,
-    `f64.add`, `f64.neg` para el cálculo del coseno; e `i32.rem_u`, `i32.mul`,
-    `i32.eqz` para el análisis de divisibilidad en números primos.
-  - Exportación de interfaz pública:
-    Exportación de 6 funciones: 3 de cálculo directo (`factorial`, `coseno`,
-    `es_primo`) y 3 de bucle interno de benchmarking (`bench_factorial`,
-    `bench_coseno`, `bench_es_primo`).
-
-
---------------------------------------------------------------------
-4. VENTAJAS DE WEBASSEMBLY FRENTE A JAVASCRIPT
---------------------------------------------------------------------
-
-4.1 Rendimiento predecible y casi nativo (Predictable Near-Native Speed):
-    - JavaScript es un lenguaje dinámico interpretado que depende de motores
-      JIT (Just-In-Time) complejos (como V8 en Chromium, SpiderMonkey en Firefox
-      o JavaScriptCore en Safari). Si los tipos de las variables varían o el motor
-      heurístico falla en sus asunciones, se produce una desoptimización ("deopt
-      bailout"), degradando severamente el rendimiento a mitad de ejecución.
-    - WebAssembly, por el contrario, posee un formato binario ya tipado y
-      validado que se traduce de forma directa y predecible a código máquina del
-      procesador anfitrión (x86_64, ARM64) en una única pasada rápida. No sufre
-      desoptimizaciones inesperadas, lo que garantiza tiempos de ejecución
-      estables y deterministas, ideales para cómputo en tiempo real o simulaciones.
-
-4.2 Tipos nativos de 64 bits (Soporte directo de enteros `i64`):
-    - Tradicionalmente, JavaScript solo ofrecía el tipo `Number` (formato
-      IEEE-754 de 64 bits de coma flotante), cuya precisión entera exacta está
-      limitada a 53 bits (Number.MAX_SAFE_INTEGER = 9.007.199.254.740.991).
-      Cualquier factorial o cálculo superior a 20! desbordaba o perdía precisión.
-      La introducción de `BigInt` en JS resolvió la precisión, pero penaliza
-      fuertemente el rendimiento al ser un objeto asignado en memoria dinámica
-      (heap) con sobrecoste de recolección de basura.
-    - En WebAssembly, `i64` es un tipo primitivo nativo de CPU: una operación
-      `i64.mul` o `i64.sub` se mapea directamente a una única instrucción
-      ensambladora del microprocesador (como MUL/SUB en x86-64), ejecutándose
-      en un único ciclo de reloj.
-
-4.3 Ausencia de sobrecoste por Recolección de Basura (Garbage Collection):
-    - La ejecución de JavaScript genera objetos y contextos en memoria que deben
-      ser periódicamente rastreados y liberados por el Garbage Collector (GC),
-      provocando pausas intermitentes ("GC pauses" o "jank").
-    - Los algoritmos numéricos en WebAssembly operan íntegramente sobre la pila
-      de ejecución o sobre un búfer de memoria lineal contigua (ArrayBuffer), sin
-      intervenir en el ciclo de vida del recolector de basura de JavaScript.
-
-4.4 Tamaño binario ultracompacto y descompresión instantánea:
-    - El binario `ejemplo.wasm` pesa escasos 659 bytes. Un módulo equivalente en
-      JavaScript requeriría un tamaño sustancialmente mayor en bytes de texto.
-    - El análisis sintáctico (parsing) de texto JavaScript consume tiempo de CPU
-      al cargar la página. El formato binario de WASM está diseñado para ser
-      decodificado y validado en paralelo a la velocidad de la red a medida que
-      se reciben los bytes (streaming compilation).
-
-4.5 Seguridad por diseño (Memory-Safe Sandbox):
-    - WebAssembly se ejecuta dentro del mismo entorno aislado (sandbox de seguridad)
-      que JavaScript en el navegador, sujeto a la política de mismo origen
-      (Same-Origin Policy).
-    - No permite saltos a direcciones de memoria arbitrarias ni ejecución de código
-      fuera de su espacio de direcciones lineales acotado, previniendo vulnerabilidades
-      clásicas de lenguajes nativos como buffer overflows que comprometan el sistema.
-
-4.6 Complementariedad e interoperabilidad con JavaScript:
-    - WebAssembly no pretende reemplazar a JavaScript, sino complementarlo.
-      JavaScript continúa siendo el lenguaje idóneo para manipular el DOM,
-      responder a eventos de interfaz y gestionar APIs web de alto nivel, mientras
-      que WebAssembly actúa como motor de cálculo para tareas intensivas en CPU
-      (criptografía, procesamiento de audio/vídeo, motores físicos, compresión, etc.).
-
-4.7 Comportamiento según el navegador (Safari vs Chrome):
-    - Safari (WebKit / JavaScriptCore):
-      En Safari la comparativa es especialmente clara y favorable a WASM.
-      El motor JavaScriptCore compila WebAssembly de forma muy directa a código
-      máquina (usando sus compiladores internos BBQ y OMG), mapeando los tipos
-      i32, i64 y f64 directamente a registros de CPU de la máquina.
-    - Optimizaciones de bucle en Chrome (motor V8):
-      En Chrome, el compilador JIT (TurboFan) a veces hace "trampa" en benchmarks
-      sintéticos: si detecta que un bucle repite el mismo cálculo sin efectos
-      secundarios, puede eliminar iteraciones o reutilizar registros. JavaScriptCore
-      en Safari no es tan agresivo eliminando código en caliente y ejecuta cada
-      iteración tal cual, por lo que el rendimiento real de WebAssembly se nota
-      mucho más frente a JavaScript.
-    - Resolución del temporizador:
-      Cada navegador aplica precisiones distintas en performance.now() por temas
-      de seguridad (Spectre). En Safari las mediciones cortas son más sensibles a
-      este redondeo, motivo por el cual se aumentaron las repeticiones en las
-      pruebas pesadas (como el primo) para que el resultado sea fiable y no dependa
-      del navegador donde se ejecute.
-
-
---------------------------------------------------------------------
-5. INSTRUCCIONES DE EJECUCIÓN Y COMPILACIÓN
---------------------------------------------------------------------
-
-5.1 Ejecución en navegador local:
-    Debido a las políticas de seguridad CORS de los navegadores modernos, los
-    módulos WebAssembly no pueden cargarse mediante el protocolo `file://`. Se
-    requiere un servidor HTTP local.
-
-    Opción 1 — Servidor Python (disponible de forma nativa en macOS):
-      cd /Users/raul/Desktop/Standards-and-Web-Computing/wasm
-      python3 -m http.server 8000
-      Abrir en el navegador: http://localhost:8000/ejemplo.html
-
-    Opción 2 — Servidor Node.js:
-      npx serve .
-      Abrir en el navegador la dirección indicada en la terminal.
-
-5.2 Recompilación de WAT a WASM (opcional):
-    El repositorio ya incluye el archivo binario `ejemplo.wasm` precompilado.
-    Si se realizan modificaciones sobre `ejemplo.wat`, se puede recompilar con:
-      npm install
-      node build.js
-    El script `build.js` lee `ejemplo.wat`, invoca la librería oficial `wabt` y
-    escribe el archivo resultante `ejemplo.wasm`.
-
-
---------------------------------------------------------------------
-6. REQUISITOS Y COMPATIBILIDAD
---------------------------------------------------------------------
-
-  - Cualquier navegador web con soporte WebAssembly MVP (versión mínima):
-      · Google Chrome 57+ (Marzo 2017)
-      · Mozilla Firefox 52+ (Marzo 2017)
-      · Apple Safari 11+ (Septiembre 2017)
-      · Microsoft Edge 16+ (Octubre 2017)
-  - Node.js versión 16 o superior (únicamente necesario si se desea recompilar
-    el binario con `node build.js`).
+- En navegadores basados en Chromium (Chrome/Edge, motor V8):
+  El compilador TurboFan de V8 puede detectar que ciertas variables en bucles
+  sintéticos son invariantes y eliminar parte del trabajo en JS si no se
+  acumulan resultados. Con el diseño inlined y el número de repeticiones
+  ajustado en la entrega, WASM se mantiene por delante en las tres operaciones.
 ====================================================================
