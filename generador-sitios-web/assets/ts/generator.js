@@ -343,12 +343,6 @@ ${this.generarFooter(sitio)}
         const cv = sitio.paginas.curriculum;
         const autor = sitio.metadatos.autor;
         const cInfo = sitio.metadatos.contactoInfo;
-        // Botón descargar PDF
-        const botonPdfHtml = cv.cabecera.descargaPdf
-            ? `        <a href="${this.escapeHtml(cv.cabecera.descargaPdf.url)}" download aria-label="${this.escapeHtml(cv.cabecera.descargaPdf.texto)}">
-          ${this.escapeHtml(cv.cabecera.descargaPdf.texto)}
-        </a>`
-            : '';
         // Experiencia laboral
         const experienciaHtml = cv.experienciaLaboral.map(p => {
             return `              <li>
@@ -459,7 +453,6 @@ ${this.generarHeaderNav(sitio, 'cv')}
           <h1>${this.escapeHtml(cv.cabecera.titulo)}</h1>
           <p>${this.escapeHtml(cv.cabecera.subtitulo)}</p>
         </hgroup>
-${botonPdfHtml}
       </header>
     </section>
 

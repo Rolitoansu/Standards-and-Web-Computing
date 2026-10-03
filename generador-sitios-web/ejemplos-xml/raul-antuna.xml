@@ -224,7 +224,6 @@
       <cabecera>
         <titulo>Currículum Vitae</titulo>
         <subtitulo>Mi trayectoria académica, experiencia laboral y competencias técnicas.</subtitulo>
-        <descarga-pdf url="assets/cv-raul-antuna.pdf" texto="Descargar PDF"/>
       </cabecera>
 
       <experiencia-laboral>
