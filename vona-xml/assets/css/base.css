@@ -55,9 +55,9 @@
 
 html {
   font-size: 100%;
-  font-family: var(--fuente-sistema);
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
+  font-family: var(--fuente-sistema, sans-serif);
+  background-color: var(--color-fondo, #f1f5f9);
+  color: var(--color-texto, #0f172a);
   line-height: 1.5;
   text-rendering: optimizeLegibility;
 }
@@ -66,8 +66,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
+  background-color: var(--color-fondo, #f1f5f9);
+  color: var(--color-texto, #0f172a);
 }
 
 body > a[href="#contenido"] {
@@ -92,7 +92,8 @@ body > a[href="#contenido"]:focus-visible {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-texto);
+  color: var(--color-texto, #0f172a);
+  background-color: inherit;
   line-height: 1.3;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -100,17 +101,20 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   color: var(--color-texto-secundario);
+  background-color: inherit;
   margin-bottom: 0.5rem;
 }
 
 a {
   color: var(--color-primario);
+  background-color: inherit;
   text-decoration: underline;
   text-underline-offset: 0.1875rem;
 }
 
 a:hover {
   color: var(--color-primario-oscuro);
+  background-color: inherit;
 }
 
 a:focus-visible,
@@ -127,6 +131,7 @@ button {
   cursor: pointer;
   border: 0.0625rem solid transparent;
   background: transparent;
+  color: inherit;
 }
 
 input,
@@ -134,14 +139,15 @@ textarea,
 select {
   font-family: inherit;
   font-size: 0.875rem;
-  color: var(--color-texto);
+  color: var(--color-texto, #0f172a);
+  background-color: inherit;
 }
 
 code,
 pre,
 kbd,
 samp {
-  font-family: var(--fuente-datos);
+  font-family: var(--fuente-datos, monospace);
 }
 
 img,

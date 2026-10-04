@@ -31,6 +31,7 @@ header h1 {
 
 header p {
   color: #555;
+  background-color: inherit;
   font-size: 0.9rem;
 }
 
@@ -63,8 +64,9 @@ menu.tabs li {
 
 menu.tabs button.tab-btn {
   padding: 0.45rem 1rem;
-  border: 0.0625rem solid #ccc;
-  border-bottom: none;
+  border-top: 0.0625rem solid #ccc;
+  border-left: 0.0625rem solid #ccc;
+  border-right: 0.0625rem solid #ccc;
   background-color: #f1f5f9;
   color: #475569;
   font-size: 0.9rem;
@@ -102,6 +104,7 @@ menu.tabs button.tab-btn[aria-selected="true"] {
 
 .prueba-activa strong {
   color: #1e40af;
+  background-color: inherit;
   font-weight: 700;
 }
 
@@ -157,10 +160,12 @@ form>button {
 
 form>button:hover {
   background-color: #444;
+  color: #fff;
 }
 
 form>button:disabled {
   background-color: #999;
+  color: #fff;
   cursor: not-allowed;
 }
 
@@ -175,6 +180,7 @@ th {
   border: 0.0625rem solid #ccc;
   padding: 0.45rem 0.65rem;
   background-color: #f5f5f5;
+  color: inherit;
   text-align: left;
   font-size: 0.9rem;
 }
@@ -194,6 +200,7 @@ tbody tr:first-child td {
 tbody tr:last-child td {
   font-size: 0.85rem;
   color: #555;
+  background-color: inherit;
 }
 
 output {
@@ -205,6 +212,7 @@ output {
   border-radius: 0.25rem;
   min-height: 2rem;
   background-color: #fafafa;
+  color: inherit;
 }
 
 pre {
@@ -219,34 +227,35 @@ pre {
   max-height: 20rem;
   overflow-y: auto;
   white-space: pre;
+  color: inherit;
 }
 
 @media (max-width: 30rem) {
-  menu.tabs {
+  body menu.tabs {
     flex-direction: column;
     border-bottom: none;
   }
 
-  menu.tabs li {
+  body menu.tabs li {
     width: 100%;
   }
 
-  menu.tabs button.tab-btn {
+  body menu.tabs button.tab-btn {
     width: 100%;
     border-bottom: 0.0625rem solid #ccc;
     border-radius: 0.25rem;
   }
 
-  form {
+  body form {
     flex-direction: column;
     align-items: stretch;
   }
 
-  form input {
+  body form input {
     width: 100%;
   }
 
-  form>button {
+  body form>button {
     width: 100%;
   }
 }
