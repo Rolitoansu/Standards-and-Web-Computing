@@ -1,26 +1,53 @@
 Léeme - Web Personal
 Raúl Antuña Suárez
 
-1. Tecnologías utilizadas y justificación
-Para el desarrollo de la web personal he utilizado exclusivamente HTML5, CSS3 y JavaScript nativo (Vanilla), prescindiendo totalmente de frameworks (como React, Vue o Angular) y de librerías CSS (como Bootstrap o Tailwind).
-
-El motivo principal de esta elección es garantizar el cumplimiento estricto de los estándares web fijados por el W3C y WHATWG:
-
-- HTML5: La estructura de cada página está construida con etiquetas semánticas (header, nav, main, section, article, figure, footer, etc.) en lugar de abusar de contenedores genéricos (div y span). También se cuida la jerarquía de encabezados con un único h1 por vista y se añaden atributos ARIA donde procede para favorecer la accesibilidad.
-
-- CSS3: He organizado los estilos de forma modular (base.css para variables y reset, layout.css para cabecera y pie comunes, y un css específico para cada página). Se emplean variables CSS nativas para mantener una paleta coherente, y CSS Grid y Flexbox junto con media queries en unidades relativas (rem) para que el diseño sea totalmente responsive. Además, todas las reglas definen tanto color como fondo para cumplir los requisitos de contraste y superar la validación del W3C sin fallos.
-
-- JavaScript (ES6+): Se utiliza únicamente para la interactividad imprescindible (el menú hamburguesa en móviles en nav.js y el filtrado por categorías en projects.js). Al ser JavaScript nativo cargado con el atributo defer, no bloquea el renderizado de la página, no mete dependencias externas y asegura que el código funcione en cualquier navegador moderno sin herramientas de compilación.
-
-
-2. Estructura del proyecto
-- index.html: Portada y presentación general.
-- about.html: Información personal, biografía y recursos multimedia (audio y vídeo).
-- projects.html: Catálogo de proyectos destacados con filtro por categoría.
-- cv.html: Currículum vitae con experiencia, estudios y enlace al PDF.
-- contact.html: Formulario de contacto y enlaces a perfiles.
+1. Estructura del proyecto y contenido de las carpetas
+- index.html: Portada y presentación principal.
+- about.html: Trayectoria profesional, intereses y recursos multimedia propios (audio y vídeo).
+- projects.html: Catálogo interactivo de proyectos con filtrado por categoría y tecnologías.
+- cv.html: Currículum vitae estructurado (experiencia laboral, formación académica y certificaciones) con enlace al PDF.
+- contact.html: Formulario de contacto y enlaces a perfiles profesionales.
 - assets/css/: Hojas de estilo CSS3 modulares.
-- assets/js/: Scripts nav.js y projects.js.
-- assets/img/, assets/audio/, assets/video/: Contenido multimedia de apoyo.
+  - base.css: Variables globales (Custom Properties), reset de estilos y componentes base.
+  - layout.css: Estilos estructurales comunes (cabecera, navegación responsive y pie de página).
+  - index.css, about.css, projects.css, cv.css, contact.css: Estilos propios de cada página.
+- assets/js/: Scripts JavaScript nativos (ES6+).
+  - nav.js: Control del menú de navegación móvil (hamburguesa) y gestión de accesibilidad (aria-expanded).
+  - projects.js: Filtrado reactivo de proyectos en tiempo real mediante data-category y aria-pressed.
+- assets/img/: Imágenes fotográficas, capturas de pantalla y logotipos vectoriales (SVG).
+- assets/audio/: Archivos de audio propios integrados con controles nativos en about.html.
+- assets/video/: Archivo de vídeo demostrativo integrado con controles nativos en about.html.
 - assets/cv_raul_antuna.pdf: Currículum en PDF descargable.
-- léeme.txt / leeme.txt: Este documento explicativo.
+- leeme.txt / léeme.txt: Este documento explicativo.
+
+
+2. Procedimiento de despliegue de la aplicación
+Al ser una aplicación web estática pura (HTML5, CSS3 y JavaScript nativo), no requiere ningún proceso de compilación, transpilación ni instalación de dependencias en el servidor.
+Para desplegar la aplicación:
+1. Copiar la carpeta 'web-personal' completa al directorio servido por el servidor web (por ejemplo, en la ruta /var/www/html/web-personal/ de un servidor Apache o Nginx).
+2. Asegurar que los ficheros cuentan con permisos de lectura para el servidor web.
+3. Acceder mediante el navegador web a la dirección configurada en el servidor.
+
+
+3. Software, herramientas y versiones utilizadas
+- HTML5: Estándar WHATWG / W3C.
+- CSS3: Especificación oficial W3C.
+- JavaScript: ECMAScript 2020+ (ES6+) nativo.
+- Editor de código: Visual Studio Code.
+- Navegadores web de prueba: Google Chrome (v120+), Mozilla Firefox (v120+), Apple Safari (v17+).
+- Herramientas de validación y estándares:
+  - W3C Nu Html Checker (validador HTML5).
+  - W3C CSS Validation Service (Jigsaw).
+
+
+4. Explicaciones y consideraciones específicas
+Para este trabajo he utilizado exclusivamente HTML5, CSS3 y JavaScript nativo (Vanilla), prescindiendo por completo de frameworks (como React, Angular o Vue) y librerías CSS (como Tailwind o Bootstrap). Esta elección responde a la necesidad de garantizar el estricto cumplimiento de los estándares web fijados por el W3C:
+
+- HTML5 Semántico: Toda la maquetación se apoya en etiquetas semánticas con significado estructural (header, nav, main, section, article, figure, time, footer) evitando el uso abusivo de divs o spans genéricos. Se mantiene una jerarquía coherente de encabezados (un único h1 por página) y se incorporan atributos ARIA para maximizar la accesibilidad.
+- CSS3 Modular y Accesible: Se organizan las hojas de estilo de manera desacoplada y se utilizan variables CSS para mantener la coherencia cromática y tipográfica. La maquetación se basa en CSS Grid y Flexbox junto con media queries con unidades relativas (rem). Todas las reglas definen simultáneamente color y background-color para garantizar un contraste adecuado y superar la validación W3C sin errores ni advertencias.
+- JavaScript no bloqueante: Los scripts se cargan de forma diferida mediante el atributo defer en el head, garantizando una carga inmediata de la interfaz (Core Web Vitals óptimos) sin dependencias externas que puedan generar obsolescencia.
+
+
+5. Dirección URL de despliegue
+https://156.35.98.63/web-personal/
+(O directamente: https://156.35.98.63/web-personal/index.html)
