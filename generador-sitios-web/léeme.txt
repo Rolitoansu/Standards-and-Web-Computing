@@ -35,7 +35,7 @@ El servidor utiliza un certificado SSL autofirmado (sin entidad emisora pública
   - css/app.css: Estilos visuales de la aplicación del generador.
   - img/: Iconos tecnológicos y recursos gráficos incluidos en el ZIP generado.
 - package.json y tsconfig.json: Configuración de dependencias de desarrollo y compilador TypeScript.
-- leeme.txt / léeme.txt: Este documento explicativo.
+- léeme.txt: Este documento explicativo.
 
 
 3. Procedimiento de despliegue de la aplicación

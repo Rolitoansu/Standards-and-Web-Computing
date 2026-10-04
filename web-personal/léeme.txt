@@ -26,7 +26,7 @@ El servidor utiliza un certificado SSL autofirmado (sin entidad emisora pública
 - assets/audio/: Archivos de audio propios integrados con controles nativos en about.html.
 - assets/video/: Archivo de vídeo demostrativo integrado con controles nativos en about.html.
 - assets/cv_raul_antuna.pdf: Currículum en PDF descargable.
-- leeme.txt / léeme.txt: Este documento explicativo.
+- léeme.txt: Este documento explicativo.
 
 
 3. Procedimiento de despliegue de la aplicación

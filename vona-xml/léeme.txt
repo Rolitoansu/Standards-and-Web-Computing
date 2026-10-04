@@ -27,7 +27,7 @@ El servidor utiliza un certificado SSL autofirmado (sin entidad emisora pública
   - css/: Hojas de estilo modulares (base.css, layout.css, index.css) validadas.
   - samples/: Muestras de avisos volcánicos reales en formato XML conforme al estándar VONA (etna-vona.xml, eyjafjallajokull-vona.xml, kilauea-vona.xml, popocatepetl-vona.xml, sakurajima-vona.xml, tajogaite-vona.xml, multi-volcanoes-vona.xml).
 - package.json y tsconfig.json: Configuración de dependencias de desarrollo y TypeScript.
-- leeme.txt / léeme.txt: Este documento explicativo.
+- léeme.txt: Este documento explicativo.
 
 
 3. Procedimiento de despliegue de la aplicación

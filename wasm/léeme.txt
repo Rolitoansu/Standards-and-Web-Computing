@@ -16,7 +16,7 @@ El servidor utiliza un certificado SSL autofirmado (sin entidad emisora pública
 - ejemplo.wasm: Módulo binario compilado a partir de ejemplo.wat (659 bytes).
 - ejemplo.js: Script que realiza la carga e instanciación del módulo WASM, implementa las versiones equivalentes en JavaScript nativo, gestiona los eventos de la interfaz y mide tiempos con performance.now().
 - build.js: Script en Node.js que compila ejemplo.wat a ejemplo.wasm utilizando la librería 'wabt'.
-- leeme.txt / léeme.txt: Este documento explicativo.
+- léeme.txt: Este documento explicativo.
 
 
 3. Procedimiento de despliegue de la aplicación
