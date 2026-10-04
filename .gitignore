@@ -1,0 +1,7 @@
+# Dependencias
+node_modules/
+package-lock.json
+
+# Archivos del sistema operativo
+.DS_Store
+**/.DS_Store
