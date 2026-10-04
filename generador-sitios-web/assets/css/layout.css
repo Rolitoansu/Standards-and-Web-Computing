@@ -105,8 +105,7 @@ body > main > section {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.06);
   }
 
-  body > header nav ul[data-abierto="true"],
-  body > header nav ul.is-open {
+  body > header nav ul[data-abierto="true"] {
     display: flex;
   }
 

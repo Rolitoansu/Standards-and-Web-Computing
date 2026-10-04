@@ -1,14 +1,15 @@
 body > main > section:first-of-type {
   background: linear-gradient(135deg, #eef3ff 0%, #f5f7fb 50%, #e8f5ff 100%);
   border-bottom: 0.0625rem solid var(--borde);
-  padding: 4rem max(1.5rem, calc((100% - var(--ancho-max)) / 2));
+  padding: 4rem 1.5rem;
   min-height: calc(100vh - 3.75rem);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 3rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 3rem;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 body > main > section:first-of-type::before {
@@ -38,6 +39,7 @@ body > main > section:first-of-type::after {
 body > main > section:first-of-type > header {
   position: relative;
   z-index: 1;
+  max-width: calc(var(--ancho-max) - 16rem);
 }
 
 body > main > section:first-of-type > header > p:first-child {
@@ -46,18 +48,23 @@ body > main > section:first-of-type > header > p:first-child {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--primario);
+  background-color: inherit;
   margin-bottom: 0.75rem;
 }
 
-body > main > section:first-of-type h1 {
+body > main > section:first-of-type h1,
+body > main > section:first-of-type h2 {
   font-size: clamp(2rem, 5vw, 3.25rem);
   letter-spacing: -0.04em;
   margin-bottom: 1rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
-body > main > section:first-of-type h1 span {
+body > main > section:first-of-type h1 span,
+body > main > section:first-of-type h2 span {
   color: var(--primario);
+  background-color: inherit;
 }
 
 body > main > section:first-of-type > header > p:nth-child(3) {
@@ -80,7 +87,7 @@ body > main > section:first-of-type a[href="about.html"] {
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  background: var(--primario);
+  background: var(--primario, #2563eb);
   color: #fff;
 }
 
@@ -101,6 +108,7 @@ body > main > section:first-of-type > figure {
   position: relative;
   z-index: 1;
   margin: 0;
+  flex-shrink: 0;
 }
 
 body > main > section:first-of-type > figure img {
@@ -112,17 +120,22 @@ body > main > section:first-of-type > figure img {
   box-shadow: 0 0.5rem 2rem rgba(37, 99, 235, 0.12);
 }
 
+
 body > main > section:nth-of-type(2) {
-  background: var(--superficie);
+  background: var(--superficie, #f5f7fb);
+  color: inherit;
   border-top: 0.0625rem solid var(--borde);
   border-bottom: 0.0625rem solid var(--borde);
   padding: 2rem 0;
 }
 
-body > main > section:nth-of-type(2) ul {
+body > main > section:nth-of-type(2) > article {
   max-width: var(--ancho-max);
   margin: 0 auto;
   padding: 0 1.5rem;
+}
+
+body > main > section:nth-of-type(2) ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
   gap: 1rem;
@@ -134,11 +147,13 @@ body > main > section:nth-of-type(2) ul li strong {
   font-size: 1.9rem;
   font-weight: 700;
   color: var(--primario);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) ul li span {
   font-size: 0.8rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(3) > header {
@@ -157,7 +172,8 @@ body > main > section:nth-of-type(3) ul {
 }
 
 body > main > section:nth-of-type(3) ul li {
-  background: var(--tarjeta);
+  background: var(--tarjeta, #ffffff);
+  color: inherit;
   border: 0.0625rem solid var(--borde);
   border-radius: var(--radio-m);
   padding: 1.1rem;
@@ -184,15 +200,18 @@ body > main > section:nth-of-type(3) ul li p > span:first-child {
   font-weight: 600;
   font-size: 0.875rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(3) ul li p > span:last-child {
   font-size: 0.72rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(4) {
-  background: var(--superficie);
+  background: var(--superficie, #f5f7fb);
+  color: inherit;
   border-top: 0.0625rem solid var(--borde);
 }
 
@@ -225,6 +244,7 @@ body > main > section:nth-of-type(4) nav ul li a {
 body > main > section:nth-of-type(4) nav ul li a h3 {
   font-size: 0.95rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(4) nav ul li a p {
@@ -241,23 +261,18 @@ body > main > section > header > p:first-of-type {
 }
 
 @media (max-width: 43.75rem) {
-  body > main > section:first-of-type {
-    grid-template-columns: 1fr;
+  body > main > section:nth-of-type(1) {
+    flex-direction: column-reverse;
     text-align: center;
-    justify-items: center;
-    padding: 3rem 1.5rem;
+    gap: 2rem;
   }
 
-  body > main > section:first-of-type > figure {
-    order: -1;
-  }
-
-  body > main > section:first-of-type > figure img {
+  body > main > section:first-of-type > figure > img {
     width: 9rem;
     height: 9rem;
   }
 
-  body > main > section:first-of-type > header > nav {
+  body > main > section:first-of-type > header nav {
     justify-content: center;
   }
 }
