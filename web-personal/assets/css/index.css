@@ -48,6 +48,7 @@ body > main > section:first-of-type > header > p:first-child {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--primario);
+  background-color: inherit;
   margin-bottom: 0.75rem;
 }
 
@@ -57,11 +58,13 @@ body > main > section:first-of-type h2 {
   letter-spacing: -0.04em;
   margin-bottom: 1rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:first-of-type h1 span,
 body > main > section:first-of-type h2 span {
   color: var(--primario);
+  background-color: inherit;
 }
 
 body > main > section:first-of-type > header > p:nth-child(3) {
@@ -84,7 +87,7 @@ body > main > section:first-of-type a[href="about.html"] {
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  background: var(--primario);
+  background: var(--primario, #2563eb);
   color: #fff;
 }
 
@@ -119,7 +122,8 @@ body > main > section:first-of-type > figure img {
 
 
 body > main > section:nth-of-type(2) {
-  background: var(--superficie);
+  background: var(--superficie, #f5f7fb);
+  color: inherit;
   border-top: 0.0625rem solid var(--borde);
   border-bottom: 0.0625rem solid var(--borde);
   padding: 2rem 0;
@@ -143,11 +147,13 @@ body > main > section:nth-of-type(2) ul li strong {
   font-size: 1.9rem;
   font-weight: 700;
   color: var(--primario);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) ul li span {
   font-size: 0.8rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(3) > header {
@@ -166,7 +172,8 @@ body > main > section:nth-of-type(3) ul {
 }
 
 body > main > section:nth-of-type(3) ul li {
-  background: var(--tarjeta);
+  background: var(--tarjeta, #ffffff);
+  color: inherit;
   border: 0.0625rem solid var(--borde);
   border-radius: var(--radio-m);
   padding: 1.1rem;
@@ -193,15 +200,18 @@ body > main > section:nth-of-type(3) ul li p > span:first-child {
   font-weight: 600;
   font-size: 0.875rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(3) ul li p > span:last-child {
   font-size: 0.72rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(4) {
-  background: var(--superficie);
+  background: var(--superficie, #f5f7fb);
+  color: inherit;
   border-top: 0.0625rem solid var(--borde);
 }
 
@@ -234,6 +244,7 @@ body > main > section:nth-of-type(4) nav ul li a {
 body > main > section:nth-of-type(4) nav ul li a h3 {
   font-size: 0.95rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(4) nav ul li a p {
@@ -250,18 +261,18 @@ body > main > section > header > p:first-of-type {
 }
 
 @media (max-width: 43.75rem) {
-  body > main > section:first-of-type {
+  body > main > section:nth-of-type(1) {
     flex-direction: column-reverse;
     text-align: center;
     gap: 2rem;
   }
 
-  body > main > section:first-of-type > figure img {
+  body > main > section:first-of-type > figure > img {
     width: 9rem;
     height: 9rem;
   }
 
-  body > main > section:first-of-type > header > nav {
+  body > main > section:first-of-type > header nav {
     justify-content: center;
   }
 }

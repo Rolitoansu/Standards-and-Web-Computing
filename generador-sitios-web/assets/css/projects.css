@@ -13,11 +13,13 @@ body > main > section:first-of-type > header {
 body > main > section:first-of-type h1 {
   font-size: 2.1rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:first-of-type p {
   margin-top: 0.5rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) {
@@ -38,7 +40,7 @@ body > main > section:nth-of-type(2) > article > nav {
 }
 
 body > main > section:nth-of-type(2) > article > nav button {
-  background: var(--tarjeta);
+  background: var(--tarjeta, #ffffff);
   border: 0.0625rem solid var(--borde);
   color: var(--texto-suave);
   border-radius: var(--radio-full);
@@ -53,10 +55,11 @@ body > main > section:nth-of-type(2) > article > nav button {
 body > main > section:nth-of-type(2) > article > nav button:hover {
   border-color: var(--primario);
   color: var(--primario);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) > article > nav button[aria-pressed="true"] {
-  background: var(--primario);
+  background: var(--primario, #2563eb);
   border-color: var(--primario);
   color: #ffffff;
 }
@@ -71,7 +74,8 @@ body > main > section:nth-of-type(2) > article > ul {
 }
 
 body > main > section:nth-of-type(2) article article {
-  background: var(--tarjeta);
+  background: var(--tarjeta, #ffffff);
+  color: inherit;
   border: 0.0625rem solid var(--borde);
   border-radius: var(--radio-m);
   padding: 1.5rem;
@@ -92,14 +96,14 @@ body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure)
   align-items: center;
 }
 
-body > main > section:nth-of-type(2) > article > ul > li:first-child article > figure {
+body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) article > figure {
   margin: 0;
   border-radius: var(--radio-m);
   overflow: hidden;
   border: 0.0625rem solid var(--borde);
 }
 
-body > main > section:nth-of-type(2) > article > ul > li:first-child article > figure img {
+body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) article > figure img {
   width: 100%;
   height: auto;
   display: block;
@@ -119,6 +123,7 @@ body > main > section:nth-of-type(2) article article > header img {
 
 body > main > section:nth-of-type(2) article article > header nav a {
   color: var(--texto-mutado);
+  background-color: inherit;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -130,18 +135,21 @@ body > main > section:nth-of-type(2) article article > header nav a {
 
 body > main > section:nth-of-type(2) article article > header nav a:hover {
   color: var(--primario);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) article article h3 {
   font-size: 1.15rem;
   margin-bottom: 0.4rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) article article > p {
   font-size: 0.875rem;
   line-height: 1.55;
   color: var(--texto-suave);
+  background-color: inherit;
   flex: 1;
   margin: 0.75rem 0 1.25rem;
 }
@@ -163,6 +171,7 @@ body > main > section:nth-of-type(2) article article span[data-estado]::before {
   height: 0.375rem;
   border-radius: 50%;
   background: currentColor;
+  color: inherit;
 }
 
 body > main > section:nth-of-type(2) article article span[data-estado="completado"] {
@@ -176,7 +185,7 @@ body > main > section:nth-of-type(2) article article span[data-estado="progreso"
 }
 
 body > main > section:nth-of-type(2) article article > nav:last-of-type,
-body > main > section:nth-of-type(2) > article > ul > li:first-child article > section > nav {
+body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) article > section > nav {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
@@ -184,8 +193,8 @@ body > main > section:nth-of-type(2) > article > ul > li:first-child article > s
 }
 
 body > main > section:nth-of-type(2) article article > nav:last-of-type span,
-body > main > section:nth-of-type(2) > article > ul > li:first-child article > section > nav span {
-  background: var(--primario-claro);
+body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) article > section > nav span {
+  background: var(--primario-claro, #eff6ff);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
   border-radius: var(--radio-full);
@@ -200,6 +209,7 @@ body > main > section:nth-of-type(2) article em {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--primario);
+  background-color: inherit;
   font-style: normal;
   display: block;
   margin-bottom: 0.4rem;
@@ -212,7 +222,7 @@ body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure)
   border-radius: var(--radio-s);
   font-size: 0.875rem;
   font-weight: 600;
-  background: var(--primario);
+  background: var(--primario, #2563eb);
   color: #ffffff;
   text-decoration: none;
   margin-top: 1.25rem;
@@ -225,7 +235,7 @@ body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure)
 }
 
 @media (max-width: 48rem) {
-  body > main > section:nth-of-type(2) > article > ul > li:first-child article {
+  body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) > article {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
