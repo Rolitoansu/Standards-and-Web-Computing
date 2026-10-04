@@ -38,7 +38,7 @@ body > main > section:nth-of-type(2) address a {
   padding: 0.9rem 1rem;
   border: 0.0625rem solid var(--borde);
   border-radius: var(--radio-m);
-  background: var(--tarjeta);
+  background: var(--tarjeta, #ffffff);
   text-decoration: none;
   color: var(--texto-suave);
   transition: border-color var(--transicion), background var(--transicion);
@@ -46,19 +46,22 @@ body > main > section:nth-of-type(2) address a {
 
 body > main > section:nth-of-type(2) address a:hover {
   border-color: var(--primario);
-  background: var(--superficie);
+  background: var(--superficie, #f5f7fb);
+  color: inherit;
 }
 
 body > main > section:nth-of-type(2) address a > p > span:first-child {
   display: block;
   font-size: 0.75rem;
   color: var(--texto-mutado);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) address a > p > span:last-child {
   font-size: 0.925rem;
   font-weight: 600;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(3) {
@@ -85,6 +88,7 @@ body > main > section:nth-of-type(3) ul {
 body > main > section:nth-of-type(3) ul li {
   font-size: 0.925rem;
   color: var(--texto-suave);
+  background-color: inherit;
   display: flex;
   align-items: center;
   gap: 0.6rem;

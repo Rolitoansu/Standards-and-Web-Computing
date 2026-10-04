@@ -24,12 +24,14 @@ body > main > section:first-of-type > header img {
 body > main > section:first-of-type h1 {
   font-size: 2.1rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:first-of-type > header p {
   margin-top: 0.5rem;
   font-size: 1rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) {
@@ -46,11 +48,11 @@ body > main > section:nth-of-type(2) h2 {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) > article > section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-top: 1.5rem;
 }
@@ -62,25 +64,31 @@ body > main > section:nth-of-type(2) table {
 
 body > main > section:nth-of-type(2) table th,
 body > main > section:nth-of-type(2) table td {
-  padding: 0.65rem 0.5rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  padding-left: 0.5rem;
   text-align: left;
   font-size: 0.875rem;
   border-bottom: 0.0625rem solid var(--borde);
 }
 
 body > main > section:nth-of-type(2) table th {
-  color: var(--texto-mutado);
-  font-weight: 500;
   padding-right: 1.5rem;
+  color: var(--texto-mutado);
+  background-color: inherit;
+  font-weight: 500;
   white-space: nowrap;
 }
 
 body > main > section:nth-of-type(2) table td {
+  padding-right: 0.5rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) table td a {
   color: var(--primario);
+  background-color: inherit;
   text-decoration: none;
 }
 
@@ -88,6 +96,7 @@ body > main > section:nth-of-type(2) > article > section > aside > p {
   margin-bottom: 1rem;
   line-height: 1.6;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(2) > article > section > aside > nav {
@@ -97,7 +106,7 @@ body > main > section:nth-of-type(2) > article > section > aside > nav {
 }
 
 body > main > section:nth-of-type(2) > article > section > aside > nav span {
-  background: var(--primario-claro);
+  background: var(--primario-claro, #eff6ff);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
   border-radius: var(--radio-full);
@@ -122,10 +131,12 @@ body > main > section:nth-of-type(3) > article {
 body > main > section:nth-of-type(3) h2 {
   font-size: 1.5rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(3) > article > p {
   color: var(--texto-suave);
+  background-color: inherit;
   margin-top: 0.5rem;
 }
 
@@ -149,11 +160,13 @@ body > main > section:nth-of-type(3) ul li h3 {
   font-size: 1rem;
   margin-bottom: 0.35rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(3) ul li p {
   font-size: 0.85rem;
   color: var(--texto-mutado);
+  background-color: inherit;
   line-height: 1.5;
 }
 
@@ -170,16 +183,17 @@ body > main > section:nth-of-type(4) > article {
 body > main > section:nth-of-type(4) h2 {
   font-size: 1.5rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(4) > article > p {
   color: var(--texto-suave);
+  background-color: inherit;
   margin-top: 0.5rem;
 }
 
 body > main > section:nth-of-type(4) ul {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-top: 2rem;
   list-style: none;
@@ -205,6 +219,7 @@ body > main > section:nth-of-type(4) figcaption {
   padding: 0.75rem 1rem;
   font-size: 0.82rem;
   color: var(--texto-mutado);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(5) {
@@ -220,12 +235,14 @@ body > main > section:nth-of-type(5) > article {
 body > main > section:nth-of-type(5) h2 {
   font-size: 1.5rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(5) > article > p {
   margin: 0.5rem 0 1.5rem;
   max-width: 48rem;
   color: var(--texto-suave);
+  background-color: inherit;
   line-height: 1.55;
 }
 
@@ -258,16 +275,17 @@ body > main > section:nth-of-type(6) > article {
 body > main > section:nth-of-type(6) h2 {
   font-size: 1.5rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(6) > article > p {
   margin: 0.5rem 0 1.5rem;
   color: var(--texto-suave);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(6) > article > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
   gap: 1.5rem;
   margin-top: 1.5rem;
   list-style: none;
@@ -291,12 +309,14 @@ body > main > section:nth-of-type(6) article h3 {
   font-size: 1.05rem;
   margin-bottom: 0.4rem;
   color: var(--titulo);
+  background-color: inherit;
 }
 
 body > main > section:nth-of-type(6) article p {
   font-size: 0.85rem;
   margin-bottom: 1.25rem;
   color: var(--texto-mutado);
+  background-color: inherit;
   line-height: 1.55;
   flex: 1;
 }
@@ -311,10 +331,15 @@ body > main > section:nth-of-type(6) audio {
     flex-direction: column;
     text-align: center;
   }
+}
 
+@media (min-width: 48.0625rem) {
   body > main > section:nth-of-type(2) > article > section,
-  body > main > section:nth-of-type(4) ul,
+  body > main > section:nth-of-type(4) ul {
+    grid-template-columns: 1fr 1fr;
+  }
+
   body > main > section:nth-of-type(6) > article > ul {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
   }
 }
