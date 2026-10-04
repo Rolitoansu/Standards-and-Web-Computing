@@ -1,134 +1,26 @@
-====================================================================
-PRÁCTICA: Sitio Web Personal
-Asignatura: Estándares y Computación Web
-Máster en Ingeniería Web — Universidad de Oviedo
-Autor: Raúl Antuña
-====================================================================
+Léeme - Web Personal
+Raúl Antuña Suárez
 
-1. DESCRIPCIÓN DEL PROYECTO
---------------------------------------------------------------------
-Este proyecto consiste en el diseño y desarrollo de un sitio web personal
-y profesional completo. El sitio actúa como portal de presentación,
-portfolio de proyectos de software, currículum vitae estructurado y canal
-de contacto profesional.
+1. Tecnologías utilizadas y justificación
+Para el desarrollo de la web personal he utilizado exclusivamente HTML5, CSS3 y JavaScript nativo (Vanilla), prescindiendo totalmente de frameworks (como React, Vue o Angular) y de librerías CSS (como Bootstrap o Tailwind).
 
-El diseño visual es moderno, responsivo y adaptativo, ofreciendo una
-experiencia fluida tanto en dispositivos móviles como en pantallas de
-escritorio.
+El motivo principal de esta elección es garantizar el cumplimiento estricto de los estándares web fijados por el W3C y WHATWG:
+
+- HTML5: La estructura de cada página está construida con etiquetas semánticas (header, nav, main, section, article, figure, footer, etc.) en lugar de abusar de contenedores genéricos (div y span). También se cuida la jerarquía de encabezados con un único h1 por vista y se añaden atributos ARIA donde procede para favorecer la accesibilidad.
+
+- CSS3: He organizado los estilos de forma modular (base.css para variables y reset, layout.css para cabecera y pie comunes, y un css específico para cada página). Se emplean variables CSS nativas para mantener una paleta coherente, y CSS Grid y Flexbox junto con media queries en unidades relativas (rem) para que el diseño sea totalmente responsive. Además, todas las reglas definen tanto color como fondo para cumplir los requisitos de contraste y superar la validación del W3C sin fallos.
+
+- JavaScript (ES6+): Se utiliza únicamente para la interactividad imprescindible (el menú hamburguesa en móviles en nav.js y el filtrado por categorías en projects.js). Al ser JavaScript nativo cargado con el atributo defer, no bloquea el renderizado de la página, no mete dependencias externas y asegura que el código funcione en cualquier navegador moderno sin herramientas de compilación.
 
 
-2. TECNOLOGÍAS UTILIZADAS Y JUSTIFICACIÓN DE SU ELECCIÓN
---------------------------------------------------------------------
-Para el desarrollo del sitio se ha tomado la decisión deliberada de utilizar
-exclusivamente tecnologías web nativas (Vanilla):
-
-  - HTML5 (Estructura y semántica)
-  - CSS3 (Presentación y maquetación visual)
-  - JavaScript ES6+ (Comportamiento e interactividad)
-
-Se ha prescindido por completo de frameworks pesados (como React, Angular,
-Vue, Tailwind CSS o Bootstrap) y de librerías o dependencias de terceros.
-
-A continuación se detalla la justificación técnica de esta elección:
-
-a) Garantía de estricto cumplimiento de estándares web (W3C y WHATWG):
-   El objetivo primordial de la asignatura es comprender y aplicar con rigor
-   los estándares web. El uso de frameworks y bibliotecas de abstracción suele
-   introducir elementos propietarios, estructuras no semánticas (abuso de
-   divs, clases utilitarias excesivas) o construcciones de difícil validación.
-   El uso directo de los estándares nativos permite un control absoluto sobre
-   el árbol DOM y el modelo de cajas, asegurando una validación 100% limpia
-   frente a los validadores oficiales del W3C.
-
-b) HTML5 Semántico y Accesibilidad Nativa (WCAG):
-   - Cada página está construida con un esquema semántico riguroso: <header>,
-     <nav>, <main>, <section>, <article>, <figure>, <figcaption>, <time>,
-     <aside> y <footer>, evitando el uso superfluo de etiquetas <div> y <span>.
-   - Jerarquía clara de encabezados (un único <h1> representativo por vista,
-     seguido lógicamente de <h2> y <h3>).
-   - Accesibilidad integrada mediante atributos ARIA estándar cuando resulta
-     necesario (aria-label, aria-current="page", aria-expanded, aria-pressed,
-     aria-hidden), garantizando compatibilidad con lectores de pantalla y
-     navegación asistiva.
-   - Uso de elementos multimedia nativos (<audio>, <video>) con controles
-     estándar del navegador y alternativas textuales.
-
-c) CSS3 Moderno, Modular y Mantenible:
-   - Arquitectura CSS organizada y desacoplada:
-     * base.css: Definición de variables globales (Custom Properties),
-       normalización de estilos, escala tipográfica y diseño de componentes base.
-     * layout.css: Estilos estructurales compartidos (cabecera global, menú
-       de navegación responsivo y pie de página).
-     * index.css, about.css, projects.css, cv.css, contact.css: Hojas de
-       estilo dedicadas y optimizadas para cada una de las vistas.
-   - Variables CSS (Custom Properties): Centralizan la paleta cromática,
-     espaciados, radios de curvatura y transiciones, favoreciendo una
-     mantenibilidad equivalente a preprocesadores (Sass/Less) pero de forma
-     nativa en el navegador.
-   - Maquetación avanzada: Empleo exhaustivo de CSS Grid y Flexbox para layouts
-     flexibles y alineaciones precisas.
-   - Diseño responsivo mediante media queries móviles (@media) con unidades
-     relativas (rem, em), garantizando que el diseño responda a distintos
-     tamaños de viewport y niveles de zoom sin romperse.
-   - Contraste y legibilidad: Definición estricta y simultánea de propiedades
-     `color` y `background-color` en todas las reglas para prevenir problemas
-     de contraste visual y cumplir escrupulosamente con el validador CSS del W3C.
-
-d) JavaScript Vanilla (ES6+) Ligero y No Bloqueante:
-   - Interactividad modular y focalizada:
-     * nav.js: Control del menú de navegación móvil (hamburguesa), conmutación
-       del atributo `aria-expanded` y cierre reactivo al interactuar o redimensionar.
-     * projects.js: Filtrado reactivo en tiempo real de proyectos por categoría
-       (Web, Móvil, Sistemas/C, Todos), gestionando el estado `aria-pressed`
-       de los botones y el filtrado del DOM mediante atributos `data-category`.
-   - Cero dependencias: Manipulación directa del DOM con APIs nativas modernas
-     (querySelector, classList, dataset, addEventListener), evitando sobrecargar
-     el navegador con bundles de librerías.
-   - Rendimiento de carga: Scripts cargados con el atributo `defer` en el <head>,
-     lo que garantiza que la descarga sea asíncrona y la ejecución ocurra tras el
-     parseo completo del documento, eliminando el bloqueo del renderizado.
-
-e) Rendimiento, Cero Dependencias y Longevidad:
-   - Al no requerir pasos de transpilación, compilación ni empaquetado (webpack,
-     vite, babel), el código fuente es directamente ejecutable por el navegador.
-   - El tiempo de carga (First Contentful Paint y Largest Contentful Paint) es
-     inmediato, optimizando al máximo las métricas Core Web Vitals.
-   - El código es atemporal: no sufre de obsolescencia ni de vulnerabilidades de
-     seguridad asociadas a árboles de dependencias en npm.
-
-
-3. ESTRUCTURA DE ARCHIVOS DE LA ENTREGA
---------------------------------------------------------------------
-web-personal/
-├── index.html            : Página de inicio y presentación personal
-├── about.html            : Biografía, trayectoria y contenido multimedia
-├── projects.html         : Catálogo interactivo de proyectos con filtrado
-├── cv.html               : Currículum vitae detallado (experiencia, educación)
-├── contact.html          : Formulario de contacto y enlaces a redes
-├── leeme.txt             : Documento explicativo de tecnologías y estándares
-├── léeme.txt             : Copia con tilde para compatibilidad de corrección
-└── assets/
-    ├── css/              : Hojas de estilo CSS3 modulares y validadas
-    │   ├── base.css      : Variables globales, reset y componentes comunes
-    │   ├── layout.css    : Header, navegación y footer
-    │   ├── index.css     : Estilos específicos de la página de inicio
-    │   ├── about.css     : Estilos de la página Sobre mí y multimedia
-    │   ├── projects.css  : Estilos de la cuadrícula y tarjetas de proyectos
-    │   ├── cv.css        : Estilos de la línea temporal y secciones del CV
-    │   └── contact.css   : Estilos del formulario e información de contacto
-    ├── js/               : Scripts JavaScript nativos (ES6+)
-    │   ├── nav.js        : Lógica del menú de navegación responsivo
-    │   └── projects.js   : Filtrado dinámico de proyectos por categoría
-    ├── img/              : Imágenes, capturas y logotipos vectoriales (SVG/PNG)
-    ├── audio/            : Archivos de audio integrados en about.html
-    ├── video/            : Vídeos demostrativos integrados en about.html
-    └── cv_raul_antuna.pdf: Versión descargable del currículum
-
-
-4. VALIDACIÓN DE ESTÁNDARES
---------------------------------------------------------------------
-Todo el código entregado ha sido verificado con las herramientas oficiales:
-  - Validador HTML del W3C (Nu Html Checker): 0 errores y 0 avisos.
-  - Validador CSS del W3C: Cumplimiento de la especificación CSS3.
-  - Accesibilidad: Marcado validado conforme a los principios de WCAG 2.1.
-====================================================================
+2. Estructura del proyecto
+- index.html: Portada y presentación general.
+- about.html: Información personal, biografía y recursos multimedia (audio y vídeo).
+- projects.html: Catálogo de proyectos destacados con filtro por categoría.
+- cv.html: Currículum vitae con experiencia, estudios y enlace al PDF.
+- contact.html: Formulario de contacto y enlaces a perfiles.
+- assets/css/: Hojas de estilo CSS3 modulares.
+- assets/js/: Scripts nav.js y projects.js.
+- assets/img/, assets/audio/, assets/video/: Contenido multimedia de apoyo.
+- assets/cv_raul_antuna.pdf: Currículum en PDF descargable.
+- léeme.txt / leeme.txt: Este documento explicativo.
