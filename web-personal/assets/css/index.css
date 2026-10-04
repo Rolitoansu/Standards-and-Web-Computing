@@ -55,14 +55,16 @@ body > main > section:first-of-type > article > header > p:first-child {
   margin-bottom: 0.75rem;
 }
 
-body > main > section:first-of-type h1 {
+body > main > section:first-of-type h1,
+body > main > section:first-of-type h2 {
   font-size: clamp(2rem, 5vw, 3.25rem);
   letter-spacing: -0.04em;
   margin-bottom: 1rem;
   color: var(--titulo);
 }
 
-body > main > section:first-of-type h1 span {
+body > main > section:first-of-type h1 span,
+body > main > section:first-of-type h2 span {
   color: var(--primario);
 }
 
