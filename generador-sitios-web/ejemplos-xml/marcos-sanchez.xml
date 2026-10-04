@@ -145,7 +145,7 @@
             <tag>WCAG 2.1 AA</tag>
           </tecnologias>
           <enlaces>
-            <enlace tipo="demo" url="https://github.com" texto="Storybook Demo"/>
+            <enlace tipo="demo" url="https://storybook.js.org" texto="Storybook Demo"/>
             <enlace tipo="codigo" url="https://github.com" texto="GitHub"/>
           </enlaces>
         </proyecto>
@@ -160,7 +160,7 @@
             <tag>WebAudio API</tag>
           </tecnologias>
           <enlaces>
-            <enlace tipo="demo" url="https://github.com" texto="Ver experiencia 3D"/>
+            <enlace tipo="demo" url="https://threejs.org" texto="Ver experiencia 3D"/>
           </enlaces>
         </proyecto>
 

@@ -144,7 +144,7 @@
             <tag>Docker</tag>
           </tecnologias>
           <enlaces>
-            <enlace tipo="articulo" url="https://github.com" texto="Leer paper"/>
+            <enlace tipo="articulo" url="https://arxiv.org" texto="Leer paper"/>
             <enlace tipo="codigo" url="https://github.com" texto="Código abierto"/>
           </enlaces>
         </proyecto>
@@ -159,7 +159,7 @@
             <tag>FastAPI</tag>
           </tecnologias>
           <enlaces>
-            <enlace tipo="demo" url="https://github.com" texto="Ver API docs"/>
+            <enlace tipo="demo" url="https://huggingface.co" texto="Ver API docs"/>
           </enlaces>
         </proyecto>
 
@@ -173,7 +173,7 @@
             <tag>Grafana</tag>
           </tecnologias>
           <enlaces>
-            <enlace tipo="documentacion" url="https://github.com" texto="Documentación"/>
+            <enlace tipo="documentacion" url="https://mlflow.org" texto="Documentación"/>
           </enlaces>
         </proyecto>
       </lista-proyectos>
