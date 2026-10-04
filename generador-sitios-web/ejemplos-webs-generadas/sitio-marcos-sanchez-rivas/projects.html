@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Marcos Sánchez — Diseñador de sistemas y desarrollador frontend especializado en WebGL, microinteracciones fluidas y accesibilidad universal.">
+  <meta name="keywords" content="Marcos Sánchez, Design Systems, UX/UI, Creative Tech, Three.js, WebGL, TypeScript, CSS Architecture">
+  <meta name="author" content="Marcos Sánchez Rivas">
+  <meta property="og:title" content="Proyectos — Marcos Sánchez Rivas">
+  <meta property="og:description" content="Marcos Sánchez — Diseñador de sistemas y desarrollador frontend especializado en WebGL, microinteracciones fluidas y accesibilidad universal.">
+  <meta property="og:type" content="website">
+  <title>Proyectos — Marcos Sánchez Rivas</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/projects.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav aria-label="Navegación principal">
+      <a href="index.html" aria-label="Marcos Sánchez Rivas — Inicio">Mi página personal</a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">
+        &#9776;
+      </button>
+      <ul id="nav-menu" data-abierto="false">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="about.html">Sobre mí</a></li>
+        <li><a href="projects.html" aria-current="page">Proyectos</a></li>
+        <li><a href="cv.html">Currículum</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-label="Cabecera de proyectos">
+      <header>
+        <h1>Sistemas y Experiencias</h1>
+        <p>Selección de design systems, librerías interactivas y proyectos creativos en producción.</p>
+      </header>
+    </section>
+
+    <section aria-label="Catálogo de proyectos">
+      <article>
+        <h2>Lista de proyectos</h2>
+
+        <nav aria-label="Filtrar proyectos por categoría">
+          <button aria-pressed="true" data-filter="all">Todos</button>
+          <button aria-pressed="false" data-filter="design-system">Design Systems</button>
+          <button aria-pressed="false" data-filter="creative">Creative Web &amp; 3D</button>
+          <button aria-pressed="false" data-filter="tools">Herramientas &amp; CLI</button>
+        </nav>
+
+        <ul>
+          <li>
+            <article data-category="design-system" aria-label="Aura Design System: Tokens y Componentes Accesibles">
+              <header>
+                <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://storybook.js.org" target="_blank" rel="noopener noreferrer" aria-label="Storybook Demo: Aura Design System: Tokens y Componentes Accesibles">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub: Aura Design System: Tokens y Componentes Accesibles">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <em>Design System Multiplataforma</em>
+              <h3>Aura Design System: Tokens y Componentes Accesibles</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Librería completa de más de 45 componentes sin dependencias pesadas, gobernados por Design Tokens sincronizados automáticamente desde Figma a CSS variables y TypeScript types.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>TypeScript</span>
+                <span>CSS Custom Properties</span>
+                <span>Web Components</span>
+                <span>Storybook</span>
+                <span>WCAG 2.1 AA</span>
+              </nav>
+            </article>
+          </li>
+          <li>
+            <article data-category="creative" aria-label="Aether: Escultura 3D Procedural en WebGL">
+              <header>
+                <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://threejs.org" target="_blank" rel="noopener noreferrer" aria-label="Ver experiencia 3D: Aether: Escultura 3D Procedural en WebGL">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <h3>Aether: Escultura 3D Procedural en WebGL</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Experiencia visual reactiva al cursor que genera mallas topológicas con deformación simplex noise en shaders GLSL, logrando renderizado fluido a 60 FPS en dispositivos móviles.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>Three.js</span>
+                <span>GLSL</span>
+                <span>WebGL</span>
+                <span>WebAudio API</span>
+              </nav>
+            </article>
+          </li>
+          <li>
+            <article data-category="tools" aria-label="Tokens-CLI: Generador de estilos desde JSON/XML">
+              <header>
+                <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Repositorio: Tokens-CLI: Generador de estilos desde JSON/XML">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <h3>Tokens-CLI: Generador de estilos desde JSON/XML</h3>
+              <span data-estado="en-progreso">en-progreso</span>
+              <p>
+                Herramienta de consola para transformar esquemas semánticos de tokens de color y tipografía en CSS listo para producción con soporte para modo oscuro automático.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>Node.js</span>
+                <span>TypeScript</span>
+                <span>PostCSS</span>
+              </nav>
+            </article>
+          </li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Marcos Sánchez Rivas — Sitio web generado automáticamente desde XML (PersonalSiteML).</p>
+  </footer>
+</body>
+</html>

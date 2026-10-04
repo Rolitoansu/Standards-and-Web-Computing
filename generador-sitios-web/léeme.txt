@@ -18,6 +18,7 @@ El servidor utiliza un certificado SSL autofirmado (sin entidad emisora pública
   - raul-antuna.xml: Sitio web personal completo de ejemplo.
   - elena-garcia.xml: Ejemplo alternativo (investigadora en IA).
   - marcos-sanchez.xml: Ejemplo alternativo (diseñador de producto).
+- ejemplos-webs-generadas: Páginas web completas generadas a partir de los archivos XML de la carpeta de ejemplos XML.
 - src/: Código fuente original de la aplicación.
   - ts/: Módulos TypeScript.
     - parser.ts: Parsea el DOM XML del archivo subido y extrae el modelo de datos.
