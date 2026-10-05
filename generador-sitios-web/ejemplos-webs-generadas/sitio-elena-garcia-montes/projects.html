@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dra. Elena García Montes — Investigadora en Inteligencia Artificial y Científica de Datos Senior especializada en visión por computador y NLP biomédico.">
+  <meta name="keywords" content="Elena García, Data Science, Machine Learning, Deep Learning, PyTorch, Python, IA Médica, Computer Vision">
+  <meta name="author" content="Elena García Montes">
+  <meta property="og:title" content="Proyectos — Elena García Montes">
+  <meta property="og:description" content="Dra. Elena García Montes — Investigadora en Inteligencia Artificial y Científica de Datos Senior especializada en visión por computador y NLP biomédico.">
+  <meta property="og:type" content="website">
+  <title>Proyectos — Elena García Montes</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/projects.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav aria-label="Navegación principal">
+      <a href="index.html" aria-label="Elena García Montes — Inicio">Mi página personal</a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">
+        &#9776;
+      </button>
+      <ul id="nav-menu" data-abierto="false">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="about.html">Sobre mí</a></li>
+        <li><a href="projects.html" aria-current="page">Proyectos</a></li>
+        <li><a href="cv.html">Currículum</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-label="Cabecera de proyectos">
+      <header>
+        <h1>Proyectos e Investigación</h1>
+        <p>Selección de modelos predictivos, librerías open-source y pipelines de inferencia en producción.</p>
+      </header>
+    </section>
+
+    <section aria-label="Catálogo de proyectos">
+      <article>
+        <h2>Lista de proyectos</h2>
+
+        <nav aria-label="Filtrar proyectos por categoría">
+          <button aria-pressed="true" data-filter="all">Todos</button>
+          <button aria-pressed="false" data-filter="vision">Visión Computacional</button>
+          <button aria-pressed="false" data-filter="nlp">NLP &amp; LLMs</button>
+          <button aria-pressed="false" data-filter="infra">MLOps &amp; Datos</button>
+        </nav>
+
+        <ul>
+          <li>
+            <article data-category="vision" aria-label="BioScan-Vision: Segmentación de Resonancias Magnéticas">
+              <header>
+                <img src="assets/img/logos/c.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" aria-label="Leer paper: BioScan-Vision: Segmentación de Resonancias Magnéticas">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="Código abierto: BioScan-Vision: Segmentación de Resonancias Magnéticas">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <em>Publicado en Nature Digital Medicine</em>
+              <h3>BioScan-Vision: Segmentación de Resonancias Magnéticas</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Arquitectura neuronal 3D basada en Transformers de atención dispersa para delimitar lesiones cerebrales en resonancias magnéticas volumétricas en menos de 2 segundos con un F1-score de 0.94.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>PyTorch</span>
+                <span>Python</span>
+                <span>MONAI</span>
+                <span>CUDA</span>
+                <span>Docker</span>
+              </nav>
+            </article>
+          </li>
+          <li>
+            <article data-category="nlp" aria-label="MedText-ES: Clasificador de Informes Clínicos en Español">
+              <header>
+                <img src="assets/img/logos/c.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://huggingface.co" target="_blank" rel="noopener noreferrer" aria-label="Ver API docs: MedText-ES: Clasificador de Informes Clínicos en Español">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <h3>MedText-ES: Clasificador de Informes Clínicos en Español</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Modelo lingüístico adaptado al dominio clínico con fine-tuning de RoBERTa sobre corpus biomédicos anonimizados, permitiendo codificación CIE-10 automática con alta precisión.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>HuggingFace</span>
+                <span>Transformers</span>
+                <span>PyTorch</span>
+                <span>FastAPI</span>
+              </nav>
+            </article>
+          </li>
+          <li>
+            <article data-category="infra" aria-label="AutoML-Track: Plataforma de MLOps y Linaje de Datos">
+              <header>
+                <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://mlflow.org" target="_blank" rel="noopener noreferrer" aria-label="Documentación: AutoML-Track: Plataforma de MLOps y Linaje de Datos">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <h3>AutoML-Track: Plataforma de MLOps y Linaje de Datos</h3>
+              <span data-estado="en-progreso">en-progreso</span>
+              <p>
+                Infraestructura reproducible para monitorización de drift conceptual en modelos desplegados en producción mediante métricas de distancia Wasserstein y alertas automáticas.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>MLflow</span>
+                <span>Kubernetes</span>
+                <span>Prometheus</span>
+                <span>Grafana</span>
+              </nav>
+            </article>
+          </li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Elena García Montes — Sitio web generado automáticamente desde XML (PersonalSiteML).</p>
+  </footer>
+</body>
+</html>

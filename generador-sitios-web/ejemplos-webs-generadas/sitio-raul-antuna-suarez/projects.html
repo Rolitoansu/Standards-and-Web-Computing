@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Raúl Antuña — AEM Backend Engineer en Hiberus y estudiante de Máster en Ingeniería Web. Página personal con proyectos y currículum.">
+  <meta name="keywords" content="Raúl Antuña, ingeniería web, AEM, Adobe Experience Manager, Hiberus, backend, desarrollador, Asturias">
+  <meta name="author" content="Raúl Antuña Suárez">
+  <meta property="og:title" content="Proyectos — Raúl Antuña Suárez">
+  <meta property="og:description" content="Raúl Antuña — AEM Backend Engineer en Hiberus y estudiante de Máster en Ingeniería Web. Página personal con proyectos y currículum.">
+  <meta property="og:type" content="website">
+  <title>Proyectos — Raúl Antuña Suárez</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/projects.css">
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/projects.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav aria-label="Navegación principal">
+      <a href="index.html" aria-label="Raúl Antuña Suárez — Inicio">Mi página personal</a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">
+        &#9776;
+      </button>
+      <ul id="nav-menu" data-abierto="false">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="about.html">Sobre mí</a></li>
+        <li><a href="projects.html" aria-current="page">Proyectos</a></li>
+        <li><a href="cv.html">Currículum</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section aria-label="Cabecera de proyectos">
+      <header>
+        <h1>Proyectos</h1>
+        <p>Una selección de mis desarrollos personales, arquitecturas de software, compiladores y sistemas.</p>
+      </header>
+    </section>
+
+    <section aria-label="Catálogo de proyectos">
+      <article>
+        <h2>Lista de proyectos</h2>
+
+        <nav aria-label="Filtrar proyectos por categoría">
+          <button aria-pressed="true" data-filter="all">Todos</button>
+          <button aria-pressed="false" data-filter="web">Web &amp; Cloud</button>
+          <button aria-pressed="false" data-filter="sistemas">Sistemas &amp; Compiladores</button>
+          <button aria-pressed="false" data-filter="backend">Backend &amp; Persistencia</button>
+        </nav>
+
+        <ul>
+          <li>
+            <article data-category="web" aria-label="Facturator.ai — Plataforma SaaS con IA">
+              <header>
+                <img src="assets/img/logos/go.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://github.com/Rolitoansu/Facturator.ai" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub: Facturator.ai — Plataforma SaaS con IA">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <em>Proyecto destacado</em>
+              <h3>Facturator.ai — Plataforma SaaS con IA</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Ecosistema SaaS completo para la extracción inteligente, procesamiento OCR y gestión contable de facturas y tickets. Arquitectura modular con backend transaccional en Go (WebSockets, Stripe, PostgreSQL/Supabase), pipelines de visión artificial en Python y frontend reactivo en SvelteKit con TypeScript.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>Go</span>
+                <span>SvelteKit</span>
+                <span>TypeScript</span>
+                <span>Python</span>
+                <span>PostgreSQL</span>
+                <span>Docker</span>
+              </nav>
+            </article>
+          </li>
+          <li>
+            <article data-category="backend" aria-label="Microservicios AEM OSGi &amp; Cloud Dispatcher">
+              <header>
+                <img src="assets/img/logos/javascript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer" aria-label="Arquitectura: Microservicios AEM OSGi &amp; Cloud Dispatcher">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <h3>Microservicios AEM OSGi &amp; Cloud Dispatcher</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Conjunto de componentes y servicios Java OSGi desacoplados para Adobe Experience Manager. Implementación de Sling Models, servicios de indexación Oak, caché avanzada en dispatcher y optimización de latencia en consultas JCR.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>Java</span>
+                <span>AEM 6.5 / Cloud</span>
+                <span>OSGi</span>
+                <span>Apache Sling</span>
+                <span>HTL</span>
+              </nav>
+            </article>
+          </li>
+          <li>
+            <article data-category="sistemas" aria-label="Simulador de Concurrencia y Sincronización en C">
+              <header>
+                <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer" aria-label="Código C: Simulador de Concurrencia y Sincronización en C">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <h3>Simulador de Concurrencia y Sincronización en C</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Desarrollo de un simulador multihilo en C puro con POSIX Threads (pthreads), semáforos, variables de condición y exclusión mutua, enfocado en resolución de condiciones de carrera y análisis de contención de recursos.
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>C</span>
+                <span>POSIX Threads</span>
+                <span>Sistemas Operativos</span>
+                <span>Make</span>
+              </nav>
+            </article>
+          </li>
+          <li>
+            <article data-category="web" aria-label="Visualizador Volcánico VONA XML en WebAssembly">
+              <header>
+                <img src="assets/img/logos/c.svg" alt="" aria-hidden="true" width="28" height="28">
+                <nav aria-label="Enlaces del proyecto">
+                  <a href="../vona-xml/index.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir aplicación: Visualizador Volcánico VONA XML en WebAssembly">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                </nav>
+              </header>
+              <h3>Visualizador Volcánico VONA XML en WebAssembly</h3>
+              <span data-estado="completado">completado</span>
+              <p>
+                Aplicación web de monitoreo de avisos de ceniza volcánica para la aviación civil según el estándar OACI. Parser XML validado en TypeScript y motor de cálculo geodésico hiperrápido en WebAssembly (WASM).
+              </p>
+              <nav aria-label="Tecnologías usadas">
+                <span>XML</span>
+                <span>XML Schema</span>
+                <span>WebAssembly</span>
+                <span>TypeScript</span>
+                <span>MapLibre GL</span>
+              </nav>
+            </article>
+          </li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Raúl Antuña Suárez — Sitio web generado automáticamente desde XML (PersonalSiteML).</p>
+  </footer>
+</body>
+</html>
