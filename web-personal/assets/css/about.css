@@ -92,20 +92,20 @@ body > main > section:nth-of-type(2) table td a {
   text-decoration: none;
 }
 
-body > main > section:nth-of-type(2) > article > section > aside > p {
+body > main > section:nth-of-type(2) > article > section > section > p {
   margin-bottom: 1rem;
   line-height: 1.6;
   color: var(--texto-suave);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > aside > nav {
+body > main > section:nth-of-type(2) > article > section > section > ul {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-body > main > section:nth-of-type(2) > article > section > aside > nav span {
+body > main > section:nth-of-type(2) > article > section > section > ul li {
   background: var(--primario-claro, #eff6ff);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -260,6 +260,17 @@ body > main > section:nth-of-type(5) video {
   max-height: 28rem;
 }
 
+body > main > section:nth-of-type(5) figcaption {
+  padding: 0.75rem 1rem;
+  font-size: 0.82rem;
+  color: var(--texto-mutado);
+  background-color: var(--tarjeta);
+}
+
+body > main > section:nth-of-type(5) details {
+  max-width: 48rem;
+}
+
 body > main > section:nth-of-type(6) {
   background: var(--superficie);
   border-top: 0.0625rem solid var(--borde);
@@ -312,7 +323,7 @@ body > main > section:nth-of-type(6) article h3 {
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(6) article p {
+body > main > section:nth-of-type(6) article > p {
   font-size: 0.85rem;
   margin-bottom: 1.25rem;
   color: var(--texto-mutado);
@@ -324,6 +335,10 @@ body > main > section:nth-of-type(6) article p {
 body > main > section:nth-of-type(6) audio {
   width: 100%;
   accent-color: var(--primario);
+}
+
+body > main > section:nth-of-type(6) article details {
+  background: var(--superficie);
 }
 
 @media (max-width: 48rem) {

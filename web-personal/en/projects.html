@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects by Raúl Antuña — A selection of software developments, backend architectures, systems and compilers, with category filters and links to the code.">
+  <meta name="keywords" content="Raúl Antuña, projects, portfolio, Go, Svelte, Python, TypeScript, Docker, Java, C, Compilers, Concurrency, AEM, WebAssembly">
+  <meta name="author" content="Raúl Antuña">
+  <title>Projects — Raúl Antuña</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="es" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/projects.html">
+  <link rel="alternate" hreflang="en" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/en/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/projects.html">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/projects.css">
+  <script src="../assets/js/nav.js" defer></script>
+  <script src="../assets/js/projects.js" defer></script>
+</head>
+<body>
+  <a href="#contenido">Skip to main content</a>
+  <header>
+    <nav aria-label="Main navigation">
+      <a href="index.html">Raúl <span>Antuña</span></a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">&#9776;</button>
+      <ul id="nav-menu" data-abierto="false">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About me</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="cv.html">CV</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="../projects.html" hreflang="es" lang="es" title="Leer esta página en español">Español</a></li>
+        <li>
+          <form role="search" action="search.html" method="get" aria-label="Search the site">
+            <label for="q">Search the site</label>
+            <input type="search" id="q" name="q" placeholder="Search…" autocomplete="off" minlength="2" required>
+            <button type="submit">Search</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <nav aria-label="Breadcrumb">
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Projects</li>
+      </ol>
+    </nav>
+
+    <section id="cabecera" aria-label="Projects header">
+      <header>
+        <h1>Projects</h1>
+        <p>A selection of my personal developments, software architectures, compilers and systems. Filter by category or use the search box in the header.</p>
+      </header>
+    </section>
+
+    <section id="proyectos" aria-label="Project catalogue">
+      <article>
+        <h2>Project list</h2>
+
+        <nav aria-label="Filter projects by category">
+          <button type="button" aria-pressed="true" data-filter="all">All</button>
+          <button type="button" aria-pressed="false" data-filter="web">Web &amp; Cloud</button>
+          <button type="button" aria-pressed="false" data-filter="sistemas">Systems &amp; Compilers</button>
+          <button type="button" aria-pressed="false" data-filter="backend">Backend &amp; Persistence</button>
+        </nav>
+        <p id="filtro-estado" aria-live="polite">Showing all 7 projects.</p>
+
+        <ul>
+
+          <li>
+            <article data-category="web" aria-label="Facturator.ai">
+              <figure>
+                <img
+                  src="../assets/img/facturator.jpg"
+                  alt="Screenshot of the Facturator.ai dashboard in dark mode: monthly total, available budget, spending by category and a list of recent receipts"
+                  width="600"
+                  height="380"
+                  loading="lazy"
+                  decoding="async"
+                >
+              </figure>
+              <section>
+                <em>Featured project</em>
+                <h3>Facturator.ai — AI-powered SaaS platform</h3>
+                <span data-estado="completado">Completed</span>
+                <p>
+                  A complete SaaS ecosystem for intelligent extraction, OCR processing and accounting management of invoices and receipts. Modular architecture with a transactional backend in Go (WebSockets, Stripe, PostgreSQL/Supabase), a computer-vision microservice and ETL pipelines in Python, and a reactive SvelteKit frontend in TypeScript.
+                </p>
+                <ul aria-label="Facturator.ai technologies">
+                  <li>Go</li>
+                  <li>Python</li>
+                  <li>SvelteKit</li>
+                  <li>TypeScript</li>
+                  <li>PostgreSQL</li>
+                  <li>Stripe</li>
+                  <li>Docker</li>
+                </ul>
+                <a href="https://github.com/Rolitoansu/Facturator.ai" target="_blank" rel="noopener noreferrer">View Facturator.ai on GitHub →</a>
+              </section>
+            </article>
+          </li>
+
+          <li>
+            <article data-category="web" aria-label="Match-TFE">
+              <header>
+                <img src="../assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="https://github.com/Rolitoansu/Match-TFE" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Code on GitHub
+                </a>
+              </header>
+              <h3>Match-TFE</h3>
+              <span data-estado="completado">Completed</span>
+              <p>Platform to streamline the coordination and assignment of final-year projects at the School of Computer Engineering. Includes Docker Compose deployment (dev and release), Drizzle ORM on PostgreSQL and email notifications with a configurable cron.</p>
+              <ul aria-label="Match-TFE technologies">
+                <li>TypeScript</li>
+                <li>Node.js</li>
+                <li>Drizzle ORM</li>
+                <li>PostgreSQL</li>
+                <li>Docker</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article data-category="web" aria-label="Standards and Web Computing">
+              <header>
+                <img src="../assets/img/logos/html5.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="https://github.com/Rolitoansu/Standards-and-Web-Computing" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Code on GitHub
+                </a>
+              </header>
+              <h3>Standards and Web Computing (Master's)</h3>
+              <span data-estado="progreso">In progress</span>
+              <p>Coursework for the Master's in Web Engineering: this personal website, a performance comparison between native WebAssembly and JavaScript, VONA (XML processing with WebAssembly) and a static website generator driven by XML documents.</p>
+              <ul aria-label="Standards and Web Computing technologies">
+                <li>HTML5</li>
+                <li>WebAssembly</li>
+                <li>XML</li>
+                <li>TypeScript</li>
+                <li>GitHub Pages</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article data-category="sistemas" aria-label="MAPL compiler">
+              <header>
+                <img src="../assets/img/logos/java.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="https://github.com/Rolitoansu/DLP" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Code on GitHub
+                </a>
+              </header>
+              <h3>Language compiler (MAPL)</h3>
+              <span data-estado="completado">Completed</span>
+              <p>A complete compiler for the MAPL abstract machine. Implements lexical and syntactic analysis with a formal grammar, semantic analysis with type checking and a symbol table, memory offset calculation and executable object code generation.</p>
+              <ul aria-label="MAPL compiler technologies">
+                <li>Java</li>
+                <li>Compilers</li>
+                <li>Grammars</li>
+                <li>MAPL</li>
+                <li>AST</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article data-category="backend" aria-label="Car Workshop">
+              <header>
+                <img src="../assets/img/logos/postgresql.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="https://github.com/Rolitoansu/RI" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Code on GitHub
+                </a>
+              </header>
+              <h3>Car Workshop — Dual persistence</h3>
+              <span data-estado="completado">Completed</span>
+              <p>Business management system with a comparative study of relational persistence. Empirical analysis of cursors and concurrency conflict resolution in JDBC, together with a double implementation of the domain: pure transactional JDBC vs. JPA / Hibernate.</p>
+              <ul aria-label="Car Workshop technologies">
+                <li>Java</li>
+                <li>JDBC</li>
+                <li>JPA / Hibernate</li>
+                <li>Concurrency</li>
+                <li>SQL</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article data-category="sistemas" aria-label="OS mechanisms">
+              <header>
+                <img src="../assets/img/logos/c.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="https://github.com/Rolitoansu/Operating-Systems" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Code on GitHub
+                </a>
+              </header>
+              <h3>OS mechanisms and concurrency</h3>
+              <span data-estado="completado">Completed</span>
+              <p>Low-level C developments on the kernel and POSIX standards: process management (fork/exec), synchronisation with semaphores and mutexes in critical sections, inter-process communication (pipes, FIFOs, signals) and scheduling algorithms.</p>
+              <ul aria-label="OS mechanisms technologies">
+                <li>C</li>
+                <li>POSIX</li>
+                <li>Kernel APIs</li>
+                <li>Multithreading</li>
+                <li>IPC</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article data-category="web" aria-label="SEW personal website">
+              <header>
+                <img src="../assets/img/logos/css3.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="index.html">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  View demo
+                </a>
+              </header>
+              <h3>Personal website with W3C standards (SEW)</h3>
+              <span data-estado="completado">Completed</span>
+              <p>Website developed for the Software and Web Standards (SEW) course of the Bachelor's degree in Computer Engineering. Built with pure semantic HTML5, a modular CSS architecture based on structural selectors, WCAG 2.1 AA accessibility and accessible vanilla JavaScript.</p>
+              <ul aria-label="SEW personal website technologies">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>WCAG 2.1 AA</li>
+                <li>SEW</li>
+              </ul>
+            </article>
+          </li>
+
+        </ul>
+      </article>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>Raúl Antuña</strong>
+      AEM Backend Engineer at Hiberus and Master's student in Web Engineering. Built with HTML5, CSS3 and
+      vanilla JavaScript, following W3C standards and the WCAG 2.1 AA guidelines.
+    </p>
+    <nav aria-label="Useful links">
+      <h2>Useful links</h2>
+      <ul>
+        <li><a href="sitemap.html">Site map</a></li>
+        <li><a href="help.html">Help and accessibility</a></li>
+        <li><a href="search.html">Search the site</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="../projects.html" hreflang="es" lang="es">Versión en español</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Social links">
+      <h2>Social links</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="mailto:rolitoansu@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rolitoansu@outlook.com
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <p>
+      © <time datetime="2026">2026</time> Raúl Antuña ·
+      Last updated: <time datetime="2026-11-11">11 November 2026</time>
+    </p>
+  </footer>
+</body>
+
+</html>

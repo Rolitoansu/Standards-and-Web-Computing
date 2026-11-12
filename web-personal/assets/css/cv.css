@@ -35,7 +35,7 @@ body > main > section:first-of-type a[download] {
   border-radius: var(--radio-s);
   font-size: 0.875rem;
   font-weight: 600;
-  background: var(--primario, #2563eb);
+  background: var(--primario, #1d4ed8);
   color: #ffffff;
   text-decoration: none;
   transition: background var(--transicion);
@@ -54,19 +54,20 @@ body > main > section:nth-of-type(2) > article {
   margin: 0 auto;
   padding: 0 1.5rem;
   display: grid;
-  grid-template-columns: 17.5rem 1fr;
+  grid-template-columns: 17.5rem minmax(0, 1fr);
   gap: 2.5rem;
   align-items: start;
 }
 
-body > main > section:nth-of-type(2) > article > aside {
+/* Columna lateral: foto, contacto, habilidades e idiomas */
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-body > main > section:nth-of-type(2) > article > aside > figure,
-body > main > section:nth-of-type(2) > article > aside > section {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure,
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section {
   background: var(--tarjeta, #ffffff);
   color: inherit;
   border: 0.0625rem solid var(--borde);
@@ -74,12 +75,12 @@ body > main > section:nth-of-type(2) > article > aside > section {
   padding: 1.25rem;
 }
 
-body > main > section:nth-of-type(2) > article > aside > figure {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure {
   margin: 0;
   text-align: center;
 }
 
-body > main > section:nth-of-type(2) > article > aside > figure img {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure img {
   width: 6.875rem;
   height: 6.875rem;
   border-radius: 50%;
@@ -89,7 +90,7 @@ body > main > section:nth-of-type(2) > article > aside > figure img {
   display: block;
 }
 
-body > main > section:nth-of-type(2) > article > aside > figure strong {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure strong {
   font-weight: 700;
   color: var(--titulo);
   background-color: inherit;
@@ -97,14 +98,14 @@ body > main > section:nth-of-type(2) > article > aside > figure strong {
   display: block;
 }
 
-body > main > section:nth-of-type(2) > article > aside > figure p {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure p {
   font-size: 0.8rem;
   color: var(--texto-mutado);
   background-color: inherit;
   margin-top: 0.25rem;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section > h2 {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section > h2 {
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -114,7 +115,7 @@ body > main > section:nth-of-type(2) > article > aside > section > h2 {
   margin-bottom: 1rem;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -123,28 +124,29 @@ body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) 
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
   font-size: 0.82rem;
   color: var(--texto-suave);
   background-color: inherit;
+  overflow-wrap: anywhere;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul li a {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul li a {
   color: var(--texto-suave);
   background-color: inherit;
   text-decoration: none;
   transition: color var(--transicion);
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(1) ul li a:hover {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul li a:hover {
   color: var(--primario);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(2) ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(2) ul {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
@@ -153,7 +155,7 @@ body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(2) 
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(2) ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(2) ul li {
   background: var(--primario-claro, #eff6ff);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -163,7 +165,7 @@ body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(2) 
   font-weight: 500;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(3) ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -172,7 +174,7 @@ body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(3) 
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(3) ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -181,7 +183,7 @@ body > main > section:nth-of-type(2) > article > aside > section:nth-of-type(3) 
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > aside span[data-nivel] {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) span[data-nivel] {
   background: var(--primario-claro, #eff6ff);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -191,13 +193,14 @@ body > main > section:nth-of-type(2) > article > aside span[data-nivel] {
   font-weight: 600;
 }
 
-body > main > section:nth-of-type(2) > article > section {
+/* Columna principal: experiencia, formación, certificaciones y referencias */
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
-body > main > section:nth-of-type(2) > article > section > section > h2 {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section > h2 {
   font-size: 1.15rem;
   display: flex;
   align-items: center;
@@ -207,14 +210,14 @@ body > main > section:nth-of-type(2) > article > section > section > h2 {
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol {
   position: relative;
   padding-left: 1.5rem;
   list-style: none;
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol::before {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol::before {
   content: '';
   position: absolute;
   left: 0;
@@ -224,18 +227,18 @@ body > main > section:nth-of-type(2) > article > section > section ol::before {
   background: var(--borde);
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li {
   position: relative;
   padding-bottom: 1.75rem;
   color: var(--texto-suave);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol li:last-child {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li:last-child {
   padding-bottom: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol li::before {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li::before {
   content: '';
   position: absolute;
   left: -1.5rem;
@@ -243,13 +246,14 @@ body > main > section:nth-of-type(2) > article > section > section ol li::before
   width: 0.625rem;
   height: 0.625rem;
   border-radius: 50%;
-  background: var(--primario, #2563eb);
+  background: var(--primario, #1d4ed8);
   color: #ffffff;
   border: 0.125rem solid var(--fondo);
   transform: translateX(-0.25rem);
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol li > time {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > time,
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > span:first-child {
   display: block;
   font-size: 0.75rem;
   font-weight: 600;
@@ -259,7 +263,7 @@ body > main > section:nth-of-type(2) > article > section > section ol li > time 
   margin-bottom: 0.25rem;
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol li > strong {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > strong {
   display: block;
   font-size: 1rem;
   font-weight: 700;
@@ -267,7 +271,7 @@ body > main > section:nth-of-type(2) > article > section > section ol li > stron
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol li > span {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > strong + span {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -277,19 +281,15 @@ body > main > section:nth-of-type(2) > article > section > section ol li > span 
   margin-bottom: 0.5rem;
 }
 
-body > main > section:nth-of-type(2) > article > section > section ol li > span img {
-  display: inline-block;
-  vertical-align: middle;
-}
-
-body > main > section:nth-of-type(2) > article > section > section ol li > p {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > p {
   font-size: 0.85rem;
   line-height: 1.6;
   color: var(--texto-suave);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > section:last-child > ul {
+/* Certificaciones */
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -298,7 +298,7 @@ body > main > section:nth-of-type(2) > article > section > section:last-child > 
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section > section:last-child > ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -311,7 +311,7 @@ body > main > section:nth-of-type(2) > article > section > section:last-child > 
   color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > p > a {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > p > a {
   display: block;
   font-size: 0.875rem;
   font-weight: 600;
@@ -320,26 +320,81 @@ body > main > section:nth-of-type(2) > article > section > section:last-child > 
   text-decoration: none;
 }
 
-body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > p > a:hover {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > p > a:hover {
   color: var(--primario);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > p > span {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > p > span {
   font-size: 0.78rem;
   color: var(--texto-mutado);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section > section:last-child > ul li > time {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > time {
   font-size: 0.75rem;
   color: var(--texto-mutado);
   background-color: inherit;
   font-weight: 500;
 }
 
+/* Referencias */
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > p {
+  font-size: 0.875rem;
+  color: var(--texto-suave);
+  background-color: inherit;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.1rem;
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio-m);
+  background: var(--tarjeta, #ffffff);
+  color: inherit;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li h3 {
+  font-size: 0.95rem;
+  color: var(--titulo);
+  background-color: inherit;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li > span {
+  font-size: 0.8rem;
+  color: var(--texto-mutado);
+  background-color: inherit;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li > p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--texto-suave);
+  background-color: inherit;
+  flex: 1;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li > a {
+  font-size: 0.82rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
 @media (max-width: 48rem) {
-  body > main > section:nth-of-type(2) article {
-    grid-template-columns: 1fr;
+  body > main > section:nth-of-type(2) > article {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

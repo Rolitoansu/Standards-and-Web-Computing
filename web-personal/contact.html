@@ -3,68 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contacta con Raúl Antuña — AEM Backend Engineer en Hiberus. Datos de contacto, redes sociales y disponibilidad.">
-  <meta name="keywords" content="Raúl Antuña, contacto, AEM, Hiberus, desarrollador web, Asturias">
+  <meta name="description" content="Contacta con Raúl Antuña — AEM Backend Engineer en Hiberus. Formulario de contacto, correo electrónico, redes sociales y disponibilidad.">
+  <meta name="keywords" content="Raúl Antuña, contacto, formulario, AEM, Hiberus, desarrollador web, Asturias">
   <meta name="author" content="Raúl Antuña">
   <title>Contacto — Raúl Antuña</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="es" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/contact.html">
+  <link rel="alternate" hreflang="en" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/en/contact.html">
+  <link rel="alternate" hreflang="x-default" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/contact.html">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/contact.css">
   <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/contact.js" defer></script>
 </head>
 <body>
+  <a href="#contenido">Saltar al contenido principal</a>
   <header>
     <nav aria-label="Navegación principal">
-      <a href="index.html" aria-label="Raúl Antuña — Inicio">Mi página personal</a>
-      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
+      <a href="index.html">Raúl <span>Antuña</span></a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">&#9776;</button>
       <ul id="nav-menu" data-abierto="false">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="about.html">Sobre mí</a></li>
         <li><a href="projects.html">Proyectos</a></li>
         <li><a href="cv.html">Currículum</a></li>
         <li><a href="contact.html" aria-current="page">Contacto</a></li>
+        <li><a href="en/contact.html" hreflang="en" lang="en" title="Read this page in English">English</a></li>
+        <li>
+          <form role="search" action="search.html" method="get" aria-label="Buscar en el sitio">
+            <label for="q">Buscar en el sitio</label>
+            <input type="search" id="q" name="q" placeholder="Buscar…" autocomplete="off" minlength="2" required>
+            <button type="submit">Buscar</button>
+          </form>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="contenido">
 
-    <section aria-label="Cabecera de contacto">
+    <nav aria-label="Migas de pan">
+      <ol>
+        <li><a href="index.html">Inicio</a></li>
+        <li aria-current="page">Contacto</li>
+      </ol>
+    </nav>
+
+    <section id="cabecera" aria-label="Cabecera de contacto">
       <header>
         <h1>Contacto</h1>
-        <p>Puedes encontrarme a través de los siguientes canales.</p>
+        <p>Puedes escribirme desde el formulario o a través de cualquiera de los canales siguientes. Suelo responder en menos de 48 horas.</p>
       </header>
     </section>
 
-    <section aria-label="Formas de contactarme">
+    <section id="canales" aria-label="Formas de contactarme">
       <article>
         <h2>Formas de contactarme</h2>
         <hr>
 
         <address>
-          <a href="mailto:rolitoansu@outlook.com" aria-label="Enviar email a rolitoansu@outlook.com">
+          <a href="mailto:rolitoansu@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
             <p>
-              <span>Email</span>
+              <span>Correo electrónico</span>
               <span>rolitoansu@outlook.com</span>
             </p>
           </a>
-          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer" aria-label="Ver perfil de LinkedIn de Raúl Antuña">
+          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
             <p>
               <span>LinkedIn</span>
               <span>Raúl Antuña Suárez</span>
             </p>
           </a>
-          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer" aria-label="Ver perfil de GitHub de Raúl Antuña">
+          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
             <p>
               <span>GitHub</span>
               <span>@Rolitoansu</span>
+            </p>
+          </a>
+          <a href="https://www.google.com/maps/place/Asturias" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <p>
+              <span>Ubicación</span>
+              <span>Asturias, España (trabajo híbrido y remoto)</span>
             </p>
           </a>
         </address>
       </article>
     </section>
 
-    <section aria-label="Disponibilidad">
+    <section id="formulario" aria-label="Formulario de contacto">
+      <article>
+        <h2>Envíame un mensaje</h2>
+        <hr>
+        <p>
+          Rellena el formulario y se preparará un correo en tu aplicación de email con el mensaje listo para enviar.
+          Los campos marcados con asterisco (*) son obligatorios.
+        </p>
+        <form action="mailto:rolitoansu@outlook.com" method="post" enctype="text/plain">
+          <p>
+            <label for="nombre">Nombre *</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required maxlength="80" aria-describedby="nombre-error">
+            <small id="nombre-error"></small>
+          </p>
+          <p>
+            <label for="correo">Correo electrónico *</label>
+            <input type="email" id="correo" name="correo" autocomplete="email" required maxlength="120" placeholder="nombre@dominio.com" aria-describedby="correo-error">
+            <small id="correo-error"></small>
+          </p>
+          <p>
+            <label for="motivo">Motivo del mensaje *</label>
+            <select id="motivo" name="motivo" required aria-describedby="motivo-error">
+              <option value="">Selecciona una opción</option>
+              <option value="Oferta de empleo">Oferta de empleo</option>
+              <option value="Proyecto freelance">Proyecto freelance</option>
+              <option value="Colaboración open source">Colaboración open source</option>
+              <option value="Charla o ponencia">Charla o ponencia</option>
+              <option value="Problema en la web">Informar de un problema en la web</option>
+              <option value="Otro">Otro</option>
+            </select>
+            <small id="motivo-error"></small>
+          </p>
+          <p>
+            <label for="mensaje">Mensaje *</label>
+            <textarea id="mensaje" name="mensaje" required minlength="20" maxlength="1000" aria-describedby="mensaje-ayuda mensaje-error"></textarea>
+            <small id="mensaje-ayuda">Entre 20 y 1000 caracteres.</small>
+            <small id="contador-mensaje" aria-live="polite"></small>
+            <small id="mensaje-error"></small>
+          </p>
+          <p>
+            <label for="consentimiento">
+              <input type="checkbox" id="consentimiento" name="consentimiento" value="si" required aria-describedby="consentimiento-error">
+              Acepto que los datos de este formulario se utilicen únicamente para responder a mi mensaje. *
+            </label>
+            <small id="consentimiento-error"></small>
+          </p>
+          <button type="submit">Enviar mensaje</button>
+          <output aria-live="polite"></output>
+        </form>
+      </article>
+    </section>
+
+    <section id="disponibilidad" aria-label="Disponibilidad">
       <article>
         <h2>Disponibilidad</h2>
         <hr>
@@ -85,7 +168,46 @@
 
   <footer>
     <p>
-      © <time datetime="2026">2026</time> Raúl Antuña
+      <strong>Raúl Antuña</strong>
+      AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web. Sitio construido con HTML5,
+      CSS3 y JavaScript nativo conforme a los estándares del W3C y a las pautas WCAG 2.1 AA.
+    </p>
+    <nav aria-label="Enlaces de utilidad">
+      <h2>Utilidades</h2>
+      <ul>
+        <li><a href="sitemap.html">Mapa del sitio</a></li>
+        <li><a href="help.html">Ayuda y accesibilidad</a></li>
+        <li><a href="search.html">Buscar en el sitio</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/contact.html" hreflang="en" lang="en">English version</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Redes sociales">
+      <h2>Redes sociales</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="mailto:rolitoansu@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rolitoansu@outlook.com
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <p>
+      © <time datetime="2026">2026</time> Raúl Antuña ·
+      Última actualización: <time datetime="2026-11-11">11 de noviembre de 2026</time>
     </p>
   </footer>
 </body>

@@ -5,10 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Raúl Antuña — AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web en la Universidad de Oviedo.">
+    content="Raúl Antuña — AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web en la Universidad de Oviedo. Portfolio, currículum y contacto.">
   <meta name="keywords" content="Raúl Antuña, AEM, Java, Backend, Ingeniero Web, Asturias, Hiberus, portfolio">
   <meta name="author" content="Raúl Antuña">
   <title>Raúl Antuña — Inicio</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="es" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/index.html">
+  <link rel="alternate" hreflang="en" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/en/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/index.html">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/index.css">
@@ -16,29 +20,39 @@
 </head>
 
 <body>
+  <a href="#contenido">Saltar al contenido principal</a>
   <header>
     <nav aria-label="Navegación principal">
-      <a href="index.html" aria-label="Raúl Antuña — Inicio">Mi página personal</a>
-      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
+      <a href="index.html">Raúl <span>Antuña</span></a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">&#9776;</button>
       <ul id="nav-menu" data-abierto="false">
         <li><a href="index.html" aria-current="page">Inicio</a></li>
         <li><a href="about.html">Sobre mí</a></li>
         <li><a href="projects.html">Proyectos</a></li>
         <li><a href="cv.html">Currículum</a></li>
         <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/index.html" hreflang="en" lang="en" title="Read this page in English">English</a></li>
+        <li>
+          <form role="search" action="search.html" method="get" aria-label="Buscar en el sitio">
+            <label for="q">Buscar en el sitio</label>
+            <input type="search" id="q" name="q" placeholder="Buscar…" autocomplete="off" minlength="2" required>
+            <button type="submit">Buscar</button>
+          </form>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="contenido">
 
-    <section aria-label="Presentación">
+    <section id="presentacion" aria-label="Presentación">
       <header>
         <p>AEM Backend Engineer · Máster en Ingeniería Web</p>
         <h1>Hola, soy<br><span>Raúl Antuña</span></h1>
         <p>
           Desarrollador backend en Hiberus y estudiante del Máster en Ingeniería Web
-          en la Universidad de Oviedo. Me gustan los videojuegos y pasar tiempo libre.
+          en la Universidad de Oviedo. Fuera del trabajo me verás siguiendo la Fórmula 1
+          y al Sporting, jugando a videojuegos o de ruta por las montañas de Asturias.
         </p>
         <nav aria-label="Acciones principales">
           <a href="about.html">Conóceme mejor</a>
@@ -51,22 +65,23 @@
           alt="Fotografía de perfil de Raúl Antuña"
           width="208"
           height="208"
+          fetchpriority="high"
         >
       </figure>
     </section>
 
-    <section aria-label="Datos rápidos">
+    <section id="datos" aria-label="Datos rápidos">
       <article>
         <h2>Datos rápidos</h2>
         <ul>
-          <li><strong>1+</strong><span>Año de experiencia</span></li>
-          <li><strong>5+</strong><span>Proyectos realizados</span></li>
-          <li><strong>AEM</strong><span>Especialidad principal</span></li>
+          <li><strong>1+</strong> <span>Año de experiencia</span></li>
+          <li><strong>7</strong> <span>Proyectos publicados</span></li>
+          <li><strong>AEM</strong> <span>Especialidad principal</span></li>
         </ul>
       </article>
     </section>
 
-    <section aria-label="Tecnologías">
+    <section id="tecnologias" aria-label="Tecnologías">
       <header>
         <h2>Tecnologías</h2>
         <hr>
@@ -75,64 +90,69 @@
       <ul>
         <li>
           <img src="assets/img/logos/html5.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><span>HTML5</span><span>Avanzado</span></p>
+          <p><span>HTML5</span> <span>Nivel avanzado</span></p>
         </li>
         <li>
           <img src="assets/img/logos/css3.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><span>CSS3</span><span>Avanzado</span></p>
+          <p><span>CSS3</span> <span>Nivel avanzado</span></p>
         </li>
         <li>
           <img src="assets/img/logos/javascript.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><span>JavaScript</span><span>Avanzado</span></p>
+          <p><span>JavaScript</span> <span>Nivel avanzado</span></p>
+        </li>
+        <li>
+          <img src="assets/img/logos/java.svg" alt="" aria-hidden="true" width="32" height="32">
+          <p><span>Java / AEM</span> <span>Nivel avanzado</span></p>
         </li>
         <li>
           <img src="assets/img/logos/react.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><span>React</span><span>Intermedio</span></p>
+          <p><span>React</span> <span>Nivel intermedio</span></p>
         </li>
         <li>
           <img src="assets/img/logos/python.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><span>Python</span><span>Intermedio</span></p>
+          <p><span>Python</span> <span>Nivel intermedio</span></p>
         </li>
         <li>
           <img src="assets/img/logos/postgresql.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><span>SQL / PostgreSQL</span><span>Intermedio</span></p>
+          <p><span>SQL / PostgreSQL</span> <span>Nivel intermedio</span></p>
         </li>
         <li>
           <img src="assets/img/logos/docker.svg" alt="" aria-hidden="true" width="32" height="32">
-          <p><span>Docker</span><span>Intermedio</span></p>
+          <p><span>Docker</span> <span>Nivel intermedio</span></p>
         </li>
       </ul>
     </section>
 
-    <section aria-label="Explora la web">
+    <section id="explora" aria-label="Explora la web">
       <header>
         <h2>Explora la web</h2>
         <hr>
+        <p>Todo el contenido está a un clic. Si buscas algo concreto, usa el buscador de la cabecera o el <a href="sitemap.html">mapa del sitio</a>.</p>
       </header>
       <nav aria-label="Secciones del sitio">
         <ul>
           <li>
             <a href="about.html">
               <h3>Sobre mí</h3>
-              <p>Mi historia, aficiones, intereses y lo que me mueve.</p>
+              <p>Mi historia, aficiones, galería y mi pasión por la Fórmula 1.</p>
             </a>
           </li>
           <li>
             <a href="projects.html">
               <h3>Proyectos</h3>
-              <p>Mis trabajos y proyectos más destacados.</p>
+              <p>Mis trabajos más destacados, con filtros por categoría y enlaces al código.</p>
             </a>
           </li>
           <li>
             <a href="cv.html">
               <h3>Currículum</h3>
-              <p>Mi formación académica y experiencia profesional.</p>
+              <p>Formación, experiencia, certificaciones y referencias. También en PDF.</p>
             </a>
           </li>
           <li>
             <a href="contact.html">
               <h3>Contacto</h3>
-              <p>Datos de contacto y disponibilidad.</p>
+              <p>Formulario de contacto, redes sociales y disponibilidad.</p>
             </a>
           </li>
         </ul>
@@ -143,8 +163,48 @@
 
   <footer>
     <p>
-      © <time datetime="2026">2026</time> Raúl Antuña
+      <strong>Raúl Antuña</strong>
+      AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web. Sitio construido con HTML5,
+      CSS3 y JavaScript nativo conforme a los estándares del W3C y a las pautas WCAG 2.1 AA.
+    </p>
+    <nav aria-label="Enlaces de utilidad">
+      <h2>Utilidades</h2>
+      <ul>
+        <li><a href="sitemap.html">Mapa del sitio</a></li>
+        <li><a href="help.html">Ayuda y accesibilidad</a></li>
+        <li><a href="search.html">Buscar en el sitio</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/index.html" hreflang="en" lang="en">English version</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Redes sociales">
+      <h2>Redes sociales</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="mailto:rolitoansu@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rolitoansu@outlook.com
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <p>
+      © <time datetime="2026">2026</time> Raúl Antuña ·
+      Última actualización: <time datetime="2026-11-11">11 de noviembre de 2026</time>
     </p>
   </footer>
 </body>
+
 </html>

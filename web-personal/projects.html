@@ -3,10 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Proyectos de Raúl Antuña — Selección de desarrollos de software, arquitecturas backend, sistemas y compiladores.">
-  <meta name="keywords" content="Raúl Antuña, proyectos, portfolio, Go, Svelte, Python, TypeScript, Docker, Java, C, Compiladores, Concurrencia, AEM">
+  <meta name="description" content="Proyectos de Raúl Antuña — Selección de desarrollos de software, arquitecturas backend, sistemas y compiladores, con filtros por categoría y enlaces al código.">
+  <meta name="keywords" content="Raúl Antuña, proyectos, portfolio, Go, Svelte, Python, TypeScript, Docker, Java, C, Compiladores, Concurrencia, AEM, WebAssembly">
   <meta name="author" content="Raúl Antuña">
   <title>Proyectos — Raúl Antuña</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="es" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/projects.html">
+  <link rel="alternate" hreflang="en" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/en/projects.html">
+  <link rel="alternate" hreflang="x-default" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/projects.html">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/projects.css">
@@ -14,39 +18,56 @@
   <script src="assets/js/projects.js" defer></script>
 </head>
 <body>
+  <a href="#contenido">Saltar al contenido principal</a>
   <header>
     <nav aria-label="Navegación principal">
-      <a href="index.html" aria-label="Raúl Antuña — Inicio">Mi página personal</a>
-      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
+      <a href="index.html">Raúl <span>Antuña</span></a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">&#9776;</button>
       <ul id="nav-menu" data-abierto="false">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="about.html">Sobre mí</a></li>
         <li><a href="projects.html" aria-current="page">Proyectos</a></li>
         <li><a href="cv.html">Currículum</a></li>
         <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/projects.html" hreflang="en" lang="en" title="Read this page in English">English</a></li>
+        <li>
+          <form role="search" action="search.html" method="get" aria-label="Buscar en el sitio">
+            <label for="q">Buscar en el sitio</label>
+            <input type="search" id="q" name="q" placeholder="Buscar…" autocomplete="off" minlength="2" required>
+            <button type="submit">Buscar</button>
+          </form>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="contenido">
 
-    <section aria-label="Cabecera de proyectos">
+    <nav aria-label="Migas de pan">
+      <ol>
+        <li><a href="index.html">Inicio</a></li>
+        <li aria-current="page">Proyectos</li>
+      </ol>
+    </nav>
+
+    <section id="cabecera" aria-label="Cabecera de proyectos">
       <header>
         <h1>Proyectos</h1>
-        <p>Una selección de mis desarrollos personales, arquitecturas de software, compiladores y sistemas.</p>
+        <p>Una selección de mis desarrollos personales, arquitecturas de software, compiladores y sistemas. Filtra por categoría o usa el buscador de la cabecera.</p>
       </header>
     </section>
 
-    <section aria-label="Catálogo de proyectos">
+    <section id="proyectos" aria-label="Catálogo de proyectos">
       <article>
         <h2>Lista de proyectos</h2>
 
         <nav aria-label="Filtrar proyectos por categoría">
-          <button aria-pressed="true" data-filter="all">Todos</button>
-          <button aria-pressed="false" data-filter="web">Web &amp; Cloud</button>
-          <button aria-pressed="false" data-filter="sistemas">Sistemas &amp; Compiladores</button>
-          <button aria-pressed="false" data-filter="backend">Backend &amp; Persistencia</button>
+          <button type="button" aria-pressed="true" data-filter="all">Todos</button>
+          <button type="button" aria-pressed="false" data-filter="web">Web &amp; Cloud</button>
+          <button type="button" aria-pressed="false" data-filter="sistemas">Sistemas &amp; Compiladores</button>
+          <button type="button" aria-pressed="false" data-filter="backend">Backend &amp; Persistencia</button>
         </nav>
+        <p id="filtro-estado" aria-live="polite">Mostrando los 7 proyectos.</p>
 
         <ul>
 
@@ -54,11 +75,12 @@
             <article data-category="web" aria-label="Facturator.ai">
               <figure>
                 <img
-                  src="assets/img/facturator.png"
-                  alt="Pantalla de código ilustrativa del desarrollo de la plataforma Facturator.ai"
+                  src="assets/img/facturator.jpg"
+                  alt="Captura del panel de Facturator.ai en modo oscuro: total del mes, presupuesto disponible, gasto por categoría y lista de recibos recientes"
                   width="600"
                   height="380"
                   loading="lazy"
+                  decoding="async"
                 >
               </figure>
               <section>
@@ -68,16 +90,16 @@
                 <p>
                   Ecosistema SaaS completo para la extracción inteligente, procesamiento OCR y gestión contable de facturas y tickets. Arquitectura modular compuesta por backend transaccional en Go (WebSockets, Stripe, PostgreSQL/Supabase), microservicio de visión artificial y pipelines ETL en Python, y frontend reactivo en SvelteKit con TypeScript.
                 </p>
-                <nav aria-label="Tecnologías usadas">
-                  <span>Go</span>
-                  <span>Python</span>
-                  <span>SvelteKit</span>
-                  <span>TypeScript</span>
-                  <span>PostgreSQL</span>
-                  <span>Stripe</span>
-                  <span>Docker</span>
-                </nav>
-                <a href="https://github.com/Rolitoansu/Facturator.ai" target="_blank" rel="noopener noreferrer">Ver en GitHub →</a>
+                <ul aria-label="Tecnologías de Facturator.ai">
+                  <li>Go</li>
+                  <li>Python</li>
+                  <li>SvelteKit</li>
+                  <li>TypeScript</li>
+                  <li>PostgreSQL</li>
+                  <li>Stripe</li>
+                  <li>Docker</li>
+                </ul>
+                <a href="https://github.com/Rolitoansu/Facturator.ai" target="_blank" rel="noopener noreferrer">Ver Facturator.ai en GitHub →</a>
               </section>
             </article>
           </li>
@@ -86,24 +108,43 @@
             <article data-category="web" aria-label="Match-TFE">
               <header>
                 <img src="assets/img/logos/typescript.svg" alt="" aria-hidden="true" width="28" height="28">
-                <nav aria-label="Enlaces del proyecto">
-                  <a href="https://github.com/Rolitoansu/Match-TFE" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub del proyecto Match-TFE">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                </nav>
+                <a href="https://github.com/Rolitoansu/Match-TFE" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Código en GitHub
+                </a>
               </header>
               <h3>Match-TFE</h3>
               <span data-estado="completado">Completado</span>
               <p>Plataforma para optimizar la coordinación y asignación de Trabajos Fin de Estudios en la Escuela de Ingeniería Informática. Incluye despliegue con Docker Compose (dev y release), Drizzle ORM sobre PostgreSQL y notificaciones por correo con cron personalizable.</p>
-              <nav aria-label="Tecnologías usadas">
-                <span>TypeScript</span>
-                <span>Node.js</span>
-                <span>Drizzle ORM</span>
-                <span>PostgreSQL</span>
-                <span>Docker</span>
-              </nav>
+              <ul aria-label="Tecnologías de Match-TFE">
+                <li>TypeScript</li>
+                <li>Node.js</li>
+                <li>Drizzle ORM</li>
+                <li>PostgreSQL</li>
+                <li>Docker</li>
+              </ul>
+            </article>
+          </li>
+
+          <li>
+            <article data-category="web" aria-label="Estándares y Computación Web">
+              <header>
+                <img src="assets/img/logos/html5.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="https://github.com/Rolitoansu/Standards-and-Web-Computing" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Código en GitHub
+                </a>
+              </header>
+              <h3>Estándares y Computación Web (Máster)</h3>
+              <span data-estado="progreso">En progreso</span>
+              <p>Trabajos de la asignatura del Máster en Ingeniería Web: esta web personal, una comparativa de rendimiento entre WebAssembly nativo y JavaScript, VONA (procesamiento de XML con WebAssembly) y un generador de sitios web estáticos a partir de documentos XML.</p>
+              <ul aria-label="Tecnologías de Estándares y Computación Web">
+                <li>HTML5</li>
+                <li>WebAssembly</li>
+                <li>XML</li>
+                <li>TypeScript</li>
+                <li>GitHub Pages</li>
+              </ul>
             </article>
           </li>
 
@@ -111,24 +152,21 @@
             <article data-category="sistemas" aria-label="Compilador MAPL">
               <header>
                 <img src="assets/img/logos/java.svg" alt="" aria-hidden="true" width="28" height="28">
-                <nav aria-label="Enlaces del proyecto">
-                  <a href="https://github.com/Rolitoansu/DLP" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub del proyecto DLP">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                </nav>
+                <a href="https://github.com/Rolitoansu/DLP" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Código en GitHub
+                </a>
               </header>
               <h3>Compilador de Lenguajes (MAPL)</h3>
               <span data-estado="completado">Completado</span>
               <p>Compilador completo para la máquina abstracta MAPL. Implementa análisis léxico y sintáctico con gramática formal, análisis semántico con comprobación de tipos y tabla de símbolos, cálculo de offsets de memoria y generación de código objeto ejecutable.</p>
-              <nav aria-label="Tecnologías usadas">
-                <span>Java</span>
-                <span>Compiladores</span>
-                <span>Gramáticas</span>
-                <span>MAPL</span>
-                <span>AST</span>
-              </nav>
+              <ul aria-label="Tecnologías del compilador MAPL">
+                <li>Java</li>
+                <li>Compiladores</li>
+                <li>Gramáticas</li>
+                <li>MAPL</li>
+                <li>AST</li>
+              </ul>
             </article>
           </li>
 
@@ -136,24 +174,21 @@
             <article data-category="backend" aria-label="Car Workshop">
               <header>
                 <img src="assets/img/logos/postgresql.svg" alt="" aria-hidden="true" width="28" height="28">
-                <nav aria-label="Enlaces del proyecto">
-                  <a href="https://github.com/Rolitoansu/RI" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub del proyecto Repositorios de Información">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                </nav>
+                <a href="https://github.com/Rolitoansu/RI" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Código en GitHub
+                </a>
               </header>
               <h3>Car Workshop — Persistencia Dual</h3>
               <span data-estado="completado">Completado</span>
               <p>Sistema de gestión empresarial con estudio comparativo de persistencia relacional. Análisis empírico de cursores y resolución de conflictos de concurrencia en JDBC, junto a doble implementación del dominio: JDBC transaccional puro vs. JPA / Hibernate.</p>
-              <nav aria-label="Tecnologías usadas">
-                <span>Java</span>
-                <span>JDBC</span>
-                <span>JPA / Hibernate</span>
-                <span>Concurrencia</span>
-                <span>SQL</span>
-              </nav>
+              <ul aria-label="Tecnologías de Car Workshop">
+                <li>Java</li>
+                <li>JDBC</li>
+                <li>JPA / Hibernate</li>
+                <li>Concurrencia</li>
+                <li>SQL</li>
+              </ul>
             </article>
           </li>
 
@@ -161,51 +196,43 @@
             <article data-category="sistemas" aria-label="Mecanismos de SO">
               <header>
                 <img src="assets/img/logos/c.svg" alt="" aria-hidden="true" width="28" height="28">
-                <nav aria-label="Enlaces del proyecto">
-                  <a href="https://github.com/Rolitoansu/Operating-Systems" target="_blank" rel="noopener noreferrer" aria-label="Ver código en GitHub del proyecto Operating Systems">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-                    </svg>
-                  </a>
-                </nav>
+                <a href="https://github.com/Rolitoansu/Operating-Systems" target="_blank" rel="noopener noreferrer">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Código en GitHub
+                </a>
               </header>
               <h3>Mecanismos de SO y Concurrencia</h3>
               <span data-estado="completado">Completado</span>
               <p>Desarrollos a bajo nivel en C sobre el kernel y estándares POSIX: gestión de procesos (fork/exec), sincronización con semáforos y mutexes en secciones críticas, comunicación interproceso (pipes, FIFOs, señales) y algoritmos de planificación.</p>
-              <nav aria-label="Tecnologías usadas">
-                <span>C</span>
-                <span>POSIX</span>
-                <span>Kernel APIs</span>
-                <span>Multihilo</span>
-                <span>IPC</span>
-              </nav>
+              <ul aria-label="Tecnologías de Mecanismos de SO">
+                <li>C</li>
+                <li>POSIX</li>
+                <li>Kernel APIs</li>
+                <li>Multihilo</li>
+                <li>IPC</li>
+              </ul>
             </article>
           </li>
 
           <li>
             <article data-category="web" aria-label="Página Personal SEW">
               <header>
-                <img src="assets/img/logos/html5.svg" alt="" aria-hidden="true" width="28" height="28">
-                <nav aria-label="Enlaces del proyecto">
-                  <a href="index.html" aria-label="Ver demo del proyecto Página Personal">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                      <polyline points="15 3 21 3 21 9"></polyline>
-                      <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
-                  </a>
-                </nav>
+                <img src="assets/img/logos/css3.svg" alt="" aria-hidden="true" width="28" height="28">
+                <a href="index.html">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                  Ver demo
+                </a>
               </header>
               <h3>Página Personal con Estándares W3C (SEW)</h3>
               <span data-estado="completado">Completado</span>
               <p>Sitio web desarrollado para la asignatura Software y Estándares para la Web (SEW) del Grado en Ingeniería Informática. Desarrollado con HTML5 semántico puro, arquitectura CSS modular con selectores estructurales, accesibilidad WCAG 2.1 AA y JavaScript vanilla accesible.</p>
-              <nav aria-label="Tecnologías usadas">
-                <span>HTML5</span>
-                <span>CSS3</span>
-                <span>JavaScript</span>
-                <span>WCAG 2.1 AA</span>
-                <span>SEW</span>
-              </nav>
+              <ul aria-label="Tecnologías de la Página Personal SEW">
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>JavaScript</li>
+                <li>WCAG 2.1 AA</li>
+                <li>SEW</li>
+              </ul>
             </article>
           </li>
 
@@ -217,7 +244,46 @@
 
   <footer>
     <p>
-      © <time datetime="2026">2026</time> Raúl Antuña
+      <strong>Raúl Antuña</strong>
+      AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web. Sitio construido con HTML5,
+      CSS3 y JavaScript nativo conforme a los estándares del W3C y a las pautas WCAG 2.1 AA.
+    </p>
+    <nav aria-label="Enlaces de utilidad">
+      <h2>Utilidades</h2>
+      <ul>
+        <li><a href="sitemap.html">Mapa del sitio</a></li>
+        <li><a href="help.html">Ayuda y accesibilidad</a></li>
+        <li><a href="search.html">Buscar en el sitio</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/projects.html" hreflang="en" lang="en">English version</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Redes sociales">
+      <h2>Redes sociales</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="mailto:rolitoansu@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rolitoansu@outlook.com
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <p>
+      © <time datetime="2026">2026</time> Raúl Antuña ·
+      Última actualización: <time datetime="2026-11-11">11 de noviembre de 2026</time>
     </p>
   </footer>
 </body>

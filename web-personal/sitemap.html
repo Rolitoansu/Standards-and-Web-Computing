@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mapa del sitio de la web personal de Raúl Antuña: todas las páginas y secciones, en español e inglés, y los demás trabajos de la asignatura.">
+  <meta name="keywords" content="Raúl Antuña, mapa del sitio, sitemap, navegación">
+  <meta name="author" content="Raúl Antuña">
+  <title>Mapa del sitio — Raúl Antuña</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="es" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/sitemap.html">
+  <link rel="alternate" hreflang="en" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/en/sitemap.html">
+  <link rel="alternate" hreflang="x-default" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/sitemap.html">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/sitemap.css">
+  <script src="assets/js/nav.js" defer></script>
+</head>
+<body>
+  <a href="#contenido">Saltar al contenido principal</a>
+  <header>
+    <nav aria-label="Navegación principal">
+      <a href="index.html">Raúl <span>Antuña</span></a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">&#9776;</button>
+      <ul id="nav-menu" data-abierto="false">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="about.html">Sobre mí</a></li>
+        <li><a href="projects.html">Proyectos</a></li>
+        <li><a href="cv.html">Currículum</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/sitemap.html" hreflang="en" lang="en" title="Read this page in English">English</a></li>
+        <li>
+          <form role="search" action="search.html" method="get" aria-label="Buscar en el sitio">
+            <label for="q">Buscar en el sitio</label>
+            <input type="search" id="q" name="q" placeholder="Buscar…" autocomplete="off" minlength="2" required>
+            <button type="submit">Buscar</button>
+          </form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+
+    <nav aria-label="Migas de pan">
+      <ol>
+        <li><a href="index.html">Inicio</a></li>
+        <li aria-current="page">Mapa del sitio</li>
+      </ol>
+    </nav>
+
+    <section id="cabecera" aria-label="Cabecera del mapa del sitio">
+      <header>
+        <h1>Mapa del sitio</h1>
+        <p>Todas las páginas y secciones de la web, para que llegues a cualquier contenido en un clic.</p>
+      </header>
+    </section>
+
+    <section id="paginas" aria-label="Páginas del sitio">
+      <article>
+        <h2>Páginas del sitio</h2>
+        <p>El sitio tiene un único nivel de navegación: cada página se enlaza desde el menú superior y desde el pie. Dentro de cada página, los enlaces siguientes llevan directamente a cada sección.</p>
+        <nav aria-label="Estructura del sitio">
+          <ul>
+            <li>
+              <a href="index.html">Inicio</a>
+              <p>Presentación y acceso rápido a todo el contenido.</p>
+              <ul>
+                <li><a href="index.html#presentacion">Presentación</a></li>
+                <li><a href="index.html#datos">Datos rápidos</a></li>
+                <li><a href="index.html#tecnologias">Tecnologías</a></li>
+                <li><a href="index.html#explora">Explora la web</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="about.html">Sobre mí</a>
+              <p>Trayectoria, aficiones, galería y Fórmula 1.</p>
+              <ul>
+                <li><a href="about.html#trayectoria">Trayectoria e intereses</a></li>
+                <li><a href="about.html#aficiones">Aficiones e intereses</a></li>
+                <li><a href="about.html#galeria">Galería</a></li>
+                <li><a href="about.html#formula-1">Fórmula 1 y pasión por el motor</a></li>
+                <li><a href="about.html#radios">Radios de Fórmula 1</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="projects.html">Proyectos</a>
+              <p>Catálogo de proyectos con filtros por categoría.</p>
+              <ul>
+                <li><a href="projects.html#proyectos">Lista de proyectos</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="cv.html">Currículum</a>
+              <p>Experiencia, formación, certificaciones y referencias.</p>
+              <ul>
+                <li><a href="cv.html#habilidades">Habilidades técnicas</a></li>
+                <li><a href="cv.html#idiomas">Idiomas</a></li>
+                <li><a href="cv.html#experiencia">Experiencia profesional</a></li>
+                <li><a href="cv.html#formacion">Formación académica</a></li>
+                <li><a href="cv.html#certificaciones">Cursos y certificaciones</a></li>
+                <li><a href="cv.html#referencias">Referencias</a></li>
+                <li><a href="assets/cv_raul_antuna.pdf">Currículum en PDF</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="contact.html">Contacto</a>
+              <p>Canales de contacto, formulario y disponibilidad.</p>
+              <ul>
+                <li><a href="contact.html#canales">Formas de contactarme</a></li>
+                <li><a href="contact.html#formulario">Formulario de contacto</a></li>
+                <li><a href="contact.html#disponibilidad">Disponibilidad</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="search.html">Buscar</a>
+              <p>Buscador interno de todo el contenido.</p>
+            </li>
+            <li>
+              <a href="help.html">Ayuda y accesibilidad</a>
+              <p>Cómo usar el sitio, atajos de teclado, declaración de accesibilidad y preguntas frecuentes.</p>
+              <ul>
+                <li><a href="help.html#navegacion">Cómo navegar</a></li>
+                <li><a href="help.html#buscar">Cómo buscar</a></li>
+                <li><a href="help.html#accesibilidad">Accesibilidad</a></li>
+                <li><a href="help.html#idiomas">Idiomas</a></li>
+                <li><a href="help.html#faq">Preguntas frecuentes</a></li>
+                <li><a href="help.html#problemas">Informar de un problema</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="en/index.html" hreflang="en" lang="en">English version</a>
+              <p>La misma web en inglés: Home, About me, Projects, CV, Contact, Search, Help y Site map.</p>
+            </li>
+          </ul>
+        </nav>
+      </article>
+    </section>
+
+    <section id="otros-trabajos" aria-label="Otros trabajos de la asignatura">
+      <article>
+        <h2>Otros trabajos de la asignatura</h2>
+        <p>Esta web personal forma parte del repositorio de la asignatura Estándares y Computación Web del Máster en Ingeniería Web.</p>
+        <ul>
+          <li><a href="../index.html">Índice de trabajos</a></li>
+          <li><a href="../wasm/ejemplo.html">WebAssembly nativo frente a JavaScript</a></li>
+          <li><a href="../vona-xml/index.html">VONA (XML y WebAssembly)</a></li>
+          <li><a href="../generador-sitios-web/index.html">Generador de sitios web desde XML</a></li>
+          <li><a href="https://github.com/Rolitoansu/Standards-and-Web-Computing" target="_blank" rel="noopener noreferrer">Código fuente en GitHub</a></li>
+        </ul>
+      </article>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      <strong>Raúl Antuña</strong>
+      AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web. Sitio construido con HTML5,
+      CSS3 y JavaScript nativo conforme a los estándares del W3C y a las pautas WCAG 2.1 AA.
+    </p>
+    <nav aria-label="Enlaces de utilidad">
+      <h2>Utilidades</h2>
+      <ul>
+        <li><a href="sitemap.html">Mapa del sitio</a></li>
+        <li><a href="help.html">Ayuda y accesibilidad</a></li>
+        <li><a href="search.html">Buscar en el sitio</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/sitemap.html" hreflang="en" lang="en">English version</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Redes sociales">
+      <h2>Redes sociales</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="mailto:rolitoansu@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rolitoansu@outlook.com
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <p>
+      © <time datetime="2026">2026</time> Raúl Antuña ·
+      Última actualización: <time datetime="2026-11-11">11 de noviembre de 2026</time>
+    </p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,130 @@
+body > main > section:first-of-type {
+  background: linear-gradient(135deg, #eef3ff 0%, #e8edf8 100%);
+  border-bottom: 0.0625rem solid var(--borde);
+  padding: 3rem 0;
+}
+
+body > main > section:first-of-type > header {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body > main > section:first-of-type h1 {
+  font-size: 2.1rem;
+  color: var(--titulo);
+  background-color: inherit;
+}
+
+body > main > section:first-of-type p {
+  margin-top: 0.5rem;
+  color: var(--texto-suave);
+  background-color: inherit;
+}
+
+body > main > section:nth-of-type(2) {
+  padding: 2.5rem 0 4.5rem;
+}
+
+body > main > section:nth-of-type(2) > article {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body > main > section:nth-of-type(2) > article > p {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul > li {
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio-m);
+  background: var(--tarjeta);
+  color: inherit;
+  padding: 1.25rem;
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul > li > a {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--titulo);
+  background-color: inherit;
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul > li > a:hover {
+  color: var(--primario);
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul > li > p {
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0.75rem;
+  color: var(--texto-mutado);
+  background-color: inherit;
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul > li > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-left: 1rem;
+  border-left: 0.125rem solid var(--primario-borde);
+  font-size: 0.875rem;
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul > li > ul a {
+  color: var(--texto-suave);
+  background-color: inherit;
+}
+
+body > main > section:nth-of-type(2) > article > nav > ul > li > ul a:hover {
+  color: var(--primario);
+}
+
+body > main > section:nth-of-type(3) {
+  background: var(--superficie);
+  border-top: 0.0625rem solid var(--borde);
+  padding: 3rem 0;
+}
+
+body > main > section:nth-of-type(3) > article {
+  max-width: var(--ancho-max);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+body > main > section:nth-of-type(3) h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.5rem;
+}
+
+body > main > section:nth-of-type(3) ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+body > main > section:nth-of-type(3) ul li a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 0.0625rem solid var(--borde);
+  border-radius: var(--radio-full);
+  background: var(--tarjeta);
+  color: var(--texto-suave);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color var(--transicion), border-color var(--transicion);
+}
+
+body > main > section:nth-of-type(3) ul li a:hover {
+  color: var(--primario);
+  border-color: var(--primario);
+  text-decoration: none;
+}

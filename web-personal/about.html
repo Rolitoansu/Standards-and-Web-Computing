@@ -5,10 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Raúl Antuña — Conoce más sobre mí, mis aficiones, intereses y mi trayectoria como AEM Backend Engineer en Hiberus.">
-  <meta name="keywords" content="Raúl Antuña, sobre mí, senderismo, cine, música, Asturias, ingeniería informática">
+    content="Raúl Antuña — Conoce más sobre mí: mi trayectoria como AEM Backend Engineer en Hiberus, mis aficiones (cine, música, fútbol, videojuegos, senderismo) y mi pasión por la Fórmula 1.">
+  <meta name="keywords" content="Raúl Antuña, sobre mí, senderismo, cine, música, videojuegos, Sporting de Gijón, Fórmula 1, Asturias, ingeniería informática">
   <meta name="author" content="Raúl Antuña">
   <title>Sobre mí — Raúl Antuña</title>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="es" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/about.html">
+  <link rel="alternate" hreflang="en" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/en/about.html">
+  <link rel="alternate" hreflang="x-default" href="https://rolitoansu.github.io/Standards-and-Web-Computing/web-personal/about.html">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/about.css">
@@ -16,23 +20,39 @@
 </head>
 
 <body>
+  <a href="#contenido">Saltar al contenido principal</a>
   <header>
     <nav aria-label="Navegación principal">
-      <a href="index.html" aria-label="Raúl Antuña — Inicio">Mi página personal</a>
-      <button id="nav-toggle" type="button" aria-expanded="false" aria-label="Abrir menú">&#9776;</button>
+      <a href="index.html">Raúl <span>Antuña</span></a>
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Abrir menú">&#9776;</button>
       <ul id="nav-menu" data-abierto="false">
         <li><a href="index.html">Inicio</a></li>
         <li><a href="about.html" aria-current="page">Sobre mí</a></li>
         <li><a href="projects.html">Proyectos</a></li>
         <li><a href="cv.html">Currículum</a></li>
         <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/about.html" hreflang="en" lang="en" title="Read this page in English">English</a></li>
+        <li>
+          <form role="search" action="search.html" method="get" aria-label="Buscar en el sitio">
+            <label for="q">Buscar en el sitio</label>
+            <input type="search" id="q" name="q" placeholder="Buscar…" autocomplete="off" minlength="2" required>
+            <button type="submit">Buscar</button>
+          </form>
+        </li>
       </ul>
     </nav>
   </header>
 
-  <main>
+  <main id="contenido">
 
-    <section aria-label="Sobre mí">
+    <nav aria-label="Migas de pan">
+      <ol>
+        <li><a href="index.html">Inicio</a></li>
+        <li aria-current="page">Sobre mí</li>
+      </ol>
+    </nav>
+
+    <section id="sobre-mi" aria-label="Sobre mí">
       <header>
         <img src="assets/img/yo.jpg" alt="Fotografía de perfil de Raúl Antuña" width="128" height="128">
         <hgroup>
@@ -42,19 +62,19 @@
       </header>
     </section>
 
-    <section aria-label="Trayectoria e intereses">
+    <section id="trayectoria" aria-label="Trayectoria e intereses">
       <article>
         <h2>Trayectoria e intereses</h2>
         <hr>
 
         <section aria-label="Detalles de trayectoria">
 
-          <table aria-label="Datos personales de Raúl Antuña">
+          <table>
             <caption>Datos de contacto e información básica</caption>
             <tbody>
               <tr>
                 <th scope="row">Nombre completo</th>
-                <td>Raúl Antuña</td>
+                <td>Raúl Antuña Suárez</td>
               </tr>
               <tr>
                 <th scope="row">Ubicación</th>
@@ -79,7 +99,7 @@
             </tbody>
           </table>
 
-          <aside aria-label="Biografía y áreas de especialidad">
+          <section aria-label="Biografía y áreas de especialidad">
             <p>
               Soy Raúl Antuña, nacido y criado en Asturias. Tras terminar el Grado
               en Ingeniería Informática en la Universidad de Oviedo (2022-2026),
@@ -88,20 +108,23 @@
             </p>
             <p>
               Paralelamente curso el Máster en Ingeniería Web, donde profundizo
-              en computación web avanzada.
+              en estándares, accesibilidad y computación web avanzada. Me gusta el
+              software bien hecho: código legible, interfaces accesibles y soluciones
+              que siguen funcionando con el paso del tiempo.
             </p>
-            <nav aria-label="Áreas de especialidad">
-              <span>Computación web</span>
-              <span>UX / UI</span>
-              <span>Frontend</span>
-              <span>Open Source</span>
-            </nav>
-          </aside>
+            <ul aria-label="Áreas de especialidad">
+              <li>Adobe Experience Manager</li>
+              <li>Computación web</li>
+              <li>UX / UI</li>
+              <li>Frontend</li>
+              <li>Open Source</li>
+            </ul>
+          </section>
         </section>
       </article>
     </section>
 
-    <section aria-label="Aficiones e intereses">
+    <section id="aficiones" aria-label="Aficiones e intereses">
       <article>
         <h2>Aficiones e intereses</h2>
         <hr>
@@ -109,25 +132,33 @@
         <ul>
           <li>
             <h3>Cine</h3>
-            <p>Me gusta el cine de acción.</p>
+            <p>Me gusta el cine de acción: persecuciones, grandes escenas de riesgo y bandas sonoras potentes. Una buena película de acción es mi plan perfecto para una tarde de sofá.</p>
           </li>
           <li>
             <h3>Música</h3>
-            <p>Escucho música pop, trap entre otros géneros.</p>
+            <p>Escucho sobre todo pop y trap, aunque la lista de reproducción cambia según el día. La música me acompaña mientras programo y, por supuesto, en cada ruta en coche.</p>
           </li>
           <li>
             <h3>Fútbol</h3>
-            <p>Sigo al Sporting de Gijón, para lo bueno y para lo malo.</p>
+            <p>Sigo al Sporting de Gijón, para lo bueno y para lo malo, temporada tras temporada. Ser del Sporting es un ejercicio de paciencia que se compensa con cada victoria.</p>
           </li>
           <li>
-            <h3>Tiempo Libre</h3>
-            <p>Me gusta pasar tiempo con mis amigos y descansar.</p>
+            <h3>Videojuegos</h3>
+            <p>Jugar es mi forma favorita de desconectar. Además, los videojuegos fueron una de las razones por las que empecé a interesarme por la programación.</p>
+          </li>
+          <li>
+            <h3>Senderismo</h3>
+            <p>Asturias es un paraíso para las rutas de montaña, como la de Teverga que puedes ver en la galería. Salir al monte es mi manera de desconectar del teclado.</p>
+          </li>
+          <li>
+            <h3>Tiempo libre</h3>
+            <p>Me gusta pasar tiempo con mis amigos, descansar y compartir sofá con mi gata Zoe, que también aparece en la galería.</p>
           </li>
         </ul>
       </article>
     </section>
 
-    <section aria-label="Galería">
+    <section id="galeria" aria-label="Galería">
       <article>
         <h2>Galería</h2>
         <hr>
@@ -136,14 +167,14 @@
           <li>
             <figure>
               <img src="assets/img/teverga.jpg"
-                alt="Paisaje de montaña en Asturias durante una ruta de senderismo por Teverga" width="600" height="450"
-                loading="lazy">
+                alt="Cascada que cae entre rocas y vegetación otoñal en una ladera boscosa, vista desde el sendero" width="600" height="450"
+                loading="lazy" decoding="async">
               <figcaption>Senderismo por Teverga, Asturias</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <img src="assets/img/zoe.jpg" alt="Mi gata Zoe echada en su iglú" width="600" height="450" loading="lazy">
+              <img src="assets/img/zoe.jpg" alt="Gata blanca con manchas naranjas y negras tumbada boca arriba dentro de una cama de felpa verde con forma de iglú" width="600" height="450" loading="lazy" decoding="async">
               <figcaption>Mi gata Zoe echada en su iglú</figcaption>
             </figure>
           </li>
@@ -151,7 +182,7 @@
       </article>
     </section>
 
-    <section aria-label="Fórmula 1 y pasión por el motor">
+    <section id="formula-1" aria-label="Fórmula 1 y pasión por el motor">
       <article>
         <h2>Fórmula 1 y pasión por el motor</h2>
         <hr>
@@ -162,39 +193,60 @@
         <figure>
           <video controls preload="metadata" aria-label="Vídeo de Fórmula 1 en circuito">
             <source src="assets/video/f1.mp4" type="video/mp4">
+            <track kind="captions" src="assets/video/f1.es.vtt" srclang="es" label="Español" default>
+            <track kind="captions" src="assets/video/f1.en.vtt" srclang="en" label="English">
             <p>
               Tu navegador no soporta vídeo HTML5.
               <a href="assets/video/f1.mp4" download>Descarga el vídeo de Fórmula 1</a>.
             </p>
           </video>
+          <figcaption>Monoplazas de Fórmula 1 en circuito. Vídeo con subtítulos descriptivos activables desde el reproductor.</figcaption>
         </figure>
+        <details>
+          <summary>Descripción del vídeo</summary>
+          <p>
+            Clip de 38 segundos sin diálogo en el que varios monoplazas de Fórmula 1 pasan a gran velocidad por el circuito.
+            Se escucha el rugido de los motores, las frenadas en curva y la aceleración a la salida. Los subtítulos describen
+            estos sonidos para quienes no puedan oírlos.
+          </p>
+        </details>
       </article>
     </section>
 
-    <section aria-label="Radios de Fórmula 1">
+    <section id="radios" aria-label="Radios de Fórmula 1">
       <article>
         <h2>Radios de Fórmula 1</h2>
         <hr>
-        <p>Algunos de los mejores mensajes de radio que ha dejado la Fórmula 1.</p>
+        <p>Algunos de los mejores mensajes de radio que ha dejado la Fórmula 1. Cada audio incluye su transcripción.</p>
         <ul>
           <li>
             <article>
               <h3>"GP2 Engine, GP2... Aaargh!" — Fernando Alonso en Japón 2015</h3>
               <p>La icónica queja por radio de Fernando Alonso en Suzuka mostrando su frustración con el motor en plena recta ante los adelantamientos de sus rivales.</p>
-              <audio controls preload="metadata" aria-label="Radio Fernando Alonso GP2 Engine">
+              <audio controls preload="metadata" aria-label="Radio de Fernando Alonso: GP2 Engine">
                 <source src="assets/audio/Fernando%20Alonso%20-%20GP2%20Engine.mp3" type="audio/mpeg">
                 <p>Tu navegador no soporta audio HTML5. <a href="assets/audio/Fernando%20Alonso%20-%20GP2%20Engine.mp3" download>Descarga el audio</a>.</p>
               </audio>
+              <details>
+                <summary>Transcripción del audio</summary>
+                <p lang="en">Fernando Alonso: "GP2 engine! GP2! Aaargh!"</p>
+                <p>Traducción: «¡Motor de GP2! ¡GP2! ¡Aaargh!». Alonso compara el motor Honda de su McLaren con el de la categoría inferior GP2 mientras le adelantan en la recta de Suzuka.</p>
+              </details>
             </article>
           </li>
           <li>
             <article>
               <h3>"Leave me alone, I know what to do" — Kimi Räikkönen en Abu Dabi 2012</h3>
               <p>Kimi Räikkönen liderando la carrera con Lotus en el Gran Premio de Abu Dabi 2012, dejando una de las contestaciones más legendarias de la Fórmula 1 a su ingeniero.</p>
-              <audio controls preload="metadata" aria-label="Radio Kimi Raikkonen Leave me alone">
+              <audio controls preload="metadata" aria-label="Radio de Kimi Räikkönen: Leave me alone">
                 <source src="assets/audio/Kimi%20Raikkonen%20-%20Leave%20me%20alone.mp3" type="audio/mpeg">
                 <p>Tu navegador no soporta audio HTML5. <a href="assets/audio/Kimi%20Raikkonen%20-%20Leave%20me%20alone.mp3" download>Descarga el audio</a>.</p>
               </audio>
+              <details>
+                <summary>Transcripción del audio</summary>
+                <p lang="en">Engineer: "Kimi, keep working on the tyres, we'll keep you updated on the gaps." Kimi Räikkönen: "Just leave me alone, I know what I'm doing." Later: "Yes, yes, yes, I'm doing all the time. You don't have to remind me every second."</p>
+                <p>Traducción: su ingeniero le pide que cuide los neumáticos y le anuncia que le irá informando de las diferencias; Kimi responde «Déjame en paz, sé lo que estoy haciendo» y, más tarde, «Sí, sí, sí, lo estoy haciendo todo el rato. No hace falta que me lo recuerdes cada segundo».</p>
+              </details>
             </article>
           </li>
         </ul>
@@ -202,10 +254,48 @@
     </section>
   </main>
 
-
   <footer>
     <p>
-      © <time datetime="2026">2026</time> Raúl Antuña
+      <strong>Raúl Antuña</strong>
+      AEM Backend Engineer en Hiberus y estudiante del Máster en Ingeniería Web. Sitio construido con HTML5,
+      CSS3 y JavaScript nativo conforme a los estándares del W3C y a las pautas WCAG 2.1 AA.
+    </p>
+    <nav aria-label="Enlaces de utilidad">
+      <h2>Utilidades</h2>
+      <ul>
+        <li><a href="sitemap.html">Mapa del sitio</a></li>
+        <li><a href="help.html">Ayuda y accesibilidad</a></li>
+        <li><a href="search.html">Buscar en el sitio</a></li>
+        <li><a href="contact.html">Contacto</a></li>
+        <li><a href="en/about.html" hreflang="en" lang="en">English version</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Redes sociales">
+      <h2>Redes sociales</h2>
+      <ul>
+        <li>
+          <a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            GitHub
+          </a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"></path></svg>
+            LinkedIn
+          </a>
+        </li>
+        <li>
+          <a href="mailto:rolitoansu@outlook.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            rolitoansu@outlook.com
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <p>
+      © <time datetime="2026">2026</time> Raúl Antuña ·
+      Última actualización: <time datetime="2026-11-11">11 de noviembre de 2026</time>
     </p>
   </footer>
 </body>
