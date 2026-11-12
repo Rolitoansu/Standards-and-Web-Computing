@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Raúl Antuña — AEM Backend Engineer at Hiberus. Contact form, email, social links and availability.">
-  <meta name="keywords" content="Raúl Antuña, contact, form, AEM, Hiberus, web developer, Asturias">
+  <meta name="description" content="Contact Raúl Antuña — AEM Backend Engineer at Hiberus. Email, social links and availability.">
+  <meta name="keywords" content="Raúl Antuña, contact, AEM, Hiberus, web developer, Asturias">
   <meta name="author" content="Raúl Antuña">
   <title>Contact — Raúl Antuña</title>
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="../assets/css/layout.css">
   <link rel="stylesheet" href="../assets/css/contact.css">
   <script src="../assets/js/nav.js" defer></script>
-  <script src="../assets/js/contact.js" defer></script>
 </head>
 <body>
   <a href="#contenido">Skip to main content</a>
@@ -53,7 +52,7 @@
     <section id="cabecera" aria-label="Contact header">
       <header>
         <h1>Contact</h1>
-        <p>You can write to me using the form or through any of the channels below. I usually reply within 48 hours.</p>
+        <p>You can write to me through any of the channels below. I usually reply within 48 hours.</p>
       </header>
     </section>
 
@@ -95,57 +94,6 @@
       </article>
     </section>
 
-    <section id="formulario" aria-label="Contact form">
-      <article>
-        <h2>Send me a message</h2>
-        <hr>
-        <p>
-          Fill in the form and an email will be prepared in your mail application, ready to send.
-          Fields marked with an asterisk (*) are required.
-        </p>
-        <form action="mailto:rolitoansu@outlook.com" method="post" enctype="text/plain">
-          <p>
-            <label for="name">Name *</label>
-            <input type="text" id="name" name="name" autocomplete="name" required maxlength="80" aria-describedby="name-error">
-            <small id="name-error"></small>
-          </p>
-          <p>
-            <label for="email">Email address *</label>
-            <input type="email" id="email" name="email" autocomplete="email" required maxlength="120" placeholder="name@domain.com" aria-describedby="email-error">
-            <small id="email-error"></small>
-          </p>
-          <p>
-            <label for="reason">Reason for your message *</label>
-            <select id="reason" name="reason" required aria-describedby="reason-error">
-              <option value="">Select an option</option>
-              <option value="Job offer">Job offer</option>
-              <option value="Freelance project">Freelance project</option>
-              <option value="Open source collaboration">Open source collaboration</option>
-              <option value="Talk or presentation">Talk or presentation</option>
-              <option value="Website issue">Report a website issue</option>
-              <option value="Other">Other</option>
-            </select>
-            <small id="reason-error"></small>
-          </p>
-          <p>
-            <label for="message">Message *</label>
-            <textarea id="message" name="message" required minlength="20" maxlength="1000" aria-describedby="message-help message-error"></textarea>
-            <small id="message-help">Between 20 and 1000 characters.</small>
-            <small id="contador-mensaje" aria-live="polite"></small>
-            <small id="message-error"></small>
-          </p>
-          <p>
-            <label for="consent">
-              <input type="checkbox" id="consent" name="consent" value="yes" required aria-describedby="consent-error">
-              I agree that the data in this form will be used only to reply to my message. *
-            </label>
-            <small id="consent-error"></small>
-          </p>
-          <button type="submit">Send message</button>
-          <output aria-live="polite"></output>
-        </form>
-      </article>
-    </section>
 
     <section id="disponibilidad" aria-label="Availability">
       <article>
@@ -176,7 +124,6 @@
       <h2>Useful links</h2>
       <ul>
         <li><a href="sitemap.html">Site map</a></li>
-        <li><a href="help.html">Help and accessibility</a></li>
         <li><a href="search.html">Search the site</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="../contact.html" hreflang="es" lang="es">Versión en español</a></li>

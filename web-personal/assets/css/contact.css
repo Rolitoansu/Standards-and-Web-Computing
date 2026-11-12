@@ -72,11 +72,10 @@ body > main > section:nth-of-type(2) address a > p > span:last-child {
   overflow-wrap: anywhere;
 }
 
-/* Formulario de contacto */
+/* Disponibilidad */
 body > main > section:nth-of-type(3) {
   background: var(--superficie);
   border-top: 0.0625rem solid var(--borde);
-  border-bottom: 0.0625rem solid var(--borde);
 }
 
 body > main > section:nth-of-type(3) > article {
@@ -86,96 +85,16 @@ body > main > section:nth-of-type(3) > article {
 }
 
 body > main > section:nth-of-type(3) > article > p {
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-}
-
-body > main > section:nth-of-type(3) form {
-  background: var(--tarjeta);
-  color: inherit;
-  border: 0.0625rem solid var(--borde);
-  border-radius: var(--radio-m);
-  padding: 1.5rem;
-  display: grid;
-  gap: 1.1rem;
-}
-
-body > main > section:nth-of-type(3) form > p {
-  margin: 0;
-}
-
-body > main > section:nth-of-type(3) form > p label input[type="checkbox"] {
-  margin-right: 0.6rem;
-  vertical-align: middle;
-}
-
-body > main > section:nth-of-type(3) form > p > label[for="consentimiento"],
-body > main > section:nth-of-type(3) form > p > label[for="consent"] {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
-  font-weight: 400;
-  font-size: 0.875rem;
-  color: var(--texto-suave);
-  background-color: inherit;
-  line-height: 1.5;
-}
-
-body > main > section:nth-of-type(3) form > p > label[for="consentimiento"] input,
-body > main > section:nth-of-type(3) form > p > label[for="consent"] input {
-  margin-top: 0.2rem;
-}
-
-body > main > section:nth-of-type(3) form button {
-  justify-self: start;
-  border: none;
-  background: var(--primario, #1d4ed8);
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.75rem 1.6rem;
-  border-radius: var(--radio-s);
-  transition: background var(--transicion);
-}
-
-body > main > section:nth-of-type(3) form button:hover {
-  background: var(--primario-hover);
-}
-
-body > main > section:nth-of-type(3) form output {
-  margin-top: 0;
-}
-
-@media (min-width: 40rem) {
-  body > main > section:nth-of-type(3) form {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  body > main > section:nth-of-type(3) form > p:nth-of-type(n+3),
-  body > main > section:nth-of-type(3) form > button,
-  body > main > section:nth-of-type(3) form > output {
-    grid-column: 1 / -1;
-  }
-}
-
-/* Disponibilidad */
-body > main > section:nth-of-type(4) > article {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-body > main > section:nth-of-type(4) > article > p {
   margin-bottom: 1.25rem;
 }
 
-body > main > section:nth-of-type(4) ul {
+body > main > section:nth-of-type(3) ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
 }
 
-body > main > section:nth-of-type(4) ul li {
+body > main > section:nth-of-type(3) ul li {
   font-size: 0.925rem;
   color: var(--texto-suave);
   background-color: inherit;
@@ -184,7 +103,7 @@ body > main > section:nth-of-type(4) ul li {
   gap: 0.6rem;
 }
 
-body > main > section:nth-of-type(4) ul li::before {
+body > main > section:nth-of-type(3) ul li::before {
   content: '';
   width: 0.4rem;
   height: 0.4rem;

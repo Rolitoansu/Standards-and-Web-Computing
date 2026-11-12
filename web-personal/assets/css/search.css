@@ -64,6 +64,7 @@ body > main > section:nth-of-type(2) form button:hover {
 }
 
 body > main > section:nth-of-type(2) form output {
+  display: block;
   margin-top: 1.5rem;
   padding: 0;
   border: none;

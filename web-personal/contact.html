@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contacta con Raúl Antuña — AEM Backend Engineer en Hiberus. Formulario de contacto, correo electrónico, redes sociales y disponibilidad.">
-  <meta name="keywords" content="Raúl Antuña, contacto, formulario, AEM, Hiberus, desarrollador web, Asturias">
+  <meta name="description" content="Contacta con Raúl Antuña — AEM Backend Engineer en Hiberus. Correo electrónico, redes sociales y disponibilidad.">
+  <meta name="keywords" content="Raúl Antuña, contacto, AEM, Hiberus, desarrollador web, Asturias">
   <meta name="author" content="Raúl Antuña">
   <title>Contacto — Raúl Antuña</title>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/contact.css">
   <script src="assets/js/nav.js" defer></script>
-  <script src="assets/js/contact.js" defer></script>
 </head>
 <body>
   <a href="#contenido">Saltar al contenido principal</a>
@@ -53,7 +52,7 @@
     <section id="cabecera" aria-label="Cabecera de contacto">
       <header>
         <h1>Contacto</h1>
-        <p>Puedes escribirme desde el formulario o a través de cualquiera de los canales siguientes. Suelo responder en menos de 48 horas.</p>
+        <p>Puedes escribirme a través de cualquiera de los canales siguientes. Suelo responder en menos de 48 horas.</p>
       </header>
     </section>
 
@@ -95,57 +94,6 @@
       </article>
     </section>
 
-    <section id="formulario" aria-label="Formulario de contacto">
-      <article>
-        <h2>Envíame un mensaje</h2>
-        <hr>
-        <p>
-          Rellena el formulario y se preparará un correo en tu aplicación de email con el mensaje listo para enviar.
-          Los campos marcados con asterisco (*) son obligatorios.
-        </p>
-        <form action="mailto:rolitoansu@outlook.com" method="post" enctype="text/plain">
-          <p>
-            <label for="nombre">Nombre *</label>
-            <input type="text" id="nombre" name="nombre" autocomplete="name" required maxlength="80" aria-describedby="nombre-error">
-            <small id="nombre-error"></small>
-          </p>
-          <p>
-            <label for="correo">Correo electrónico *</label>
-            <input type="email" id="correo" name="correo" autocomplete="email" required maxlength="120" placeholder="nombre@dominio.com" aria-describedby="correo-error">
-            <small id="correo-error"></small>
-          </p>
-          <p>
-            <label for="motivo">Motivo del mensaje *</label>
-            <select id="motivo" name="motivo" required aria-describedby="motivo-error">
-              <option value="">Selecciona una opción</option>
-              <option value="Oferta de empleo">Oferta de empleo</option>
-              <option value="Proyecto freelance">Proyecto freelance</option>
-              <option value="Colaboración open source">Colaboración open source</option>
-              <option value="Charla o ponencia">Charla o ponencia</option>
-              <option value="Problema en la web">Informar de un problema en la web</option>
-              <option value="Otro">Otro</option>
-            </select>
-            <small id="motivo-error"></small>
-          </p>
-          <p>
-            <label for="mensaje">Mensaje *</label>
-            <textarea id="mensaje" name="mensaje" required minlength="20" maxlength="1000" aria-describedby="mensaje-ayuda mensaje-error"></textarea>
-            <small id="mensaje-ayuda">Entre 20 y 1000 caracteres.</small>
-            <small id="contador-mensaje" aria-live="polite"></small>
-            <small id="mensaje-error"></small>
-          </p>
-          <p>
-            <label for="consentimiento">
-              <input type="checkbox" id="consentimiento" name="consentimiento" value="si" required aria-describedby="consentimiento-error">
-              Acepto que los datos de este formulario se utilicen únicamente para responder a mi mensaje. *
-            </label>
-            <small id="consentimiento-error"></small>
-          </p>
-          <button type="submit">Enviar mensaje</button>
-          <output aria-live="polite"></output>
-        </form>
-      </article>
-    </section>
 
     <section id="disponibilidad" aria-label="Disponibilidad">
       <article>
@@ -176,7 +124,6 @@
       <h2>Utilidades</h2>
       <ul>
         <li><a href="sitemap.html">Mapa del sitio</a></li>
-        <li><a href="help.html">Ayuda y accesibilidad</a></li>
         <li><a href="search.html">Buscar en el sitio</a></li>
         <li><a href="contact.html">Contacto</a></li>
         <li><a href="en/contact.html" hreflang="en" lang="en">English version</a></li>
