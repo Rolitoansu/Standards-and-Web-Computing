@@ -111,3 +111,10 @@ body > main > section:nth-of-type(3) ul li::before {
   background: var(--primario);
   flex-shrink: 0;
 }
+
+/* Etiquetas más legibles en pantallas pequeñas (v3) */
+@media (max-width: 48rem) {
+  body > main > section:nth-of-type(2) address a > p > span:first-child {
+    font-size: 0.875rem;
+  }
+}

@@ -272,3 +272,14 @@ body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure)
     gap: 1.5rem;
   }
 }
+
+/* Etiquetas más legibles en pantallas pequeñas (v3) */
+@media (max-width: 48rem) {
+  body > main > section:nth-of-type(2) article article > header a,
+  body > main > section:nth-of-type(2) article article span[data-estado],
+  body > main > section:nth-of-type(2) article article > ul li,
+  body > main > section:nth-of-type(2) > article > ul > li:first-child:has(figure) article > section > ul li,
+  body > main > section:nth-of-type(2) article em {
+    font-size: 0.875rem;
+  }
+}

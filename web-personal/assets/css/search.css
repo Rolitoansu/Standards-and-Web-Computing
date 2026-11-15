@@ -151,3 +151,37 @@ body > main > section:nth-of-type(2) > article > section p {
   font-size: 0.9rem;
   margin-top: 0.75rem;
 }
+
+/* Etiquetas más legibles en pantallas pequeñas (v3) */
+@media (max-width: 48rem) {
+  body > main > section:nth-of-type(2) > article > ol > li > p:first-child {
+    font-size: 0.875rem;
+  }
+}
+
+body > main > section:nth-of-type(2) > article > section h3 {
+  font-size: 0.95rem;
+  margin: 1rem 0 0.5rem;
+}
+
+body > main > section:nth-of-type(2) > article > section h3 + ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+body > main > section:nth-of-type(2) > article > section h3 + ul li {
+  margin: 0;
+}
+
+body > main > section:nth-of-type(2) > article > section h3 + ul a {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 0.0625rem solid var(--primario-borde);
+  border-radius: var(--radio-full);
+  background: var(--tarjeta);
+  color: var(--primario);
+  font-weight: 600;
+}

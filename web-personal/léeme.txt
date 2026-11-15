@@ -26,14 +26,15 @@ El servidor utiliza un certificado SSL autofirmado (sin entidad emisora pública
   - layout.css: Estilos estructurales comunes (cabecera con menú responsive, buscador y selector de idioma; pie de página con enlaces de utilidad, redes sociales y fecha de actualización).
   - index.css, about.css, projects.css, cv.css, contact.css, search.css, sitemap.css: Estilos propios de cada página.
 - assets/js/: Scripts JavaScript nativos (ES6+), todos cargados con defer.
-  - nav.js: Menú de navegación móvil (aria-expanded, aria-controls, cierre con Escape) y enlace "saltar al contenido".
+  - nav.js: Menú de navegación móvil (aria-expanded, aria-controls, cierre con Escape, con el botón ✕ o con el botón "Cerrar menú") y enlace "saltar al contenido".
   - projects.js: Filtrado de proyectos por data-category con aria-pressed y anuncio del resultado en una región aria-live.
-  - search.js: Buscador del sitio. Normaliza mayúsculas y acentos, puntúa por título/palabras clave/cuerpo, tolera erratas (distancia de Levenshtein), resalta coincidencias y propone correcciones ("¿Quisiste decir…?").
-  - search-index.js: Índice de búsqueda (una entrada por sección de cada página, en ambos idiomas).
+  - search.js: Buscador del sitio. Normaliza mayúsculas y acentos, puntúa por título/palabras clave/cuerpo, tolera erratas (distancia de Levenshtein), reconoce variantes de una misma palabra (certificado/certificación) y sinónimos (curso, diploma, credencial…), resalta coincidencias y, si no hay resultados, propone correcciones ("¿Quisiste decir…?") y enlaces a lo más buscado.
+  - search-index.js: Índice de búsqueda (una entrada por sección de cada página y por apartado del currículum, en ambos idiomas). Se genera con tools/build-search-index.py.
 - assets/img/: Fotografías y capturas optimizadas (JPEG redimensionado), logotipos vectoriales (SVG) y favicon.svg.
 - assets/audio/: Archivos de audio propios integrados con controles nativos en about.html.
 - assets/video/: Vídeo demostrativo (f1.mp4) y sus subtítulos WebVTT (f1.es.vtt, f1.en.vtt).
 - assets/cv_raul_antuna.pdf: Currículum en PDF descargable.
+- tools/build-search-index.py: Script (Python 3, solo biblioteca estándar) que regenera assets/js/search-index.js a partir de las páginas HTML.
 - léeme.txt: Este documento explicativo.
 
 
@@ -45,7 +46,7 @@ Para desplegar la aplicación:
 2. Asegurar que los ficheros cuentan con permisos de lectura para el servidor web.
 3. Acceder mediante el navegador web a la dirección configurada en el servidor.
 
-Si se modifica el contenido de alguna página, conviene actualizar la entrada correspondiente en assets/js/search-index.js y la fecha de "Última actualización" del pie de página.
+Si se modifica el contenido de alguna página, conviene regenerar el índice de búsqueda (python3 tools/build-search-index.py desde la carpeta web-personal) y actualizar la fecha de "Última actualización" del pie de página.
 
 
 4. Software, herramientas y versiones utilizadas
@@ -72,3 +73,14 @@ Para este trabajo he utilizado exclusivamente HTML5, CSS3 y JavaScript nativo (V
 - Internacionalización: el sitio está disponible en español e inglés. Cada página enlaza con su equivalente en el otro idioma (atributos hreflang y lang) y las etiquetas <link rel="alternate" hreflang> informan a buscadores y navegadores.
 - Multimedia accesible: el vídeo incluye pistas de subtítulos descriptivos en español e inglés (WebVTT) y una descripción textual; cada audio incluye su transcripción desplegable.
 - Rendimiento: las imágenes se han redimensionado y comprimido (la galería pasa de 13 MB a menos de 0,5 MB), se usa loading="lazy" en las imágenes fuera de la primera pantalla y fetchpriority="high" en la imagen principal de la portada.
+
+
+6. Versión 3: cambios a partir de las pruebas de usabilidad (tanda 2)
+Tarea de la prueba: encontrar qué certificación tiene Raúl, quién la expide y en qué año. Los 3 usuarios la completaron (71 s, 52 s y 44 s) pero con dificultades. Cambios aplicados:
+1. Buscador tolerante a palabras parecidas: «certificado», «certificar», «curso», «diploma» o «credencial» llevan a Cursos y certificaciones. El índice del currículum se divide por apartados y el resultado enlaza directamente con cv.html#certificaciones. Si no hay resultados, siempre se ofrece una corrección y enlaces a lo más buscado.
+2. Buscador más visible: botón azul con icono de lupa y, en tableta y móvil, siempre visible en la cabecera, fuera del menú desplegable.
+3. Currículum: en móvil se muestran primero experiencia, formación y certificaciones y después contacto, habilidades e idiomas (orden real del código, así coincide también el orden de tabulación). Índice "En esta página" con enlaces a cada apartado y certificación destacada.
+4. Portada: "Datos rápidos" incluye la certificación de Microsoft enlazada con su apartado; todos los datos rápidos son enlaces. La portada es más baja para que esta franja se vea sin hacer scroll en escritorio.
+5. Letra de etiquetas, fechas, niveles y pies de foto aumentada en pantallas pequeñas.
+6. Menú desplegable compacto en tableta (rejilla de 3 columnas) con icono ✕ en el botón y un botón "Cerrar menú"; se cierra también al elegir un enlace.
+Además: al llegar a un apartado mediante un enlace interno, su título se resalta y no queda tapado por la cabecera fija; los audios no se descargan hasta que se reproducen.

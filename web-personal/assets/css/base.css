@@ -315,3 +315,42 @@ kbd {
   background: var(--superficie);
   color: var(--texto);
 }
+
+/* Destinos de enlaces internos (v3): no quedan tapados por la cabecera fija
+   y se resaltan brevemente para que el usuario vea dónde ha llegado. */
+[id] {
+  scroll-margin-top: 5rem;
+}
+
+section:target > h2:first-of-type {
+  color: var(--primario-hover);
+  background-color: var(--primario-claro);
+  box-shadow: 0 0 0 0.375rem var(--primario-claro);
+  border-radius: var(--radio-s);
+  animation: destino 2.5s ease-out 1;
+}
+
+@keyframes destino {
+  0%   { box-shadow: 0 0 0 0.375rem var(--primario-borde); }
+  100% { box-shadow: 0 0 0 0.375rem var(--primario-claro); }
+}
+
+/* Etiquetas y textos auxiliares: tamaño mínimo legible en pantallas pequeñas (v3) */
+@media (max-width: 48rem) {
+  body > main > nav:first-child {
+    font-size: 0.9rem;
+  }
+
+  details summary {
+    font-size: 0.95rem;
+  }
+
+  kbd {
+    font-size: 0.875rem;
+  }
+}
+
+/* Enlaces dentro de párrafos: subrayados para no depender solo del color (WCAG 1.4.1) */
+main p > a {
+  text-decoration: underline;
+}

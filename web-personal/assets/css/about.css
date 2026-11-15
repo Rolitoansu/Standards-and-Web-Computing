@@ -358,3 +358,11 @@ body > main > section:nth-of-type(6) article details {
     grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
   }
 }
+
+/* Pies de foto más legibles en pantallas pequeñas (v3) */
+@media (max-width: 48rem) {
+  body > main > section:nth-of-type(4) figcaption,
+  body > main > section:nth-of-type(5) figcaption {
+    font-size: 0.9rem;
+  }
+}

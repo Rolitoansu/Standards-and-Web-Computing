@@ -7,48 +7,63 @@
     const es     = (document.documentElement.lang || 'es').indexOf('es') === 0;
     const txt    = es ? { abrir: 'Abrir menú', cerrar: 'Cerrar menú' }
                       : { abrir: 'Open menu',  cerrar: 'Close menu' };
+    const ICONO_ABRIR  = '☰';
+    const ICONO_CERRAR = '✕';
 
-    function cerrar() {
+    function abierto() {
+      return menu.getAttribute('data-abierto') === 'true';
+    }
+
+    function cerrar(devolverFoco) {
       menu.setAttribute('data-abierto', 'false');
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-label', txt.abrir);
+      toggle.textContent = ICONO_ABRIR;
+      if (devolverFoco) { toggle.focus(); }
+    }
+
+    function abrir() {
+      menu.setAttribute('data-abierto', 'true');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', txt.cerrar);
+      toggle.textContent = ICONO_CERRAR;
     }
 
     if (toggle && menu) {
       toggle.setAttribute('aria-controls', 'nav-menu');
 
+      // Botón explícito "Cerrar menú" al final del desplegable (solo visible en pantallas estrechas).
+      const li     = document.createElement('li');
+      const boton  = document.createElement('button');
+      boton.type = 'button';
+      boton.textContent = ICONO_CERRAR + ' ' + txt.cerrar;
+      boton.addEventListener('click', function () { cerrar(true); });
+      li.appendChild(boton);
+      menu.appendChild(li);
+
       toggle.addEventListener('click', function (e) {
         e.stopPropagation();
-        const isOpen = menu.getAttribute('data-abierto') === 'true';
-        if (isOpen) {
-          cerrar();
-          return;
-        }
-        menu.setAttribute('data-abierto', 'true');
-        toggle.setAttribute('aria-expanded', 'true');
-        toggle.setAttribute('aria-label', txt.cerrar);
+        if (abierto()) { cerrar(false); } else { abrir(); }
       });
 
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && menu.getAttribute('data-abierto') === 'true') {
-          cerrar();
-          toggle.focus();
-        }
+        if (e.key === 'Escape' && abierto()) { cerrar(true); }
       });
 
       document.addEventListener('click', function (e) {
-        if (menu.getAttribute('data-abierto') === 'true' &&
-            !toggle.contains(e.target) &&
-            !menu.contains(e.target)) {
-          cerrar();
+        if (abierto() && !toggle.contains(e.target) && !menu.contains(e.target)) {
+          cerrar(false);
         }
+      });
+
+      // Al elegir un enlace el menú se cierra, también si el destino está en la misma página.
+      menu.addEventListener('click', function (e) {
+        if (e.target.closest('a')) { cerrar(false); }
       });
 
       // Si se vuelve a escritorio con el menú abierto, se restaura el estado.
       window.addEventListener('resize', function () {
-        if (window.innerWidth > 896 && menu.getAttribute('data-abierto') === 'true') {
-          cerrar();
-        }
+        if (window.innerWidth > 896 && abierto()) { cerrar(false); }
       });
     }
 

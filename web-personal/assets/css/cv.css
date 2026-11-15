@@ -60,14 +60,14 @@ body > main > section:nth-of-type(2) > article {
 }
 
 /* Columna lateral: foto, contacto, habilidades e idiomas */
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure,
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > figure,
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section {
   background: var(--tarjeta, #ffffff);
   color: inherit;
   border: 0.0625rem solid var(--borde);
@@ -75,12 +75,12 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   padding: 1.25rem;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > figure {
   margin: 0;
   text-align: center;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure img {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > figure img {
   width: 6.875rem;
   height: 6.875rem;
   border-radius: 50%;
@@ -90,7 +90,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure
   display: block;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure strong {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > figure strong {
   font-weight: 700;
   color: var(--titulo);
   background-color: inherit;
@@ -98,14 +98,14 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure
   display: block;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > figure p {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > figure p {
   font-size: 0.8rem;
   color: var(--texto-mutado);
   background-color: inherit;
   margin-top: 0.25rem;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section > h2 {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section > h2 {
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -115,7 +115,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   margin-bottom: 1rem;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(1) ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -124,7 +124,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(1) ul li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -134,19 +134,19 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   overflow-wrap: anywhere;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul li a {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(1) ul li a {
   color: var(--texto-suave);
   background-color: inherit;
   text-decoration: none;
   transition: color var(--transicion);
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(1) ul li a:hover {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(1) ul li a:hover {
   color: var(--primario);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(2) ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(2) ul {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
@@ -155,7 +155,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(2) ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(2) ul li {
   background: var(--primario-claro, #eff6ff);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -165,7 +165,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   font-weight: 500;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) ul {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
@@ -174,7 +174,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) ul li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -183,7 +183,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > sectio
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(1) span[data-nivel] {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) span[data-nivel] {
   background: var(--primario-claro, #eff6ff);
   color: var(--primario);
   border: 0.0625rem solid var(--primario-borde);
@@ -194,13 +194,13 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(1) span[dat
 }
 
 /* Columna principal: experiencia, formación, certificaciones y referencias */
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section > h2 {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section > h2 {
   font-size: 1.15rem;
   display: flex;
   align-items: center;
@@ -210,14 +210,14 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol {
   position: relative;
   padding-left: 1.5rem;
   list-style: none;
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol::before {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol::before {
   content: '';
   position: absolute;
   left: 0;
@@ -227,18 +227,18 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   background: var(--borde);
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li {
   position: relative;
   padding-bottom: 1.75rem;
   color: var(--texto-suave);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li:last-child {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li:last-child {
   padding-bottom: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li::before {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li::before {
   content: '';
   position: absolute;
   left: -1.5rem;
@@ -252,8 +252,8 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   transform: translateX(-0.25rem);
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > time,
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > span:first-child {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > time,
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > span:first-child {
   display: block;
   font-size: 0.75rem;
   font-weight: 600;
@@ -263,7 +263,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   margin-bottom: 0.25rem;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > strong {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > strong {
   display: block;
   font-size: 1rem;
   font-weight: 700;
@@ -271,7 +271,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > strong + span {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > strong + span {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -281,7 +281,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   margin-bottom: 0.5rem;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section ol li > p {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > p {
   font-size: 0.85rem;
   line-height: 1.6;
   color: var(--texto-suave);
@@ -289,7 +289,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
 }
 
 /* Certificaciones */
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -298,7 +298,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -311,7 +311,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > p > a {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li > p > a {
   display: block;
   font-size: 0.875rem;
   font-weight: 600;
@@ -320,18 +320,18 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   text-decoration: none;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > p > a:hover {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li > p > a:hover {
   color: var(--primario);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > p > span {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li > p > span {
   font-size: 0.78rem;
   color: var(--texto-mutado);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) > ul li > time {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li > time {
   font-size: 0.75rem;
   color: var(--texto-mutado);
   background-color: inherit;
@@ -339,7 +339,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
 }
 
 /* Referencias */
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > p {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > p {
   font-size: 0.875rem;
   color: var(--texto-suave);
   background-color: inherit;
@@ -347,7 +347,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   line-height: 1.6;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   gap: 1rem;
@@ -356,7 +356,7 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   margin: 0;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul li {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -367,19 +367,19 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li h3 {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul li h3 {
   font-size: 0.95rem;
   color: var(--titulo);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li > span {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul li > span {
   font-size: 0.8rem;
   color: var(--texto-mutado);
   background-color: inherit;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li > p {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul li > p {
   font-size: 0.85rem;
   line-height: 1.55;
   color: var(--texto-suave);
@@ -387,14 +387,132 @@ body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > sectio
   flex: 1;
 }
 
-body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(4) > ul li > a {
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul li > a {
   font-size: 0.82rem;
   font-weight: 600;
   margin-top: 0.4rem;
 }
 
+/* El historial va primero en el código (orden de lectura y de tabulación en móvil);
+   en escritorio la columna lateral se coloca a la izquierda. */
+body > main > section:nth-of-type(2) > article > section:nth-of-type(2) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
 @media (max-width: 48rem) {
   body > main > section:nth-of-type(2) > article {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(1),
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(2) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* Índice "En esta página" (v3): acceso directo a cada apartado del currículum */
+body > main > section:first-of-type > nav {
+  max-width: var(--ancho-max);
+  margin: 1.5rem auto 0;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+}
+
+body > main > section:first-of-type > nav h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--texto-suave);
+  background-color: inherit;
+}
+
+body > main > section:first-of-type > nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+body > main > section:first-of-type > nav a {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 0.0625rem solid var(--primario-borde);
+  border-radius: var(--radio-full);
+  background: var(--tarjeta);
+  color: var(--primario);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--transicion), border-color var(--transicion);
+}
+
+body > main > section:first-of-type > nav a:hover {
+  background: var(--primario-claro);
+  border-color: var(--primario);
+  color: var(--primario-hover);
+}
+
+/* Certificaciones más visibles (v3) */
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li {
+  border-left: 0.25rem solid var(--primario);
+  background: var(--primario-claro);
+  padding: 1rem 1.25rem;
+  align-items: center;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li > p > a {
+  font-size: 1.05rem;
+  text-decoration: underline;
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li > p > span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+}
+
+body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(3) > ul li > time {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--primario-hover);
+  background: var(--tarjeta);
+  border: 0.0625rem solid var(--primario-borde);
+  border-radius: var(--radio-full);
+  padding: 0.15rem 0.75rem;
+}
+
+@media (max-width: 48rem) {
+  body > main > section:first-of-type > nav {
+    margin-top: 1.25rem;
+  }
+
+  /* Etiquetas más grandes en pantallas pequeñas */
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section > h2 {
+    font-size: 0.9rem;
+  }
+
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(2) ul li,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(2) span[data-nivel],
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(1) ul li,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > section:nth-of-type(3) ul li,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(2) > figure p,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > time,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > span:first-child,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > strong + span,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul li > span {
+    font-size: 0.9rem;
+  }
+
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section ol li > p,
+  body > main > section:nth-of-type(2) > article > section:nth-of-type(1) > section:nth-of-type(4) > ul li > p {
+    font-size: 0.95rem;
   }
 }

@@ -33,14 +33,12 @@
         <li><a href="cv.html" aria-current="page">Currículum</a></li>
         <li><a href="contact.html">Contacto</a></li>
         <li><a href="en/cv.html" hreflang="en" lang="en" title="Read this page in English">English</a></li>
-        <li>
-          <form role="search" action="search.html" method="get" aria-label="Buscar en el sitio">
-            <label for="q">Buscar en el sitio</label>
-            <input type="search" id="q" name="q" placeholder="Buscar…" autocomplete="off" minlength="2" required>
-            <button type="submit">Buscar</button>
-          </form>
-        </li>
       </ul>
+      <form role="search" action="search.html" method="get" aria-label="Buscar en el sitio">
+        <label for="q">Buscar en el sitio</label>
+        <input type="search" id="q" name="q" placeholder="Buscar…" autocomplete="off" minlength="2" required>
+        <button type="submit"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span>Buscar</span></button>
+      </form>
     </nav>
   </header>
 
@@ -63,66 +61,27 @@
           Descargar currículum en PDF
         </a>
       </header>
+      <nav aria-label="En esta página">
+        <h2>En esta página</h2>
+        <ul>
+          <li><a href="#experiencia">Experiencia</a></li>
+          <li><a href="#formacion">Formación</a></li>
+          <li><a href="#certificaciones">Certificaciones</a></li>
+          <li><a href="#referencias">Referencias</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#idiomas">Idiomas</a></li>
+          <li><a href="#contacto-cv">Contacto</a></li>
+        </ul>
+      </nav>
     </section>
 
     <section id="curriculum" aria-label="Contenido del currículum">
       <article>
         <h2>Currículum Vitae</h2>
 
-        <section aria-label="Información de contacto y competencias">
-
-          <figure>
-            <img src="assets/img/yo.jpg" alt="Fotografía de perfil de Raúl Antuña" width="110" height="110">
-            <figcaption>
-              <strong>Raúl Antuña Suárez</strong>
-              <p>AEM Backend Engineer · Máster en Ingeniería Web</p>
-            </figcaption>
-          </figure>
-
-          <section id="contacto-cv" aria-label="Contacto">
-            <h2>Contacto</h2>
-            <ul>
-              <li>Asturias, España</li>
-              <li><a href="mailto:rolitoansu@outlook.com">rolitoansu@outlook.com</a></li>
-              <li><a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank"
-                  rel="noopener noreferrer">LinkedIn</a></li>
-              <li><a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            </ul>
-          </section>
-
-          <section id="habilidades" aria-label="Habilidades técnicas">
-            <h2>Habilidades técnicas</h2>
-            <ul>
-              <li>Adobe Experience Manager</li>
-              <li>Java / OSGi / Sling</li>
-              <li>HTML5 / CSS3</li>
-              <li>JavaScript / TypeScript</li>
-              <li>Python</li>
-              <li>Docker</li>
-              <li>SQL / PostgreSQL</li>
-              <li>Git / GitHub</li>
-            </ul>
-          </section>
-
-          <section id="idiomas" aria-label="Idiomas">
-            <h2>Idiomas</h2>
-            <ul>
-              <li>
-                <span>Español</span>
-                <span data-nivel="nativo">Nativo</span>
-              </li>
-              <li>
-                <span>Inglés</span>
-                <span data-nivel="b2">B2</span>
-              </li>
-            </ul>
-          </section>
-
-        </section>
-
         <section aria-label="Historial profesional y académico">
 
-          <section id="experiencia" aria-label="Experiencia profesional">
+          <section id="experiencia" aria-label="Experiencia profesional" data-buscar="trabajo empleo empresa puesto laboral">
             <h2>Experiencia profesional</h2>
             <ol aria-label="Historial de experiencia profesional">
               <li>
@@ -150,7 +109,7 @@
             </ol>
           </section>
 
-          <section id="formacion" aria-label="Formación académica">
+          <section id="formacion" aria-label="Formación académica" data-buscar="estudios universidad carrera título titulación">
             <h2>Formación académica</h2>
             <ol aria-label="Historial de formación académica">
               <li>
@@ -176,7 +135,7 @@
             </ol>
           </section>
 
-          <section id="certificaciones" aria-label="Cursos y certificaciones">
+          <section id="certificaciones" aria-label="Cursos y certificaciones" data-buscar="certificado certificados certificación diploma título credencial insignia acreditación curso Microsoft Credly">
             <h2>Cursos y certificaciones</h2>
             <ul>
               <li>
@@ -218,6 +177,57 @@
                 <span>Perfil profesional público</span>
                 <p>Las recomendaciones y validaciones de aptitudes de compañeros y responsables se pueden consultar en mi perfil de LinkedIn.</p>
                 <a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank" rel="noopener noreferrer">Ver perfil de LinkedIn</a>
+              </li>
+            </ul>
+          </section>
+
+        </section>
+
+        <section aria-label="Información de contacto y competencias">
+
+          <figure>
+            <img src="assets/img/yo.jpg" alt="Fotografía de perfil de Raúl Antuña" width="110" height="110">
+            <figcaption>
+              <strong>Raúl Antuña Suárez</strong>
+              <p>AEM Backend Engineer · Máster en Ingeniería Web</p>
+            </figcaption>
+          </figure>
+
+          <section id="contacto-cv" aria-label="Contacto">
+            <h2>Contacto</h2>
+            <ul>
+              <li>Asturias, España</li>
+              <li><a href="mailto:rolitoansu@outlook.com">rolitoansu@outlook.com</a></li>
+              <li><a href="https://www.linkedin.com/in/ra%C3%BAl-antu%C3%B1a-su%C3%A1rez-02620b398/" target="_blank"
+                  rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://github.com/Rolitoansu" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+          </section>
+
+          <section id="habilidades" aria-label="Habilidades técnicas" data-buscar="competencias conocimientos tecnologías aptitudes">
+            <h2>Habilidades técnicas</h2>
+            <ul>
+              <li>Adobe Experience Manager</li>
+              <li>Java / OSGi / Sling</li>
+              <li>HTML5 / CSS3</li>
+              <li>JavaScript / TypeScript</li>
+              <li>Python</li>
+              <li>Docker</li>
+              <li>SQL / PostgreSQL</li>
+              <li>Git / GitHub</li>
+            </ul>
+          </section>
+
+          <section id="idiomas" aria-label="Idiomas">
+            <h2>Idiomas</h2>
+            <ul>
+              <li>
+                <span>Español</span>
+                <span data-nivel="nativo">Nativo</span>
+              </li>
+              <li>
+                <span>Inglés</span>
+                <span data-nivel="b2">B2</span>
               </li>
             </ul>
           </section>
@@ -268,7 +278,7 @@
     </nav>
     <p>
       © <time datetime="2026">2026</time> Raúl Antuña ·
-      Última actualización: <time datetime="2026-11-11">11 de noviembre de 2026</time>
+      Última actualización: <time datetime="2026-11-15">15 de noviembre de 2026</time>
     </p>
   </footer>
 </body>

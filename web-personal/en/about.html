@@ -32,14 +32,12 @@
         <li><a href="cv.html">CV</a></li>
         <li><a href="contact.html">Contact</a></li>
         <li><a href="../about.html" hreflang="es" lang="es" title="Leer esta página en español">Español</a></li>
-        <li>
-          <form role="search" action="search.html" method="get" aria-label="Search the site">
-            <label for="q">Search the site</label>
-            <input type="search" id="q" name="q" placeholder="Search…" autocomplete="off" minlength="2" required>
-            <button type="submit">Search</button>
-          </form>
-        </li>
       </ul>
+      <form role="search" action="search.html" method="get" aria-label="Search the site">
+        <label for="q">Search the site</label>
+        <input type="search" id="q" name="q" placeholder="Search…" autocomplete="off" minlength="2" required>
+        <button type="submit"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span>Search</span></button>
+      </form>
     </nav>
   </header>
 
@@ -54,7 +52,7 @@
 
     <section id="sobre-mi" aria-label="About me">
       <header>
-        <img src="../assets/img/yo.jpg" alt="Profile photo of Raúl Antuña" width="128" height="128">
+        <img src="../assets/img/yo.jpg" alt="Profile photo of Raúl Antuña" width="128" height="128" fetchpriority="high">
         <hgroup>
           <h1>About me</h1>
           <p>A little about who I am, what I like and what motivates me every day.</p>
@@ -222,7 +220,7 @@
             <article>
               <h3>"GP2 Engine, GP2... Aaargh!" — Fernando Alonso, Japan 2015</h3>
               <p>Fernando Alonso's iconic radio complaint at Suzuka, venting his frustration with the engine on the straight as his rivals overtook him.</p>
-              <audio controls preload="metadata" aria-label="Fernando Alonso radio: GP2 Engine">
+              <audio controls preload="none" aria-label="Fernando Alonso radio: GP2 Engine">
                 <source src="../assets/audio/Fernando%20Alonso%20-%20GP2%20Engine.mp3" type="audio/mpeg">
                 <p>Your browser does not support HTML5 audio. <a href="../assets/audio/Fernando%20Alonso%20-%20GP2%20Engine.mp3" download>Download the audio</a>.</p>
               </audio>
@@ -237,7 +235,7 @@
             <article>
               <h3>"Leave me alone, I know what to do" — Kimi Räikkönen, Abu Dhabi 2012</h3>
               <p>Kimi Räikkönen leading the race for Lotus at the 2012 Abu Dhabi Grand Prix, giving his engineer one of the most legendary replies in Formula 1 history.</p>
-              <audio controls preload="metadata" aria-label="Kimi Räikkönen radio: Leave me alone">
+              <audio controls preload="none" aria-label="Kimi Räikkönen radio: Leave me alone">
                 <source src="../assets/audio/Kimi%20Raikkonen%20-%20Leave%20me%20alone.mp3" type="audio/mpeg">
                 <p>Your browser does not support HTML5 audio. <a href="../assets/audio/Kimi%20Raikkonen%20-%20Leave%20me%20alone.mp3" download>Download the audio</a>.</p>
               </audio>
@@ -292,7 +290,7 @@
     </nav>
     <p>
       © <time datetime="2026">2026</time> Raúl Antuña ·
-      Last updated: <time datetime="2026-11-11">11 November 2026</time>
+      Last updated: <time datetime="2026-11-15">15 November 2026</time>
     </p>
   </footer>
 </body>

@@ -2,7 +2,7 @@
 window.INDICE_BUSQUEDA = [
 {
 "t": "Hola, soy Raúl Antuña",
-"p": "Raúl Antuña",
+"p": "Inicio",
 "u": "index.html#presentacion",
 "l": "es",
 "k": "Raúl Antuña, AEM, Java, Backend, Ingeniero Web, Asturias, Hiberus, portfolio",
@@ -10,15 +10,15 @@ window.INDICE_BUSQUEDA = [
 },
 {
 "t": "Datos rápidos",
-"p": "Raúl Antuña",
+"p": "Inicio",
 "u": "index.html#datos",
 "l": "es",
 "k": "Raúl Antuña, AEM, Java, Backend, Ingeniero Web, Asturias, Hiberus, portfolio",
-"b": "Datos rápidos 1+ Año de experiencia 7 Proyectos publicados AEM Especialidad principal"
+"b": "Datos rápidos 1+ Año de experiencia 7 Proyectos publicados AEM Especialidad principal Microsoft Certificación AI Skills Fest 2026"
 },
 {
 "t": "Tecnologías",
-"p": "Raúl Antuña",
+"p": "Inicio",
 "u": "index.html#tecnologias",
 "l": "es",
 "k": "Raúl Antuña, AEM, Java, Backend, Ingeniero Web, Asturias, Hiberus, portfolio",
@@ -26,11 +26,11 @@ window.INDICE_BUSQUEDA = [
 },
 {
 "t": "Explora la web",
-"p": "Raúl Antuña",
+"p": "Inicio",
 "u": "index.html#explora",
 "l": "es",
-"k": "Raúl Antuña, AEM, Java, Backend, Ingeniero Web, Asturias, Hiberus, portfolio Sobre mí Proyectos Currículum Contacto",
-"b": "Explora la web Todo el contenido está a un clic. Si buscas algo concreto, usa el buscador de la cabecera o el mapa del sitio . Sobre mí Mi historia, aficiones, galería y mi pasión por la Fórmula 1. Proyectos Mis trabajos más destacados, con filtros por categoría y enlaces al código. Currículum Formación, experiencia, certificaciones y referencias. También en PDF. Contacto Datos de contacto, redes sociales y disponibilidad."
+"k": "Raúl Antuña, AEM, Java, Backend, Ingeniero Web, Asturias, Hiberus, portfolio",
+"b": "Explora la web Todo el contenido está a un clic. Si buscas algo concreto, usa el buscador de la cabecera o el mapa del sitio . Sobre mí Mi historia, aficiones, galería y mi pasión por la Fórmula 1. Proyectos Mis trabajos más destacados, con filtros por categoría y enlaces al código. Currículum Experiencia, formación, certificaciones (Microsoft AI Skills Fest 2026) y referencias. También en PDF. Contacto Datos de contacto, redes sociales y disponibilidad."
 },
 {
 "t": "Sobre mí",
@@ -53,7 +53,7 @@ window.INDICE_BUSQUEDA = [
 "p": "Sobre mí",
 "u": "about.html#aficiones",
 "l": "es",
-"k": "Raúl Antuña, sobre mí, senderismo, cine, música, videojuegos, Sporting de Gijón, Fórmula 1, Asturias, ingeniería informática Cine Música Fútbol Videojuegos Senderismo Tiempo libre",
+"k": "Raúl Antuña, sobre mí, senderismo, cine, música, videojuegos, Sporting de Gijón, Fórmula 1, Asturias, ingeniería informática",
 "b": "Aficiones e intereses Lo que hago cuando no estoy frente al ordenador (o cuando sí lo estoy, pero por gusto). Cine Me gusta el cine de acción: persecuciones, grandes escenas de riesgo y bandas sonoras potentes. Una buena película de acción es mi plan perfecto para una tarde de sofá. Música Escucho sobre todo pop y trap, aunque la lista de reproducción cambia según el día. La música me acompaña mientras programo y, por supuesto, en cada ruta en coche. Fútbol Sigo al Sporting de Gijón, para lo bueno y para lo malo, temporada tras temporada. Ser del Sporting es un ejercicio de paciencia que se compensa con cada victoria. Videojuegos Jugar es mi forma favorita de desconectar. Además, los videojuegos fueron una de las razones por las que empecé a interesarme por la programación. Senderismo Asturias es un paraíso para las rutas de montaña, como la de Teverga que puedes ver en la galería. Salir al monte es mi manera de desconectar del teclado. Tiempo libre Me gusta pasar tiempo con mis amigos, descansar y compartir sofá con mi gata Zoe, que también aparece en la galería."
 },
 {
@@ -77,7 +77,7 @@ window.INDICE_BUSQUEDA = [
 "p": "Sobre mí",
 "u": "about.html#radios",
 "l": "es",
-"k": "Raúl Antuña, sobre mí, senderismo, cine, música, videojuegos, Sporting de Gijón, Fórmula 1, Asturias, ingeniería informática \"GP2 Engine, GP2... Aaargh!\" — Fernando Alonso en Japón 2015 \"Leave me alone, I know what to do\" — Kimi Räikkönen en Abu Dabi 2012",
+"k": "Raúl Antuña, sobre mí, senderismo, cine, música, videojuegos, Sporting de Gijón, Fórmula 1, Asturias, ingeniería informática",
 "b": "Radios de Fórmula 1 Algunos de los mejores mensajes de radio que ha dejado la Fórmula 1. Cada audio incluye su transcripción. \"GP2 Engine, GP2... Aaargh!\" — Fernando Alonso en Japón 2015 La icónica queja por radio de Fernando Alonso en Suzuka mostrando su frustración con el motor en plena recta ante los adelantamientos de sus rivales. Tu navegador no soporta audio HTML5. Descarga el audio . Transcripción del audio Fernando Alonso: \"GP2 engine! GP2! Aaargh!\" Traducción: «¡Motor de GP2! ¡GP2! ¡Aaargh!». Alonso compara el motor Honda de su McLaren con el de la categoría inferior GP2 mientras le adelantan en la recta de Suzuka. \"Leave me alone, I know what to do\" — Kimi Räikkönen en Abu Dabi 2012 Kimi Räikkönen liderando la carrera con Lotus en el Gran Premio de Abu Dabi 2012, dejando una de las contestaciones más legendarias de la Fórmula 1 a su ingeniero. Tu navegador no soporta audio HTML5. Descarga el audio . Transcripción del audio Engineer: \"Kimi, keep working on the tyres, we'll keep you updated on the gaps.\" Kimi Räikkönen: \"Just leave me alone, I know what I'm doing.\" Later: \"Yes, yes, yes, I'm doing all the time. You don't have to remind me every second.\" Traducción: su ingeniero le pide que cuide los neumáticos y le anuncia que le irá informando de las diferencias; Kimi responde «Déjame en paz, sé lo que estoy haciendo» y, más tarde, «Sí, sí, sí, lo estoy haciendo todo el rato. No hace falta que me lo recuerdes cada segundo»."
 },
 {
@@ -93,8 +93,8 @@ window.INDICE_BUSQUEDA = [
 "p": "Proyectos",
 "u": "projects.html#proyectos",
 "l": "es",
-"k": "Raúl Antuña, proyectos, portfolio, Go, Svelte, Python, TypeScript, Docker, Java, C, Compiladores, Concurrencia, AEM, WebAssembly Facturator.ai — Plataforma SaaS con IA Match-TFE Estándares y Computación Web (Máster) Compilador de Lenguajes (MAPL) Car Workshop — Persistencia Dual Mecanismos de SO y Concurrencia Página Personal con Estándares W3C (SEW)",
-"b": "Lista de proyectos Mostrando los 7 proyectos. Proyecto destacado Facturator.ai — Plataforma SaaS con IA Completado Ecosistema SaaS completo para la extracción inteligente, procesamiento OCR y gestión contable de facturas y tickets. Arquitectura modular compuesta por backend transaccional en Go (WebSockets, Stripe, PostgreSQL/Supabase), microservicio de visión artificial y pipelines ETL en Python, y frontend reactivo en SvelteKit con TypeScript. Go Python SvelteKit TypeScript PostgreSQL Stripe Docker Ver Facturator.ai en GitHub → Código en GitHub Match-TFE Completado Plataforma para optimizar la coordinación y asignación de Trabajos Fin de Estudios en la Escuela de Ingeniería Informática. Incluye despliegue con Docker Compose (dev y release), Drizzle ORM sobre PostgreSQL y notificaciones por correo con cron personalizable. TypeScript Node.js Drizzle ORM PostgreSQL Docker Código en GitHub Estándares y Computación Web (Máster) En progreso Trabajos de la asignatura del Máster en Ingeniería Web: esta web personal, una comparativa de rendimiento entre WebAssembly nativo y JavaScript, VONA (procesamiento de XML con WebAssembly) y un generador de sitios web estáticos a partir de documentos XML. HTML5 WebAssembly XML TypeScript GitHub Pages Código en GitHub Compilador de Lenguajes (MAPL) Completado Compilador completo para la máquina abstracta MAPL. Implementa análisis léxico y sintáctico con gramática formal, análisis semántico con comprobación de tipos y tabla de símbolos, cálculo de offsets de memoria y generación de código objeto ejecutable. Java Compiladores Gramáticas MAPL AST Código en GitHub Car Workshop — Persistencia Dual Completado Sistema de gestión empresarial con estudio comparativo de persistencia relacional. Análisis empírico de cursores y resolución de conflictos de concurrencia en JDBC, junto a doble implementación del dominio: JDBC transaccional puro vs. JPA / Hibernate. Java JDBC JPA / Hibernate Concurrencia SQL Código en GitHub Mecanismos de SO y Concurrencia Completado Desarrollos a bajo nivel en C sobre el kernel y estándares POSIX: gestión de procesos (fork/exec), sincronización con semáforos y mutexes en secciones críticas, comunicación interproceso (pipes, FIFOs, señales) y algoritmos de planificación. C POSIX Kernel APIs Multihilo IPC Ver demo Página Personal con Estándares W3C (SEW) Completado Sitio web desarrollado para la asignatura Software y Estándares para la Web (SEW) del Grado en Ingeniería Informática. Desarrollado con HTML5 semántico puro, arquitectura CSS modular con selectores estructurales, accesibilidad WCAG 2.1 AA y JavaScript vanilla accesible. HTML5 CSS3 JavaScript WCAG 2.1 AA SEW"
+"k": "Raúl Antuña, proyectos, portfolio, Go, Svelte, Python, TypeScript, Docker, Java, C, Compiladores, Concurrencia, AEM, WebAssembly",
+"b": "Lista de proyectos Todos Web & Cloud Sistemas & Compiladores Backend & Persistencia Mostrando los 7 proyectos. Proyecto destacado Facturator.ai — Plataforma SaaS con IA Completado Ecosistema SaaS completo para la extracción inteligente, procesamiento OCR y gestión contable de facturas y tickets. Arquitectura modular compuesta por backend transaccional en Go (WebSockets, Stripe, PostgreSQL/Supabase), microservicio de visión artificial y pipelines ETL en Python, y frontend reactivo en SvelteKit con TypeScript. Go Python SvelteKit TypeScript PostgreSQL Stripe Docker Ver Facturator.ai en GitHub → Código en GitHub Match-TFE Completado Plataforma para optimizar la coordinación y asignación de Trabajos Fin de Estudios en la Escuela de Ingeniería Informática. Incluye despliegue con Docker Compose (dev y release), Drizzle ORM sobre PostgreSQL y notificaciones por correo con cron personalizable. TypeScript Node.js Drizzle ORM PostgreSQL Docker Código en GitHub Estándares y Computación Web (Máster) En progreso Trabajos de la asignatura del Máster en Ingeniería Web: esta web personal, una comparativa de rendimiento entre WebAssembly nativo y JavaScript, VONA (procesamiento de XML con WebAssembly) y un generador de sitios web estáticos a partir de documentos XML. HTML5 WebAssembly XML TypeScript GitHub Pages Código en GitHub Compilador de Lenguajes (MAPL) Completado Compilador completo para la máquina abstracta MAPL. Implementa análisis léxico y sintáctico con gramática formal, análisis semántico con comprobación de tipos y tabla de símbolos, cálculo de offsets de memoria y generación de código objeto ejecutable. Java Compiladores Gramáticas MAPL AST Código en GitHub Car Workshop — Persistencia Dual Completado Sistema de gestión empresarial con estudio comparativo de persistencia relacional. Análisis empírico de cursores y resolución de conflictos de concurrencia en JDBC, junto a doble implementación del dominio: JDBC transaccional puro vs. JPA / Hibernate. Java JDBC JPA / Hibernate Concurrencia SQL Código en GitHub Mecanismos de SO y Concurrencia Completado Desarrollos a bajo nivel en C sobre el kernel y estándares POSIX: gestión de procesos (fork/exec), sincronización con semáforos y mutexes en secciones críticas, comunicación interproceso (pipes, FIFOs, señales) y algoritmos de planificación. C POSIX Kernel APIs Multihilo IPC Ver demo Página Personal con Estándares W3C (SEW) Completado Sitio web desarrollado para la asignatura Software y Estándares para la Web (SEW) del Grado en Ingeniería Informática. Desarrollado con HTML5 semántico puro, arquitectura CSS modular con selectores estructurales, accesibilidad WCAG 2.1 AA y JavaScript vanilla accesible. HTML5 CSS3 JavaScript WCAG 2.1 AA SEW"
 },
 {
 "t": "Facturator.ai — Plataforma SaaS con IA",
@@ -158,15 +158,63 @@ window.INDICE_BUSQUEDA = [
 "u": "cv.html#cabecera",
 "l": "es",
 "k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias",
-"b": "Currículum Vitae Mi trayectoria académica, experiencia, competencias y referencias. Descargar currículum en PDF"
+"b": "Currículum Vitae Mi trayectoria académica, experiencia, competencias y referencias. Descargar currículum en PDF En esta página Experiencia Formación Certificaciones Referencias Habilidades Idiomas Contacto"
 },
 {
-"t": "Currículum Vitae",
+"t": "Experiencia profesional",
 "p": "Currículum",
-"u": "cv.html#curriculum",
+"u": "cv.html#experiencia",
 "l": "es",
-"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias Responsable del equipo AEM Tutor académico Recomendaciones en LinkedIn",
-"b": "Currículum Vitae Raúl Antuña Suárez AEM Backend Engineer · Máster en Ingeniería Web Contacto Asturias, España rolitoansu@outlook.com LinkedIn GitHub Habilidades técnicas Adobe Experience Manager Java / OSGi / Sling HTML5 / CSS3 JavaScript / TypeScript Python Docker SQL / PostgreSQL Git / GitHub Idiomas Español Nativo Inglés B2 Experiencia profesional Julio 2026 — actualidad AEM Backend Engineer Hiberus · Asturias / Híbrido Desarrollo y mantenimiento de soluciones basadas en Adobe Experience Manager. Implementación de componentes Sling, modelos OSGi y flujos de trabajo en AEM as a Cloud Service. Contrato de jornada completa compatibilizado con el Máster en Ingeniería Web a media jornada desde septiembre de 2026. Enero 2026 — Julio 2026 AEM Backend Engineer (Prácticas) Hiberus · Asturias / Presencial Prácticas en el equipo de Adobe Experience Manager. Desarrollo de componentes backend con Java y Sling, integración con sistemas de contenido y despliegue en entornos de nube. Al finalizar las prácticas se ofreció incorporación en plantilla a jornada completa. Formación académica Septiembre 2026 — actualidad Máster en Ingeniería Web Universidad de Oviedo · Oviedo, Asturias Especialización en tecnologías web avanzadas: estándares W3C, accesibilidad, arquitecturas de aplicaciones web, computación en la nube y WebAssembly. Cursado a media jornada compatible con el trabajo en Hiberus. Septiembre 2022 — Julio 2026 Grado en Ingeniería Informática Universidad de Oviedo · Oviedo, Asturias Fundamentos de algoritmia, programación orientada a objetos, bases de datos, redes y sistemas operativos. Especialidad en Ingeniería del Software. Cursos y certificaciones AI Skills Fest 2026 Microsoft · credencial verificable en Credly 2026 Referencias Personas que pueden avalar mi trabajo y mi trayectoria. Por respeto a su privacidad, sus datos de contacto directo se facilitan bajo petición y con su consentimiento previo. Responsable del equipo AEM Hiberus · Asturias Ha supervisado mi trabajo desde las prácticas (enero de 2026) hasta mi incorporación como AEM Backend Engineer a jornada completa. Solicitar contacto de referencia Tutor académico Escuela de Ingeniería Informática · Universidad de Oviedo Puede avalar mi trayectoria en el Grado en Ingeniería Informática y los proyectos académicos recogidos en la sección de proyectos. Solicitar contacto de referencia Recomendaciones en LinkedIn Perfil profesional público Las recomendaciones y validaciones de aptitudes de compañeros y responsables se pueden consultar en mi perfil de LinkedIn. Ver perfil de LinkedIn"
+"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias trabajo empleo empresa puesto laboral",
+"b": "Experiencia profesional Julio 2026 — actualidad AEM Backend Engineer Hiberus · Asturias / Híbrido Desarrollo y mantenimiento de soluciones basadas en Adobe Experience Manager. Implementación de componentes Sling, modelos OSGi y flujos de trabajo en AEM as a Cloud Service. Contrato de jornada completa compatibilizado con el Máster en Ingeniería Web a media jornada desde septiembre de 2026. Enero 2026 — Julio 2026 AEM Backend Engineer (Prácticas) Hiberus · Asturias / Presencial Prácticas en el equipo de Adobe Experience Manager. Desarrollo de componentes backend con Java y Sling, integración con sistemas de contenido y despliegue en entornos de nube. Al finalizar las prácticas se ofreció incorporación en plantilla a jornada completa."
+},
+{
+"t": "Formación académica",
+"p": "Currículum",
+"u": "cv.html#formacion",
+"l": "es",
+"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias estudios universidad carrera título titulación",
+"b": "Formación académica Septiembre 2026 — actualidad Máster en Ingeniería Web Universidad de Oviedo · Oviedo, Asturias Especialización en tecnologías web avanzadas: estándares W3C, accesibilidad, arquitecturas de aplicaciones web, computación en la nube y WebAssembly. Cursado a media jornada compatible con el trabajo en Hiberus. Septiembre 2022 — Julio 2026 Grado en Ingeniería Informática Universidad de Oviedo · Oviedo, Asturias Fundamentos de algoritmia, programación orientada a objetos, bases de datos, redes y sistemas operativos. Especialidad en Ingeniería del Software."
+},
+{
+"t": "Cursos y certificaciones",
+"p": "Currículum",
+"u": "cv.html#certificaciones",
+"l": "es",
+"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias certificado certificados certificación diploma título credencial insignia acreditación curso Microsoft Credly",
+"b": "Cursos y certificaciones AI Skills Fest 2026 Microsoft · credencial verificable en Credly 2026"
+},
+{
+"t": "Referencias",
+"p": "Currículum",
+"u": "cv.html#referencias",
+"l": "es",
+"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias",
+"b": "Referencias Personas que pueden avalar mi trabajo y mi trayectoria. Por respeto a su privacidad, sus datos de contacto directo se facilitan bajo petición y con su consentimiento previo. Responsable del equipo AEM Hiberus · Asturias Ha supervisado mi trabajo desde las prácticas (enero de 2026) hasta mi incorporación como AEM Backend Engineer a jornada completa. Solicitar contacto de referencia Tutor académico Escuela de Ingeniería Informática · Universidad de Oviedo Puede avalar mi trayectoria en el Grado en Ingeniería Informática y los proyectos académicos recogidos en la sección de proyectos. Solicitar contacto de referencia Recomendaciones en LinkedIn Perfil profesional público Las recomendaciones y validaciones de aptitudes de compañeros y responsables se pueden consultar en mi perfil de LinkedIn. Ver perfil de LinkedIn"
+},
+{
+"t": "Contacto",
+"p": "Currículum",
+"u": "cv.html#contacto-cv",
+"l": "es",
+"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias",
+"b": "Contacto Asturias, España rolitoansu@outlook.com LinkedIn GitHub"
+},
+{
+"t": "Habilidades técnicas",
+"p": "Currículum",
+"u": "cv.html#habilidades",
+"l": "es",
+"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias competencias conocimientos tecnologías aptitudes",
+"b": "Habilidades técnicas Adobe Experience Manager Java / OSGi / Sling HTML5 / CSS3 JavaScript / TypeScript Python Docker SQL / PostgreSQL Git / GitHub"
+},
+{
+"t": "Idiomas",
+"p": "Currículum",
+"u": "cv.html#idiomas",
+"l": "es",
+"k": "Raúl Antuña, currículum, AEM, Adobe Experience Manager, Hiberus, backend, ingeniería informática, máster web, referencias",
+"b": "Idiomas Español Nativo Inglés B2"
 },
 {
 "t": "Contacto",
@@ -206,7 +254,7 @@ window.INDICE_BUSQUEDA = [
 "u": "sitemap.html#paginas",
 "l": "es",
 "k": "Raúl Antuña, mapa del sitio, sitemap, navegación",
-"b": "Páginas del sitio El sitio tiene un único nivel de navegación: cada página se enlaza desde el menú superior y desde el pie. Dentro de cada página, los enlaces siguientes llevan directamente a cada sección. Inicio Presentación y acceso rápido a todo el contenido. Presentación Datos rápidos Tecnologías Explora la web Sobre mí Trayectoria, aficiones, galería y Fórmula 1. Trayectoria e intereses Aficiones e intereses Galería Fórmula 1 y pasión por el motor Radios de Fórmula 1 Proyectos Catálogo de proyectos con filtros por categoría. Lista de proyectos Currículum Experiencia, formación, certificaciones y referencias. Habilidades técnicas Idiomas Experiencia profesional Formación académica Cursos y certificaciones Referencias Currículum en PDF Contacto Canales de contacto y disponibilidad. Formas de contactarme Disponibilidad Buscar Buscador interno de todo el contenido. Ayuda y accesibilidad Cómo usar el sitio, atajos de teclado, declaración de accesibilidad y preguntas frecuentes. Cómo navegar Cómo buscar Accesibilidad Idiomas Preguntas frecuentes Informar de un problema English version La misma web en inglés: Home, About me, Projects, CV, Contact, Search, Help y Site map."
+"b": "Páginas del sitio El sitio tiene un único nivel de navegación: cada página se enlaza desde el menú superior y desde el pie. Dentro de cada página, los enlaces siguientes llevan directamente a cada sección. Inicio Presentación y acceso rápido a todo el contenido. Presentación Datos rápidos Tecnologías Explora la web Sobre mí Trayectoria, aficiones, galería y Fórmula 1. Trayectoria e intereses Aficiones e intereses Galería Fórmula 1 y pasión por el motor Radios de Fórmula 1 Proyectos Catálogo de proyectos con filtros por categoría. Lista de proyectos Currículum Experiencia, formación, certificaciones y referencias. Habilidades técnicas Idiomas Experiencia profesional Formación académica Cursos y certificaciones Referencias Currículum en PDF Contacto Canales de contacto y disponibilidad. Formas de contactarme Disponibilidad Buscar Buscador interno de todo el contenido. English version La misma web en inglés: Home, About me, Projects, CV, Contact, Search y Site map."
 },
 {
 "t": "Otros trabajos de la asignatura",
@@ -218,7 +266,7 @@ window.INDICE_BUSQUEDA = [
 },
 {
 "t": "Hi, I'm Raúl Antuña",
-"p": "Raúl Antuña",
+"p": "Home",
 "u": "index.html#presentacion",
 "l": "en",
 "k": "Raúl Antuña, AEM, Java, Backend, Web Engineer, Asturias, Hiberus, portfolio",
@@ -226,15 +274,15 @@ window.INDICE_BUSQUEDA = [
 },
 {
 "t": "Quick facts",
-"p": "Raúl Antuña",
+"p": "Home",
 "u": "index.html#datos",
 "l": "en",
 "k": "Raúl Antuña, AEM, Java, Backend, Web Engineer, Asturias, Hiberus, portfolio",
-"b": "Quick facts 1+ Year of experience 7 Published projects AEM Main specialty"
+"b": "Quick facts 1+ Year of experience 7 Published projects AEM Main specialty Microsoft AI Skills Fest 2026 certification"
 },
 {
 "t": "Technologies",
-"p": "Raúl Antuña",
+"p": "Home",
 "u": "index.html#tecnologias",
 "l": "en",
 "k": "Raúl Antuña, AEM, Java, Backend, Web Engineer, Asturias, Hiberus, portfolio",
@@ -242,11 +290,11 @@ window.INDICE_BUSQUEDA = [
 },
 {
 "t": "Explore the site",
-"p": "Raúl Antuña",
+"p": "Home",
 "u": "index.html#explora",
 "l": "en",
-"k": "Raúl Antuña, AEM, Java, Backend, Web Engineer, Asturias, Hiberus, portfolio About me Projects CV Contact",
-"b": "Explore the site Everything is one click away. Looking for something specific? Use the search box in the header or the site map . About me My story, hobbies, gallery and my passion for Formula 1. Projects My most relevant work, with category filters and links to the code. CV Education, experience, certifications and references. Also as a PDF. Contact Contact details, social links and availability."
+"k": "Raúl Antuña, AEM, Java, Backend, Web Engineer, Asturias, Hiberus, portfolio",
+"b": "Explore the site Everything is one click away. Looking for something specific? Use the search box in the header or the site map . About me My story, hobbies, gallery and my passion for Formula 1. Projects My most relevant work, with category filters and links to the code. CV Experience, education, certifications (Microsoft AI Skills Fest 2026) and references. Also as a PDF. Contact Contact details, social links and availability."
 },
 {
 "t": "About me",
@@ -269,7 +317,7 @@ window.INDICE_BUSQUEDA = [
 "p": "About me",
 "u": "about.html#aficiones",
 "l": "en",
-"k": "Raúl Antuña, about me, hiking, cinema, music, video games, Sporting de Gijón, Formula 1, Asturias, computer engineering Cinema Music Football Video games Hiking Free time",
+"k": "Raúl Antuña, about me, hiking, cinema, music, video games, Sporting de Gijón, Formula 1, Asturias, computer engineering",
 "b": "Hobbies and interests What I do when I'm not in front of a computer (or when I am, but just for fun). Cinema I love action films: car chases, big stunt scenes and powerful soundtracks. A good action movie is my perfect plan for an evening on the sofa. Music I mostly listen to pop and trap, although the playlist changes from day to day. Music keeps me company while I code and, of course, on every road trip. Football I support Sporting de Gijón, through thick and thin, season after season. Being a Sporting fan is an exercise in patience that every win makes worthwhile. Video games Gaming is my favourite way to switch off. Video games were also one of the reasons I became interested in programming in the first place. Hiking Asturias is a paradise for mountain trails, like the one in Teverga you can see in the gallery. Heading to the mountains is my way of disconnecting from the keyboard. Free time I enjoy spending time with my friends, resting and sharing the sofa with my cat Zoe, who also appears in the gallery."
 },
 {
@@ -293,7 +341,7 @@ window.INDICE_BUSQUEDA = [
 "p": "About me",
 "u": "about.html#radios",
 "l": "en",
-"k": "Raúl Antuña, about me, hiking, cinema, music, video games, Sporting de Gijón, Formula 1, Asturias, computer engineering \"GP2 Engine, GP2... Aaargh!\" — Fernando Alonso, Japan 2015 \"Leave me alone, I know what to do\" — Kimi Räikkönen, Abu Dhabi 2012",
+"k": "Raúl Antuña, about me, hiking, cinema, music, video games, Sporting de Gijón, Formula 1, Asturias, computer engineering",
 "b": "Formula 1 team radios Some of the best radio messages Formula 1 has ever produced. Every audio clip includes a transcript. \"GP2 Engine, GP2... Aaargh!\" — Fernando Alonso, Japan 2015 Fernando Alonso's iconic radio complaint at Suzuka, venting his frustration with the engine on the straight as his rivals overtook him. Your browser does not support HTML5 audio. Download the audio . Audio transcript Fernando Alonso: \"GP2 engine! GP2! Aaargh!\" Alonso compares the Honda engine in his McLaren with those of the junior GP2 series while being overtaken on the Suzuka straight. \"Leave me alone, I know what to do\" — Kimi Räikkönen, Abu Dhabi 2012 Kimi Räikkönen leading the race for Lotus at the 2012 Abu Dhabi Grand Prix, giving his engineer one of the most legendary replies in Formula 1 history. Your browser does not support HTML5 audio. Download the audio . Audio transcript Engineer: \"Kimi, keep working on the tyres, we'll keep you updated on the gaps.\" Kimi Räikkönen: \"Just leave me alone, I know what I'm doing.\" Later: \"Yes, yes, yes, I'm doing all the time. You don't have to remind me every second.\""
 },
 {
@@ -309,8 +357,8 @@ window.INDICE_BUSQUEDA = [
 "p": "Projects",
 "u": "projects.html#proyectos",
 "l": "en",
-"k": "Raúl Antuña, projects, portfolio, Go, Svelte, Python, TypeScript, Docker, Java, C, Compilers, Concurrency, AEM, WebAssembly Facturator.ai — AI-powered SaaS platform Match-TFE Standards and Web Computing (Master's) Language compiler (MAPL) Car Workshop — Dual persistence OS mechanisms and concurrency Personal website with W3C standards (SEW)",
-"b": "Project list Showing all 7 projects. Featured project Facturator.ai — AI-powered SaaS platform Completed A complete SaaS ecosystem for intelligent extraction, OCR processing and accounting management of invoices and receipts. Modular architecture with a transactional backend in Go (WebSockets, Stripe, PostgreSQL/Supabase), a computer-vision microservice and ETL pipelines in Python, and a reactive SvelteKit frontend in TypeScript. Go Python SvelteKit TypeScript PostgreSQL Stripe Docker View Facturator.ai on GitHub → Code on GitHub Match-TFE Completed Platform to streamline the coordination and assignment of final-year projects at the School of Computer Engineering. Includes Docker Compose deployment (dev and release), Drizzle ORM on PostgreSQL and email notifications with a configurable cron. TypeScript Node.js Drizzle ORM PostgreSQL Docker Code on GitHub Standards and Web Computing (Master's) In progress Coursework for the Master's in Web Engineering: this personal website, a performance comparison between native WebAssembly and JavaScript, VONA (XML processing with WebAssembly) and a static website generator driven by XML documents. HTML5 WebAssembly XML TypeScript GitHub Pages Code on GitHub Language compiler (MAPL) Completed A complete compiler for the MAPL abstract machine. Implements lexical and syntactic analysis with a formal grammar, semantic analysis with type checking and a symbol table, memory offset calculation and executable object code generation. Java Compilers Grammars MAPL AST Code on GitHub Car Workshop — Dual persistence Completed Business management system with a comparative study of relational persistence. Empirical analysis of cursors and concurrency conflict resolution in JDBC, together with a double implementation of the domain: pure transactional JDBC vs. JPA / Hibernate. Java JDBC JPA / Hibernate Concurrency SQL Code on GitHub OS mechanisms and concurrency Completed Low-level C developments on the kernel and POSIX standards: process management (fork/exec), synchronisation with semaphores and mutexes in critical sections, inter-process communication (pipes, FIFOs, signals) and scheduling algorithms. C POSIX Kernel APIs Multithreading IPC View demo Personal website with W3C standards (SEW) Completed Website developed for the Software and Web Standards (SEW) course of the Bachelor's degree in Computer Engineering. Built with pure semantic HTML5, a modular CSS architecture based on structural selectors, WCAG 2.1 AA accessibility and accessible vanilla JavaScript. HTML5 CSS3 JavaScript WCAG 2.1 AA SEW"
+"k": "Raúl Antuña, projects, portfolio, Go, Svelte, Python, TypeScript, Docker, Java, C, Compilers, Concurrency, AEM, WebAssembly",
+"b": "Project list All Web & Cloud Systems & Compilers Backend & Persistence Showing all 7 projects. Featured project Facturator.ai — AI-powered SaaS platform Completed A complete SaaS ecosystem for intelligent extraction, OCR processing and accounting management of invoices and receipts. Modular architecture with a transactional backend in Go (WebSockets, Stripe, PostgreSQL/Supabase), a computer-vision microservice and ETL pipelines in Python, and a reactive SvelteKit frontend in TypeScript. Go Python SvelteKit TypeScript PostgreSQL Stripe Docker View Facturator.ai on GitHub → Code on GitHub Match-TFE Completed Platform to streamline the coordination and assignment of final-year projects at the School of Computer Engineering. Includes Docker Compose deployment (dev and release), Drizzle ORM on PostgreSQL and email notifications with a configurable cron. TypeScript Node.js Drizzle ORM PostgreSQL Docker Code on GitHub Standards and Web Computing (Master's) In progress Coursework for the Master's in Web Engineering: this personal website, a performance comparison between native WebAssembly and JavaScript, VONA (XML processing with WebAssembly) and a static website generator driven by XML documents. HTML5 WebAssembly XML TypeScript GitHub Pages Code on GitHub Language compiler (MAPL) Completed A complete compiler for the MAPL abstract machine. Implements lexical and syntactic analysis with a formal grammar, semantic analysis with type checking and a symbol table, memory offset calculation and executable object code generation. Java Compilers Grammars MAPL AST Code on GitHub Car Workshop — Dual persistence Completed Business management system with a comparative study of relational persistence. Empirical analysis of cursors and concurrency conflict resolution in JDBC, together with a double implementation of the domain: pure transactional JDBC vs. JPA / Hibernate. Java JDBC JPA / Hibernate Concurrency SQL Code on GitHub OS mechanisms and concurrency Completed Low-level C developments on the kernel and POSIX standards: process management (fork/exec), synchronisation with semaphores and mutexes in critical sections, inter-process communication (pipes, FIFOs, signals) and scheduling algorithms. C POSIX Kernel APIs Multithreading IPC View demo Personal website with W3C standards (SEW) Completed Website developed for the Software and Web Standards (SEW) course of the Bachelor's degree in Computer Engineering. Built with pure semantic HTML5, a modular CSS architecture based on structural selectors, WCAG 2.1 AA accessibility and accessible vanilla JavaScript. HTML5 CSS3 JavaScript WCAG 2.1 AA SEW"
 },
 {
 "t": "Facturator.ai — AI-powered SaaS platform",
@@ -374,15 +422,63 @@ window.INDICE_BUSQUEDA = [
 "u": "cv.html#cabecera",
 "l": "en",
 "k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references",
-"b": "Curriculum Vitae My academic background, experience, skills and references. Download CV as PDF (Spanish)"
+"b": "Curriculum Vitae My academic background, experience, skills and references. Download CV as PDF (Spanish) On this page Experience Education Certifications References Skills Languages Contact"
 },
 {
-"t": "Curriculum Vitae",
+"t": "Professional experience",
 "p": "CV",
-"u": "cv.html#curriculum",
+"u": "cv.html#experiencia",
 "l": "en",
-"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references AEM team lead Academic tutor LinkedIn recommendations",
-"b": "Curriculum Vitae Raúl Antuña Suárez AEM Backend Engineer · Master's in Web Engineering Contact Asturias, Spain rolitoansu@outlook.com LinkedIn GitHub Technical skills Adobe Experience Manager Java / OSGi / Sling HTML5 / CSS3 JavaScript / TypeScript Python Docker SQL / PostgreSQL Git / GitHub Languages Spanish Native English B2 Professional experience July 2026 — present AEM Backend Engineer Hiberus · Asturias / Hybrid Development and maintenance of solutions based on Adobe Experience Manager. Implementation of Sling components, OSGi models and workflows on AEM as a Cloud Service. Full-time contract combined with the part-time Master's in Web Engineering since September 2026. January 2026 — July 2026 AEM Backend Engineer (Internship) Hiberus · Asturias / On-site Internship in the Adobe Experience Manager team. Development of backend components with Java and Sling, integration with content systems and deployment to cloud environments. At the end of the internship I was offered a full-time position. Education September 2026 — present Master's in Web Engineering University of Oviedo · Oviedo, Asturias Specialisation in advanced web technologies: W3C standards, accessibility, web application architectures, cloud computing and WebAssembly. Studied part time alongside my job at Hiberus. September 2022 — July 2026 Bachelor's degree in Computer Engineering University of Oviedo · Oviedo, Asturias Foundations of algorithms, object-oriented programming, databases, networks and operating systems. Software Engineering specialisation. Courses and certifications AI Skills Fest 2026 Microsoft · verifiable credential on Credly 2026 References People who can vouch for my work and background. Out of respect for their privacy, their direct contact details are provided on request and with their prior consent. AEM team lead Hiberus · Asturias Has supervised my work from my internship (January 2026) through to my full-time role as an AEM Backend Engineer. Request reference contact Academic tutor School of Computer Engineering · University of Oviedo Can vouch for my academic record in the Bachelor's degree in Computer Engineering and the academic projects listed in the projects section. Request reference contact LinkedIn recommendations Public professional profile Recommendations and skill endorsements from colleagues and managers are available on my LinkedIn profile. View LinkedIn profile"
+"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references job work employment company position",
+"b": "Professional experience July 2026 — present AEM Backend Engineer Hiberus · Asturias / Hybrid Development and maintenance of solutions based on Adobe Experience Manager. Implementation of Sling components, OSGi models and workflows on AEM as a Cloud Service. Full-time contract combined with the part-time Master's in Web Engineering since September 2026. January 2026 — July 2026 AEM Backend Engineer (Internship) Hiberus · Asturias / On-site Internship in the Adobe Experience Manager team. Development of backend components with Java and Sling, integration with content systems and deployment to cloud environments. At the end of the internship I was offered a full-time position."
+},
+{
+"t": "Education",
+"p": "CV",
+"u": "cv.html#formacion",
+"l": "en",
+"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references studies university degree qualification",
+"b": "Education September 2026 — present Master's in Web Engineering University of Oviedo · Oviedo, Asturias Specialisation in advanced web technologies: W3C standards, accessibility, web application architectures, cloud computing and WebAssembly. Studied part time alongside my job at Hiberus. September 2022 — July 2026 Bachelor's degree in Computer Engineering University of Oviedo · Oviedo, Asturias Foundations of algorithms, object-oriented programming, databases, networks and operating systems. Software Engineering specialisation."
+},
+{
+"t": "Courses and certifications",
+"p": "CV",
+"u": "cv.html#certificaciones",
+"l": "en",
+"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references certificate certificates certified diploma credential badge course Microsoft Credly",
+"b": "Courses and certifications AI Skills Fest 2026 Microsoft · verifiable credential on Credly 2026"
+},
+{
+"t": "References",
+"p": "CV",
+"u": "cv.html#referencias",
+"l": "en",
+"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references",
+"b": "References People who can vouch for my work and background. Out of respect for their privacy, their direct contact details are provided on request and with their prior consent. AEM team lead Hiberus · Asturias Has supervised my work from my internship (January 2026) through to my full-time role as an AEM Backend Engineer. Request reference contact Academic tutor School of Computer Engineering · University of Oviedo Can vouch for my academic record in the Bachelor's degree in Computer Engineering and the academic projects listed in the projects section. Request reference contact LinkedIn recommendations Public professional profile Recommendations and skill endorsements from colleagues and managers are available on my LinkedIn profile. View LinkedIn profile"
+},
+{
+"t": "Contact",
+"p": "CV",
+"u": "cv.html#contacto-cv",
+"l": "en",
+"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references",
+"b": "Contact Asturias, Spain rolitoansu@outlook.com LinkedIn GitHub"
+},
+{
+"t": "Technical skills",
+"p": "CV",
+"u": "cv.html#habilidades",
+"l": "en",
+"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references abilities competences knowledge technologies",
+"b": "Technical skills Adobe Experience Manager Java / OSGi / Sling HTML5 / CSS3 JavaScript / TypeScript Python Docker SQL / PostgreSQL Git / GitHub"
+},
+{
+"t": "Languages",
+"p": "CV",
+"u": "cv.html#idiomas",
+"l": "en",
+"k": "Raúl Antuña, CV, resume, AEM, Adobe Experience Manager, Hiberus, backend, computer engineering, web engineering master, references",
+"b": "Languages Spanish Native English B2"
 },
 {
 "t": "Contact",
@@ -397,7 +493,7 @@ window.INDICE_BUSQUEDA = [
 "p": "Contact",
 "u": "contact.html#canales",
 "l": "en",
-"k": "Raúl Antuña, contact, form, AEM, Hiberus, web developer, Asturias",
+"k": "Raúl Antuña, contact, AEM, Hiberus, web developer, Asturias",
 "b": "Ways to contact me Email rolitoansu@outlook.com LinkedIn Raúl Antuña Suárez GitHub @Rolitoansu Location Asturias, Spain (hybrid and remote work)"
 },
 {
@@ -405,7 +501,7 @@ window.INDICE_BUSQUEDA = [
 "p": "Contact",
 "u": "contact.html#disponibilidad",
 "l": "en",
-"k": "Raúl Antuña, contact, form, AEM, Hiberus, web developer, Asturias",
+"k": "Raúl Antuña, contact, AEM, Hiberus, web developer, Asturias",
 "b": "Availability I currently work full time at Hiberus as an AEM Backend Engineer and study the Master's in Web Engineering part time. Occasionally open to: Short-term freelance projects Open source collaborations Talks or presentations about AEM and web standards"
 },
 {
@@ -422,7 +518,7 @@ window.INDICE_BUSQUEDA = [
 "u": "sitemap.html#paginas",
 "l": "en",
 "k": "Raúl Antuña, site map, sitemap, navigation",
-"b": "Site pages The site has a single navigation level: every page is linked from the top menu and from the footer. Within each page, the links below take you straight to each section. Home Introduction and quick access to all the content. Introduction Quick facts Technologies Explore the site About me Background, hobbies, gallery and Formula 1. Background and interests Hobbies and interests Gallery Formula 1 and passion for motorsport Formula 1 team radios Projects Project catalogue with category filters. Project list CV Experience, education, certifications and references. Technical skills Languages Professional experience Education Courses and certifications References CV as PDF (Spanish) Contact Contact channels and availability. Ways to contact me Availability Search Internal search across all the content. Help and accessibility How to use the site, keyboard shortcuts, accessibility statement and FAQ. How to navigate How to search Accessibility Languages Frequently asked questions Report a problem Versión en español The same website in Spanish: Inicio, Sobre mí, Proyectos, Currículum, Contacto, Buscar, Ayuda and Mapa del sitio."
+"b": "Site pages The site has a single navigation level: every page is linked from the top menu and from the footer. Within each page, the links below take you straight to each section. Home Introduction and quick access to all the content. Introduction Quick facts Technologies Explore the site About me Background, hobbies, gallery and Formula 1. Background and interests Hobbies and interests Gallery Formula 1 and passion for motorsport Formula 1 team radios Projects Project catalogue with category filters. Project list CV Experience, education, certifications and references. Technical skills Languages Professional experience Education Courses and certifications References CV as PDF (Spanish) Contact Contact channels and availability. Ways to contact me Availability Search Internal search across all the content. Versión en español The same website in Spanish: Inicio, Sobre mí, Proyectos, Currículum, Contacto, Buscar and Mapa del sitio."
 },
 {
 "t": "Other coursework projects",
